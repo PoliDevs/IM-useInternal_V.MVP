@@ -2,14 +2,17 @@
 $primary: #ff5400;
 $primary-hover: #ffa700;
 //
+$acento:#6384FC;
 
 $text-primary: #212121;
 $text-secondary: #FFFFFF;
 $text-tertiary: #0066FF;
 $text-desable: #545454;
 
-$border-primary: #3d3d3d;
-$border-secondary: #474747;
+
+$border:3px solid #212121;
+$border-primary-radius: 10px;
+$border-secondary-radius: 4px;
 
 $background-primary: #ECECEC;
 $background-secundary:#FFFFFF;
@@ -17,5 +20,15 @@ $background-tertiary:#000000;
 $background-quaternary:#FF4747;
 $background-desable:#F0F0F0;
 
-$success: #21D849;
+$background-buttom-primary-active:#212121;
+$background-buttom-primary-hover:#545454;
+$background-buttom-primary-focus:#A60E0E;
+$background-buttom-primary-desable:#BABABA;
+
+$background-buttom-secundary-active:#212121;
+$background-buttom-secundary-hover:#545454;
+$background-buttom-secundary-focus:#A60E0E;
+$background-buttom-secundary-desable:#BABABA;
+
+$success: #40CB5F;
 $danger:#D82137;
