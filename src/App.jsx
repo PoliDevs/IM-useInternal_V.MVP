@@ -1,12 +1,10 @@
 import { Routes, Route } from "react-router-dom";
-import NavBar from "./NavBar";
 
 function App() {
   return (
     <>
       <Routes>
         //* Rutas para uso interno *//
-        <NavBar/>
         <Route path="/" element={<Login/>}/>
         //! Rutas protegidas //!
         {/* <Route element={<ProtectedRoutes />}> */}
