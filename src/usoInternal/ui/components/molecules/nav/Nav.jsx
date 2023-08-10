@@ -20,7 +20,7 @@ export default function Nav() {
     <nav className={s.nav}>
       <div
         className={`${s.iconContainer} ${!barsActive ? s.customBackground : s.anotherCustomBackground}`}
-        style={{ padding: "3px", borderRadius: "12px 12px 2px 0" }}
+        style={{ padding: "3px", borderRadius: "12px 12px 2px 0", }}
         onClick={toggleBarsBackground}
       >
         <Icon name="bars" size="large" />
