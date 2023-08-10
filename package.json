@@ -15,7 +15,9 @@
     "react-dom": "^18.2.0",
     "react-i18next": "^13.0.3",
     "react-router-dom": "^6.14.2",
-    "sass": "^1.64.2"
+    "sass": "^1.64.2",
+    "semantic-ui-css": "^2.5.0",
+    "semantic-ui-react": "^2.1.4"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
