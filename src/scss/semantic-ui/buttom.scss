@@ -1,0 +1,28 @@
+@import '../colors.scss';
+
+.ui.primary.button {
+    background:$background-buttom-primary-active;
+    border-radius: 10px;
+    border: $border ;
+    &:hover{
+        background: $background-buttom-primary-desable;
+        border-radius: 10px;
+    }
+}
+
+.ui.secondary.button {
+    background: $background-buttom-secundary-active;
+    color:$text-primary;
+    border: $border ;
+    border-radius: 10px;
+    &:hover{
+        color: $text-desable;
+        background: $background-buttom-secundary-active;
+        border: $border-hover ;
+        border-radius: 10px;
+    }
+}
+
+.ui.button {
+    background-color: red;
+}

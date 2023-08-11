@@ -1,0 +1,25 @@
+{ 
+  "client": {
+      "home": {
+    "title": "¡Bienvenido!",
+    "subtitle": "Estás por pedir en: ",
+    "table": "Mesa ",
+    "poweredby": "impulsado por",
+    "order": "Hacer pedido",
+    "instructions": "Instrucciones"
+  }
+    },
+    "internal":{
+   "auth": {
+    "googleAcces": "Accede con Google",
+    "or": "O bien",
+    "name": "Nombre",
+    "email": "Email",
+    "password": "Contraseña",
+    "confirmpassword": "Confirmar contraseña",
+    "forgot": "Olvidé mi contraseña",
+    "login": "Iniciar Sesión",
+    "register": "Registrarse"
+  }
+}
+}

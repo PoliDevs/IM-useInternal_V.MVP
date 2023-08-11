@@ -1,16 +1,17 @@
 @import './scss/colors.scss';
 
 * {
-  color: $text-primary;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-/*   font-family: Mabry Pro; */
 }
 
 body {
   margin: 0;
+  padding: 0;
+  color: $text-primary;
   background-color: $background-primary;
+  font-family: 'Mabry Pro', sans-serif;
 }
  
 h1,
