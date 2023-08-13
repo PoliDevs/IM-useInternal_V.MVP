@@ -1,0 +1,18 @@
+@import '../../../../scss/colors.scss';
+
+.container_open{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 90vh;
+    color: $color-nineth;
+}
+.centered_content{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
