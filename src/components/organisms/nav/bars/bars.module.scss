@@ -1,0 +1,30 @@
+@import '../../../../scss/colors.scss';
+
+.containerd_bars {
+/*     position: relative; */
+    color:$text-primary;
+    background-color: $background-secundary;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: 0px;
+    top: 32px;
+    padding: 1rem;
+    border-radius: $border-primary-radius;
+    text-decoration: none;
+    width: 80%;
+    border: $border;
+    >article{
+        margin: 22px 0 18px 0;
+        font-size: 20px;
+        font-weight: bolder;
+    }
+    svg{
+        width: 30px;
+    }
+    a{
+        color: $text-primary;
+        margin: 0px 5px;
+    }
+  }
+  
