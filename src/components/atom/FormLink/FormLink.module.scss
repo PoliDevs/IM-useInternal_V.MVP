@@ -1,0 +1,17 @@
+@import "../../../scss/colors.scss";
+@import "../../../scss/typography.scss";
+
+.link {
+        font-size: $paragraph;
+        color: $text-tertiary;
+        text-decoration: none;
+        margin: 10px 0;
+
+         @media screen and (min-width: 430px) {
+          margin: 10px 0;
+         }
+
+          @media screen and (min-width: 750px) {
+            font-size: $line-text;
+          }
+      }

@@ -1,0 +1,17 @@
+@import "../../../scss/colors.scss";
+@import "../../../scss/typography.scss";
+
+.or {
+  font-size: $caption;
+  margin: 0;
+  color: $text-desable;
+  text-align: center;
+
+  @media screen and (min-width: 430px) {
+    font-size: $paragraph;
+  }
+
+  @media screen and (min-width: 750px) {
+    font-size: $line-text;
+  }
+}
