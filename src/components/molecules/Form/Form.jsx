@@ -24,7 +24,7 @@ export default function Form() {
 
   const onSubmit = async (data, event) => {
     event.preventDefault();
-    navigate("/dashboard");
+    navigate("/welcome");
   };
 
   return (
