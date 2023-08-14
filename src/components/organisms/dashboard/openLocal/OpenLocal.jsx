@@ -1,16 +1,25 @@
-import { Icon } from 'semantic-ui-react';
 import s from './openLocal.module.scss';
-import {Container} from 'semantic-ui-react';
+import { Icon } from 'semantic-ui-react';
 
-export default function OpenLocal({open}) {
-    const open_close=open;
+export default function OpenLocal() {
   return <div className={s.container_open}>
-    <Container className={s.centered_content}>
-      <Icon name="warehouse" size='big'/>
-      <h2>Local cerrado</h2>
-      <span>Abre el local para comenzar </span>
-      <br />
-      <span>a recibir pedidos</span>
-    </Container>
+    <header>
+      <h1> <Icon name="newspaper outline" />  Pedidos recibidos</h1>
+      <span>Tus pedidos estan aqui por orden de ingreso</span>
+    </header>
+    <section className={s.centered_content}>
+      <div>
+        <h2>Nuevos</h2>
+        <div>content</div>
+        </div>
+      <div>
+        <h2>Preparando</h2>
+        <div>content</div>
+        </div>
+      <div>
+        <h2>Listo</h2>
+        <div>content</div>
+      </div>
+    </section>
   </div>
 }

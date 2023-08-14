@@ -2,7 +2,7 @@ import { Icon } from "semantic-ui-react";
 import s from "./nav.module.scss";
 import { useState } from "react";
 import Bars from "./bars/Bars";
-import Open_close from "./open_close/Open_close";
+import Open_closed from "./open_closed/Open_closed";
 
 export default function Nav() {
   const [barsActive, setBarsActive] = useState(false);
@@ -39,7 +39,7 @@ export default function Nav() {
       >
         <Icon name="user circle outline" size="large" />
       </div>
-      {userActive?<Open_close/>:null}
+      {userActive?<Open_closed/>:null}
     </nav>
   );
 }
