@@ -1,0 +1,111 @@
+@import "../../../scss/colors.scss";
+@import "../../../scss/typography.scss";
+
+.mainContainer {
+  min-width: 100vw;
+  height: 100vh;
+  background-color: $background-quaternary;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .welcomeContainer {
+    min-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: flex;
+    gap: 21px;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .frame {
+      border: 3px solid black;
+      height: 230px;
+      width: 25%;
+      border-radius: $border-secondary-radius;
+    }
+    .left {
+      border-left: none;
+    }
+
+    .right {
+      border-right: none;
+    }
+    .textContainer {
+      position: relative;
+      height: 230px;
+      color: $color-sixth;
+      padding-top: 25px;
+      border: $border;
+      border-radius: $border-secondary-radius;
+      margin-bottom: 20px;
+      box-shadow: 9px 8px 0px 0px rgba(0, 0, 0, 1);
+      -webkit-box-shadow: 9px 8px 0px 0px rgba(0, 0, 0, 1);
+      -moz-box-shadow: 9px 8px 0px 0px rgba(0, 0, 0, 1);
+      .logo {
+        background: url("../../../assets/logoblanco.svg") center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 40px;
+        width: 70px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+      }
+      .paragraph {
+        text-align: center;
+        width: 85%;
+        margin: 10px auto 25px auto;
+        font-size: $paragraph;
+      }
+    }
+  }
+
+  @media screen and (min-width: 430px) {
+    .welcomeContainer {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      .frame {
+        display: none;
+      }
+
+      .textContainer {
+        margin-bottom: 50px;
+        padding: 65px 31px 80px 31px;
+        height: 100%;
+
+        .logo {
+          height: 70px;
+          width: 90px;
+        }
+
+        .paragraph {
+          margin: 10px auto 10px auto;
+          font-size: $line-text;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 750px) {
+    .welcomeContainer {
+      .textContainer {
+        width: 450px;
+        margin-bottom: 70px;
+        border-radius: $border-primary-radius;
+        padding: 75px 31px 95px 31px;
+        .logo {
+          height: 80px;
+          width: 130px;
+        }
+        .paragraph {
+          margin: 10px auto 20px auto;
+          font-size: $line-text;
+          width: 50%;
+        }
+      }
+    }
+  }
+}

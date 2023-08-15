@@ -47,6 +47,7 @@ import History from "./components/pages/history/History";
 import Config from "./components/pages/config/Config";
 import Nav from "./components/organisms/nav/Nav.jsx";
 import "semantic-ui-css/semantic.min.css";
+import Welcome from "./components/pages/welcome/Welcome.jsx";
 
 function App() {
   return (
@@ -56,6 +57,7 @@ function App() {
         <Route path="/" element={<Login />} />
         {/* Rutas protegidas */}
         <Route element={<ProtectedRoutes />} path="">
+          <Route path="/welcome" element={<Welcome/>}/>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/sales" element={<Sales />} />
@@ -73,6 +75,7 @@ function ProtectedRoutes() {
     <>
       <Nav />
       <Routes>
+        <Route path="/welcome" element={<Welcome />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/sales" element={<Sales />} />
