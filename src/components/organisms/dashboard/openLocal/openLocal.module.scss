@@ -1,18 +1,38 @@
 @import '../../../../scss/colors.scss';
 
-.container_open{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    min-height: 90vh;
-    color: $color-nineth;
-}
-.centered_content{
-    text-align: center;
+.container_open {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+    min-height: 90vh;
+    width: 100%;
+
+    >header {
+        height: 120px;
+        text-align: center;
+        padding-top: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        >span{
+            margin-top: 5px;
+        }
+    }
+}
+
+.centered_content {
+    width: 100%;
+    background-color:$background-secundary;
+    display: flex;
+    justify-content: space-around;
+    border-top: $border;
+    height: 100vh;
+    >div {
+        background-color: aqua;
+        width: 30%;
+        text-align: center;
+        >div{
+            background-color: darkgray;
+        }
+    }
 }
