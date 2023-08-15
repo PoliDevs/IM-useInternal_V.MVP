@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../../atom/Header/Header';
+import Header from '../../molecules/Header/Header';
 
 export default function Menu() {
   return (

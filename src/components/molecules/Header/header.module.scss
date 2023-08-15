@@ -1,16 +1,16 @@
 @import '../../../scss/colors.scss';
 
 header {
-    height: 120px;
+    padding: 1.8rem 0;
     width: 100%;
     text-align: center;
-    padding-top: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: $color-seventh;
     >span{
-        margin-top: 5px;
+        margin-top: 15px;
         color: $text-desable;
     }
     >h1{

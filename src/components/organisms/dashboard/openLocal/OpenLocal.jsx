@@ -1,6 +1,5 @@
 import s from './openLocal.module.scss';
-import { Icon } from 'semantic-ui-react';
-import Header from '../../../atom/Header/Header';
+import Header from '../../../molecules/Header/Header';
 
 export default function OpenLocal() {
   return <div className={s.container_open}>
