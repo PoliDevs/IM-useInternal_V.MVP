@@ -6,6 +6,11 @@
   padding: 0.5rem 0.5rem;
   background-color: $background-quaternary;
   color:$text-secondary;
+  i{
+    &:hover {
+      cursor: pointer;
+  }
+  }
   >span{
     letter-spacing:4px;
   }

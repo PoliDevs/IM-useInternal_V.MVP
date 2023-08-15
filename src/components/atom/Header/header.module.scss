@@ -1,0 +1,25 @@
+@import '../../../scss/colors.scss';
+
+header {
+    height: 120px;
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    >span{
+        margin-top: 5px;
+        color: $text-desable;
+    }
+    >h1{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+/*         >i{
+            color:$color-sixth;
+
+        } */
+    }
+}

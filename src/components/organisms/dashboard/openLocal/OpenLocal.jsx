@@ -1,12 +1,10 @@
 import s from './openLocal.module.scss';
 import { Icon } from 'semantic-ui-react';
+import Header from '../../../atom/Header/Header';
 
 export default function OpenLocal() {
   return <div className={s.container_open}>
-    <header>
-      <h1> <Icon name="newspaper outline" />  Pedidos recibidos</h1>
-      <span>Tus pedidos estan aqui por orden de ingreso</span>
-    </header>
+    <Header icon="newspaper outline" title="Pedidos recibidos" detail="Tus pedidos estan aqui por orden de ingreso" />
     <section className={s.centered_content}>
       <div>
         <h2>Nuevos</h2>

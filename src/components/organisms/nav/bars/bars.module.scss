@@ -12,7 +12,7 @@
     padding: 1rem;
     border-radius: $border-primary-radius;
     text-decoration: none;
-    width: 80%;
+    width: 45%;
     border: $border;
     >article{
         margin: 22px 0 18px 0;
@@ -25,6 +25,9 @@
     a{
         color: $text-primary;
         margin: 0px 5px;
+        &:hover {
+            cursor: pointer;
+        }
     }
   }
   
