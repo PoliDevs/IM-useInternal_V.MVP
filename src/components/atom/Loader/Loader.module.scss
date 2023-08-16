@@ -1,0 +1,11 @@
+@import "../../../scss/colors.scss";
+@import "../../../scss/typography.scss";
+
+.loader {
+  height: 150px;
+  width: 150px;
+  background-image: url("../../../assets/Loader.gif");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
