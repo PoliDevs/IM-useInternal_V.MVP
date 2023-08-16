@@ -22,7 +22,13 @@
     color: $background-primary;
   }
 }
-
+.logo{
+  width: 50px;
+  height: 32px;
+  background: url("../../../assets/logoblanco.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
 .anotherCustomBackground{
     background-color: #4d4444;

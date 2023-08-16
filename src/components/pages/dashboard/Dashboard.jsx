@@ -1,6 +1,6 @@
 import OpenLocal from "../../organisms/dashboard/openLocal/OpenLocal";
 import ClosedLocal from '../../organisms/dashboard/closedLocal/ClosedLocal'
-import s from './dashboard.scss';
+import s from './dashboard.module.scss';
 import {useSelector} from "react-redux/es/hooks/useSelector";
 
 export default function Dashboard() {
