@@ -1,7 +1,10 @@
-import React from 'react'
+import React from 'react';
+import Header from '../../molecules/Header/Header';
 
 export default function Config() {
   return (
-    <div>Config</div>
+    <div>
+      <Header icon="cog" title="Configuración" detail="Aquí están tus datos, planes y configuraciones generales" />
+    </div>
   )
 }
