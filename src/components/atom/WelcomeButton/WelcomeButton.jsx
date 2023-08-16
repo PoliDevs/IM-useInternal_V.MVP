@@ -4,7 +4,7 @@ import s from "./WelcomeButton.module.scss"
 export default function WelcomeButton({text, path}) {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate("/dashboard");
+    navigate(path);
   }
 
   return (
