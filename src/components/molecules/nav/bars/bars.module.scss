@@ -8,12 +8,13 @@
     flex-direction: column;
     position: absolute;
     left: 0px;
-    top: 32px;
+    top: 38px;
     padding: 1rem;
     border-radius: $border-primary-radius;
     text-decoration: none;
-    width: 45%;
+    width: 35%;
     border: $border;
+    z-index: 21;
     >article{
         margin: 22px 0 18px 0;
         font-size: 20px;
@@ -29,5 +30,12 @@
             cursor: pointer;
         }
     }
+  }
+
+  @media screen and (max-width: 730px) {
+.containerd_bars{
+    width: 70%;
+    top: 35px;
+}
   }
   

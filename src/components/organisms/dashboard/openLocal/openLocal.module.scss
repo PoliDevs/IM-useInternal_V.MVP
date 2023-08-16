@@ -5,19 +5,6 @@
     flex-direction: column;
     min-height: 90vh;
     width: 100%;
-
-    >header {
-        height: 120px;
-        text-align: center;
-        padding-top: 10px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        >span{
-            margin-top: 5px;
-        }
-    }
 }
 
 .centered_content {
@@ -31,8 +18,5 @@
         background-color: aqua;
         width: 30%;
         text-align: center;
-/*         >div{
-            
-        } */
     }
 }

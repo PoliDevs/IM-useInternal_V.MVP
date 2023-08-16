@@ -55,9 +55,9 @@ function App() {
       <Routes>
         {/* Rutas para uso interno */}
         <Route path="/" element={<Login />} />
+        <Route path="/welcome" element={<Welcome/>}/>
         {/* Rutas protegidas */}
         <Route element={<ProtectedRoutes />} path="">
-          <Route path="/welcome" element={<Welcome/>}/>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/menu" element={<Menu />} />
           <Route path="/sales" element={<Sales />} />
