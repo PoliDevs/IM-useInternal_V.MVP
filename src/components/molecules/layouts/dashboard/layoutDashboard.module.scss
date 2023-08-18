@@ -1,0 +1,25 @@
+@import '../../../../scss/colors.scss';
+
+.content_LayoutDashboard{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    /* background-color: aqua; */
+    >div{
+        width: 32%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+/*     > div:nth-child(1) {
+      } */
+    
+      > div:nth-child(2) {
+        border-left: 2px solid $color-nineth;
+        border-right: 2px solid $color-nineth;
+      }
+    
+  
+ 
+    }

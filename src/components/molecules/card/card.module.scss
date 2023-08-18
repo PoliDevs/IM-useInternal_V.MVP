@@ -1,0 +1,29 @@
+@import '../../../scss/colors.scss';
+.content_card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    div{
+        border: 1px solid $color-nineth;
+        width: 80%;
+/*         background-color: skyblue; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+ /*        min-height: 250px; */
+        h4{
+            width: 88%;
+        }
+        >article{
+/*             background-color: salmon; */
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            border-bottom: 1px solid $color-seventh;
+            padding: 0.5rem 0;
+        }
+    }
+}
