@@ -1,0 +1,31 @@
+{
+  "usuario": {
+    "id": 1,
+    "email": "pepito@gmail.com",
+    "password": "pepito1234",
+    "local": false,
+    "name": "solomia",
+    "table": [
+      {
+        "id": 1,
+        "status": "order"
+      },
+      {
+        "id": 2,
+        "status": "preparation"
+      },
+      {
+        "id": 3,
+        "status": "ready"
+      },
+      {
+        "id": 4,
+        "status": "delivered"
+      },
+      {
+        "id": 5,
+        "status": "canceled"
+      }
+    ]
+  }
+}
