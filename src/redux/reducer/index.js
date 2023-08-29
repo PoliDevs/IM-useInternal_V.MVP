@@ -1,18 +1,23 @@
-import { LOCAL_OPEN } from "../actions/actionTypes";
+import { LOCAL_OPEN,GET_TABLES } from "../actions/actionTypes";
 const initalState = {
-  local:false
+  id:1,
+  local:false,
+  tables:[]
 };
 
-export const  rootReducer = (state= initalState, action) => {
-  switch (action.type) {
+export const  rootReducer = (state= initalState, {type,payload}) => {
+  switch (type) {
     case LOCAL_OPEN:
       return{
         ...state,
-        local:action.payload
+        local:payload
+      };
+    case GET_TABLES:
+      return{
+        ...state,
+        tables:payload
       }
-      
       break;
-  
     default:
       return state;
   }
