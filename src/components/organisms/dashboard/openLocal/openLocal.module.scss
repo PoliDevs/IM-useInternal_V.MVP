@@ -1,12 +1,5 @@
 @import '../../../../scss/colors.scss';
 
-.container_open {
-    display: flex;
-    flex-direction: column;
-    min-height: 90vh;
-    width: 100%;
-}
-
 .centered_content {
     width: 100%;
     background-color:$background-secundary;

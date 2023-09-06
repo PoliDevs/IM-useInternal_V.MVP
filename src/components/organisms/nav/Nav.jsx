@@ -4,18 +4,15 @@ import { useState } from "react";
 import Bars from "../../molecules/nav/bars/Bars";
 import Open_closed from "../../molecules/nav/open_closed/Open_closed";
 import { useDispatch, useSelector } from "react-redux";
-import { getTables, localAction } from "../../../redux/actions";
+import { getOrders, localAction } from "../../../redux/actions";
 
 export default function Nav() {
   const [barsActive, setBarsActive] = useState(false);
   const [userActive, setUserActive] = useState(false);
   const dispatch = useDispatch();
 
-  const tables = useSelector((state) => state.tables);
-  const id = useSelector((state) => state.id);
-/*   console.log("tables", tables);
-  console.log("id", id); */
-
+  const orders = useSelector((state) => state.orders);
+  console.log(orders)
   //cambia el fondo de los iconos
   const toggleBarsBackground = () => {
     setBarsActive(!barsActive);
@@ -25,8 +22,9 @@ export default function Nav() {
     setUserActive(!userActive);
   };
 
-  const updateLocal = async (id) => {
-    dispatch(await getTables());
+  const updateLocal = async () => {
+    dispatch(await getOrders());
+    //esta action es para abrir el local 
 /*     dispatch(await localAction(id)); */
   };
 
@@ -53,7 +51,7 @@ export default function Nav() {
         <Icon
           name="user circle outline"
           size="big"
-          onClick={() => updateLocal(id)}
+          onClick={() => updateLocal()}
         />
       </div>
       {userActive ? <Open_closed /> : null}

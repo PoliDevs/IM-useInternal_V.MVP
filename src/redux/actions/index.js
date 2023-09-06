@@ -1,7 +1,20 @@
 import axios from "axios";
-import { LOCAL_OPEN, GET_TABLES } from "./actionTypes";
+import { LOCAL_OPEN,GET_ORDERS,LOGIN_ACTION } from "./actionTypes";
 
-import {fetchTables,/* updateOpenLocal */} from '../../../restoran';
+export function loginAction(payload){
+return async function (dispatch) {
+  try {
+    const response = await axios.post("loginemployee/login",payload);
+/*     console.log(response.data.token) */
+    return dispatch({
+      type:LOGIN_ACTION,
+      payload:response
+    })
+  } catch (error) {
+    return error
+  }
+}
+}
 
 export function localAction(value) {
 /*     return {
@@ -14,9 +27,16 @@ export function localAction(value) {
     };
   }
 
-export async function getTables() {
-  return{
-    type:GET_TABLES,
-    payload:await fetchTables()
+export async function getOrders() {
+  return async function (dispatch) {
+    try {
+      const response = await axios.get("order/all");
+      return dispatch({
+        type:GET_ORDERS,
+        payload:response.data
+      })
+    } catch (error) {
+      return error
+    }
   }
 }

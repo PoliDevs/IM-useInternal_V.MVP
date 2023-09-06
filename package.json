@@ -8,14 +8,16 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "server":"json-server --watch restorant.json"
+    "server": "json-server --watch restorant.json"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.2.0",
     "axios": "^1.4.0",
     "i18next": "^23.4.3",
     "json-server": "^0.17.3",
+    "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
+    "react-datepicker": "^4.16.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.45.4",
     "react-i18next": "^13.0.3",

@@ -6,6 +6,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
+    margin-bottom: 15px;
 
     >div {
         border: 1px solid $color-nineth;
@@ -30,13 +31,13 @@
             align-items: center;
 
             >span{
-                padding: 10px 0;
                 width: 90%;
             }
             > span:first-of-type {
                 font-size: 11px;
                 text-align: start;
                 border-top: 1px solid $color-seventh;
+                padding-top: 10px;
             }
             >article {
                 width: 90%;
@@ -59,4 +60,8 @@
             }
         }
     }
+}
+.detail{
+    display: flex;
+    flex-direction: column;
 }
