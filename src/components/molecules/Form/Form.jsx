@@ -10,10 +10,15 @@ import FormInput from "../../atom/FormInput/FormInput";
 import FormLabel from "../../atom/FormLabel/FormLabel";
 import FormLink from "../../atom/FormLink/FormLink";
 import s from "./Form.module.scss";
+import { loginAction } from "../../../redux/actions";
+import { useDispatch,useSelector } from "react-redux";
+import { useState } from "react";
 
 export default function Form() {
   const [t, i18n] = useTranslation(["global"]);
+  const [passwordIconrrect,setPasswordIncorrect]=useState(false)
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(loginSchema),
@@ -24,8 +29,21 @@ export default function Form() {
 
   const onSubmit = async (data, event) => {
     event.preventDefault();
-    navigate("/welcome");
+    try {
+      const response = await dispatch(loginAction(data));
+      if (response.payload.status === 200 ) {
+        console.log("éxito");
+        setPasswordIncorrect(false)
+        navigate('/welcome')
+      } else {
+        console.log("error");
+      }
+    } catch (error) {
+      setPasswordIncorrect(true)
+      console.log("error", error);
+    }
   };
+  
 
   return (
     <form className={s.loginForm} onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -50,6 +68,7 @@ export default function Form() {
         error={errors.password}
         text={"la contraseña debe tener entre 4 y 8 caracteres"}
       />
+      {passwordIconrrect?<FormError error={passwordIconrrect} text={"email o contraceña incorrecta"} />:null}
       <FormButton
         type="submit"
         disabled={!isDirty || isSubmitting}

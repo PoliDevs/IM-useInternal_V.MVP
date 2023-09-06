@@ -48,6 +48,9 @@ import Config from "./components/pages/config/Config";
 import Nav from "./components/organisms/nav/Nav.jsx";
 import "semantic-ui-css/semantic.min.css";
 import Welcome from "./components/pages/welcome/Welcome.jsx";
+import axios from "axios";
+axios.defaults.baseURL='http://localhost:3001/';
+//axios.defaults.baseURL='https://nodejs-production-bbf9.up.railway.app';
 
 function App() {
   return (
@@ -75,7 +78,6 @@ function ProtectedRoutes() {
     <>
       <Nav />
       <Routes>
-        <Route path="/welcome" element={<Welcome />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/sales" element={<Sales />} />

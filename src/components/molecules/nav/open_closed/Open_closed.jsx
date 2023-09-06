@@ -13,7 +13,7 @@ export default function Open_closed() {
 
   const handleOpenClose = () => {
     setOpenClose(!openClose); 
-    return dispatch(localAction(!openClose))
+/*     return dispatch(localAction(!openClose)) */
   };
   console.log(openClose);
   return (
@@ -26,3 +26,6 @@ export default function Open_closed() {
     </div>
   );
 }
+
+
+

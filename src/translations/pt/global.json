@@ -1,14 +1,4 @@
 {
-  "client": {
-    "home": {
-      "title": "¡Bienvenido!",
-      "subtitle": "Estás por pedir en: ",
-      "table": "Mesa ",
-      "poweredby": "impulsado por",
-      "order": "Hacer pedido",
-      "instructions": "Instrucciones"
-    }
-  },
   "internal": {
     "auth": {
       "googleAcces": "Accede con Google",
@@ -51,6 +41,15 @@
       "setting":{
         "detail":"Aquí están tus datos, planes y configuraciones generales"
       }
+    },
+    "sales": {
+      "This week": "Esta semana",
+      "Weekly Total": "Total semanal",
+      "Today": "Hoje",
+      "today you sold": "hoje você vendeu",
+      "today you received": "hoje você recebeu",
+      "orders": "pedidos"
     }
+    
   }
 }

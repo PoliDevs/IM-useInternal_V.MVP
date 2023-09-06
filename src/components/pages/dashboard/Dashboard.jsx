@@ -5,6 +5,7 @@ import {useSelector} from "react-redux/es/hooks/useSelector";
 
 export default function Dashboard() {
   const localValue=useSelector(state=>state.local)
+  
   return (
     <div className={s.container_dashboard}>
       {
