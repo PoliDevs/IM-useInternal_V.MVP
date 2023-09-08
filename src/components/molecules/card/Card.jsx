@@ -10,12 +10,13 @@ export default function Card({
   menu,
   total,
   detail,
+  width,
 }) {
   const [seeOrder, setSeeOrder] = useState(true);
   console.log(menu);
 
-  const { name, cost } = menu;
-  console.log(name, cost);
+  /*   const { name, cost,amount } = menu; */
+  /*   console.log(name, cost,amount); */
   const handleSeeOrder = () => {
     setSeeOrder(!seeOrder);
   };
@@ -30,8 +31,11 @@ export default function Card({
     if (arg === "orderReady") {
       return "Pasar a entregado";
     }
+    if (arg === "delivered") {
+      return "entregado";
+    }
   };
-
+  console.log(status);
   const colorButton = (arg) => {
     if (arg === "new") {
       return "#FF4A4A";
@@ -40,6 +44,9 @@ export default function Card({
       return "#40CB5F";
     }
     if (arg === "ready") {
+      return "#000000";
+    }
+    if (arg === "delivered") {
       return "#000000";
     }
   };
@@ -51,7 +58,7 @@ export default function Card({
   };
 
   return (
-    <div className={s.content_card}>
+    <div className={s.content_card} style={{ width: "25%" }}>
       <div>
         <h4>
           Mesa {id}{" "}
@@ -62,27 +69,20 @@ export default function Card({
         </h4>
         {seeOrder ? (
           <div>
-            {/* <span>{status}</span> */}
             <span>
               Pedido N°{numberOrder} - Recibido a las {hour}
             </span>
-            {/*         {menu.map((cur) => {
-          return (
-            <article key={cur.id}>
-              <span>
-                {cur.amount} {cur.product}
-              </span>
-              <span>${cur.price}</span>
-            </article>
-          );
-        })} */}
-
-            {name.map((dishName, index) => (
-              <article key={index}>
-                <span>{dishName}</span>
-                <span>{`$ ${cost[index]}`}</span>
-              </article>
-            ))}
+            {menu &&
+              menu.map((cur, idx) => {
+                return (
+                  <article key={idx}>
+                    <span>
+                      {cur.amount} {cur.name}
+                    </span>
+                    <span>${cur.cost}</span>
+                  </article>
+                );
+              })}
             {detail ? (
               <article className={s.detail}>
                 <b>Observaciones:</b>

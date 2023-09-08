@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import store from './redux/store/index.js';
 import { I18nextProvider } from 'react-i18next';
 import i18next from 'i18next';
+import { AuthProvider } from "./context/authContext.jsx";
 import global_es from './translations/es/global.json';
 import global_en from './translations/en/global.json';
 import global_pt from './translations/pt/global.json';
@@ -37,7 +38,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 <Provider store={store} >
     <BrowserRouter>
     <I18nextProvider i18n={i18next} >
+      <AuthProvider>
     <App />
+      </AuthProvider>
     </I18nextProvider>
     </BrowserRouter>
 </Provider>
