@@ -1,0 +1,20 @@
+@import "../../../scss/colors.scss";
+@import "../../../scss/typography.scss";
+
+.paragraph {
+  font-size: $paragraph;
+  color: $text-primary;
+  text-align: center;
+}
+
+.secundary {
+  color: $text-secondary;
+}
+
+.left {
+  text-align: left;
+}
+
+.bold {
+  font-weight: bold;
+}
