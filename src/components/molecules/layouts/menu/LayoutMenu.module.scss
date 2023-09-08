@@ -1,0 +1,25 @@
+@import "../../../../scss/colors.scss";
+@import "../../../../scss/typography.scss";
+
+.section {
+  height: 100%;
+  width: 100%;
+
+  .contentContainer {
+    display: flex;
+    height: auto;
+    width: auto;
+
+    .buttonContent {
+      display: flex;
+      flex-direction: column;
+      width: 524px;
+    }
+
+    .menuContent {
+      display: flex;
+      flex-direction: column;
+    }
+
+  }
+}
