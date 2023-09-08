@@ -1,0 +1,16 @@
+.containerd {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    background: red;
+    >section{
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 50%;
+        &:first-child {
+            border-right: 2px solid black; /* Agrega un borde derecho de color negro al primer section */
+            padding-right: 10px; /* Opcional: Añade espacio entre el borde y el contenido */
+          }
+    }
+}
