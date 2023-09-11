@@ -4,11 +4,12 @@ import { ReactComponent as ArrowDownload } from "../../../assets/ArrowDownload.s
 import Paragraph from '../Paragraph/Paragraph';
 import s from './LargeButton.module.scss';
 
-export default function LargeButton({text, icon}) {
+export default function LargeButton({text, icon,onClick}) {
   const [active, setActive] = useState(false);
 
   const handleClick = () => {
     setActive(true);
+    onClick()
   }
 
   const handleBlur = () => {

@@ -1,16 +1,22 @@
 .containerd {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     width: 100%;
-    background: red;
+/*     background: red; */
     >section{
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        width: 50%;
+/*         background-color: rgb(41, 167, 37); */
+        width: 35%;
         &:first-child {
             border-right: 2px solid black; /* Agrega un borde derecho de color negro al primer section */
-            padding-right: 10px; /* Opcional: Añade espacio entre el borde y el contenido */
+            >button{
+                margin: 0 0 15px 0;
+            }
           }
     }
+}
+.containerd > section:nth-child(2) {
+    background-color: blanchedalmond;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
 }

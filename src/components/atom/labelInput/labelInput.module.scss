@@ -1,0 +1,18 @@
+@import "../../../scss/colors.scss";
+@import "../../../scss/typography.scss";
+label{
+    font-size: $paragraph;
+    color: $text-primary;
+}
+input{
+    width: 85%;
+    max-height: 44px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    padding-right: 17px;
+    border-radius: $border-secondary-radius;
+    background-color: $color-sixth;
+    margin: 5px;
+    border: $border;
+}
