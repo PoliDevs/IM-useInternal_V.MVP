@@ -49,6 +49,7 @@ import Nav from "./components/organisms/nav/Nav.jsx";
 import "semantic-ui-css/semantic.min.css";
 import Welcome from "./components/pages/welcome/Welcome.jsx";
 import axios from "axios";
+import MenuInstructions from "./components/molecules/MenuInstructions/MenuInstructions.jsx";
 axios.defaults.baseURL='http://localhost:3001/';
 //axios.defaults.baseURL='https://nodejs-production-bbf9.up.railway.app';
 
@@ -58,14 +59,16 @@ function App() {
       <Routes>
         {/* Rutas para uso interno */}
         <Route path="/" element={<Login />} />
-        <Route path="/welcome" element={<Welcome/>}/>
+        <Route path="/welcome" element={<Welcome />} />
         {/* Rutas protegidas */}
         <Route element={<ProtectedRoutes />} path="">
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/menu" element={<Menu />} />
+          {/* <Route path="/menu" element={<Menu />} /> */}
           <Route path="/sales" element={<Sales />} />
           <Route path="/history" element={<History />} />
           <Route path="/config" element={<Config />} />
+          <Route path="/instructions/download" element={<MenuInstructions />} />
+          <Route path="/instructions/upload" element={<MenuInstructions />} />
         </Route>
         {/* Rutas protegidas */}
       </Routes>
@@ -83,6 +86,28 @@ function ProtectedRoutes() {
         <Route path="/sales" element={<Sales />} />
         <Route path="/history" element={<History />} />
         <Route path="/config" element={<Config />} />
+        <Route
+          path="/instructions/download"
+          element={
+            <MenuInstructions
+              type="download"
+              step="1"
+              stepText="Descarga nuestra plantilla para menú"
+              fileText="Descargar la plantilla"
+            />
+          }
+        />
+        <Route
+          path="/instructions/upload"
+          element={
+            <MenuInstructions
+              type="upload"
+              step="1"
+              stepText="Sube  tu menú una vez que hayas guardado tus productos"
+              fileText="Subir menú"
+            />
+          }
+        />
       </Routes>
     </>
   );

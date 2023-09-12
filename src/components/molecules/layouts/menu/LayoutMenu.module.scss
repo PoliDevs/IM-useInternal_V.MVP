@@ -4,11 +4,14 @@
 .section {
   height: 100%;
   width: 100%;
+  display: flex;
+  justify-content: center;
 
   .contentContainer {
     display: flex;
     height: auto;
     width: auto;
+    margin: 0 auto;
 
     .buttonContent {
       display: flex;
@@ -18,8 +21,20 @@
     }
 
     .menuContent {
+      margin-left: 50px;
       display: flex;
       flex-direction: column;
+      width: 443px;
+      border: $border;
+      padding: 10px;
+
+      .title {
+        display: flex;
+        width: 100%;
+        background-color: $text-primary;
+        // justify-content: space-between;
+        // column-gap: 59px;
+      }
     }
 
   }
