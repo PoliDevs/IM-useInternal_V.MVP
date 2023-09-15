@@ -2,20 +2,23 @@
 @import "../../../scss/typography.scss";
 
 .mainContainer {
-  display: flex;
-  flex-direction: column;
-  width: 372px;
-  height: 800px;
-  margin: 0 auto;
-  padding-top: 130px;
+     display: flex;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    width: 372px;
+    height: 100%;
+    /* max-height: 600px; */
+    margin: 0 auto;
+    padding-top: 72px;
 
   .textContainer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: auto;
+    max-height: 511px;
     width: 342px;
     margin: 0 auto;
+    gap: 15px;
     .uploadedFile {
       display: flex;
       justify-content: space-between;
