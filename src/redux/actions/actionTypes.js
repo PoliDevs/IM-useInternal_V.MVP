@@ -1,3 +1,13 @@
 export const LOGIN_ACTION="LOGIN_ACTION";
+export const LOGIN_ACTION_GOOGLE="LOGIN_ACTION_GOOGLE";
+
+export const MENU_ACTIVE="MENU_ACTIVE";
+export const LOCAL_OPEN_VALUE="LOCAL_OPEN_VALUE";
+
+
+export const OPEN_LOCAL="OPEN_LOCAL";
+export const CLOSED_LOCAL="CLOSED_LOCAL";
+
+
+
 export const GET_ORDERS="GET_ORDERS";
-export const LOCAL_OPEN="LOCAL_OPEN";

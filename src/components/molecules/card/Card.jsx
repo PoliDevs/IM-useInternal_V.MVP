@@ -1,11 +1,11 @@
 import { useState } from "react";
 import s from "./card.module.scss";
 import { Icon, Button } from "semantic-ui-react";
+import {extractTableAndOrderNumbers} from './card'
 
 export default function Card({
   status,
-  id,
-  numberOrder,
+  table_numberOrder,
   hour,
   menu,
   total,
@@ -14,6 +14,7 @@ export default function Card({
 }) {
   const [seeOrder, setSeeOrder] = useState(true);
   console.log(menu);
+  const { tableNumber, orderNumber }=extractTableAndOrderNumbers(table_numberOrder)
 
   /*   const { name, cost,amount } = menu; */
   /*   console.log(name, cost,amount); */
@@ -58,10 +59,10 @@ export default function Card({
   };
 
   return (
-    <div className={s.content_card} style={{ width: "25%" }}>
+    <div className={s.content_card} style={{ width:width+"%"}}>
       <div>
         <h4>
-          Mesa {id}{" "}
+          Mesa {tableNumber}{" "}
           <Icon
             name={seeOrder ? "angle right" : "angle down"}
             onClick={handleSeeOrder}
@@ -70,7 +71,7 @@ export default function Card({
         {seeOrder ? (
           <div>
             <span>
-              Pedido N°{numberOrder} - Recibido a las {hour}
+              Pedido N°{orderNumber} - Recibido a las {hour.slice(0,5)}
             </span>
             {menu &&
               menu.map((cur, idx) => {

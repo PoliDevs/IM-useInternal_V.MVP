@@ -8,7 +8,8 @@ import LabelInput from '../../../atom/labelInput/LabelInput';
 
 export default function LayoutConfig() {
     const { t, i18n } = useTranslation();
-    const [selectedOption, setSelectedOption] = useState(null);
+    const [selectedOption, setSelectedOption] = useState("datosPersonales");
+    
 
     const handleOptionClick = (option) => {
         setSelectedOption(option);
