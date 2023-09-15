@@ -14,9 +14,11 @@
   -moz-box-shadow: 9px 8px 0px 0px rgba(0, 0, 0, 1);
   text-decoration: none;
   cursor: pointer;
+  margin: 15px 0;
   .icon {
     width: 24px;
     height: 24px;
     color: $text-primary;
+    margin: 7px;
   }
 }

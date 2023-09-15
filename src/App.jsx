@@ -102,7 +102,7 @@ function ProtectedRoutes() {
           element={
             <MenuInstructions
               type="upload"
-              step="1"
+              step="2"
               stepText="Sube  tu menú una vez que hayas guardado tus productos"
               fileText="Subir menú"
             />

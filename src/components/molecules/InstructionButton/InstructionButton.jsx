@@ -2,7 +2,7 @@ import { ReactComponent as HelpIcon } from "../../../assets/Help.svg";
 import { Link } from "react-router-dom";
 import s from "./InstructionButton.module.scss";
 
-export default function InstructionButton({ helpText, text }) {
+export default function InstructionButton({ helpText, text, path }) {
   return (
     <div className={s.buttonContainer}>
       <div className={s.helpContainer}>
@@ -11,7 +11,7 @@ export default function InstructionButton({ helpText, text }) {
           {helpText}
         </Link>
       </div>
-      <button className={s.button}>{text}</button>
+      <Link to={path} className={s.button}>{text}</Link>
     </div>
   );
 }
