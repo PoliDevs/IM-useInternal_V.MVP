@@ -1,20 +1,16 @@
 import { FcGoogle } from "react-icons/fc";
 import s from "./GoogleButton.module.scss";
-import { useAuth } from "../../../context/authContext";
 
-export default function GoogleButton({ text }) {
-  const auth = useAuth();
-  const {email}=auth.user;
-  console.log(email)
-/*   console.log(auth.user) */
-  const handleGoogle = (e) => {
-    e.preventDefault();
-    auth.loginWithGoogle();
-  };
+export default function GoogleButton({ text, signInWithGoogle }) {
   return (
-    <button className={s.googleButton} onClick={(e) => handleGoogle(e)}>
+    <button
+      className={s.googleButton}
+      onClick={() => {
+        signInWithGoogle();
+      }}
+    >
       <FcGoogle className={s.fcGoogle} />
       {text}
     </button>
   );
-};
+}
