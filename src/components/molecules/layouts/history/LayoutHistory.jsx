@@ -99,7 +99,7 @@ export default function LayoutHistory() {
           />
           <div>
             {selectedDate ? (
-              <div>
+              <div className={s.content_date}>
                 <span className={s.date}>
                   {selectedDate.toLocaleDateString(i18n.language, {
                     day: "numeric",

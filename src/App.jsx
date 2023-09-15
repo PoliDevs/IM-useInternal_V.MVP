@@ -50,6 +50,7 @@ import "semantic-ui-css/semantic.min.css";
 import Welcome from "./components/pages/welcome/Welcome.jsx";
 import axios from "axios";
 import MenuInstructions from "./components/molecules/MenuInstructions/MenuInstructions.jsx";
+import Sing_in from "./components/pages/singn_in/Sing_in.jsx";
 axios.defaults.baseURL='http://localhost:3001/';
 //axios.defaults.baseURL='https://nodejs-production-bbf9.up.railway.app';
 
@@ -59,6 +60,7 @@ function App() {
       <Routes>
         {/* Rutas para uso interno */}
         <Route path="/" element={<Login />} />
+        <Route path="/singn_in" element={<Sing_in/>} />
         <Route path="/welcome" element={<Welcome />} />
         {/* Rutas protegidas */}
         <Route element={<ProtectedRoutes />} path="">
