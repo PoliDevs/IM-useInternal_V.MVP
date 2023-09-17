@@ -3,22 +3,25 @@
 
 .menuStep {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background-color: $background-tertiary;
   color: $text-secondary;
   width: 100%;
-  height: 73px;
+  min-height: 73px;
+  padding: 5px;
+  height: auto;
   border-radius: $border-secondary-radius;
-
   .number {
     display: block;
     width: 20px;
     margin: 29px;
     font-size: $title;
+    font-weight: 700;
   }
 }
 
 .light {
   background-color: $background-secundary;
+  color: $text-primary
 }

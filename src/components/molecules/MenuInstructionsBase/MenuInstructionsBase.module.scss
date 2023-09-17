@@ -1,0 +1,20 @@
+@import "../../../scss/colors.scss";
+
+.mainContainer {
+   display: flex;
+    flex-direction: column;
+    width: 372px;
+    height: 100%;
+    margin: 0 auto;
+    padding-top: 56px;
+    
+    .textContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: auto;
+      width: 342px;
+      margin: 0 auto;
+      gap: 15px;
+    }
+}

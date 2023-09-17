@@ -2,9 +2,11 @@
 @import "../../../scss/typography.scss";
 
 .lineText {
+ font-family:  "MabryPro-Regular", sans-serif;
   font-size: $line-text;
   color: $text-primary;
   text-align: left;
+  text-wrap: balance;
 }
 
 .centered {

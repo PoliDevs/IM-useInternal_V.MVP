@@ -24,6 +24,9 @@
 
   .button {
     font-size: $title;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: $background-tertiary;
     color: $text-secondary;
     width: 100%;
