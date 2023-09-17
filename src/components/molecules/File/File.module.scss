@@ -9,14 +9,17 @@
   align-items: center;
   border-radius: $border-secondary-radius;
   border: $border;
+  background-color: $background-secundary;
   box-shadow: 9px 8px 0px 0px rgba(0, 0, 0, 1);
   -webkit-box-shadow: 9px 8px 0px 0px rgba(0, 0, 0, 1);
   -moz-box-shadow: 9px 8px 0px 0px rgba(0, 0, 0, 1);
   text-decoration: none;
   cursor: pointer;
+  margin: 15px 0;
   .icon {
     width: 24px;
     height: 24px;
     color: $text-primary;
+    margin: 7px;
   }
 }

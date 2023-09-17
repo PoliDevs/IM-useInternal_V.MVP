@@ -1,0 +1,24 @@
+@import "../../../scss/colors.scss";
+@import "../../../scss/typography.scss";
+.open_close {
+height: 322px;
+    width: calc(100% - 9px);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    background-color: #FFFFFF;
+    border-radius: $border-secondary-radius;
+    box-shadow: 9px 8px 0px 0px rgba(0, 0, 0, 1);
+    -webkit-box-shadow: 9px 8px 0px 0px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 9px 8px 0px 0px rgba(0, 0, 0, 1);
+  .open_closeImage {
+    height: 164px;
+    width: auto;
+    background-image: url("../../../assets/open_close.png");
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+}

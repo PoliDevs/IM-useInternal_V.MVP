@@ -51,6 +51,7 @@ import Welcome from "./components/pages/welcome/Welcome.jsx";
 import axios from "axios";
 import MenuInstructions from "./components/molecules/MenuInstructions/MenuInstructions.jsx";
 import Sing_in from "./components/pages/singn_in/Sing_in.jsx";
+import Instructions from "./components/pages/Instructions/Instructions.jsx";
 axios.defaults.baseURL='http://localhost:3001/';
 //axios.defaults.baseURL='https://nodejs-production-bbf9.up.railway.app';
 
@@ -60,7 +61,7 @@ function App() {
       <Routes>
         {/* Rutas para uso interno */}
         <Route path="/" element={<Login />} />
-        <Route path="/singn_in" element={<Sing_in/>} />
+        <Route path="/singn_in" element={<Sing_in />} />
         <Route path="/welcome" element={<Welcome />} />
         {/* Rutas protegidas */}
         <Route element={<ProtectedRoutes />} path="">
@@ -69,8 +70,11 @@ function App() {
           <Route path="/sales" element={<Sales />} />
           <Route path="/history" element={<History />} />
           <Route path="/config" element={<Config />} />
+          <Route path="/instructions" element={<Instructions />} />
           <Route path="/instructions/download" element={<MenuInstructions />} />
           <Route path="/instructions/upload" element={<MenuInstructions />} />
+          <Route path="/instructions/image" element={<MenuInstructions />} />
+          <Route path="/instructions/onDemand" element={<MenuInstructions />} />
         </Route>
         {/* Rutas protegidas */}
       </Routes>
@@ -83,6 +87,7 @@ function ProtectedRoutes() {
     <>
       <Nav />
       <Routes>
+        <Route path="/instructions" element={<Instructions />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/menu" element={<Menu />} />
         <Route path="/sales" element={<Sales />} />
@@ -104,9 +109,32 @@ function ProtectedRoutes() {
           element={
             <MenuInstructions
               type="upload"
-              step="1"
+              step="2"
               stepText="Sube  tu menú una vez que hayas guardado tus productos"
               fileText="Subir menú"
+            />
+          }
+        />
+        <Route
+          path="/instructions/image"
+          element={
+            <MenuInstructions
+              type="upload"
+              step="3"
+              stepText={
+                "Sube la imagen del logo de tu local \ncondiciones: \n -Tu imagen debe ser cuadrada 1:1 \n -Formato JPG \n -Peso maximo: 100KB"
+              }
+              fileText="Subir imagen"
+            />
+          }
+        />
+        <Route
+          path="/instructions/onDemand"
+          element={
+            <MenuInstructions
+              step="4"
+              stepText="¡Abre tu local para empezar a vender!"
+              
             />
           }
         />
