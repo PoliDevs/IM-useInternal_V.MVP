@@ -21,6 +21,7 @@ export function loginActionGoogle(payload){
   const email={
     email: payload
 }
+console.log(email)
   return async function (dispatch) {
     try {
       const response = await axios.post("loginaccount/loginG",email);
@@ -39,12 +40,13 @@ export function loginActionGoogle(payload){
 
 //si hay un menu activo
 export function getMenuActive(comerceId){
-/*   console.log(comerceId) */
+console.log("menu activo")
   return async function (dispatch) {
     try {
       const response = await axios(`menu/lastMenu/${comerceId}`);
 /*       console.log(response.data[0].status) */
       const result=response.data[0].status?true:false;
+      console.log("result",result)
       return dispatch({
         type:MENU_ACTIVE,
         payload:result

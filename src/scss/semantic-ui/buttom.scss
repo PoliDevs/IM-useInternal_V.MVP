@@ -4,6 +4,10 @@
     background:$background-buttom-primary-active;
     border-radius: 10px;
     border: $border ;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+  
     &:hover{
         background: $background-buttom-primary-desable;
         border-radius: 10px;
@@ -15,6 +19,9 @@
     color:$text-primary;
     border: $border ;
     border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
     &:hover{
         color: $text-desable;
         background: $background-buttom-secundary-active;

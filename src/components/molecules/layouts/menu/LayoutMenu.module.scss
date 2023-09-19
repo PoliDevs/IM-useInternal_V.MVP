@@ -1,41 +1,32 @@
 @import "../../../../scss/colors.scss";
 @import "../../../../scss/typography.scss";
 
-.section {
-  height: 100%;
-  width: 100%;
+
+.containerd {
   display: flex;
   justify-content: center;
-
-  .contentContainer {
-    display: flex;
-    height: auto;
-    width: auto;
-    margin: 0 auto;
-
-    .buttonContent {
-      display: flex;
-      flex-direction: column;
-      width: 524px;
-      border-right: 1px solid black;
-    }
-
-    .menuContent {
-      margin-left: 50px;
-      display: flex;
-      flex-direction: column;
-      width: 443px;
-      border: $border;
-      padding: 10px;
-
-      .title {
-        display: flex;
-        width: 100%;
-        background-color: $text-primary;
-        // justify-content: space-between;
-        // column-gap: 59px;
-      }
-    }
-
+  width: 100%;
+/*     background: red; */
+  >section{
+/*         background-color: rgb(41, 167, 37); */
+      width: 35%;
+      &:first-child {
+          border-right: 2px solid black; /* Agrega un borde derecho de color negro al primer section */
+          >button{
+              margin: 0 0 15px 0;
+          }
+        }
   }
 }
+.containerd > section:nth-child(2) {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.menuContent_delete{
+  width: 100%;
+  background-color: red;
+  justify-content: space-between;
+}
+
