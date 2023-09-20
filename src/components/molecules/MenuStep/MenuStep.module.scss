@@ -25,3 +25,20 @@
   background-color: $background-secundary;
   color: $text-primary
 }
+
+.menu_option{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: $background-tertiary;
+  color: $text-secondary;
+  width: 80%;
+  min-height: 60px;
+
+  border-radius: $border-secondary-radius;
+  .icon{
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+  }
+}

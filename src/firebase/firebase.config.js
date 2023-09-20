@@ -81,8 +81,11 @@ export default function useFirebase(setError) {
 
           // Agregar un retraso de 3 segundos antes de llamar a la acción de Redux
 
+          //legal
+          //dispatch(loginActionGoogle(email))
+          //success force
             dispatch(loginActionGoogle("luisfactum@gmail.com"))
-            //error
+            //error force
             //dispatch(loginActionGoogle("luisfactums@gmail.com"))
               .then((response) => {
                 if (response.payload && response.payload.status === 200) {

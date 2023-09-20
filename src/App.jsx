@@ -66,7 +66,7 @@ function App() {
         {/* Rutas protegidas */}
         <Route element={<ProtectedRoutes />} path="">
           <Route path="/dashboard" element={<Dashboard />} />
-          {/* <Route path="/menu" element={<Menu />} /> */}
+          <Route path="/menu" element={<Menu />} />
           <Route path="/sales" element={<Sales />} />
           <Route path="/history" element={<History />} />
           <Route path="/config" element={<Config />} />
