@@ -37,7 +37,7 @@ console.log(email)
   }
   }
 
-
+//////////////////* Menu Actions *//////////////////
 //si hay un menu activo
 export function getMenuActive(comerceId){
 console.log("menu activo")
@@ -56,6 +56,20 @@ console.log("menu activo")
     }
   }
 }
+
+//envia el menu
+export function postMenu(menu) {
+  return async function () {
+    try {
+      const response = await axios.post("http://localhost:3001/menu/menu", menu);
+      return response;
+    } catch (error) {
+      return error;
+    }
+  };
+}
+
+
 //si el local esta abierto
 export function localOpen(comerceId) {
   return async function (dispatch) {
