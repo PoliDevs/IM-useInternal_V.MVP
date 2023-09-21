@@ -61,7 +61,10 @@ console.log("menu activo")
 export function postMenu(menu) {
   return async function () {
     try {
-      const response = await axios.post("http://localhost:3001/menu/menu", menu);
+      const response = await axios.post(
+        "http://localhost:3001/menu/menuUp",
+        menu
+      );
       return response;
     } catch (error) {
       return error;

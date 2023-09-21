@@ -18,6 +18,11 @@ export default function InstructionThree() {
     setImage(null);
   };
 
+  const handleClick = () => {
+    //action to upload image
+    clearImage()
+  }
+
   return (
     <InstructionContainer>
       <main className={s.mainContainer}>
@@ -62,7 +67,8 @@ export default function InstructionThree() {
         <InstructionButton
           helpText={"Necesito ayuda"}
           text={"Continuar"}
-          path={"/instructions/onDemand"}
+          path={image && "/instructions/onDemand"}
+          handleClick={handleClick}
         />
       </main>
     </InstructionContainer>
