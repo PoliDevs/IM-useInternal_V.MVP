@@ -12,12 +12,14 @@ import SubmitLoader from "../../atom/SubmitLoader/SubmitLoader";
 import * as XLSX from "xlsx";
 import s from "./MenuInstructions.module.scss";
 import Open_Close from "../../atom/Open_Close/Open_Close";
+import { useDispatch } from "react-redux";
+import { postMenu } from "../../../redux/actions";
 
 export default function MenuInstructions({ type, step, stepText, fileText }) {
   const [file, setFile] = useState(null);
   const [menu, setMenu] = useState(null);
   const [submiting, setSubmiting] = useState(false);
-
+  const dispatch = useDispatch();
   const urlPath = {
     1: "/instructions/upload",
     2: "/instructions/image",
@@ -54,45 +56,48 @@ export default function MenuInstructions({ type, step, stepText, fileText }) {
             bold={true}
           />
           <MenuStep number={step} text={stepText} />
-          {step !== "4" ?
-          <>
-            {submiting ? (
-              <SubmitLoader />
-            ) : (
-              <File
-                step={step}
-                typeIcon={type}
-                text={fileText}
-                file={file}
-                setFile={setFile}
-                menu={menu}
-                setMenu={setMenu}
-                submitting={submiting}
-                setSubmitting={setSubmiting}
-              />
-            )}
-            {menu !== null && (
-              <div className={s.uploadedFile}>
-                <LineText
-                  text={step === "2" ? "Menu.XML" : "Logo.JPG"}
-                  secundary={true}
+          {step !== "4" ? (
+            <>
+              {submiting ? (
+                <SubmitLoader />
+              ) : (
+                <File
+                  step={step}
+                  typeIcon={type}
+                  text={fileText}
+                  file={file}
+                  setFile={setFile}
+                  menu={menu}
+                  setMenu={setMenu}
+                  submitting={submiting}
+                  setSubmitting={setSubmiting}
                 />
-                <div className={s.icons}>
-                  {/* <ArrowDownload style={{ height: "24px", width: "24px" }} /> */}
-                  <XIcon
-                    style={{ height: "24px", width: "24px" }}
-                    onClick={clearMenu}
+              )}
+              {menu !== null && (
+                <div className={s.uploadedFile}>
+                  <LineText
+                    text={step === "2" ? "Menu.XML" : "Logo.JPG"}
+                    secundary={true}
                   />
+                  <div className={s.icons}>
+                    {/* <ArrowDownload style={{ height: "24px", width: "24px" }} /> */}
+                    <XIcon
+                      style={{ height: "24px", width: "24px" }}
+                      onClick={clearMenu}
+                    />
+                  </div>
                 </div>
-              </div>
-            )}
-          </>
-          : (<Open_Close/>)}
+              )}
+            </>
+          ) : (
+            <Open_Close />
+          )}
         </div>
         <InstructionButton
           helpText={"Necesito ayuda"}
           text={"Continuar"}
           path={urlPath[step]}
+          handleClick={handleClick}
         />
       </main>
     </InstructionContainer>
