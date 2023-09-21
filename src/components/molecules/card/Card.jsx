@@ -1,20 +1,27 @@
 import { useState } from "react";
 import s from "./card.module.scss";
 import { Icon, Button } from "semantic-ui-react";
-import {extractTableAndOrderNumbers} from './card'
+import { ReactComponent as Rappi } from "../../../assets/rappi.svg";
+
+//import {extractTableAndOrderNumbers} from './card'
 
 export default function Card({
   status,
-  table_numberOrder,
+  orderNumber,
+  tableNumber,
   hour,
+  delivery,
+
   menu,
+  product,
+  dish,
   total,
   detail,
   width,
 }) {
   const [seeOrder, setSeeOrder] = useState(true);
   console.log(menu);
-  const { tableNumber, orderNumber }=extractTableAndOrderNumbers(table_numberOrder)
+  //const { tableNumber, orderNumber }=extractTableAndOrderNumbers(table_numberOrder)
 
   /*   const { name, cost,amount } = menu; */
   /*   console.log(name, cost,amount); */
@@ -59,10 +66,10 @@ export default function Card({
   };
 
   return (
-    <div className={s.content_card} style={{ width:width+"%"}}>
+    <div className={s.content_card} style={{ width: width + "%" }}>
       <div>
         <h4>
-          Mesa {tableNumber}{" "}
+          {delivery ? <Rappi /> : `Mesa ${tableNumber}`}
           <Icon
             name={seeOrder ? "angle right" : "angle down"}
             onClick={handleSeeOrder}
@@ -71,7 +78,7 @@ export default function Card({
         {seeOrder ? (
           <div>
             <span>
-              Pedido N°{orderNumber} - Recibido a las {hour.slice(0,5)}
+              Pedido N°{orderNumber} - Recibido a las {hour.slice(0, 5)}
             </span>
             {menu &&
               menu.map((cur, idx) => {
@@ -84,14 +91,36 @@ export default function Card({
                   </article>
                 );
               })}
+            {product &&
+              product.map((cur, idx) => {
+                return (
+                  <article key={idx}>
+                    <span>
+                      {cur.amount} {cur.name}
+                    </span>
+                    <span>${cur.cost}</span>
+                  </article>
+                );
+              })}
+            {dish &&
+              dish.map((cur, idx) => {
+                return (
+                  <article key={idx}>
+                    <span>
+                      {cur.amount} {cur.name}
+                    </span>
+                    <span>${cur.cost}</span>
+                  </article>
+                );
+              })}
             {detail ? (
               <article className={s.detail}>
                 <b>Observaciones:</b>
-                <span>{detail}</span>
+                <span>{detail.map((cur, idx) => cur)}</span>
               </article>
             ) : null}
             <div>
-              <span className={s.total_price}>Total:${total || "***"} </span>
+              {/*  <span className={s.total_price}>Total:${total || "***"} </span> */}
               <Button
                 style={{
                   background: colorButton(status),

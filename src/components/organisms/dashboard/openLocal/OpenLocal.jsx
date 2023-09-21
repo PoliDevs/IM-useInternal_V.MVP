@@ -4,19 +4,21 @@ import LayoutContainer from "../../../molecules/layouts/section/LayoutContainer"
 import LayoutDashboard from "../../../molecules/layouts/dashboard/LayoutDashboard";
 import Container from "../../../atom/container/Container";
 
-export default function OpenLocal() {
+export default function OpenLocal({ header }) {
   const [t, i18n] = useTranslation(["global"]);
   return (
     <Container>
-      <Header
-        icon="newspaper outline"
-        title={t("internal.header.open local.orders received")}
-        detail={t(
-          "internal.header.open local.Your orders are here in order of entry"
-        )}
-      />
+      {header ? (
+        <Header
+          icon="newspaper outline"
+          title={t("internal.header.open local.orders received")}
+          detail={t(
+            "internal.header.open local.Your orders are here in order of entry"
+          )}
+        />
+      ) : null}
       <LayoutContainer>
-        <LayoutDashboard/>
+        <LayoutDashboard />
       </LayoutContainer>
     </Container>
   );

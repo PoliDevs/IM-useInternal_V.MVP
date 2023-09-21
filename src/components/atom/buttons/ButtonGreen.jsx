@@ -1,30 +1,20 @@
 import { Button } from "semantic-ui-react";
 
 export default function ButtonGreen({ text, active,onClick }) {
-  return active ? (
+
+  return  (
     <Button
       style={{
-        background: "#00A877",
+        background: !active?"#D9D9D9":"#00A877",
         borderRadius: "20px",
-        border: "solid 2px #000",
+        border: !active?"#00A877":"solid 2px #000",
         color: "#fff",
-        fontSize: "14px",
+        fontSize: "16px",
       }}
       onClick={onClick}
     >
       {text}
     </Button>
-  ) : (
-    <Button
-      style={{
-        background: "#D9D9D9",
-        borderRadius: "20px",
-        color: "#fff",
-        fontSize: "14px",
-      }}
-      onClick={onClick}
-    >
-      {text}
-    </Button>
-  );
+  ) 
 }
+

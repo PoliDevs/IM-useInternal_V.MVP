@@ -8,8 +8,7 @@ import ButtonGreen from "../../atom/buttons/ButtonGreen";
 import { useState } from "react";
 
 export default function MenuItem() {
-  const [categoriaButtonActive, setCategoriaButtonActive] = useState(false);
-  const [productosButtonActive, setProductosButtonActive] = useState(true);
+  const [filterClickedButton, setFilterClickedButton] = useState("Categoria");
   //eyes
   const [onOffEyes, setOnOffEyes] = useState(menu.map(() => true));
 
@@ -21,28 +20,18 @@ export default function MenuItem() {
     setOnOffEyes(newOnOffEyes);
   };
 
-  const handleCategoriaButtonClick = () => {
-    setCategoriaButtonActive(true);
-    setProductosButtonActive(false);
-  };
-
-  const handleProductosButtonClick = () => {
-    setCategoriaButtonActive(false);
-    setProductosButtonActive(true);
-  };
-
   return (
     <div className={s.menuItemContainer}>
       <div>
         <ButtonGreen
           text={"Categoria"}
-          onClick={handleCategoriaButtonClick}
-          active={categoriaButtonActive}
+          active={filterClickedButton === "Categoria"}
+          onClick={() => setFilterClickedButton("Categoria")}
         ></ButtonGreen>
         <ButtonGreen
           text={"Productos"}
-          onClick={handleProductosButtonClick}
-          active={productosButtonActive}
+          active={filterClickedButton === "Productos"}
+          onClick={() => setFilterClickedButton("Productos")}
         ></ButtonGreen>
       </div>
       <br />

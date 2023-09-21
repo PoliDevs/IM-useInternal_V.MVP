@@ -16,6 +16,8 @@ return async function (dispatch) {
   }
 }
 };
+
+
 //loguin Google
 export function loginActionGoogle(payload){
   const email={
@@ -45,7 +47,8 @@ console.log("menu activo")
     try {
       const response = await axios(`menu/lastMenu/${comerceId}`);
 /*       console.log(response.data[0].status) */
-      const result=response.data[0].status?true:false;
+console.log(response)
+      const result=response.data;
       console.log("result",result)
       return dispatch({
         type:MENU_ACTIVE,

@@ -17,7 +17,7 @@ export default function Dashboard() {
 
   return (
     <div className={s.container_dashboard}>
-      {localOpenValue ? <OpenLocal /> : <ClosedLocal />}
+      {localOpenValue ? <OpenLocal header={true}/> : <ClosedLocal />}
     </div>
   );
 }
