@@ -36,7 +36,7 @@ export default function File({
     // }
     let xlfile = acceptedFiles[0];
     let reader = new FileReader();
-    if (step !== "3"){
+    if (step !== 3){
       reader.readAsArrayBuffer(xlfile);
     }else {
       reader.readAsDataURL(xlfile);
@@ -47,7 +47,7 @@ export default function File({
   }, []);
   
   const conditionalAccept =
-    step !== "3"
+    step !== 3
       ? {
           "application/vnd.ms-excel": [".xls"],
           "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": [

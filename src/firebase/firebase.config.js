@@ -3,6 +3,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
 import { useDispatch } from "react-redux";
 import { loginActionGoogle } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
+import jwtDecode from "jwt-decode";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -78,9 +79,13 @@ export default function useFirebase(setError) {
       .then((result) => {
         if (result) {
           const email = result.user.email;
-
           // Agregar un retraso de 3 segundos antes de llamar a la acción de Redux
-
+          console.log(
+            "token-Luis: ",
+            jwtDecode(
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6ImVybmVzdG8gbWFjaGFkbyIsInBhc3N3b3JkIjoiJDJiJDEwJE9nM1BGWHRvWUJHNkR0QkthenRld2VWOFNqaHpOalg2UWVMbW4zM2R4a1hOWHdDdk1mUFRhIiwicGhvbmUiOiIyMjIyMjIiLCJhZGRyZXNzIjoic2FuIG5pY29sYXMgMzI1NyIsImJpcnRoRGF0ZSI6IjE5ODEtMDItMjciLCJzdGF0dXMiOiJhY3RpdmUiLCJlbWFpbCI6Imx1aXNmYWN0dW1AZ21haWwuY29tIiwiZ29vZ2xlVXNlciI6IiIsImZhY2Vib29rVXNlciI6IiIsInR3aXR0ZXJVc2VyIjoiIiwidmFsaWRhdGVkRW1haWwiOjEsIm5laWdoYm9yaG9vZCI6bnVsbCwic2V4IjpudWxsLCJjcCI6IjE4ODgiLCJjb21tZXJjZUlkIjoxLCJpYXQiOjE2OTUyOTg2NjMsImV4cCI6MTY5NTMwOTQ2M30.EyGgsX3igqzlfH_asMmFLVcBJ5DBjAXAJXaX01mTMIc"
+            )
+          );
           //legal
           //dispatch(loginActionGoogle(email))
           //success force
