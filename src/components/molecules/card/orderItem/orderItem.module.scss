@@ -1,0 +1,17 @@
+@import '../../../../scss/colors.scss';
+
+article{
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid $color-seventh;
+    padding: 0.5rem 0;
+}
+.content_1{
+    display: flex;
+    justify-content: space-between;
+}
+.content_2{
+    display: flex;
+    flex-wrap: wrap;
+}

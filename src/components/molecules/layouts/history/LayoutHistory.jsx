@@ -1,90 +1,58 @@
-// import React, { useState, useEffect, useRef } from "react";
-// import Loading from "../../../atom/loading/Loading";
-// import s from './layoutHistory.module.scss';
-// import { useTranslation } from 'react-i18next';
-// import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
-// import { Button, Icon } from "semantic-ui-react";
-
-// export default function LayoutHistory() {
-//   const [isLoading, setIsLoading] = useState(true);
-//   const [selectedDate, setSelectedDate] = useState(null);
-//   const { t, i18n } = useTranslation();
-//   const datepickerRef = useRef(null); // Referencia al componente DatePicker
-
-//   useEffect(() => {
-//     const timeout = setTimeout(() => {
-//       setIsLoading(false);
-//     }, 3000);
-//     return () => clearTimeout(timeout);
-//   }, []);
-
-//   const handleDateChange = (date) => {
-//     setSelectedDate(date);
-//   };
-
-//   //reset statedata
-//   const resetDate = () => {
-//     setSelectedDate(null);
-//   };
-
-//   //
-//   const CustomDatePickerInput = React.forwardRef(({ value, onClick }, ref) => (
-//     <div>
-//       <Button secondary onClick={onClick} ref={ref}>
-//         {console.log(onClick)}
-//         {value ? `Hasta ${value}` : "Selecione una fecha"}
-//         {value && (
-//           <Icon
-//             name="close"
-//             style={{ marginLeft: "5px", cursor: "pointer" }}
-//             onClick={resetDate}
-//           />
-//         )}
-//       </Button>
-//     </div>
-//   ));
-//   return (
-//     <div className={s.containerd}>
-//       {isLoading ? (
-//         <Loading />
-//       ) : (
-//         <>
-//           <DatePicker
-//             selected={selectedDate}
-//             onChange={handleDateChange}
-//             dateFormat="dd/MM/yyyy"
-//             customInput={<CustomDatePickerInput />}
-//             ref={datepickerRef}
-//           />
-//         </>
-//       )}
-//     </div>
-//   );
-// }
-
 import { useState, useEffect } from "react";
 import Loading from "../../../atom/loading/Loading";
 import s from "./layoutHistory.module.scss";
 import { useTranslation } from "react-i18next";
 import DatePickerComponent from "../../calendar/DatePickerComponent";
 import Card from "../../card/Card.jsx";
+import { getDateCurrent } from "../../../../utils/functions";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 export default function LayoutHistory() {
+/*   console.log(getDateCurrent()); */
+const date=getDateCurrent();
+console.log(date)
+  const comerceId = useSelector((state) => state.user.comerceId);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedDate, setSelectedDate] = useState(null); // Estado para la fecha seleccionada
+
+  const [selectDatePiker, setSelectDatePiker] = useState(null); // Estado para la fecha seleccionada solo para el piker
+  const [selectDate, setSelectDate] = useState(date); // Estado para la fecha seleccionada
+
+  const [orderDate, setOrderDate] = useState([]); // todas las orders de un dia seleccionado, por default es la fecha actual
+
+  //nesesito filtrar las ordenes para que me queden solo las delivered
+  const orderDelivered = orderDate.filter((cur) => cur.status === "delivered");
+  console.log(orderDelivered)
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const timeout = setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+
+      //harcodeado
+      //axios(`order/paidOrderes/${comerceId}?startDate=2023-09-27&endDate=2023-09-27`)
+      //oficial
+      axios(`order/paidOrderes/${comerceId}?startDate=${selectDate}&endDate=${selectDate}`)
+        .then((response) => {
+          const data = response.data;
+          setOrderDate(data); // Almacena la respuesta en el estado local
+        })
+        .catch((error) => {
+          console.error("Error al realizar la solicitud:", error);
+        });
+    }, 1000);
     return () => clearTimeout(timeout);
-  }, []);
+  }, [selectDate]);
 
   // actualizar la fecha seleccionada
   const handleDateChange = (date) => {
-    setSelectedDate(date);
+    setSelectDatePiker(date)
+    const newDate = date.toLocaleDateString(i18n.language, {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).replace(/\//g, '-'); // Reemplaza las barras con guiones
+    setSelectDate(newDate.split("-").reverse().join("-"));
   };
 
   return (
@@ -94,114 +62,53 @@ export default function LayoutHistory() {
       ) : (
         <>
           <DatePickerComponent
-            selectedDate={selectedDate} // Pasa la fecha seleccionada como prop
+            selectedDate={selectDatePiker} // Pasa la fecha seleccionada como prop
             onDateChange={handleDateChange} // Pasa la función para actualizar la fecha seleccionada
           />
           <div>
-            {selectedDate ? (
               <div className={s.content_date}>
                 <span className={s.date}>
-                  {selectedDate.toLocaleDateString(i18n.language, {
+                  {selectDate===date?"hoy":selectDate.split("-").reverse().join("/") /* .toLocaleDateString(i18n.language, {
                     day: "numeric",
                     month: "numeric",
                     year: "numeric",
-                  })}
+                  }) */}
                 </span>
-                {menu.map((cur, idx) => {
-                  <Card
-                    key={idx}
-                    status={cur.status}
-                    id="123"
-                    numberOrder="123"
-                    hour="123"
-                    cost={1123}
-                    total={123}
-                    menu={cur.menu}
-                    width={"23%"}
-                  />
-                })}
-              </div>
-            ) : (
-              <div className={s.content_date}>
-                <span className={s.date}>Hoy</span>
-                <div>
-                  {menu.map((cur, idx) => {
-                    return (
-                      <Card
-                        key={idx}
-                        status={cur.status}
-                        id="123"
-                        numberOrder="123"
-                        hour="123"
-                        cost={1123}
-                        total={123}
-                        menu={cur.menu}
-                      />
-                    );
+                <div className={s.containerd_card}>
+                  {orderDelivered.map((cur, idx) => {
+                   return <Card
+                      key={idx}
+                      tableNumber={cur.po && cur.po.id}
+                      sectorNumber={cur.sector && cur.sector.id}
+                      order={cur.order}
+                      hour={cur.hour}
+                      status={cur.status}
+                      delivery={cur.delivery}
+                      total={cur.paid}
+                      width={300}
+                      menu={cur.menu && cur.menu.name[0].length > 0 && cur.menu}
+                      products={
+                        cur.products &&
+                        cur.products.name[0].length > 0 &&
+                        cur.products
+                      }
+                      dishes={
+                        cur.dishes &&
+                        cur.dishes.name[0].length > 0 &&
+                        cur.dishes
+                      }
+                      additionals={
+                        cur.additionals &&
+                        cur.additionals.name[0].length > 0 &&
+                        cur.additionals
+                      }
+                    />;
                   })}
                 </div>
               </div>
-            )}
           </div>
         </>
       )}
     </div>
   );
 }
-
-const menu = [
-  {
-    numberOrder: 1,
-    table: 1,
-    hours: "23:54",
-    menu: [
-      { name: "sprite", amount: 1, cost: 234 },
-      { name: "sprite", amount: 1, cost: 234 },
-      { name: "sprite", amount: 1, cost: 234 },
-      { name: "sprite", amount: 1, cost: 234 },
-    ],
-    detail:"",
-    total: 2345,
-    status: "delivered",
-  },
-
-  {
-    numberOrder: 1,
-    table: 1,
-    hours: "23:54",
-    menu: [
-      { name: "sprite", amount: 1, cost: 234 },
-      { name: "sprite", amount: 1, cost: 234 },
-      { name: "sprite", amount: 1, cost: 234 },
-      { name: "sprite", amount: 1, cost: 234 },
-    ],
-    total: 2345,
-    status: "delivered",
-  },
-  {
-    numberOrder: 1,
-    table: 1,
-    hours: "23:54",
-    menu: [
-      { name: "sprite", amount: 1, cost: 234 },
-      { name: "sprite", amount: 1, cost: 234 },
-      { name: "sprite", amount: 1, cost: 234 },
-      { name: "sprite", amount: 1, cost: 234 },
-    ],
-    total: 2345,
-    status: "delivered",
-  },
-  {
-    numberOrder: 1,
-    table: 1,
-    hours: "23:54",
-    menu: [
-      { name: "sprite", amount: 1, cost: 234 },
-      { name: "sprite", amount: 1, cost: 234 },
-      { name: "sprite", amount: 1, cost: 234 },
-      { name: "sprite", amount: 1, cost: 234 },
-    ],
-    total: 2345,
-    status: "delivered",
-  }
-];

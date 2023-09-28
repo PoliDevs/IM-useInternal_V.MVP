@@ -13,7 +13,7 @@ const initalState = {
   sales: "",
   menuActive:localStorage.getItem("menuActivo")
   ? localStorage.getItem("menuActivo")
-  : false,
+  : [],
 };
 
 export const rootReducer = (state = initalState, { type, payload }) => {
@@ -44,12 +44,11 @@ export const rootReducer = (state = initalState, { type, payload }) => {
       const data = jwtDecode(payload.data.token);
       const user = {
         token: payload.data.token,
-        email: data.email,
         id: data.id,
-        comerceId: data.commerceId,
-        firstName: data.firstName,
-        lastName: data.lastName,
+        name:data.name,
         phone: data.phone,
+        email: data.email,
+        comerceId: data.commerceId,
       };
       // Guardar el token y la información del usuario en localStorage
       localStorage.setItem("token", JSON.stringify(payload.data.token));

@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route,useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProtectedRoutes from "./components/atom/ProtectedRoutes/ProtectedRoutes.jsx";
 import Instructions from "./components/pages/Instructions/Instructions.jsx";
@@ -22,31 +22,29 @@ import axios from "axios";
 
 function App() {
   const user = useSelector((state) => state.user);
+  const location = useLocation();
+
+  // Determina si debes mostrar el componente <Nav />
+  const shouldShowNav = location.pathname !== "/singn_in" && location.pathname !== "/" && location.pathname !=="/welcome" ;
   return (
     <>
-      <Nav />
+      {shouldShowNav&&<Nav/>}
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/singn_in" element={<Sing_in />} />
+        <Route path="/singn_in" element={<Login />} />
+        <Route path="/" element={<Sing_in />} />
         <Route element={<ProtectedRoutes isAllowed={!!user} />}>
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/history" element={<History />} />
           {/* <Route element={<ProtectedRoutes isAllowed={!!user && user.employeeType.type === "Owner"}/>}> */}
-            <Route path="/menu" element={<Menu />} />
-            <Route path="/sales" element={<Sales />} />
-            <Route path="/config" element={<Config />} />
-            <Route path="/instructions" element={<Instructions />} />
-            <Route path="/instructions/download" element={<InstructionOne />} />
-            <Route
-              path="/instructions/uploadMenu"
-              element={<InstructionTwo />}
-            />
-            <Route path="/instructions/image" element={<InstructionThree />} />
-            <Route
-              path="/instructions/onDemand"
-              element={<InstructionFour />}
-            />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/sales" element={<Sales />} />
+          <Route path="/config" element={<Config />} />
+          <Route path="/instructions" element={<Instructions />} />
+          <Route path="/instructions/download" element={<InstructionOne />} />
+          <Route path="/instructions/uploadMenu" element={<InstructionTwo />} />
+          <Route path="/instructions/image" element={<InstructionThree />} />
+          <Route path="/instructions/onDemand" element={<InstructionFour />} />
           {/* </Route> */}
         </Route>
       </Routes>

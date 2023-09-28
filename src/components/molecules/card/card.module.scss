@@ -16,6 +16,7 @@
         justify-content: center;
         align-items: center;
         color: $text-desable;
+
         >h4 {
             width: 98%;
             display: flex;
@@ -23,45 +24,32 @@
             align-items: center;
             height: 30px;
         }
-        >div{
+
+        >div {
             width: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
 
-            >span{
+            >span {
                 width: 90%;
             }
-            > span:first-of-type {
-                font-size: 11px;
-                text-align: start;
+
+            >p {
                 border-top: 1px solid $color-seventh;
+                border-bottom: 1px solid $color-seventh;
                 padding-top: 10px;
             }
-            >article {
-                width: 90%;
-                display: flex;
-                justify-content: space-between;
-                border-bottom: 1px solid $color-seventh;
-                padding: 0.5rem 0;
-            }
-            >div{
+
+            >div {
                 display: flex;
                 flex-direction: column;
                 width: 100%;
                 align-items: end;
-                margin: 0 5px 0 0;
+                margin: 21px 5px 0 0;
                 gap: 5px;
-                .total_price{
-                    font-weight:bold;
-                    margin-top: 10px;
-                }
             }
         }
     }
-}
-.detail{
-    display: flex;
-    flex-direction: column;
 }

@@ -2,6 +2,9 @@ import React from "react";
 import LargeButton from "../../../atom/LargeButton/LargeButton";
 import LineText from "../../../atom/LineText/LineText";
 import MenuItem from "../../MenuItem/MenuItem";
+import DeleteMenuCurrent from "../../sections/menu/deleteMenuCurrent/DeleteMenuCurrent";
+import DownloadMenuCurrent from "../../sections/menu/downloadMenu/DownloadMenuCurrent";
+import LogoLocal from "../../sections/menu/logoLocal/LogoLocal";
 import MenuStep from "../../MenuStep/MenuStep";
 import s from "./LayoutMenu.module.scss";
 import { useState } from "react";
@@ -10,29 +13,33 @@ import { Button, Icon } from "semantic-ui-react";
 
 export default function LayoutMenu() {
   const [selectedOption, setSelectedOption] = useState("Gestionar menu actual");
-  const contentDescription = renderContentRight(selectedOption);
+  //const contentDescription = renderContentRight(selectedOption);
   const handleOptionClick = (option) => {
     setSelectedOption(option);
   };
-
+  const optionToComponent = {
+    "Gestionar menú actual": <MenuItem />,
+    "Eliminar menú actual": <DeleteMenuCurrent />,
+    "Descargar plantilla de menú": <DownloadMenuCurrent />,
+    "Logo del local": <LogoLocal />,
+  };
   return (
-    /*     <section className={s.section}> */
     <div className={s.containerd}>
       <section className={s.buttonContent}>
         <LargeButton
-          text={"Gestionar menu actual"}
+          text={"Gestionar menú actual"}
           icon={"arrowRight"}
-          onClick={() => handleOptionClick("Gestionar menu actual")}
+          onClick={() => handleOptionClick("Gestionar menú actual")}
         />
         <LargeButton
-          text={"Eliminar menu actual"}
+          text={"Eliminar menú actual"}
           icon={"arrowRight"}
-          onClick={() => handleOptionClick("Eliminar menu actual")}
+          onClick={() => handleOptionClick("Eliminar menú actual")}
         />
         <LargeButton
-          text={"Descargar plantilla de menu"}
+          text={"Descargar plantilla de menú"}
           icon={"arrowDownload"}
-          onClick={() => handleOptionClick("Descargar plantilla de menu")}
+          onClick={() => handleOptionClick("Descargar plantilla de menú")}
         />
         <LargeButton
           text={"Logo del local"}
@@ -40,83 +47,8 @@ export default function LayoutMenu() {
           onClick={() => handleOptionClick("Logo del local")}
         />
       </section>
-
-      {/*         
-menu item
-<div className={s.menuContent}>
-          <div className={s.title}>
-            <div style={{ display: "inline-block", width: "15%" }}>
-              <LineText text={"Emoji"} secundary={true}/>
-            </div>
-            <div style={{ display: "inline-block", width: "50%" }}>
-              <LineText text={"Producto"} secundary={true}/>
-            </div>
-            <div style={{ display: "inline-block", width: "20%" }}>
-              <LineText text={"Precio"} secundary={true}/>
-            </div>
-            <div style={{ display: "flex", width: "15%", justifyContent: "center", alignItems: "center" }}>
-              <LineText text={"On/Off"} secundary={true}/>
-            </div>
-          </div>
-          <MenuItem
-            text={"Hamburguesa con papas"}
-            cost={"$1200"}
-            active={true}
-          />
-          <MenuItem
-            text={"Hamburguesa con papas"}
-            cost={"$1200"}
-            active={true}
-          />
-          <MenuItem
-            text={"Hamburguesa con papas"}
-            cost={"$1200"}
-            active={true}
-          />
-          <MenuItem
-            text={"Hamburguesa con papas"}
-            cost={"$1200"}
-            active={true}
-          />
-          <MenuItem
-            text={"Hamburguesa con papas"}
-            cost={"$1200"}
-            active={true}
-          />
-          <MenuItem
-            text={"Hamburguesa con papas"}
-            cost={"$1200"}
-            active={true}
-          />
-          <MenuItem
-            text={"Hamburguesa con papas"}
-            cost={"$1200"}
-            active={true}
-          />
-          <MenuItem
-            text={"Hamburguesa con papas"}
-            cost={"$1200"}
-            active={true}
-          />
-          <MenuItem
-            text={"Hamburguesa con papas"}
-            cost={"$1200"}
-            active={true}
-          />
-          <MenuItem
-            text={"Hamburguesa con papas"}
-            cost={"$1200"}
-            active={true}
-          />
-          <MenuItem
-            text={"Hamburguesa con papas"}
-            cost={"$1200"}
-            active={true}
-          />
-        </div> */}
-      {/* Eliminar menu actual */}
       <section className={s.menuContent}>
-        {contentDescription &&
+        {/*         {contentDescription &&
           React.createElement(
             contentDescription.component,
             contentDescription.props
@@ -152,14 +84,9 @@ menu item
               />
             </svg>
           </Button>
-        ) : null}
+        ) : null} */}
+        {optionToComponent[selectedOption]}
       </section>
-      {/*logo del local*/}
-      {/*         <div className={s.menuContent} >
-          <MenuStep
-          />
-        </div> */}
     </div>
-    /*     </section> */
   );
 }

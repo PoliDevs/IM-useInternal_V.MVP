@@ -1,9 +1,9 @@
 import s from './Paragraph.module.scss';
 
-export default function Paragraph({text, left, secundary, bold}) {
+export default function Paragraph({text, left,start, secundary, bold}) {
   return (
     <p
-      className={`${s.paragraph} ${left && s.left} ${secundary && s.secundary} ${
+      className={`${s.paragraph} ${start && s.start} ${left && s.left} ${secundary && s.secundary} ${
         bold && s.bold
       }`}
     >
