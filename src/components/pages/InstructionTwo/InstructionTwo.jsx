@@ -30,20 +30,63 @@ export default function InstructionTwo() {
     }
   }, [file]);
 
+  function emojiToUnicode(emoji) {
+    const codeUnits = [];
+    for (let i = 0; i < emoji.length; i++) {
+      codeUnits.push(emoji.charCodeAt(i).toString(16).toUpperCase());
+    }
+    return `U+${codeUnits.join(" U+")}`;
+  }
+
+  const formattedMenu = ()=> {
+    let objAditionals = { aditionals: null };
+    let objProducts = { products: null };
+    let objDishes = { dishes: null };
+    let date = new Date().toISOString().substring(0, 10);
+    let objDate = { date: date }
+    setMenu(
+      menu.map((m) => {
+        if (m.Precio === undefined) m.Precio = null;
+        m.Emoji = emojiToUnicode(m.Emoji);
+        m["photo"] = m["Emoji"];
+        m["category"] = m["Nombre de la categoria"];
+        m["name"] = m["Nombre de productos"];
+        m["cost"] = m["Precio"];
+        m["description"] = m["descripcion"];
+        m["discount"] = m["descuento"];
+        m["promotion"] = m["promocion"];
+        m["surcharge"] = m["recargo"];
+        m["menuType"] = m["Tipo de menu"];
+        m["validity"] = m["validez"];
+        delete m["Emoji"];
+        delete m["Nombre de la categoria"];
+        delete m["Nombre de productos"];
+        delete m["Precio"];
+        delete m["descripcion"];
+        delete m["descuento"];
+        delete m["promocion"];
+        delete m["recargo"];
+        delete m["Tipo de menu"];
+        delete m["validez"];
+        Object.assign(m, objAditionals);
+        Object.assign(m, objProducts);
+        Object.assign(m, objDishes);
+        Object.assign(m,objDate);
+      })
+    );
+  }
+
   const clearMenu = () => {
     setFile(null);
     setMenu(null);
   };
 
   const handleClick = () => {
-    let menuInfo = {
-      menu: menu,
-      commerceId: id
-    }
-    dispatch(postMenu(menuInfo));
+    formattedMenu();
+    dispatch(postMenu(JSON.stringify(menu), id));
     clearMenu();
-  }
-
+  };
+  
   return (
     <InstructionContainer>
       <main className={s.mainContainer}>
@@ -90,7 +133,7 @@ export default function InstructionTwo() {
         <InstructionButton
           helpText={"Necesito ayuda"}
           text={"Continuar"}
-          path={menu && "/instructions/image"}
+          // path={menu && "/instructions/image"}
           handleClick={handleClick}
         />
       </main>

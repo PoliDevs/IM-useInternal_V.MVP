@@ -60,12 +60,12 @@ console.log(response)
   }
 }
 
-//envia el menu
-export function postMenu(menu) {
+
+export function postMenu(menu, id) {
   return async function () {
     try {
       const response = await axios.post(
-        "http://localhost:3001/menu/menuUp",
+        `http://localhost:3001/menu/menuUp/${id}`,
         menu
       );
       return response;
