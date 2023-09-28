@@ -9,9 +9,10 @@
     position: absolute;
     left: 0px;
     top: 38px;
-    padding: 1rem;
+    padding: 1rem ;
     border-radius: $border-primary-radius;
     text-decoration: none;
+    min-width: max-content;
     width: 30%;
     border: $border;
     z-index: 21;
@@ -32,19 +33,15 @@
         }
     }
       
-      
-      
-      
-      
-      
     svg {
         width: 30px;
+        margin-right: 2px;
     }
 }
 
-@media screen and (max-width: 730px) {
+/* @media screen and (max-width: 730px) {
     .containerd_bars {
         width: 70%;
         top: 35px;
     }
-}
+} */

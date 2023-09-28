@@ -22,8 +22,10 @@
                 font-weight: 700;
                 margin: 10px 0;
             }
-            >div{
+            .containerd_card{
                 display: flex;
+                align-items: start;
+                flex-wrap: wrap;
             }
         }
     }
