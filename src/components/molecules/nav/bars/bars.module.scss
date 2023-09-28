@@ -1,41 +1,47 @@
 @import '../../../../scss/colors.scss';
 
 .containerd_bars {
-/*     position: relative; */
-    color:$text-primary;
+    /*     position: relative; */
+    color: $text-primary;
     background-color: $background-secundary;
     display: flex;
     flex-direction: column;
     position: absolute;
     left: 0px;
     top: 38px;
-    padding: 1rem;
+    padding: 1rem ;
     border-radius: $border-primary-radius;
     text-decoration: none;
-    width: 35%;
+    min-width: max-content;
+    width: 30%;
     border: $border;
     z-index: 21;
-    >article{
-        margin: 22px 0 18px 0;
-        font-size: 20px;
+
+    >article {
+        margin: 0px 0 18px 0;
+        font-size: 21px;
         font-weight: bolder;
-    }
-    svg{
-        width: 30px;
-    }
-    a{
+        display: flex;
+        align-items: center;
+        padding: 5px;
+        border-radius: $border-primary-radius;
         color: $text-primary;
-        margin: 0px 5px;
         &:hover {
+            background-color: $background-tertiary;
+            color: $text-secondary;
             cursor: pointer;
         }
     }
-  }
-
-  @media screen and (max-width: 730px) {
-.containerd_bars{
-    width: 70%;
-    top: 35px;
+      
+    svg {
+        width: 30px;
+        margin-right: 2px;
+    }
 }
-  }
-  
+
+/* @media screen and (max-width: 730px) {
+    .containerd_bars {
+        width: 70%;
+        top: 35px;
+    }
+} */

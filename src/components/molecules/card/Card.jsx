@@ -1,23 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import s from "./card.module.scss";
 import { Icon, Button } from "semantic-ui-react";
-import {extractTableAndOrderNumbers} from './card'
+import { ReactComponent as Rappi } from "../../../assets/rappi.svg";
+import OrderItem from "./orderItem/OrderItem";
+import Paragraph from "../../atom/Paragraph/Paragraph";
+import LineText from "../../atom/LineText/LineText";
+import axios from "axios";
+import { useSelector } from "react-redux";
+
+
+//import {extractTableAndOrderNumbers} from './card'
 
 export default function Card({
   status,
-  table_numberOrder,
+  tableNumber,
+  sectorNumber,
+  order,
   hour,
-  menu,
+  delivery,
   total,
-  detail,
+  menu,
+  products,
+  dishes,
+  additionals,
   width,
 }) {
-  const [seeOrder, setSeeOrder] = useState(true);
-  console.log(menu);
-  const { tableNumber, orderNumber }=extractTableAndOrderNumbers(table_numberOrder)
+  const comerceId=useSelector(state=>state.user.comerceId)
 
-  /*   const { name, cost,amount } = menu; */
-  /*   console.log(name, cost,amount); */
+  const [seeOrder, setSeeOrder] = useState(true);//con esto mostramos o ocultamos la orden, icon
+
+  const numOrder = order.split("-")[1].trim();
+
   const handleSeeOrder = () => {
     setSeeOrder(!seeOrder);
   };
@@ -38,13 +51,13 @@ export default function Card({
   };
   console.log(status);
   const colorButton = (arg) => {
-    if (arg === "new") {
+    if (arg === "orderPlaced") {
       return "#FF4A4A";
     }
-    if (arg === "preparing") {
+    if (arg === "orderInPreparation") {
       return "#40CB5F";
     }
-    if (arg === "ready") {
+    if (arg === "orderReady") {
       return "#000000";
     }
     if (arg === "delivered") {
@@ -53,16 +66,27 @@ export default function Card({
   };
 
   //cambiamos el status del pedido
-  const handleStatus = (value) => {
-    if (value === "new") return "preparing";
-    if (value === "preparing") return "ready";
+  const handleStatus = async(status,order) => {
+    let newStatus="";
+    if(status==="orderPlaced"){newStatus="orderInPreparation"}
+    if(status==="orderInPreparation"){newStatus="orderReady"}
+    if(status==="orderReady"){newStatus="delivered"}
+    await axios.put(`order/change-status/${order}/${comerceId}`,{status:newStatus})
   };
-
   return (
-    <div className={s.content_card} style={{ width:width+"%"}}>
+    <div className={s.content_card} style={{ width:width?`${width}px`:"376px"}}>
       <div>
         <h4>
-          Mesa {tableNumber}{" "}
+          {delivery ? (
+            <Rappi
+              style={{
+                width: "50px",
+                height: "50px",
+              }}
+            />
+          ) : (
+            `Sector ${sectorNumber} Mesa ${tableNumber}`
+          )}
           <Icon
             name={seeOrder ? "angle right" : "angle down"}
             onClick={handleSeeOrder}
@@ -70,34 +94,85 @@ export default function Card({
         </h4>
         {seeOrder ? (
           <div>
-            <span>
-              Pedido N°{orderNumber} - Recibido a las {hour.slice(0,5)}
-            </span>
+            <Paragraph
+              start
+              text={`Pedido N° ${numOrder} - Recibido a las ${hour.slice(0, 5)}`}
+            />
             {menu &&
-              menu.map((cur, idx) => {
+              menu.name.map((cur, idx) => {
                 return (
-                  <article key={idx}>
-                    <span>
-                      {cur.amount} {cur.name}
-                    </span>
-                    <span>${cur.cost}</span>
-                  </article>
+                  <OrderItem
+                    key={idx}
+                    amount={menu.amount[idx]}
+                    name={cur}
+                    cost={menu.cost[idx]}
+                    detail={menu.detail[idx].length > 0 && menu.detail[idx]}
+                  />
                 );
               })}
-            {detail ? (
-              <article className={s.detail}>
-                <b>Observaciones:</b>
-                <span>{detail}</span>
-              </article>
-            ) : null}
+            {products &&
+              products.name.map((cur, idx) => {
+                /*                 return (
+                  <article key={idx}>
+                    <span>
+                      {products.amount[idx]} {cur}
+                    </span>
+                    <span>${products.cost[idx]}</span>
+                    <hr />
+                    {products.detail[idx].length>0&&<span>{products.detail[idx]}</span> }
+                  </article>
+                ); */
+                return (
+                  <OrderItem
+                    key={idx}
+                    amount={products.amount[idx]}
+                    name={cur}
+                    cost={products.cost[idx]}
+                    detail={
+                      products.detail[idx].length > 0 && products.detail[idx]
+                    }
+                  />
+                );
+              })}
+            {dishes &&
+              dishes.name.map((cur, idx) => {
+                return (
+                  <OrderItem
+                    key={idx}
+                    amount={dishes.amount[idx]}
+                    name={cur}
+                    cost={dishes.cost[idx]}
+                    detail={dishes.detail[idx].length > 0 && dishes.detail[idx]}
+                  />
+                );
+              })}
+            {additionals &&
+              additionals.name.map((cur, idx) => {
+                return (
+                  <OrderItem
+                    key={idx}
+                    amount={additionals.amount[idx]}
+                    name={cur}
+                    cost={additionals.cost[idx]}
+                    detail={
+                      additionals.detail[idx].length > 0 &&
+                      additionals.detail[idx]
+                    }
+                  />
+                );
+              })}
             <div>
-              <span className={s.total_price}>Total:${total || "***"} </span>
+              <LineText bold text={`Total:$ ${total || "***"}`} />
               <Button
+              onClick={()=>handleStatus(status,order)}
+              /* value={status,order} */
                 style={{
                   background: colorButton(status),
-                  padding: "3px",
+                  padding: "7px",
                   color: "white",
                   margin: "0 0 5px 0",
+                  fontSize: "16px", // Añadir esta línea para el tamaño de la fuente
+                  borderRadius: "10px",
                 }}
               >
                 {getStatus(status)}

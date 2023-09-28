@@ -1,16 +1,12 @@
-import React from "react";
-import s from "./link.module.scss";
+import { Link } from "react-router-dom";
+import s from './link.module.scss'
 
-export default function Link({ content, number, color }) {
+export default function Links({children,to,onclick}) {
+    const primary="#212121"
+    const secundary="#FFFFFF";
   return (
-    <h3
-      style={{
-        color: color,
-        marginBottom:"10px"
-      }}
-    >
-      {content}
-      <span className={s.elevatedNumber} style={{background:color}} >{number}</span>
-    </h3>
-  );
+    <>
+    <Link className={s.link} to={to} onclick={onclick}>{children}</Link>
+    </>
+  )
 }
