@@ -5,21 +5,50 @@ import SelectIcon from "../../atom/SelectIcon/SelectIcon";
 import s from "./MenuItem.module.scss";
 import { Button } from "semantic-ui-react";
 import ButtonGreen from "../../atom/buttons/ButtonGreen";
-import { useState } from "react";
+import { useState,useEffect } from "react";
+import { useSelector } from "react-redux";
+import axios from "axios";
+import Loading from "../../atom/loading/Loading";
 
 export default function MenuItem() {
   const [filterClickedButton, setFilterClickedButton] = useState("Categoria");
+  const [menu,setMenu]=useState(false);
   //eyes
-  const [onOffEyes, setOnOffEyes] = useState(menu.map(() => true));
+  const [onOffEyes, setOnOffEyes] = useState(menu&&menu.map(() => true));
+  console.log(menu)
+  const comerceId=useSelector(state=>state.user.comerceId);
 
-  const handleClickEyes = (index) => {
-    console.log(menu[index])
-    menu[index].active=!menu[index].active;
-    const newOnOffEyes = [...onOffEyes];
-    newOnOffEyes[index] = !newOnOffEyes[index]; // Invertir el valor en el índice dado
-    setOnOffEyes(newOnOffEyes);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`menu/lastMenu/${comerceId}`);
+        setMenu(response.data);
+      } catch (error) {
+        console.error("Error al obtener el menú:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const handleClickEyes = async (index, id) => {
+    try {
+      const updatedMenu = [...menu]; // Clonar el estado del menú actual
+      const updatedItem = { ...updatedMenu[index] }; // Clonar el elemento actual
+      updatedItem.active = !updatedItem.active; // Cambiar el estado 'active'
+      updatedMenu[index] = updatedItem; // Actualizar el elemento en el clon del menú
+      setMenu(updatedMenu); // Actualizar el estado 'menu' con el nuevo menú
+  
+      // Luego, realizar la solicitud PUT al servidor para cambiar el estado 'active' en la base de datos
+      if (updatedItem.active) {
+        await axios.put(`menu/active/${id}`);
+      } else {
+        await axios.put(`menu/inactive/${id}`);
+      }
+    } catch (error) {
+      console.error("Error al cambiar el estado active:", error);
+    }
   };
-
+  
   return (
     <div className={s.menuItemContainer}>
       <div>
@@ -35,7 +64,7 @@ export default function MenuItem() {
         ></ButtonGreen>
       </div>
       <br />
-      <Button primary size="huge" /* style={{ width: "90%" }} */>
+      <Button primary size="huge">
         Agregar Producto
       </Button>
       <div>
@@ -47,22 +76,18 @@ export default function MenuItem() {
             <LineText text={"On/Off"} secundary={true} />
           </section>
           <div className={s.menu_table}>
-            {menu.map((item, index) => (
+            {!menu?<Loading/>:menu.map((item, index) => (
               <div
                 key={index}
                 className={`${s.line_menu} ${
                   !item.active ? s.inactiveLine : ""
                 }`}
               >
-                <SelectIcon className={s.emoji} />
-                <LineText text={item.producto} disabled={!item.active} />
+                <SelectIcon className={s.emoji} icon={item.photo} />
+                <LineText text={item.name} disabled={!item.active} />
                 <LineText text={`$${item.cost}`} disabled={!item.active} />
-                <div onClick={() => handleClickEyes(index)}>
-                  {onOffEyes[index] ? (
-                    <Eye className={s.eyeIcon}></Eye>
-                  ) : (
-                    <EyeSlash className={s.eyeIconSlash}></EyeSlash>
-                  )}
+                <div onClick={() => handleClickEyes(index,item.id)}>
+                  {item.active?<Eye className={s.eyeIcon}></Eye>:<EyeSlash className={s.eyeIconSlash}></EyeSlash>}
                 </div>
               </div>
             ))}
@@ -72,51 +97,3 @@ export default function MenuItem() {
     </div>
   );
 }
-
-const menu = [
-  {
-    producto: "milanesas con papas fritas",
-    cost: "3200",
-    active: true,
-  },
-  {
-    producto: "milanesas con papas fritas",
-    cost: "3200",
-    active: true,
-  },
-  {
-    producto: "milanesas con papas fritas",
-    cost: "3200",
-    active: true,
-  },
-  {
-    producto: "milanesas con papas fritas",
-    cost: "3200",
-    active: true,
-  },
-  {
-    producto: "milanesas con papas fritas",
-    cost: "3200",
-    active: true,
-  },
-  {
-    producto: "lomo al plato con pure de calabaza",
-    cost: "3200",
-    active: true,
-  },
-  {
-    producto: "lomo al plato con pure de calabaza y arroz",
-    cost: "3200",
-    active: true,
-  },
-  {
-    producto: "papas fritas",
-    cost: "3200",
-    active: true,
-  },
-  {
-    producto: "papas fritas",
-    cost: "3200",
-    active: true,
-  },
-];

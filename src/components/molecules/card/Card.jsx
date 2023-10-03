@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import s from "./card.module.scss";
 import { Icon, Button } from "semantic-ui-react";
 import { ReactComponent as Rappi } from "../../../assets/rappi.svg";
+import { ReactComponent as PedidosYa } from "../../../assets/pedidosYa.svg";
 import OrderItem from "./orderItem/OrderItem";
 import Paragraph from "../../atom/Paragraph/Paragraph";
 import LineText from "../../atom/LineText/LineText";
@@ -78,7 +79,7 @@ export default function Card({
       <div>
         <h4>
           {delivery ? (
-            <Rappi
+            <PedidosYa
               style={{
                 width: "50px",
                 height: "50px",

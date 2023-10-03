@@ -16,6 +16,8 @@ header {
         .TbArrowBackUp {
             margin-right: auto;
             font-size: 25px;
+            cursor: pointer;
+            z-index: 20;
         }
 
         >h1 {

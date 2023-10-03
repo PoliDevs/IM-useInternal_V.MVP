@@ -39,8 +39,8 @@ export default function InstructionTwo() {
   }
 
   const formattedMenu = ()=> {
-    let objAditionals = { aditionals: null };
-    let objProducts = { products: null };
+    let objAditionals = { additional: null };
+    let objProducts = { product: null };
     let objDishes = { dishes: null };
     let date = new Date().toISOString().substring(0, 10);
     let objDate = { date: date }
@@ -83,9 +83,12 @@ export default function InstructionTwo() {
 
   const handleClick = () => {
     formattedMenu();
-    dispatch(postMenu(JSON.stringify(menu), id));
+    //dispatch(postMenu(JSON.stringify(menu), id));
+    dispatch(postMenu(menu, id));
+    console.log(menu)
     clearMenu();
   };
+  
   
   return (
     <InstructionContainer>
@@ -133,7 +136,7 @@ export default function InstructionTwo() {
         <InstructionButton
           helpText={"Necesito ayuda"}
           text={"Continuar"}
-          // path={menu && "/instructions/image"}
+          path={menu && "/instructions/image"}
           handleClick={handleClick}
         />
       </main>
