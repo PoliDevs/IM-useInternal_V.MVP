@@ -15,7 +15,10 @@
   background-color: $background-secundary;
   border: $border;
 }
-
+.menu_table{
+  overflow-y: scroll;
+  height: 400px;
+}
 .menu_opciones {
   display: grid;
   grid-template-columns: 1fr 3fr 1fr 0.5fr;
@@ -49,12 +52,14 @@
   width: 24px;
   height: 24px;
   color: $text-primary;
+  cursor: pointer;
 }
 
 .eyeIconSlash {
   width: 24px;
   height: 24px;
   color: $text-primary;
+  cursor: pointer;
 }
 
 .emoji {

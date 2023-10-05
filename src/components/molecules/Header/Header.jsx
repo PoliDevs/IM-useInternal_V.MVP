@@ -4,10 +4,14 @@ import s from './header.module.scss';
 import { TbArrowBackUp } from "react-icons/tb";
 
 export default function Header({icon,title,detail}) {
+  const handleBackClick = () => {
+   window.history.back();
+   console.log("dasd")
+  };
   return (
     <header>
       <div>
-     <TbArrowBackUp className={s.TbArrowBackUp}/>
+     <TbArrowBackUp className={s.TbArrowBackUp} onClick={handleBackClick} />
       <h1>
         <Icon name={icon} size="small" style={{marginRight:"10px"}}/>{title}
       </h1>

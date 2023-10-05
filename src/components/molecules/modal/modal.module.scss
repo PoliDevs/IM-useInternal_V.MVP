@@ -1,0 +1,31 @@
+@import '../../../scss/colors.scss';
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Color oscuro semitransparente para oscurecer el fondo */
+    z-index: 1000; /* Asegura que la superposición esté por encima de todo el contenido */
+  }
+  
+  .container {
+    width: 660px;
+    background-color: $background-secundary ;
+    font-size: 25px;
+    height: 270px;
+    position: absolute;
+    top: 50%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Centra completamente */
+    z-index: 1001; /* Asegura que el modal esté por encima de la superposición */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+.content_buttons{
+    display: flex;
+    justify-content: center;
+}
+  
