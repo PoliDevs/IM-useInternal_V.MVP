@@ -1,4 +1,3 @@
-import React from "react";
 import s from "./layoutDashboard.module.scss";
 import Card from "../../card/Card.jsx";
 import { useSelector } from "react-redux/es/hooks/useSelector";
@@ -8,39 +7,47 @@ import axios from "axios";
 import ButtonGreen from "../../../atom/buttons/ButtonGreen";
 import { getDateCurrent } from "../../../../utils/functions";
 
-export default function LayoutDashboard() {
+export default function LayoutDashboard({interval}) {
   const comerceId = useSelector((state) => state.user.comerceId);
-  const localOpenValue = useSelector((state) => state.localOpenValue);
   const [allOrders, setAllOrders] = useState([]); // Almacenamos todas las ordenes
   const dateCurrent = getDateCurrent(); //fecha actual
   const [filterClickedButton, setFilterClickedButton] = useState("Todos"); //filtrado
-
-  const renderOrdesCards = (status) => {
+  
+  const renderOrdesCards = (status,) => {
     const statusOrder = statusTables(status);
-console.log(statusOrder)
-    return statusOrder.length>0&&statusOrder.map((cur, idx) => (
-      <Card
-        /* key={cur.id} */
-        key={idx}
-        tableNumber={cur.po && cur.po.id}
-        sectorNumber={cur.sector && cur.sector.id}
-        order={cur.order}
-        hour={cur.hour}
-        status={cur.status}
-        delivery={cur.delivery}
-        total={cur.paid}
-        //tomamos menu , product y detail de cada orden
-        //si llegara a ser un {[""]}
-        menu={cur.menu && cur.menu.name[0].length > 0 && cur.menu}
-        products={cur.products&& cur.products.name[0].length > 0 && cur.products}
-        dishes={cur.dishes && cur.dishes.name[0].length > 0 && cur.dishes}
-        additionals={
-          cur.additionals &&
-          cur.additionals.name[0].length > 0 &&
-          cur.additionals
-        }
-      />
-    ));
+    return (
+      statusOrder.length > 0 &&
+      statusOrder.map((cur, idx) => (
+        <Card
+          /* key={cur.id} */
+          key={idx}
+          tableNumber={cur.po && cur.po.id}
+          sectorNumber={cur.sector && cur.sector.id}
+          order={cur.order}
+          hour={cur.hour}
+          status={cur.status}
+          delivery={cur.delivery}
+          total={cur.paid}
+          //news
+          accountemail={cur.accountemail} 
+          accountname={cur.accountname}
+          googleemail={cur.googleemail}
+
+          //tomamos menu , product y detail de cada orden
+          //si llegara a ser un {[""]}
+          menu={cur.menu && cur.menu.name[0].length > 0 && cur.menu}
+          products={
+            cur.products && cur.products.name[0].length > 0 && cur.products
+          }
+          dishes={cur.dishes && cur.dishes.name[0].length > 0 && cur.dishes}
+          additionals={
+            cur.additionals &&
+            cur.additionals.name[0].length > 0 &&
+            cur.additionals
+          }
+        />
+      ))
+    );
   };
 
   useEffect(() => {
@@ -80,26 +87,34 @@ console.log(statusOrder)
           });
       }
     };
-  
+
     // Ejecutar fetchData inmediatamente
-    fetchData();
-  
+    if(!interval) {return fetchData()}
+    else{
+      const intervalId =setInterval(fetchData, 5000);
+      
+      // Limpia el intervalo si el componente se desmonta
+      return () => clearInterval(intervalId);
+    }
+
     // Establecer un intervalo para ejecutar fetchData cada 3 segundos
-    const intervalId = setInterval(fetchData, 5000);
-  
-    // Limpia el intervalo si el componente se desmonta
-    return () => clearInterval(intervalId);
+/*     if(interval){
+      console.log("interval true") */
+      //fetchData()
+/*     }else{
+      const intervalId =setInterval(fetchData, 5000);
+      
+      // Limpia el intervalo si el componente se desmonta
+       () => clearInterval(intervalId);
+    } */
   }, [filterClickedButton]);
-  
-  
 
   const statusTables = (status) => {
     return allOrders.filter((cur) => cur.status === status);
   };
-/* console.log(allOrders) */
+  /* console.log(allOrders) */
   return (
-    <>
-      {!localOpenValue && renderOrdesCards("orderPlaced").length===0&&renderOrdesCards("orderInPreparation").length===0&&renderOrdesCards("orderReady").length===0 ? null : (
+
         <div className={s.content_LayoutDashboard}>
           <div>
             <ButtonGreen
@@ -146,7 +161,5 @@ console.log(statusOrder)
             </section>
           </div>
         </div>
-      )}
-    </>
   );
 }

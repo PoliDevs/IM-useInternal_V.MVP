@@ -4,6 +4,7 @@ import s from "./singn_in.module.scss";
 import Title from "../../atom/Title/Title";
 import LineText from '../../atom/LineText/LineText';
 import useFirebase from "../../../firebase/firebase.config";
+//import { ReactComponent as Logo } from "../../../assets/";
 
 export default function Sing_in() {
   const [error, setError] = useState(false);
@@ -13,7 +14,9 @@ export default function Sing_in() {
       {!error ? (
         <>
           <aside className={s.loginContainer}>
-            <Title text={"Da el primer paso"} />
+           {/*  <Logo/> */}
+           <div className={s.logo} ></div>
+            <Title text={"Da el primer paso:"} />
             <LineText  text={"Ingresa utilizando tu correo de google"} />
             <GoogleButton text={"Accede con google"} signInWithGoogle={signInWithGoogle} />
           </aside>

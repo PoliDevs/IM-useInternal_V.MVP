@@ -1,43 +1,58 @@
-import { Icon } from "semantic-ui-react";
 import s from "./closedLocal.module.scss";
-import LayoutContainer from "../../../molecules/layouts/section/LayoutContainer";
-import { useTranslation } from "react-i18next";
-import OpenLocal from "../openLocal/OpenLocal";
 import { useSelector } from "react-redux";
+import { Store } from "../../../atom/iconsHerocoins/icons";
+import { useState, useEffect } from "react";
+import { getDateCurrent } from "../../../../utils/functions";
+import axios from "axios";
+import LayoutDashboard from "../../../molecules/layouts/dashboard/LayoutDashboard";
+import LayoutContainer from "../../../molecules/layouts/section/LayoutContainer";
+import Container from "../../../atom/container/Container";
 
 export default function ClosedLocal({ open }) {
-  const [t, i18n] = useTranslation("global");
-  const localOpenValue = useSelector((state) => state.localOpenValue);
-/*   console.log(localOpenValue); */
+  const [allOrders, setAllOrders] = useState([]);
+  const comerceId = useSelector((state) => state.user.comerceId);
+  const dateCurrent = getDateCurrent();
+  const [filterClickedButton, setFilterClickedButton] = useState("Todos"); //filtrado
+  useEffect(
+    () => {
+      const fetchData = async () => {
+          await axios(
+            `order/paidOrderes/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`
+          )
+            .then((response) => {
+              const data = response.data;
+              setAllOrders(data);
+            })
+            .catch((error) => {
+              console.error("Error al realizar la solicitud:", error);
+            });
+      };
+      fetchData();
+    },
+    []
+  );
 
- /*  const open_close = open; */
-
- {/* <LayoutContainer> */}
- 
- return (
-        <div className={s.centered_content}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="w-6 h-6"
-          width={40}
-          >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 1.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z"
-            />
-        </svg>
-
-        <h2>{t("internal.header.closed local.premises closed")}</h2>
-        <span>{t("internal.header.closed local.Open the store to start")}</span>
-        <br />
-        <span>{t("internal.header.closed local.to receive orders")}</span>
-{/*         <OpenLocal /> */}
+  const statusTables = (status) => {
+    //filtra por status
+    return allOrders.filter((cur) => cur.status === status);
+  };
+  return (
+    <Container>
+    <div className={s.centered_content}>
+      <Store heigth={"36px"} />
+      <h2>{"Local cerrado"}</h2>
+      <span>{"Abre el local para comenzar"}</span>
+      <br />
+      <span>{" a recibir pedidos"}</span>
+      {/*         <OpenLocal /> */}
+      {statusTables("orderPlaced").length > 0 ||
+      statusTables("orderInPreparation").length ||
+      statusTables("orderReady").length ? (
+        <LayoutContainer>
+          <LayoutDashboard interval={true} />
+        </LayoutContainer>
+      ) : null}
     </div>
+      </Container>
   );
 }
-{/*  </LayoutContainer> */}

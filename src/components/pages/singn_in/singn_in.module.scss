@@ -9,15 +9,22 @@
 
   .loginContainer {
     width: 50%;
-    height: 100%;
+    height: 95%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-
+.logo{
+  height: 130px;
+  width: 371px;
+  background-image: url("../../../assets/imenu_logo.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
   .sloganContainer {
-    background-image: url("../../../assets/LoginBackground.png");
+    background-image: url("../../../assets/LoginBackground.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -44,19 +51,19 @@
   
     .bigText_1 {
       font-family: 'Mabry Pro', sans-serif;
-      font-size: 80px;
+      font-size: 70px;
  /*      line-height: 200; */
       font-weight: 100;
       color: $text-secondary;
       z-index: 4;
+      margin: 0 15% 0 15%;
     }
     .bigText{
       font-family: 'Mabry Pro', sans-serif;
-      font-size: 90px;
- /*      line-height: 200; */
-/*       font-weight: 200; */
+      font-size: 75px;
       text-align: left;
       color: $text-secondary;
+      margin: 0 15% 0 15%;
       z-index: 4;
     }
 
