@@ -7,9 +7,8 @@ import { localOpen } from "../../../redux/actions";
 
 
 export default function Dashboard() {
-/*   const localValue = useSelector((state) => state.local); */
   const comerceId = useSelector((state) => state.user.comerceId);
-/*   const localOpenValue=useSelector(state=>state.localOpenValue) */
+  const localOpenValue=useSelector(state=>state.localOpenValue)
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(localOpen(comerceId));
@@ -17,8 +16,7 @@ export default function Dashboard() {
 
   return (
     <div className={s.container_dashboard}>
-{/*       {localOpenValue ? <OpenLocal/> : <ClosedLocal />} */}
-<OpenLocal/>
+      {localOpenValue ? <OpenLocal/> : <ClosedLocal />}
     </div>
   );
 }

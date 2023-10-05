@@ -5,7 +5,9 @@ header {
     width: 100%;
     text-align: center;
     display: flex;
-    background-color: $color-eighth;
+    //background-color: $color-eighth;
+    //oficial
+    background-color: #ECECEC;
 
     div {
         display: flex;
@@ -24,12 +26,12 @@ header {
             flex: 1;
             position: relative;
             left: -20px;
+            font-size: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
         }
-    }
-
-    >span {
-        margin-top: 15px;
-        color: $text-desable;
     }
 }
 
