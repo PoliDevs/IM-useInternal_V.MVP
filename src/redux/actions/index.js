@@ -66,7 +66,7 @@ export function postMenu(menu, id) {
     try {
       const response = await axios.post(
         `http://localhost:3001/menu/menuUp/${id}`,
-        menu
+        {menuJSON: menu}
       );
       return response;
     } catch (error) {

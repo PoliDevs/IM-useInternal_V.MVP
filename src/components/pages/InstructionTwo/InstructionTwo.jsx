@@ -15,6 +15,7 @@ import { postMenu } from "../../../redux/actions";
 export default function InstructionTwo() {
   const [file, setFile] = useState(null);
   const [menu, setMenu] = useState(null);
+  const [comercio, setComercio] = useState(null);
   const [submiting, setSubmiting] = useState(false);
   const id = useSelector((state)=> state.user.comerceId)
   const dispatch = useDispatch();
@@ -23,10 +24,14 @@ export default function InstructionTwo() {
     if (file !== null) {
       setSubmiting(false);
       const workbook = XLSX.read(file, { type: "buffer" });
-      const worksheetName = workbook.SheetNames[0];
-      const worksheet = workbook.Sheets[worksheetName];
+      const worksheetName1 = workbook.SheetNames[0];
+      const worksheetName2 = workbook.SheetNames[1];
+      const worksheet = workbook.Sheets[worksheetName1];
+      const worksheet2 = workbook.Sheets[worksheetName2];
       const data = XLSX.utils.sheet_to_json(worksheet);
+      const data2 = XLSX.utils.sheet_to_json(worksheet2);
       setMenu(data);
+      setComercio(data2);
     }
   }, [file]);
 
@@ -39,8 +44,8 @@ export default function InstructionTwo() {
   }
 
   const formattedMenu = ()=> {
-    let objAditionals = { aditionals: null };
-    let objProducts = { products: null };
+    let objAditionals = { additional: null };
+    let objProducts = { product: null };
     let objDishes = { dishes: null };
     let date = new Date().toISOString().substring(0, 10);
     let objDate = { date: date }
@@ -83,7 +88,7 @@ export default function InstructionTwo() {
 
   const handleClick = () => {
     formattedMenu();
-    dispatch(postMenu(JSON.stringify(menu), id));
+    dispatch(postMenu(menu), id);
     clearMenu();
   };
   
@@ -133,7 +138,7 @@ export default function InstructionTwo() {
         <InstructionButton
           helpText={"Necesito ayuda"}
           text={"Continuar"}
-          // path={menu && "/instructions/image"}
+          path={menu && "/instructions/image"}
           handleClick={handleClick}
         />
       </main>

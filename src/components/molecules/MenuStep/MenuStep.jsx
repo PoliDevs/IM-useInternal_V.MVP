@@ -11,7 +11,8 @@ export default function MenuStep({
   className,
   icon_1,
   icon_2,
-  button
+  button,
+  onClick
 }) {
   // Objeto que mapea los nombres de iconos a componentes de iconos
   const iconComponents = {
@@ -21,7 +22,7 @@ export default function MenuStep({
   };
 
   return className ? (
-    <div className={`${s.menu_option}`}>
+    <div className={`${s.menu_option}`} onClick={onClick}>
       <LineText text={text} secundary={true} />
       <div>
         {icon_1 && iconComponents[icon_1]} {/* Renderiza el primer icono */}

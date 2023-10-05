@@ -12,7 +12,7 @@ import { renderContentRight } from "../../../../utils/functions";
 import { Button, Icon } from "semantic-ui-react";
 
 export default function LayoutMenu() {
-  const [selectedOption, setSelectedOption] = useState("Gestionar menu actual");
+  const [selectedOption, setSelectedOption] = useState("Gestionar menú actual");
   //const contentDescription = renderContentRight(selectedOption);
   const handleOptionClick = (option) => {
     setSelectedOption(option);
