@@ -62,6 +62,7 @@ console.log(response)
 
 
 export function postMenu(menu, id) {
+  console.log(id)
   return async function () {
     try {
       const response = await axios.post(

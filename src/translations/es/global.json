@@ -43,7 +43,7 @@
       }
     },
     "sales": {
-      "this week": "Esta semana",
+      "this week": "",
       "weekly Total": "Total semanal",
       "today": "Hoy",
       "today you sold": "hoy vendiste",

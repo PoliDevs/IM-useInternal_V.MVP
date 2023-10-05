@@ -13,7 +13,7 @@ export default function LayoutHistory() {
 const date=getDateCurrent();
 console.log(date)
   const comerceId = useSelector((state) => state.user.comerceId);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [selectDatePiker, setSelectDatePiker] = useState(null); // Estado para la fecha seleccionada solo para el piker
   const [selectDate, setSelectDate] = useState(date); // Estado para la fecha seleccionada
@@ -26,8 +26,8 @@ console.log(date)
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setIsLoading(false);
+/*     const timeout = setTimeout(() => { */
+      setIsLoading(true);
 
       //harcodeado
       //axios(`order/paidOrderes/${comerceId}?startDate=2023-09-27&endDate=2023-09-27`)
@@ -36,12 +36,13 @@ console.log(date)
         .then((response) => {
           const data = response.data;
           setOrderDate(data); // Almacena la respuesta en el estado local
+          setIsLoading(false)
         })
         .catch((error) => {
           console.error("Error al realizar la solicitud:", error);
         });
-    }, 1000);
-    return () => clearTimeout(timeout);
+/*     }, 1000);
+    return () => clearTimeout(timeout); */
   }, [selectDate]);
 
   // actualizar la fecha seleccionada
@@ -75,7 +76,7 @@ console.log(date)
                   }) */}
                 </span>
                 <div className={s.containerd_card}>
-                  {orderDelivered.map((cur, idx) => {
+                  {isLoading?<Loading/>: orderDelivered.map((cur, idx) => {
                    return <Card
                       key={idx}
                       tableNumber={cur.po && cur.po.id}

@@ -88,9 +88,12 @@ export default function InstructionTwo() {
 
   const handleClick = () => {
     formattedMenu();
-    dispatch(postMenu(menu), id);
+    //dispatch(postMenu(JSON.stringify(menu), id));
+    dispatch(postMenu(menu, id));
+    console.log(menu)
     clearMenu();
   };
+  
   
   return (
     <InstructionContainer>

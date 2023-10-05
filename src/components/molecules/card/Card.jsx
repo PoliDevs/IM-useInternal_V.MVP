@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import s from "./card.module.scss";
 import { Icon, Button } from "semantic-ui-react";
 import { ReactComponent as Rappi } from "../../../assets/rappi.svg";
+import { ReactComponent as PedidosYa } from "../../../assets/pedidosYa.svg";
 import OrderItem from "./orderItem/OrderItem";
 import Paragraph from "../../atom/Paragraph/Paragraph";
 import LineText from "../../atom/LineText/LineText";
@@ -24,9 +25,13 @@ export default function Card({
   dishes,
   additionals,
   width,
+  //news
+  accountemail,
+  accountname,
+  googleemail
 }) {
   const comerceId=useSelector(state=>state.user.comerceId)
-
+console.log(accountemail,accountname,googleemail)
   const [seeOrder, setSeeOrder] = useState(true);//con esto mostramos o ocultamos la orden, icon
 
   const numOrder = order.split("-")[1].trim();
@@ -35,6 +40,7 @@ export default function Card({
     setSeeOrder(!seeOrder);
   };
 
+  //busca el status de la order para cambiar el texto del boton
   const getStatus = (arg) => {
     if (arg === "orderPlaced") {
       return "Pasar a preparando";
@@ -49,7 +55,7 @@ export default function Card({
       return "entregado";
     }
   };
-  console.log(status);
+  //console.log(status);
   const colorButton = (arg) => {
     if (arg === "orderPlaced") {
       return "#FF4A4A";
@@ -69,16 +75,23 @@ export default function Card({
   const handleStatus = async(status,order) => {
     let newStatus="";
     if(status==="orderPlaced"){newStatus="orderInPreparation"}
-    if(status==="orderInPreparation"){newStatus="orderReady"}
+    if(status==="orderInPreparation"){
+      newStatus="orderReady";
+     return await axios.put(`order/status-ready/${order}/${comerceId}`,{status:newStatus,
+      accountemail,
+      accountname,
+      googleemail
+    })
+    }
     if(status==="orderReady"){newStatus="delivered"}
-    await axios.put(`order/change-status/${order}/${comerceId}`,{status:newStatus})
+   return await axios.put(`order/change-status/${order}/${comerceId}`,{status:newStatus})
   };
   return (
     <div className={s.content_card} style={{ width:width?`${width}px`:"376px"}}>
       <div>
         <h4>
           {delivery ? (
-            <Rappi
+            <PedidosYa
               style={{
                 width: "50px",
                 height: "50px",
@@ -112,16 +125,6 @@ export default function Card({
               })}
             {products &&
               products.name.map((cur, idx) => {
-                /*                 return (
-                  <article key={idx}>
-                    <span>
-                      {products.amount[idx]} {cur}
-                    </span>
-                    <span>${products.cost[idx]}</span>
-                    <hr />
-                    {products.detail[idx].length>0&&<span>{products.detail[idx]}</span> }
-                  </article>
-                ); */
                 return (
                   <OrderItem
                     key={idx}
@@ -164,7 +167,7 @@ export default function Card({
             <div>
               <LineText bold text={`Total:$ ${total || "***"}`} />
               <Button
-              onClick={()=>handleStatus(status,order)}
+              onClick={()=>{handleStatus(status,order);}}
               /* value={status,order} */
                 style={{
                   background: colorButton(status),
