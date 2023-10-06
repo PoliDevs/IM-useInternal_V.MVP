@@ -6,11 +6,11 @@ import Container from "../../../atom/container/Container";
 export default function OpenLocal() {
   return (
     <Container>
-        <Header
-          icon="store"
-          title={"Pedidos recibidos"}
-          detail={"Tus pedidos estan aqui por orden de ingreso"}
-        />
+      <Header
+        icon="store"
+        title={"Pedidos recibidos"}
+        detail={"Tus pedidos estan aqui por orden de ingreso"}
+      />
       <LayoutContainer>
         <LayoutDashboard />
       </LayoutContainer>

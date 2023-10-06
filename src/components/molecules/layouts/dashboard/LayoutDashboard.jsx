@@ -89,13 +89,13 @@ export default function LayoutDashboard({interval}) {
     };
 
     // Ejecutar fetchData inmediatamente
-    if(!interval) {return fetchData()}
-    else{
+/*     if(!interval) {return fetchData()}
+    else{ */
       const intervalId =setInterval(fetchData, 5000);
       
       // Limpia el intervalo si el componente se desmonta
-      return () => clearInterval(intervalId);
-    }
+      () => clearInterval(intervalId);
+  /*   } */
 
     // Establecer un intervalo para ejecutar fetchData cada 3 segundos
 /*     if(interval){

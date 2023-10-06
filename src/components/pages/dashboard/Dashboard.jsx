@@ -4,6 +4,7 @@ import s from "./dashboard.module.scss";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { localOpen } from "../../../redux/actions";
+import LayoutContainer from "../../molecules/layouts/section/LayoutContainer";
 
 
 export default function Dashboard() {
@@ -15,7 +16,7 @@ export default function Dashboard() {
   }, [comerceId]);
 
   return (
-    <div className={s.container_dashboard}>
+    <div/*  className={s.container_dashboard} */>
       {localOpenValue ? <OpenLocal/> : <ClosedLocal />}
     </div>
   );
