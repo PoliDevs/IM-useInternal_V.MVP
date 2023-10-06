@@ -9,11 +9,7 @@ import { useState} from "react";
 
 export default function LayoutMenu() {
   const [selectedOption, setSelectedOption] = useState("Gestionar menú actual");
-<<<<<<< HEAD
-  //const contentDescription = renderContentRight(selectedOption);
-=======
   
->>>>>>> 240fce270bb5a53bc11e3139aade0fb2e09121cb
   const handleOptionClick = (option) => {
     setSelectedOption(option);
   };
