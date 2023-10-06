@@ -21,8 +21,10 @@ export default function Sing_in() {
             <GoogleButton text={"Accede con google"} signInWithGoogle={signInWithGoogle} />
           </aside>
           <section className={s.sloganContainer}>
+          <div className={s.content_2}>
             <h2 className={s.bigText_1}>La velocidad es</h2>
-            <h2 className={s.bigText}> nuestro plato fuerte</h2>
+            <h2 className={s.bigText}> nuestro plato<br/> fuerte</h2>
+            </div>
           </section>
         </>
       ) : (
@@ -33,8 +35,10 @@ export default function Sing_in() {
             <GoogleButton text={"Accede con google"} signInWithGoogle={signInWithGoogle} />
           </aside>
           <section className={s.sloganContainer}>
+            <div className={s.content_2}>
             <h2 className={s.bigText_1}>La velocidad es</h2>
-            <h2 className={s.bigText}> nuestro plato fuerte</h2>
+            <h2 className={s.bigText}> nuestro{`{\n}`}plato fuerte</h2>
+            </div>
           </section>
         </>
       ) 

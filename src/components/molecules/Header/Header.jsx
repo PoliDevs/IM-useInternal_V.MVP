@@ -27,7 +27,7 @@ export default function Header({icon,title,detail}) {
         {optionIcon[icon]}
         {title}
       </h1> */}
-      <HugeTitle text={title} bold icon={optionIcon[icon]} />
+      <HugeTitle text={title} icon={optionIcon[icon]} fontSize={"28px"} />
       </div>
       {/* <span>{detail}</span> */}
       <LineText text={detail} centered disabled />

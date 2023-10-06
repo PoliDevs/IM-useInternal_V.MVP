@@ -2,15 +2,13 @@
 
 .nav{
   display: flex;
+  flex-grow: 1;
   justify-content: space-between;
-  padding: 0.5rem 0.5rem;
+  align-items: center;
+  //padding: 0.1rem;
   background-color: $background-quaternary;
   color:$text-secondary;
-  i{
-    &:hover {
-      cursor: pointer;
-  }
-  }
+
   >span{
     letter-spacing:4px;
   }
@@ -22,16 +20,20 @@
     color: $background-primary;
   }
 }
-.logo{
-  width: 50px;
-  height: 32px;
-  background: url("../../../assets/logoblanco.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+
+  .logo{
+    width: 50px;
+    height: 32px;
+    background: url("../../../assets/logo_imenu_blanco.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
 
 .anotherCustomBackground{
     background-color: #4d4444;
 }
 
-
+.iconContainer{
+cursor: pointer;
+margin: 0 10px;
+}
