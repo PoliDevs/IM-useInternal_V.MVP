@@ -1,4 +1,4 @@
-import { GET_ORDERS, LOGIN_ACTION,LOGIN_ACTION_GOOGLE,MENU_ACTIVE,LOCAL_OPEN_VALUE,OPEN_LOCAL,CLOSED_LOCAL } from "../actions/actionTypes";
+import { GET_ORDERS, LOGIN_ACTION,LOGIN_ACTION_GOOGLE,MENU_ACTIVE,LOCAL_OPEN_VALUE,OPEN_LOCAL,CLOSED_LOCAL, GET_ALL_POS } from "../actions/actionTypes";
 import jwtDecode from "jwt-decode";
 
 const initalState = {
@@ -14,6 +14,7 @@ const initalState = {
   menuActive:localStorage.getItem("menuActivo")
   ? localStorage.getItem("menuActivo")
   : [],
+  allPos: []
 };
 
 export const rootReducer = (state = initalState, { type, payload }) => {
@@ -104,6 +105,9 @@ export const rootReducer = (state = initalState, { type, payload }) => {
         orders: arrayOrders,
       };
       break;
+
+    case GET_ALL_POS:
+      return {...state, allPos: payload}
     default:
       return state;
   }
