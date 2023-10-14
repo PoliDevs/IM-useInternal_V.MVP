@@ -12,7 +12,7 @@
     padding: 1rem ;
     border-radius: $border-primary-radius;
     text-decoration: none;
-    min-width: max-content;
+    min-width: content;
     width: 30%;
     border: $border;
     z-index: 21;
@@ -23,7 +23,7 @@
         font-weight: bolder;
         display: flex;
         align-items: center;
-        padding: 5px;
+/*         padding: 5px; */
         border-radius: $border-primary-radius;
         color: $text-primary;
         &:hover {

@@ -37,8 +37,9 @@ export default function Nav() {
         <Bars_3 heigth={36} />
       </div>
       {barsActive ? <Bars onLinkClick={toggleBarsBackground} /> : null}
-      <div className={s.logo}></div>
-
+      <div className={s.logo}>
+      <img src="/src/assets/logo_imenu_blanco.png" height={52} ></img>
+      </div>
       <div
         className={`${s.iconContainer} ${
           !userActive ? s.customBackground : s.anotherCustomBackground
@@ -46,10 +47,6 @@ export default function Nav() {
         style={{ padding: "3px", borderRadius: "12px 12px 2px 0" }}
         onClick={toggleUserBackground}
       >
-        {/*         <Icon
-          name="user circle outline"
-          size="big"
-        /> */}
         <User_cicle heigth={36} />
       </div>
       {userActive ? <Open_closed /> : null}

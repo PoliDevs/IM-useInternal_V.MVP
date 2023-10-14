@@ -10,7 +10,6 @@ const initalState = {
   id: 1,
   local: true,
   orders: [],
-  sales: "",
   menuActive:localStorage.getItem("menuActivo")
   ? localStorage.getItem("menuActivo")
   : [],

@@ -20,7 +20,9 @@ export default function Welcome() {
       <div className={s.welcomeContainer}>
         <div className={`${s.frame} ${s.left}`}></div>
         <div className={s.textContainer}>
-          <div className={s.logo}></div>
+          <div className={s.logo}>
+            <img src="/src/assets/logo_imenu_blanco.png" alt="IMENU" />
+          </div>
           <HugeTitle text={"¡Bienvenido!"} />
           <p className={s.paragraph}>Ahora puedes comenzar a recibir pedidos</p>
         </div>

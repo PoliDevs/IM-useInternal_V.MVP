@@ -86,7 +86,7 @@ console.log(date)
                       status={cur.status}
                       delivery={cur.delivery}
                       total={cur.paid}
-                      width={300}
+                      width={320}
                       menu={cur.menu && cur.menu.name[0].length > 0 && cur.menu}
                       products={
                         cur.products &&
