@@ -67,7 +67,7 @@ export default function InstructionThree() {
         <InstructionButton
           helpText={"Necesito ayuda"}
           text={"Continuar"}
-          path={file && "/instructions/onDemand"}
+          path={/* file && */ "/instructions/onDemand"}
           handleClick={handleClick}
         />
       </main>

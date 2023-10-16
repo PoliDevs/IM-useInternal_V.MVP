@@ -23,7 +23,7 @@ export default function InstructionFour() {
         <InstructionButton
           helpText={"Necesito ayuda"}
           text={"Continuar"}
-          path={"/dashboard"}
+          path={"/"}
         />
       </main>
     </InstructionContainer>

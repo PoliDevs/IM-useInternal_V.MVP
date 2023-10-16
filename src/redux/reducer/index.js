@@ -69,7 +69,6 @@ export const rootReducer = (state = initalState, { type, payload }) => {
 
     //local cerrado o abierto
     case LOCAL_OPEN_VALUE:{
-      console.log(payload)
       return{
         ...state,
         localOpenValue:payload
