@@ -110,9 +110,9 @@ const handleCardStatusChange = (newStatus, orderId) => {
     }
       fetchData()
 
-     // const intervalId =setInterval(fetchData, 9000);
+      const intervalId =setInterval(fetchData, 20000);
       // Limpia el intervalo si el componente se desmonta
-      // () => clearInterval(intervalId);
+       () => clearInterval(intervalId);
 
   }, [filterClickedButton,cardStatusChanged /* renderOrdesCards */]);
 

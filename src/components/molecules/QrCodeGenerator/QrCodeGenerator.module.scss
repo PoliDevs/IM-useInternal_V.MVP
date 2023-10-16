@@ -1,0 +1,93 @@
+@import '../../../scss/colors.scss';
+@import '../../../scss/typography.scss';
+
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: auto;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 100px;
+  padding: 50px;
+
+  .mainTitle {
+    font-size: $huge;
+    text-align: center;
+  }
+  .headerContainer {
+    display: flex;
+    align-items: center;
+    height: auto;
+    width: 80%;
+    justify-content: space-around;
+
+    .selectContainer{
+      display: flex;
+      width: auto;
+      gap: 10px;
+      .label {
+        font-size: $title;
+        text-align: center;
+        align-self: center;
+      }
+      .select {
+      padding: 8px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #fff;
+      width: 200px;
+      /* Puedes ajustar estos valores según tus necesidades */
+      &:focus {
+      outline: none; /* Quita el borde al enfocar */
+      border-color: #007bff; /* Cambia el color del borde al enfocar */
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Agrega un efecto de sombra al enfocar */
+    }
+    }
+    }
+  }
+
+
+  .buttons {
+    display: flex;
+    width: 500px;
+    align-items: center;
+    justify-content: space-around;
+    height: auto;
+    margin: 0 auto;
+    .printButton, .downloadButton {
+      font-size: $title;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $background-tertiary;
+      color: $text-secondary;
+      width: auto;
+      height: 41px;
+      border-radius: $border-primary-radius;
+      padding: 5px;
+      cursor: pointer;
+      visibility: hidden;
+    }
+  
+    .visible {
+      visibility: visible;
+    }
+  
+  }
+  .generatorButton{
+        font-size: $title;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $background-tertiary;
+    color: $text-secondary;
+    width: auto;
+    height: 41px;
+    border-radius: $border-primary-radius;
+    padding: 5px;
+    cursor: pointer;
+  }
+
+}

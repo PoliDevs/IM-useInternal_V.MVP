@@ -9,6 +9,7 @@ export const POST_MENU = "POST_MENU";
 //////////////////* Commerce Action Types *///////////////////////////
 export const OPEN_LOCAL="OPEN_LOCAL";
 export const CLOSED_LOCAL="CLOSED_LOCAL";
+export const GET_ALL_POS = "GET_ALL_POS";
 
 //////////////////* Order Action Type *///////////////////////////
 export const GET_ORDERS="GET_ORDERS";

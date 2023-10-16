@@ -15,20 +15,34 @@ import { postMenu } from "../../../redux/actions";
 export default function InstructionTwo() {
   const [file, setFile] = useState(null);
   const [menu, setMenu] = useState(null);
+  const [comercio, setComercio] = useState(null);
   const [submiting, setSubmiting] = useState(false);
-  const id = useSelector((state)=> state.user.comerceId)
+  const [error, setError] = useState(false);
+  const id = useSelector((state) => state.user_internal.comerceId);
   const dispatch = useDispatch();
 
   useEffect(() => {
     if (file !== null) {
-      setSubmiting(false);
       const workbook = XLSX.read(file, { type: "buffer" });
-      const worksheetName = workbook.SheetNames[0];
-      const worksheet = workbook.Sheets[worksheetName];
+      const worksheetName1 = workbook.SheetNames[0];
+      const worksheetName2 = workbook.SheetNames[1];
+      const worksheet = workbook.Sheets[worksheetName1];
+      const worksheet2 = workbook.Sheets[worksheetName2];
       const data = XLSX.utils.sheet_to_json(worksheet);
+      const data2 = XLSX.utils.sheet_to_json(worksheet2);
       setMenu(data);
+      setComercio(data2);
     }
   }, [file]);
+
+  useEffect(() => {
+    if (comercio !== null) {
+      setSubmiting(false)
+      if (!comercio[0]["Nombre de comercio"]) {
+        setError(true);
+      } else setError(false);
+    }
+  }, [comercio]);
 
   function emojiToUnicode(emoji) {
     const codeUnits = [];
@@ -38,12 +52,12 @@ export default function InstructionTwo() {
     return `U+${codeUnits.join(" U+")}`;
   }
 
-  const formattedMenu = ()=> {
+  const formattedMenu = () => {
     let objAditionals = { additional: null };
     let objProducts = { product: null };
     let objDishes = { dishes: null };
     let date = new Date().toISOString().substring(0, 10);
-    let objDate = { date: date }
+    let objDate = { date: date };
     setMenu(
       menu.map((m) => {
         if (m.Precio === undefined) m.Precio = null;
@@ -71,25 +85,64 @@ export default function InstructionTwo() {
         Object.assign(m, objAditionals);
         Object.assign(m, objProducts);
         Object.assign(m, objDishes);
-        Object.assign(m,objDate);
+        Object.assign(m, objDate);
       })
     );
-  }
+  };
+
+  const formattedCommerce = () => {
+    setComercio(
+      comercio.map((d) => {
+        d["Nombre de comercio"] ? (d["name"] = d["Nombre de comercio"]) : "";
+        d["Barrio"] ? (d["neighborhood"] = d["Barrio"]) : d["neighborhood"] = "";
+        d["Direccion"] ? (d["address"] = d["Direccion"]) : d["address"] = "";
+        d["Horarios"] ? (d["workSchedule"] = d["Horarios"]) : d["workSchedule"] = "";
+        d["Email"] ? (d["email"] = d["Email"]) : d["email"] = "";
+        d["Telefono"] ? (d["phono"] = d["Telefono"]) : d["phono"] = "";
+        d["Tipo de comida"] ? (d["tipoDeComida"] = d["Tipo de comida"]) : d["tipoDeComida"] = "";
+        d["Nombre"] ? (d["firstNameEmployeer"] = d["Nombre"]) : d["firstNameEmployeer"] = "";
+        d["Apellido"] ? (d["lastNameEmployeer"] = d["Apellido"]) : d["lastNameEmployeer"] = "";
+        d["Usuario de Google"]
+          ? (d["googleUserEmployeer"] = d["Usuario de Google"])
+          : d["googleUserEmployeer"] = "";
+        d["Correo secundario"]
+          ? (d["emailEmployeer"] = d["Correo secundario"])
+          : d["emailEmployeer"] = "";
+        d["Mesas"] ? d["mesas"] = d["Mesas"] : d["mesas"] = '';
+        delete d["Nombre de comercio"];
+        delete d["Ubicacion"];
+        delete d["Direccion"];
+        delete d["Horarios"];
+        delete d["Email"];
+        delete d["Telefono"];
+        delete d["Tipo de comida"];
+        delete d["Nombre"];
+        delete d["Apellido"];
+        delete d["Usuario de Google"];
+        delete d["Mesas"]
+        d["Correo secundario"] && delete d["Correo secundario"];
+      })
+    );
+  };
 
   const clearMenu = () => {
     setFile(null);
     setMenu(null);
+    setComercio(null);
   };
 
   const handleClick = () => {
     formattedMenu();
-    //dispatch(postMenu(JSON.stringify(menu), id));
-    dispatch(postMenu(menu, id));
-    console.log(menu)
-    clearMenu();
+    formattedCommerce();
+    if (error) {
+      clearMenu();
+      setError(true);
+      return alert("Se debe ingresar un nombre de comercio");
+    } else {
+      dispatch(postMenu(menu, comercio, id));
+    }
   };
-  
-  
+
   return (
     <InstructionContainer>
       <main className={s.mainContainer}>
@@ -136,7 +189,7 @@ export default function InstructionTwo() {
         <InstructionButton
           helpText={"Necesito ayuda"}
           text={"Continuar"}
-          path={menu && "/instructions/image"}
+          path={menu && !error && "/instructions/image"}
           handleClick={handleClick}
         />
       </main>

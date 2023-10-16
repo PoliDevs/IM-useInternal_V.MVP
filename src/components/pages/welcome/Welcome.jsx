@@ -7,10 +7,8 @@ import { getMenuActive } from "../../../redux/actions";
 
 export default function Welcome() {
   const user_internal = useSelector((state) => state.user_internal);
-  const menuActive = useSelector((state) => state.menuActive);
   const dispatch=useDispatch();
-  console.log(user_internal);
-  console.log(menuActive);
+
 
   useEffect(()=>{
     dispatch(getMenuActive(user_internal.comerceId))
