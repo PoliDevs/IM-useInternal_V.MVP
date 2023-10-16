@@ -8,7 +8,7 @@ import ButtonGreen from "../../../atom/buttons/ButtonGreen";
 import { getDateCurrent} from "../../../../utils/functions";
 
 export default function LayoutDashboard({interval}) {
-  const comerceId = useSelector((state) => state.user.comerceId);
+  const comerceId = useSelector((state) => state.user_internal.comerceId);
   const [allOrders, setAllOrders] = useState([]); // Almacenamos todas las ordenes
   const dateCurrent = getDateCurrent(); //fecha actual
   const [filterClickedButton, setFilterClickedButton] = useState("Todos"); //filtrado
@@ -17,7 +17,7 @@ export default function LayoutDashboard({interval}) {
   // Función para manejar cambios de estado en las tarjetas
 const handleCardStatusChange = (newStatus, orderId) => {
   // Realiza la lógica necesaria para manejar el cambio de estado de la tarjeta aquí
-  console.log(`Cambiar el estado de la tarjeta a: ${newStatus}, Orden: ${orderId}`);
+/*   console.log(`Cambiar el estado de la tarjeta a: ${newStatus}, Orden: ${orderId}`); */
 
   // Actualiza el estado para indicar que hubo cambios en las tarjetas
   setCardStatusChanged(true);

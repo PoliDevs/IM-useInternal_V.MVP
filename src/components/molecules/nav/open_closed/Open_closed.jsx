@@ -5,7 +5,7 @@ import { localOpen, openLocal, closedLocal } from "../../../../redux/actions";
 import Switch from "react-switch";
 
 export default function Open_closed() {
-  const comerceId = useSelector((state) => state.user.comerceId);
+  const comerceId = useSelector((state) => state.user_internal.comerceId);
   const localOpenValue = useSelector((state) => state.localOpenValue);
   const [localUiValue, setLocalUiValue] = useState(localOpenValue); // Estado local solo para la interfaz
   console.log(localUiValue, "local");
@@ -37,8 +37,8 @@ export default function Open_closed() {
         onChange={handleLocalValue}
         checked={localUiValue}
         className={s.switch}
-        height={43} // Ajusta la altura del interruptor según tus necesidades
-        width={120} // Ajusta el ancho del interruptor según tus necesidades
+        height={43}
+        width={120}
         />
         </div>
     </div>

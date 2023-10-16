@@ -1,4 +1,3 @@
-import { Icon } from "semantic-ui-react";
 import s from "./nav.module.scss";
 import { useState } from "react";
 import Bars from "../../molecules/nav/bars/Bars";
@@ -9,10 +8,7 @@ import { Bars_3, User_cicle } from "../../atom/iconsHerocoins/icons";
 export default function Nav() {
   const [barsActive, setBarsActive] = useState(false);
   const [userActive, setUserActive] = useState(false);
-  const dispatch = useDispatch();
 
-  const orders = useSelector((state) => state.orders);
-  /*   console.log(orders) */
   //cambia el fondo de los iconos
   const toggleBarsBackground = () => {
     userActive && setUserActive(false);
@@ -33,7 +29,6 @@ export default function Nav() {
         style={{ padding: "3px", borderRadius: "12px 12px 2px 0" }}
         onClick={toggleBarsBackground}
       >
-        {/* <Icon name="bars" size="big" /> */}
         <Bars_3 heigth={36} />
       </div>
       {barsActive ? <Bars onLinkClick={toggleBarsBackground} /> : null}

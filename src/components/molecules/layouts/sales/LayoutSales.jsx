@@ -8,7 +8,7 @@ export default function LayoutSales() {
   const date=getDateCurrent();//dia actual
   const monday=getLastMonday();//lunes
 
-  const comerceId = useSelector((state) => state.user.comerceId);
+  const comerceId = useSelector((state) => state.user_internal.comerceId);
 
   useEffect(() => {
 /*     const fetchData = async () => {
@@ -123,7 +123,7 @@ export function SalesChart({ week }) {
     dataLabels: {
       enabled: true || 0,
       formatter: function (val) {
-        return val;
+        return `$${val}`;
       },
       offsetY: 500,
       style: {

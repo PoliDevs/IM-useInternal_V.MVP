@@ -25,7 +25,7 @@ import axios from "axios";
 function App() {
   const [unreadMessages, setUnreadMessages] = useState(`${4}`);
 
-  const user = useSelector((state) => state.user);
+  const user_internal = useSelector((state) => state.user_internal);
   const location = useLocation();
 
   // Determina si debes mostrar el componente <Nav />
@@ -38,7 +38,7 @@ function App() {
       <Routes>
         <Route path="/singn_in" element={<Login />} />
         <Route path="/" element={<Sing_in />} />
-        <Route element={<ProtectedRoutes isAllowed={!!user} />}>
+        <Route element={<ProtectedRoutes isAllowed={!!user_internal} />}>
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/history" element={<History />} />

@@ -30,7 +30,7 @@ export default function Card({
   //
   onStatusChange, // Nuevo prop para manejar cambios de estado en el componente padre
 }) {
-  const comerceId=useSelector(state=>state.user.comerceId)
+  const comerceId=useSelector(state=>state.user_internal.comerceId)
 
   const [seeOrder, setSeeOrder] = useState(true);//con esto mostramos o ocultamos la orden, icon
 

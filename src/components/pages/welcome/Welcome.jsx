@@ -6,14 +6,14 @@ import { useEffect } from "react";
 import { getMenuActive } from "../../../redux/actions";
 
 export default function Welcome() {
-  const user = useSelector((state) => state.user);
+  const user_internal = useSelector((state) => state.user_internal);
   const menuActive = useSelector((state) => state.menuActive);
   const dispatch=useDispatch();
-  console.log(user);
+  console.log(user_internal);
   console.log(menuActive);
 
   useEffect(()=>{
-    dispatch(getMenuActive(user.comerceId))
+    dispatch(getMenuActive(user_internal.comerceId))
   },[])
   return (
     <div className={s.mainContainer}>

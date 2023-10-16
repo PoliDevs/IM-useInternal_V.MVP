@@ -13,10 +13,8 @@ import Loading from "../../atom/loading/Loading";
 export default function MenuItem() {
   const [filterClickedButton, setFilterClickedButton] = useState("Categoria");
   const [menu,setMenu]=useState(false);
-  //eyes
-  const [onOffEyes, setOnOffEyes] = useState(menu&&menu.map(() => true));
   console.log(menu)
-  const comerceId=useSelector(state=>state.user.comerceId);
+  const comerceId=useSelector(state=>state.user_internal.comerceId);
 
   useEffect(() => {
     const fetchData = async () => {
