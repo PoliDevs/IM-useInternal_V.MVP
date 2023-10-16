@@ -13,5 +13,9 @@ article{
 }
 .content_2{
     display: flex;
+    width: 100%;
     flex-wrap: wrap;
+    >p{
+        word-wrap: break-word;
+    }
 }
