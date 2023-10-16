@@ -1,8 +1,8 @@
+/* eslint-disable react/prop-types */
 import LineText from "../../atom/LineText/LineText";
 import s from "./MenuStep.module.scss";
 import { ReactComponent as ArrowDownload } from "../../../assets/ArrowDownload.svg";
 import { ReactComponent as XIcon } from "../../../assets/xIcon.svg";
-import { Button } from "semantic-ui-react";
 
 export default function MenuStep({
   number,
