@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ReactComponent as XIcon } from "../../../assets/XIcon.svg";
+import { ReactComponent as XIcon } from "../../../assets/xIcon.svg";
 import InstructionContainer from "../../atom/InstructionContainer/InstructionContainer";
 import UploadMenuTitle from "../../atom/UploadMenuTitle/UploadMenuTitle";
 import LineText from "../../atom/LineText/LineText";
