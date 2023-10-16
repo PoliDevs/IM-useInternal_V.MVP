@@ -20,6 +20,7 @@ import "semantic-ui-css/semantic.min.css";
 // import Favicon from 'react-favicon';
 import { useState } from "react";
 import axios from "axios";
+import QrGenerator from "./components/molecules/QrCodeGenerator/QrCodeGenerator.jsx";
 //axios.defaults.baseURL='https://nodejs-production-bbf9.up.railway.app';
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
       <Routes>
         <Route path="/singn_in" element={<Login />} />
         <Route path="/" element={<Sing_in />} />
-        <Route element={<ProtectedRoutes isAllowed={!!user_internal} />}>
+        {/* <Route element={<ProtectedRoutes isAllowed={!!user_internal} />}> */}
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/history" element={<History />} />
@@ -51,8 +52,9 @@ function App() {
           <Route path="/instructions/uploadMenu" element={<InstructionTwo />} />
           <Route path="/instructions/image" element={<InstructionThree />} />
           <Route path="/instructions/onDemand" element={<InstructionFour />} />
+          <Route path='/QrGenerator' element={<QrGenerator/>}/>
           {/* </Route> */}
-        </Route>
+        {/* </Route> */}
       </Routes>
     </>
   );

@@ -17,23 +17,7 @@ export default function File({
   const onDrop = useCallback((acceptedFiles) => {
     // Do something with the files
     setSubmitting(true);
-    // if (step !== "3")
-    // {
-    //   let xlfile = acceptedFiles[0];
-    //   let reader = new FileReader();
-    //   reader.readAsArrayBuffer(xlfile);
-    //   reader.onload = (e) => {
-    //   setFile(e.target.result);
-    // }
-    // }else {
-    //   let imgfile = acceptedFiles[0];
-    //   let reader = new FileReader();
-    //   reader.readAsDataURL(imgfile);
-    //   reader.onload = (e) => {
-    //     setFile(e.target.result);
-    //     console.log(e.target.result);
-    //   };
-    // }
+
     let xlfile = acceptedFiles[0];
     let reader = new FileReader();
     if (step !== 3){
