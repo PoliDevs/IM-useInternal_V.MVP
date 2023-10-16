@@ -23,7 +23,6 @@ export function loginActionGoogle(payload){
   const email={
     email: payload
 }
-console.log(email)
   return async function (dispatch) {
     try {
       const response = await axios.post("loginaccount/loginG",email);
@@ -33,7 +32,7 @@ console.log(email)
         payload:response
       })
     } catch (error) {
-      console.error("Error en la acción loginActionGoogle:", error);
+      console.error(/* "Error en la acción loginActionGoogle:", */ error);
       return error
     }
   }
@@ -42,14 +41,10 @@ console.log(email)
 //////////////////* Menu Actions *//////////////////
 //si hay un menu activo
 export function getMenuActive(comerceId){
-console.log("menu activo")
   return async function (dispatch) {
     try {
       const response = await axios(`menu/lastMenu/${comerceId}`);
-/*       console.log(response.data[0].status) */
-console.log(response)
       const result=response.data;
-      console.log("result",result)
       return dispatch({
         type:MENU_ACTIVE,
         payload:result
@@ -66,15 +61,15 @@ export function postMenu(menu,comercio, id) {
     try {
       id = getState().comerceId;
       if (id){
-        // const response = await axios.post(
-        //   `http://localhost:3001/menu/menuUp/${id}`,
-        //   { commerceJSON: comercio, menuJSON: menu }
-        // );
+        const response = await axios.post(
+          `/menu/menuUp/${id}`,
+          { commerceJSON: comercio, menuJSON: menu }
+        );
       }else {
-        //const response = await axios.post(
-        //   `http://localhost:3001/menu/menuUp/0`,
-        //   { commerceJSON: comercio, menuJSON: menu }
-        // );
+        const response = await axios.post(
+          `/menu/menuUp/0`,
+          { commerceJSON: comercio, menuJSON: menu }
+        );
       }
     } catch (error) {
       return error;

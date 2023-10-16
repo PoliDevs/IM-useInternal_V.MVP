@@ -56,7 +56,7 @@ export default function LayoutSales() {
   
     fetchData(); // Llama a la función fetchData
   }, []); // Asegúrate de pasar un arreglo vacío como segundo argumento para que se ejecute solo una vez
-  console.log(week)
+  //console.log(week)
 
   const totalWeek=week&&week.reduce((acc,cur)=>acc+ cur.tot_diario,0);//total dinero de la semana
   const totalWeekOrders=week&&week.reduce((acc,cur)=>acc+ cur.pedidos,0);//total ordenes vendidas de la semana
@@ -100,7 +100,6 @@ import { useSelector } from "react-redux";
 export function SalesChart({ week }) {
   //const newWeek=week&&week.map(cur=> roundToTwoDecimalPlaces(cur))
   const newWeek=week&&week.map(cur=> Math.floor(cur))
-  console.log(newWeek)
 
   const options = {
     chart: {
