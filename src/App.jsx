@@ -17,11 +17,15 @@ import Sales from "./components/pages/sales/Sales";
 axios.defaults.baseURL = "http://localhost:3001/";
 import Menu from "./components/pages/menu/Menu";
 import "semantic-ui-css/semantic.min.css";
+// import Favicon from 'react-favicon';
+import { useState } from "react";
 import axios from "axios";
 //axios.defaults.baseURL='https://nodejs-production-bbf9.up.railway.app';
 
 function App() {
-  const user = useSelector((state) => state.user);
+  const [unreadMessages, setUnreadMessages] = useState(`${4}`);
+
+  const user_internal = useSelector((state) => state.user_internal);
   const location = useLocation();
 
   // Determina si debes mostrar el componente <Nav />
@@ -29,10 +33,12 @@ function App() {
   return (
     <>
       {shouldShowNav&&<Nav/>}
+      {/* {shouldShowNav&&<Favicon url="/vite.svg" alertCount={unreadMessages} badgePosition="bottom-left"/>} */}
+     
       <Routes>
         <Route path="/singn_in" element={<Login />} />
         <Route path="/" element={<Sing_in />} />
-        <Route element={<ProtectedRoutes isAllowed={!!user} />}>
+        <Route element={<ProtectedRoutes isAllowed={!!user_internal} />}>
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/history" element={<History />} />
@@ -50,25 +56,6 @@ function App() {
       </Routes>
     </>
   );
-}
-
-// function ProtectedRoutes() {
-//   return (
-//     <>
-//       <Routes>
-//         <Route path="/instructions" element={<Instructions />} />
-//         <Route path="/dashboard" element={<Dashboard />} />
-//         <Route path="/menu" element={<Menu />} />
-//         <Route path="/sales" element={<Sales />} />
-//         <Route path="/history" element={<History />} />
-//         <Route path="/config" element={<Config />} />
-//         <Route path="/instructions/download" element={<InstructionOne />} />
-//         <Route path="/instructions/uploadMenu" element={<InstructionTwo />} />
-//         <Route path="/instructions/image" element={<InstructionThree />} />
-//         <Route path="/instructions/onDemand" element={<InstructionFour />} />
-//       </Routes>
-//     </>
-//   );
-// }
+};
 
 export default App;

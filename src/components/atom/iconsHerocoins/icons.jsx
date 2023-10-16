@@ -145,7 +145,7 @@ export function User_cicle({ heigth }) {
   );
 }
 
-export function Chevron_right({ heigth }) {
+export function Chevron_right({ heigth,onClick }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -155,6 +155,7 @@ export function Chevron_right({ heigth }) {
       stroke="currentColor"
       className="w-6 h-6"
       height={heigth}
+      onClick={onClick}
     >
       <path
         strokeLinecap="round"
@@ -165,7 +166,7 @@ export function Chevron_right({ heigth }) {
   );
 }
 
-export function Chevron_down({ heigth }) {
+export function Chevron_down({ heigth,onClick }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -174,7 +175,8 @@ export function Chevron_down({ heigth }) {
       strokeWidth={1.5}
       stroke="currentColor"
       className="w-6 h-6"
-      heigth={heigth}
+      height={heigth}
+      onClick={onClick}
     >
       <path
         strokeLinecap="round"

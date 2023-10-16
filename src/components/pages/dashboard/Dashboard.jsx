@@ -8,7 +8,7 @@ import LayoutContainer from "../../molecules/layouts/section/LayoutContainer";
 
 
 export default function Dashboard() {
-  const comerceId = useSelector((state) => state.user.comerceId);
+  const comerceId = useSelector((state) => state.user_internal.comerceId);
   const localOpenValue=useSelector(state=>state.localOpenValue)
   const dispatch = useDispatch();
   useEffect(() => {

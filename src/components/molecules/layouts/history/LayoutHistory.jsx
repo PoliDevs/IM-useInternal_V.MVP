@@ -12,7 +12,7 @@ export default function LayoutHistory() {
 /*   console.log(getDateCurrent()); */
 const date=getDateCurrent();
 console.log(date)
-  const comerceId = useSelector((state) => state.user.comerceId);
+  const comerceId = useSelector((state) => state.user_internal.comerceId);
   const [isLoading, setIsLoading] = useState(false);
 
   const [selectDatePiker, setSelectDatePiker] = useState(null); // Estado para la fecha seleccionada solo para el piker
@@ -86,7 +86,7 @@ console.log(date)
                       status={cur.status}
                       delivery={cur.delivery}
                       total={cur.paid}
-                      width={300}
+                      width={320}
                       menu={cur.menu && cur.menu.name[0].length > 0 && cur.menu}
                       products={
                         cur.products &&

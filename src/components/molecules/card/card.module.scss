@@ -1,12 +1,27 @@
 @import '../../../scss/colors.scss';
 
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .content_card {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
+
     margin-bottom: 15px;
+    animation: fadeIn 1s ease; //Aplica la animación a la tarjeta 
+    opacity: 1; // Asegúrate de que la tarjeta sea inicialmente visible 
 
     >div {
         border: 1px solid $color-nineth;
