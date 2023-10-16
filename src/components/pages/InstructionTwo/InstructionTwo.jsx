@@ -1,4 +1,4 @@
-import { ReactComponent as XIcon } from "../../../assets/XIcon.svg";
+import { ReactComponent as XIcon } from "../../../assets/xIcon.svg";
 import { useEffect, useState } from "react";
 import SubmitLoader from "../../atom/SubmitLoader/SubmitLoader";
 import InstructionContainer from "../../atom/InstructionContainer/InstructionContainer";
