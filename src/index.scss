@@ -1,4 +1,5 @@
 @import './scss/colors.scss';
+@import url("https://db.onlinewebfonts.com/c/e4397c6cf12af9f58d46e124d18d6d93?family=MabryPro-Regular");
 
 * {
   margin: 0;
@@ -7,11 +8,12 @@
 }
 
 body {
+  width: 100vw;
   margin: 0;
   padding: 0;
   color: $text-primary;
-  background-color: $background-primary;
-  font-family: 'Mabry Pro', sans-serif;
+  background-color: $background-secundary;
+  font-family: "MabryPro-Regular", sans-serif;
 }
  
 h1,
@@ -20,4 +22,5 @@ h3,
 h4,
 h5 {
   margin: 0;
+  font-family: 'Mabry Pro', sans-serif;
 }

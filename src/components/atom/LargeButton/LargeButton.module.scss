@@ -1,0 +1,30 @@
+@import "../../../scss/colors.scss";
+@import "../../../scss/typography.scss";
+
+.button {
+  width: 85%;
+  max-height: 44px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  padding-right: 17px;
+  border-radius: $border-secondary-radius;
+  background-color: $color-sixth;
+  margin: 5px;
+  border: $border_primary;
+  
+  .icon {
+    width: 20px;
+    height: 20px;
+    color: $text-primary;
+  }
+
+}
+
+.active {
+  background-color: $text-primary;
+
+  .icon {
+    color: $color-sixth
+  }
+}

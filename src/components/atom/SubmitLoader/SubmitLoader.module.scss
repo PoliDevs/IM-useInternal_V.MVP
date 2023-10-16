@@ -1,0 +1,43 @@
+.loaderLine {
+  width: 200px;
+  height: 3px;
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+  margin: 100px auto;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+
+.loaderLine:before {
+  content: "";
+  position: absolute;
+  left: -50%;
+  height: 3px;
+  width: 40%;
+  background-color: #3bdf2d;
+  -webkit-animation: lineAnim 0.5s linear infinite;
+  -moz-animation: lineAnim 0.5s linear infinite;
+  animation: lineAnim 0.5s linear infinite;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+
+@keyframes lineAnim {
+  0% {
+    left: -40%;
+  }
+  25% {
+    left: 0%;
+  }
+  50% {
+    left: 30%;
+    width: 50%;
+  }
+  100% {
+    left: 90%;
+    width: 100%;
+  }
+}

@@ -1,0 +1,12 @@
+@import "../../../scss/colors.scss";
+@import "../../../scss/typography.scss";
+
+.title {
+  font-size: $title;
+  color: $text-primary;
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}

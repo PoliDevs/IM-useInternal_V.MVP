@@ -1,0 +1,26 @@
+@import "../../../scss/colors.scss";
+@import "../../../scss/typography.scss";
+
+.input {
+        color: inherit;
+        width: 90%;
+        padding: 8px;
+        background-color: #e6e6e6;
+        border: none;
+        height: 40px;
+        font-size: $line-text;
+        box-sizing: border-box;
+
+         @media screen and (min-width: 430px) {
+          width: 92%;
+          padding: 10px;
+          height: 50px;
+         }
+
+          @media screen and (min-width: 750px) {
+          font-size: $title;
+          width: 95%;
+          padding: 15px;
+          height: 50px;
+          }
+      }

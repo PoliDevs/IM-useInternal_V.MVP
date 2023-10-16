@@ -1,0 +1,14 @@
+/* Estilo inicial del botón */
+.button-green {
+    background: #00A877;
+    border-radius: 20px;
+    border: solid 2px #000;
+    color: #fff;
+    font-size: 14px;
+  }
+  
+  /* Estilo del botón cuando se activa (se hace clic) */
+  .button-green:active {
+    background: #D9D9D9;
+  }
+  

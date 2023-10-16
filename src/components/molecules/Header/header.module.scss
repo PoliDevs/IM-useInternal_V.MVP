@@ -1,0 +1,60 @@
+@import '../../../scss/colors.scss';
+
+header {
+    padding: 0.5rem 0;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    //background-color: $color-eighth;
+    //oficial
+    background-color: $color-ten;
+
+    div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 10px;
+
+        .TbArrowBackUp {
+            margin-right: auto;
+            font-size: 25px;
+            cursor: pointer;
+            z-index: 20;
+        }
+
+        >h1 {
+            flex: 1;
+            position: relative;
+            left: -20px;
+            font-size: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    header {
+        padding: 1rem 0;
+        padding-left: 20px;
+        div {
+            flex-direction: column;
+            padding: 0;
+            .TbArrowBackUp {
+                font-size: 35px;
+            }
+            >h1 {
+                width: 100%;
+                text-align: start;
+                left: 0;
+            }
+        }
+        >span {
+            display: flex;
+            margin: 0;
+
+        }
+    }
+}

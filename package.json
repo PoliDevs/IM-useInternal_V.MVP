@@ -7,19 +7,29 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "server": "json-server --watch restorant.json"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.2.0",
+    "apexcharts": "^3.42.0",
     "axios": "^1.4.0",
+    "firebase": "^10.3.1",
     "i18next": "^23.4.3",
+    "json-server": "^0.17.3",
+    "jwt-decode": "^3.1.2",
     "react": "^18.2.0",
+    "react-apexcharts": "^1.4.1",
+    "react-datepicker": "^4.16.0",
     "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-favicon": "^2.0.3",
     "react-hook-form": "^7.45.4",
     "react-i18next": "^13.0.3",
     "react-icons": "^4.10.1",
     "react-redux": "^8.1.2",
     "react-router-dom": "^6.14.2",
+    "react-switch": "^7.0.0",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "sass": "^1.64.2",
@@ -27,6 +37,7 @@
     "semantic-ui-react": "^2.1.4",
     "validator": "^13.11.0",
     "vite-plugin-svgr": "^3.2.0",
+    "xlsx": "^0.18.5",
     "yup": "^1.2.0"
   },
   "devDependencies": {

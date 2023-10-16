@@ -1,0 +1,13 @@
+@import '../../../scss/colors.scss';
+.emojiSelector {
+  display: flex;
+  background: $color-eighth;
+  border-radius: 10px;
+  width: 55%;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon{
+  font-size: 20px;
+}

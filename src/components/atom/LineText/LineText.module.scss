@@ -1,0 +1,30 @@
+@import "../../../scss/colors.scss";
+@import "../../../scss/typography.scss";
+
+.lineText {
+ font-family:  "MabryPro-Regular", sans-serif;
+  font-size: $line-text;
+  color: $text-primary;
+  text-align: left;
+  text-wrap: balance;
+}
+
+.centered {
+  text-align: center;
+}
+
+.secundary {
+  color: $text-secondary;
+}
+
+.disabled {
+  color: $text-desable;
+}
+
+.bold {
+  font-weight: bold;
+}
+.wordWrap{
+  width: 100%;
+  overflow-wrap: break-word;
+}

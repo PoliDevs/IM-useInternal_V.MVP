@@ -1,0 +1,297 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "solomia@gmail.com",
+      "password": "solomia123",
+      "openLocal": true,
+      "name": "solomia",
+      "image": "url",
+      "levelBusiness": "",
+      "employes":"",
+      "tables": [
+        {
+          "id": 1,
+          "status": "new",
+          "orders": [
+            {
+              "numberOrder": 1,
+              "name": "marcos",
+              "date": "12:30",
+              "total": 750,
+              "menú": [
+                {
+                  "id": 1,
+                  "product": "sprite",
+                  "amount": 3,
+                  "price": 450
+                },
+                {
+                  "id": 2,
+                  "product": "Hamburguesa",
+                  "amount": 3,
+                  "price": 300.5
+                }
+              ]
+            },
+            {
+              "numberOrder": 2,
+              "name": "luis",
+              "date": "12:30",
+              "total": 750,
+              "menú": [
+                {
+                  "id": 1,
+                  "product": "sprite",
+                  "amount": 3,
+                  "price": 450
+                },
+                {
+                  "id": 2,
+                  "product": "Hamburguesa",
+                  "amount": 3,
+                  "price": 300
+                }
+              ]
+            }
+          ]
+        },
+
+        {
+          "id": 2,
+          "status": "preparing",
+          "orders": [
+            {
+              "numberOrder": 3,
+              "name": "marcos",
+              "date": "12:30",
+              "total": 750,
+              "menú": [
+                {
+                  "id": 1,
+                  "product": "sprite",
+                  "amount": 3,
+                  "price": 450
+                },
+                {
+                  "id": 2,
+                  "product": "Hamburguesa",
+                  "amount": 3,
+                  "price": 300.5
+                }
+              ]
+            },
+            {
+              "numberOrder": 4,
+              "name": "luis",
+              "date": "12:30",
+              "total": 750,
+              "menú": [
+                {
+                  "id": 1,
+                  "product": "sprite",
+                  "amount": 3,
+                  "price": 450
+                },
+                {
+                  "id": 2,
+                  "product": "Hamburguesa",
+                  "amount": 3,
+                  "price": 300
+                }
+              ]
+            }
+          ]
+        },
+
+        {
+          "id": 3,
+          "status": "ready",
+          "orders": [
+            {
+              "numberOrder": 5,
+              "name": "marcos",
+              "date": "12:30",
+              "total": 750,
+              "menú": [
+                {
+                  "id": 1,
+                  "product": "sprite",
+                  "amount": 3,
+                  "price": 450
+                },
+                {
+                  "id": 2,
+                  "product": "Hamburguesa",
+                  "amount": 3,
+                  "price": 300.5
+                }
+              ]
+            },
+            {
+              "numberOrder": 6,
+              "name": "luis",
+              "date": "12:30",
+              "total": 750,
+              "menú": [
+                {
+                  "id": 1,
+                  "product": "sprite",
+                  "amount": 3,
+                  "price": 450
+                },
+                {
+                  "id": 2,
+                  "product": "Hamburguesa",
+                  "amount": 3,
+                  "price": 300
+                }
+              ]
+            }
+          ]
+        },
+
+        {
+          "id": 4,
+          "status": "delivered",
+          "orders": [
+            {
+              "numberOrder": 7,
+              "name": "marcos",
+              "date": "12:30",
+              "total": 750,
+              "menú": [
+                {
+                  "id": 1,
+                  "product": "sprite",
+                  "amount": 3,
+                  "price": 450
+                },
+                {
+                  "id": 2,
+                  "product": "Hamburguesa",
+                  "amount": 3,
+                  "price": 300.5
+                }
+              ]
+            },
+            {
+              "numberOrder": 8,
+              "name": "luis",
+              "date": "12:30",
+              "total": 750,
+              "menú": [
+                {
+                  "id": 1,
+                  "product": "sprite",
+                  "amount": 3,
+                  "price": 450
+                },
+                {
+                  "id": 2,
+                  "product": "Hamburguesa",
+                  "amount": 3,
+                  "price": 300
+                }
+              ]
+            }
+          ]
+        },
+
+        {
+          "id": 5,
+          "status": "cancelled",
+          "orders": [
+            {
+              "numberOrder": 8,
+              "name": "marcos",
+              "date": "12:30",
+              "total": 750,
+              "menú": [
+                {
+                  "id": 1,
+                  "product": "sprite",
+                  "amount": 3,
+                  "price": 450
+                },
+                {
+                  "id": 2,
+                  "product": "Hamburguesa",
+                  "amount": 3,
+                  "price": 300.5
+                }
+              ]
+            },
+            {
+              "numberOrder": 9,
+              "name": "luis",
+              "date": "12:30",
+              "total": 750,
+              "menú": [
+                {
+                  "id": 1,
+                  "product": "sprite",
+                  "amount": 3,
+                  "price": 450
+                },
+                {
+                  "id": 2,
+                  "product": "Hamburguesa",
+                  "amount": 3,
+                  "price": 300
+                }
+              ]
+            }
+          ]
+        },
+
+        {
+          "id": 6,
+          "status": "reserved",
+          "orders": [
+            {
+              "numberOrder": 10,
+              "name": "marcos",
+              "date": "12:30",
+              "total": 750,
+              "menú": [
+                {
+                  "id": 1,
+                  "product": "sprite",
+                  "amount": 3,
+                  "price": 450
+                },
+                {
+                  "id": 2,
+                  "product": "Hamburguesa",
+                  "amount": 3,
+                  "price": 300.5
+                }
+              ]
+            },
+            {
+              "numberOrder": 11,
+              "name": "luis",
+              "date": "12:30",
+              "total": 750,
+              "menú": [
+                {
+                  "id": 1,
+                  "product": "sprite",
+                  "amount": 3,
+                  "price": 450
+                },
+                {
+                  "id": 2,
+                  "product": "Hamburguesa",
+                  "amount": 3,
+                  "price": 300
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

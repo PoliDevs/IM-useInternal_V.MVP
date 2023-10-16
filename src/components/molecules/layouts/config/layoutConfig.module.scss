@@ -1,0 +1,21 @@
+.containerd {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+/*     background: red; */
+    >section{
+/*         background-color: rgb(41, 167, 37); */
+        width: 35%;
+        &:first-child {
+            border-right: 2px solid black; /* Agrega un borde derecho de color negro al primer section */
+            >button{
+                margin: 0 0 15px 0;
+            }
+          }
+    }
+}
+.containerd > section:nth-child(2) {
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+}

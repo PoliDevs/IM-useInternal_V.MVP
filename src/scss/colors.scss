@@ -1,3 +1,14 @@
+$color-primary:#FF4747;
+$color-secundary:#000000;
+$color-tertiary:#6384FC;
+$color-quaternary:#40CB5F;
+$color-fifth:#D82137;
+$color-sixth:#FFFFFF;
+$color-seventh:#F0F0F0;
+$color-eighth:#D9D9D9;
+$color-nineth:#BABABA;
+$color-ten:#ECECEC;
+
 //aun falta decidir
 $primary: #ff5400;
 $primary-hover: #ffa700;
@@ -10,8 +21,9 @@ $text-tertiary: #0066FF;
 $text-desable: #545454;
 
 
-$border:2px solid #212121;
-$border-hover:2px solid #545454;
+$border_primary:2px solid #212121;
+$border:3px solid #212121;
+$border-hover:3px solid #545454;
 $border-primary-radius: 10px;
 $border-secondary-radius: 4px;
 
@@ -25,6 +37,8 @@ $background-buttom-primary-active:#212121;
 $background-buttom-primary-hover:#545454;
 $background-buttom-primary-focus:#A60E0E;
 $background-buttom-primary-desable:#BABABA;
+$background-buttom-google: #F6FAFF;
+
 
 $background-buttom-secundary-active:#FFFFFF;
 $background-buttom-secundary-hover:#545454;

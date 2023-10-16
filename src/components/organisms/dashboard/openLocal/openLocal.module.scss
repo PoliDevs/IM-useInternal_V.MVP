@@ -1,0 +1,15 @@
+@import '../../../../scss/colors.scss';
+
+.centered_content {
+    width: 100%;
+    background-color:$background-secundary;
+    display: flex;
+    justify-content: space-around;
+    border-top: $border;
+    height: 100vh;
+    >div {
+        background-color: aqua;
+        width: 30%;
+        text-align: center;
+    }
+}

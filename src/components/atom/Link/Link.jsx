@@ -1,7 +1,12 @@
-import React from 'react'
+import { Link } from "react-router-dom";
+import s from './link.module.scss'
 
-export default function Link() {
+export default function Links({children,to,onclick}) {
+    const primary="#212121"
+    const secundary="#FFFFFF";
   return (
-    <div>Link</div>
+    <>
+    <Link className={s.link} to={to} onclick={onclick}>{children}</Link>
+    </>
   )
 }

@@ -1,25 +1,55 @@
 {
-  "client": {
-      "home": {
-    "title": "¡Bienvenido!",
-    "subtitle": "Estás por pedir en: ",
-    "table": "Mesa ",
-    "poweredby": "impulsado por",
-    "order": "Hacer pedido",
-    "instructions": "Instrucciones"
-  }
-    },
-    "internal":{
+  "internal": {
     "auth": {
-    "googleAcces": "Accede con Google",
-    "or": "O bien",
-    "name": "Nombre",
-    "email": "Email",
-    "password": "Contraseña",
-    "confirmpassword": "Confirmar contraseña",
-    "forgot": "Olvide mi contraseña",
-    "login": "Iniciar Sesion",
-    "register": "Registrarme"
+      "googleAcces": "Accede con Google",
+      "or": "O bien",
+      "name": "Nombre",
+      "email": "Email",
+      "password": "Contraseña",
+      "confirmpassword": "Confirmar contraseña",
+      "forgot": "Olvidé mi contraseña",
+      "login": "Iniciar Sesión",
+      "register": "Registrarse"
+    },
+    "nav": {
+      "operation screen": "Pantalla de operación",
+      "Menu": "Menú",
+      "Sales": "Ventas",
+      "History": "Historial",
+      "Setting": "Configuración",
+      "Open or close local": "Abre o cierra local"
+    },
+    "header": {
+      "open local": {
+        "orders received":"Pedidos recibidos",
+        "Your orders are here in order of entry":"Tus pedidos estan aqui por orden de ingreso"
+      },
+      "closed local":{
+        "premises closed":"Local cerrado",
+        "Open the store to start":"Abre el local para comenzar",
+        "to receive orders":" a recibir pedidos"
+      },
+      "menu":{
+        "detail":"Gestiona tu menú desde aquí"
+      },
+      "sales":{
+        "detail":"Aquí se encuentran tus ventas"
+      },
+      "history":{
+        "detail":"Aquí están tus pedidos entregados"
+      },
+      "setting":{
+        "detail":"Aquí están tus datos, planes y configuraciones generales"
+      }
+    },
+    "sales": {
+      "This week": "Esta semana",
+      "Weekly Total": "Total semanal",
+      "Today": "Hoje",
+      "today you sold": "hoje você vendeu",
+      "today you received": "hoje você recebeu",
+      "orders": "pedidos"
+    }
+    
   }
-}
 }
