@@ -10,7 +10,7 @@ import Container from "../../../atom/container/Container";
 
 export default function ClosedLocal({ open }) {
   const [allOrders, setAllOrders] = useState([]);
-  const comerceId = useSelector((state) => state.user.comerceId);
+  const comerceId = useSelector((state) => state.user_internal.comerceId);
   const dateCurrent = getDateCurrent();
   const [filterClickedButton, setFilterClickedButton] = useState("Todos"); //filtrado
   useEffect(

@@ -34,14 +34,17 @@ export const renderContentRight = (value) => {
   }
 };
 
-export const getDateCurrent = () => {
-  return new Date().toJSON().slice(0, 10);
 
-/*   const year = dateCurrent.getFullYear();
-  const month = String(dateCurrent.getMonth() + 1).padStart(2, "0"); // +1 porque los meses se indexan desde 0
-  const day = String(dateCurrent.getDate()).padStart(2, "0");
-  return `${year}-${month}-${day}`; */
-};
+export const getDateCurrent=()=>{
+  const date = new Date();
+  let month = date.getMonth() + 1;
+  let day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+  let dateCurrent = `${date.getFullYear()}-${month}-${day}`;
+/*   console.log(dateCurrent,date.getHours()) */
+  return dateCurrent
+}
+
+
 export const getLastMonday = () => {
   const today = new Date();
   const dayOfWeek = today.getDay();

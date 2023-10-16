@@ -2,15 +2,14 @@ import { GET_ORDERS, LOGIN_ACTION,LOGIN_ACTION_GOOGLE,MENU_ACTIVE,LOCAL_OPEN_VAL
 import jwtDecode from "jwt-decode";
 
 const initalState = {
-  user: localStorage.getItem("user")
-    ? JSON.parse(localStorage.getItem("user"))
+  user_internal: localStorage.getItem("user_internal")
+    ? JSON.parse(localStorage.getItem("user_internal"))
     : {},
   usuario: "",
   localOpenValue:null,
   id: 1,
   local: true,
   orders: [],
-  sales: "",
   menuActive:localStorage.getItem("menuActivo")
   ? localStorage.getItem("menuActivo")
   : [],
@@ -22,7 +21,7 @@ export const rootReducer = (state = initalState, { type, payload }) => {
     //loguin 
     case LOGIN_ACTION: {
       const data = jwtDecode(payload.data.token);
-      const user = {
+      const user_internal = {
         token: payload.data.token,
         email: data.email,
         id: data.id,
@@ -33,17 +32,17 @@ export const rootReducer = (state = initalState, { type, payload }) => {
       };
       // Guardar el token y la información del usuario en localStorage
       localStorage.setItem("token", JSON.stringify(payload.data.token));
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("user_internal", JSON.stringify(user_internal));
       return {
         ...state,
-        user,
+        user_internal,
       };
     };
 
     //loginGoogle
     case LOGIN_ACTION_GOOGLE: {
       const data = jwtDecode(payload.data.token);
-      const user = {
+      const user_internal = {
         token: payload.data.token,
         id: data.id,
         name:data.name,
@@ -53,10 +52,10 @@ export const rootReducer = (state = initalState, { type, payload }) => {
       };
       // Guardar el token y la información del usuario en localStorage
       localStorage.setItem("token", JSON.stringify(payload.data.token));
-      localStorage.setItem("user", JSON.stringify(user));
+      localStorage.setItem("user_internal", JSON.stringify(user_internal));
       return {
         ...state,
-        user,
+        user_internal,
       };
     };
 

@@ -18,7 +18,6 @@ export default function Header({icon,title,detail}) {
     "config":<Config heigth={"24"} />,
   }
   const iconEnd=optionIcon[icon];
-  console.log(iconEnd)
   return (
     <header>
       <div>

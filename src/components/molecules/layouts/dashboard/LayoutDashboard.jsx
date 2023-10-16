@@ -1,25 +1,36 @@
 import s from "./layoutDashboard.module.scss";
 import Card from "../../card/Card.jsx";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import Link from "../../../atom/subTitleUnderline/SubTitleUnderline";
+import SubTitleUnderline from "../../../atom/subTitleUnderline/SubTitleUnderline";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ButtonGreen from "../../../atom/buttons/ButtonGreen";
-import { getDateCurrent } from "../../../../utils/functions";
+import { getDateCurrent} from "../../../../utils/functions";
 
 export default function LayoutDashboard({interval}) {
-  const comerceId = useSelector((state) => state.user.comerceId);
+  const comerceId = useSelector((state) => state.user_internal.comerceId);
   const [allOrders, setAllOrders] = useState([]); // Almacenamos todas las ordenes
   const dateCurrent = getDateCurrent(); //fecha actual
   const [filterClickedButton, setFilterClickedButton] = useState("Todos"); //filtrado
-  
+  const [cardStatusChanged, setCardStatusChanged] = useState(false);
+
+  // Función para manejar cambios de estado en las tarjetas
+const handleCardStatusChange = (newStatus, orderId) => {
+  // Realiza la lógica necesaria para manejar el cambio de estado de la tarjeta aquí
+/*   console.log(`Cambiar el estado de la tarjeta a: ${newStatus}, Orden: ${orderId}`); */
+
+  // Actualiza el estado para indicar que hubo cambios en las tarjetas
+  setCardStatusChanged(true);
+
+  // Puedes realizar operaciones adicionales aquí, como actualizar datos en el servidor o modificar el estado local
+};
+
   const renderOrdesCards = (status,) => {
     const statusOrder = statusTables(status);
     return (
       statusOrder.length > 0 &&
       statusOrder.map((cur, idx) => (
         <Card
-          /* key={cur.id} */
           key={idx}
           tableNumber={cur.po && cur.po.id}
           sectorNumber={cur.sector && cur.sector.id}
@@ -28,10 +39,14 @@ export default function LayoutDashboard({interval}) {
           status={cur.status}
           delivery={cur.delivery}
           total={cur.paid}
+          //
+          onStatusChange={(newStatus, orderId) => {
+            handleCardStatusChange(newStatus, orderId);
+          }}
           //news
-          accountemail={cur.accountemail} 
-          accountname={cur.accountname}
-          googleemail={cur.googleemail}
+          accountemail={cur.account} 
+          accountname={cur.name}
+          googleemail={cur.googleEmail}
 
           //tomamos menu , product y detail de cada orden
           //si llegara a ser un {[""]}
@@ -49,11 +64,11 @@ export default function LayoutDashboard({interval}) {
       ))
     );
   };
-
+  
   useEffect(() => {
     const fetchData = () => {
       if (filterClickedButton === "Pedidos en local") {
-        axios(
+      return  axios(
           `order/orderesNotDelivery/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`
         )
           .then((response) => {
@@ -64,7 +79,7 @@ export default function LayoutDashboard({interval}) {
             console.error("Error al realizar la solicitud:", error);
           });
       } else if (filterClickedButton === "Pedidos por plataforma") {
-        axios(
+       return axios(
           `order/orderesDelivery/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`
         )
           .then((response) => {
@@ -75,7 +90,7 @@ export default function LayoutDashboard({interval}) {
             console.error("Error al realizar la solicitud:", error);
           });
       } else {
-        axios(
+       axios(
           `order/paidOrderes/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`
         )
           .then((response) => {
@@ -88,26 +103,18 @@ export default function LayoutDashboard({interval}) {
       }
     };
 
-    // Ejecutar fetchData inmediatamente
-/*     if(!interval) {return fetchData()}
-    else{ */
-      const intervalId =setInterval(fetchData, 5000);
-      
-      // Limpia el intervalo si el componente se desmonta
-      () => clearInterval(intervalId);
-  /*   } */
+    if (cardStatusChanged) {
+      fetchData();
+      // Restablece el estado de cardStatusChanged a false
+      setCardStatusChanged(false);
+    }
+      fetchData()
 
-    // Establecer un intervalo para ejecutar fetchData cada 3 segundos
-/*     if(interval){
-      console.log("interval true") */
-      //fetchData()
-/*     }else{
-      const intervalId =setInterval(fetchData, 5000);
-      
+     // const intervalId =setInterval(fetchData, 9000);
       // Limpia el intervalo si el componente se desmonta
-       () => clearInterval(intervalId);
-    } */
-  }, [filterClickedButton]);
+      // () => clearInterval(intervalId);
+
+  }, [filterClickedButton,cardStatusChanged /* renderOrdesCards */]);
 
   const statusTables = (status) => {
     return allOrders.filter((cur) => cur.status === status);
@@ -136,7 +143,7 @@ export default function LayoutDashboard({interval}) {
           <br />
           <div className={s.content_orders}>
             <section>
-              <Link
+              <SubTitleUnderline
                 content={"Nuevos"}
                 color={"#4B47FF"}
                 number={statusTables("orderPlaced").length}
@@ -144,7 +151,7 @@ export default function LayoutDashboard({interval}) {
               {renderOrdesCards("orderPlaced")}
             </section>
             <section>
-              <Link
+              <SubTitleUnderline
                 content={"Preparando"}
                 color={"#FF4A4A"}
                 number={statusTables("orderInPreparation").length}
@@ -152,7 +159,7 @@ export default function LayoutDashboard({interval}) {
               {renderOrdesCards("orderInPreparation")}
             </section>
             <section>
-              <Link
+              <SubTitleUnderline
                 content={"Listo"}
                 color={"#40CB5F"}
                 number={statusTables("orderReady").length}
@@ -162,4 +169,4 @@ export default function LayoutDashboard({interval}) {
           </div>
         </div>
   );
-}
+};

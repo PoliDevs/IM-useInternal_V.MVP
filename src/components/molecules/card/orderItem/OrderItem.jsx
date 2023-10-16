@@ -14,7 +14,7 @@ export default function OrderItem({ amount, name, cost, detail }) {
       {!detailItem? null : (
         <div className={s.content_2}>
           <LineText bold={true} text={"Observaciones : "} />
-          <LineText text={detail} disabled />
+          <LineText text={detail} disabled wordWrap />
         </div>
       )}
     </article>

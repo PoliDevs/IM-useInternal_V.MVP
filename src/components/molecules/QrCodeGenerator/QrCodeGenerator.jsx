@@ -38,23 +38,30 @@ export default function QrGenerator() {
   //?cifro la url
   const cifrarUrl = (url) => {
     const objetoCifrado = CryptoJS.AES.encrypt(
-      JSON.stringify("http://localhost:3000/language/2/4/7"),
+      ("2/1/5"),
       key
     ).toString();
-    console.log("urlCifrada: ", objetoCifrado);
+    console.log(
+      "newurlCifrada: ",
+      `https://im-front-use-customer.vercel.app/language/${objetoCifrado}`
+    );
     return objetoCifrado;
   };
+
+  cifrarUrl()
 
   //?descifro la url
   const descifrarUrl = (url) => {
     const bytes = CryptoJS.AES.decrypt(
-      "U2FsdGVkX1+FS6KD6U3J5SxGDP2t0q+D5gLIZ2eUDX+Jaqz7gNPdURc/QbdFdDY2uN88AWLpTVtPMSWmpUhNSg==",
+      "U2FsdGVkX18fYSdn8CTSbFIdx8DvWwhLJdE8ymZZ/4o=",
       key
     );
-    const objetoOriginal = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    const objetoOriginal = (bytes.toString(CryptoJS.enc.Utf8));
     console.log("urlOriginal: ", objetoOriginal);
     return objetoOriginal;
   };
+
+  descifrarUrl()
 
   useEffect(() => {
     dispatch(getAllPos(commerceId));

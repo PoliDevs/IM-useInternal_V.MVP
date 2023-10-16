@@ -22,9 +22,8 @@
 }
 
   .logo{
-    width: 50px;
-    height: 32px;
-    background: url("../../../assets/logo_imenu_blanco.png");
+    display: flex;
+    justify-content: center;
     background-repeat: no-repeat;
     background-size: cover;
   }
