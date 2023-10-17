@@ -4,6 +4,7 @@ import Bars from "../../molecules/nav/bars/Bars";
 import Open_closed from "../../molecules/nav/open_closed/Open_closed";
 import { useDispatch, useSelector } from "react-redux";
 import { Bars_3, User_cicle } from "../../atom/iconsHerocoins/icons";
+import logo from "../../../assets/logo_imenu_blanco.png"
 
 export default function Nav() {
   const [barsActive, setBarsActive] = useState(false);
@@ -33,7 +34,7 @@ export default function Nav() {
       </div>
       {barsActive ? <Bars onLinkClick={toggleBarsBackground} /> : null}
       <div className={s.logo}>
-      <img src="/src/assets/logo_imenu_blanco.png" height={52} ></img>
+      <img src={logo} height={52} ></img>
       </div>
       <div
         className={`${s.iconContainer} ${
