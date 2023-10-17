@@ -4,6 +4,7 @@ import s from "./Welcome.module.scss";
 import { useDispatch,useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getMenuActive } from "../../../redux/actions";
+import logo from "../../../assets/logo_imenu_blanco.png"
 
 export default function Welcome() {
   const user_internal = useSelector((state) => state.user_internal);
@@ -19,7 +20,7 @@ export default function Welcome() {
         <div className={`${s.frame} ${s.left}`}></div>
         <div className={s.textContainer}>
           <div className={s.logo}>
-            <img src="/src/assets/logo_imenu_blanco.png" alt="IMENU" />
+            <img src={logo} alt="IMENU" />
           </div>
           <HugeTitle text={"¡Bienvenido!"} />
           <p className={s.paragraph}>Ahora puedes comenzar a recibir pedidos</p>
