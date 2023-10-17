@@ -21,11 +21,11 @@ return async function (dispatch) {
 //loguin Google
 export function loginActionGoogle(payload){
   const email={
-    email: payload
+    googleUser: payload
 }
   return async function (dispatch) {
     try {
-      const response = await axios.post("loginaccount/loginG",email);
+      const response = await axios.post("loginemployee/loginG",email);
       console.log(response)
       return dispatch({
         type:LOGIN_ACTION_GOOGLE,

@@ -65,56 +65,93 @@ const handleCardStatusChange = (newStatus, orderId) => {
     );
   };
   
+  // useEffect(() => {
+  //   const fetchData = () => {
+  //     if (filterClickedButton === "Pedidos en local") {
+  //     return  axios(
+  //         `order/orderesNotDelivery/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`
+  //       )
+  //         .then((response) => {
+  //           const data = response.data;
+  //           setAllOrders(data);
+  //         })
+  //         .catch((error) => {
+  //           console.error("Error al realizar la solicitud:", error);
+  //         });
+  //     } else if (filterClickedButton === "Pedidos por plataforma") {
+  //      return axios(
+  //         `order/orderesDelivery/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`
+  //       )
+  //         .then((response) => {
+  //           const data = response.data;
+  //           setAllOrders(data);
+  //         })
+  //         .catch((error) => {
+  //           console.error("Error al realizar la solicitud:", error);
+  //         });
+  //     } else {
+  //      axios(
+  //         `order/paidOrderes/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`
+  //       )
+  //         .then((response) => {
+  //           const data = response.data;
+  //           setAllOrders(data);
+  //         })
+  //         .catch((error) => {
+  //           console.error("Error al realizar la solicitud:", error);
+  //         });
+  //     }
+  //   };
+
+  //   if (cardStatusChanged) {
+  //     fetchData();
+  //     // Restablece el estado de cardStatusChanged a false
+  //     setCardStatusChanged(false);
+  //   }
+  //     fetchData()
+
+  //     const intervalId =setInterval(fetchData, 20000);
+  //     // Limpia el intervalo si el componente se desmonta
+  //      () => clearInterval(intervalId);
+
+  // }, [filterClickedButton,cardStatusChanged /* renderOrdesCards */]);
+
+  //?
   useEffect(() => {
-    const fetchData = () => {
+    const fetchData = async () => {
+      let endpoint;
+  
       if (filterClickedButton === "Pedidos en local") {
-      return  axios(
-          `order/orderesNotDelivery/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`
-        )
-          .then((response) => {
-            const data = response.data;
-            setAllOrders(data);
-          })
-          .catch((error) => {
-            console.error("Error al realizar la solicitud:", error);
-          });
+        endpoint = `order/orderesNotDelivery/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`;
       } else if (filterClickedButton === "Pedidos por plataforma") {
-       return axios(
-          `order/orderesDelivery/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`
-        )
-          .then((response) => {
-            const data = response.data;
-            setAllOrders(data);
-          })
-          .catch((error) => {
-            console.error("Error al realizar la solicitud:", error);
-          });
+        endpoint = `order/orderesDelivery/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`;
       } else {
-       axios(
-          `order/paidOrderes/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`
-        )
-          .then((response) => {
-            const data = response.data;
-            setAllOrders(data);
-          })
-          .catch((error) => {
-            console.error("Error al realizar la solicitud:", error);
-          });
+        endpoint = `order/paidOrderes/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`;
+      }
+  
+      try {
+        const response = await axios(endpoint);
+        const data = response.data;
+        setAllOrders(data);
+      } catch (error) {
+        console.error("Error al realizar la solicitud:", error);
       }
     };
-
+  
     if (cardStatusChanged) {
       fetchData();
       // Restablece el estado de cardStatusChanged a false
       setCardStatusChanged(false);
     }
-      fetchData()
-
-      const intervalId =setInterval(fetchData, 20000);
-      // Limpia el intervalo si el componente se desmonta
-       () => clearInterval(intervalId);
-
-  }, [filterClickedButton,cardStatusChanged /* renderOrdesCards */]);
+  
+    fetchData(); // Realiza la solicitud inicial
+  
+    const intervalId = setInterval(fetchData, 20000);
+  
+    // Limpia el intervalo si el componente se desmonta
+    return () => clearInterval(intervalId);
+  }, [filterClickedButton, cardStatusChanged /* renderOrdesCards */]);
+  
 
   const statusTables = (status) => {
     return allOrders.filter((cur) => cur.status === status);
