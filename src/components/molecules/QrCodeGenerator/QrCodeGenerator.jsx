@@ -10,7 +10,7 @@ import QRCode from "qrcode";
 import React from "react";
 import JSZip from "jszip";
 export default function QrGenerator() {
-  const commerceId = useSelector((state) => state.user.comerceId);
+  const commerceId = useSelector((state) => state.user_internal.comerceId);
   const allPos = useSelector((state) => state.allPos);
   const [selectedSector, setSelectedSector] = useState("");
   const [selectedTable, setSelectedTable] = useState("");
@@ -38,7 +38,7 @@ export default function QrGenerator() {
   //?cifro la url
   const cifrarUrl = (url) => {
     const objetoCifrado = CryptoJS.AES.encrypt(
-      ("2/1/5"),
+      ("20/20/1"), 
       key
     ).toString();
     console.log(
@@ -53,7 +53,7 @@ export default function QrGenerator() {
   //?descifro la url
   const descifrarUrl = (url) => {
     const bytes = CryptoJS.AES.decrypt(
-      "U2FsdGVkX18fYSdn8CTSbFIdx8DvWwhLJdE8ymZZ/4o=",
+      "U2FsdGVkX1/lqxFqPrFtSsdprIDfoTWcs3NyoLOBvcY=",
       key
     );
     const objetoOriginal = (bytes.toString(CryptoJS.enc.Utf8));

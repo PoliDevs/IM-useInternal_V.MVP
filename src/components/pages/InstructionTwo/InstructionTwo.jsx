@@ -18,7 +18,7 @@ export default function InstructionTwo() {
   const [comercio, setComercio] = useState(null);
   const [submiting, setSubmiting] = useState(false);
   const [error, setError] = useState(false);
-  const id = useSelector((state) => state.user.comerceId);
+  const id = useSelector((state) => state.user_internal.comerceId);
   const dispatch = useDispatch();
 
   useEffect(() => {
