@@ -1,4 +1,4 @@
-import { ReactComponent as XIcon } from "../../../assets/XIcon.svg";
+import { ReactComponent as XIcon } from "../../../assets/xIcon.svg";
 import { useEffect, useState } from "react";
 import SubmitLoader from "../../atom/SubmitLoader/SubmitLoader";
 import InstructionContainer from "../../atom/InstructionContainer/InstructionContainer";
@@ -139,6 +139,7 @@ export default function InstructionTwo() {
       setError(true);
       return alert("Se debe ingresar un nombre de comercio");
     } else {
+      console.log(menu,comercio,id,"component")
       dispatch(postMenu(menu, comercio, id));
     }
   };

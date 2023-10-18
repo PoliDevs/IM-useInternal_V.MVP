@@ -21,19 +21,17 @@ return async function (dispatch) {
 //loguin Google
 export function loginActionGoogle(payload){
   const email={
-    email: payload
+    googleUser: payload
 }
-console.log(email)
   return async function (dispatch) {
     try {
-      const response = await axios.post("loginaccount/loginG",email);
-      console.log(response)
+      const response = await axios.post("loginemployee/loginG",email);
       return dispatch({
         type:LOGIN_ACTION_GOOGLE,
         payload:response
       })
     } catch (error) {
-      console.error("Error en la acción loginActionGoogle:", error);
+      console.error(/* "Error en la acción loginActionGoogle:", */ error);
       return error
     }
   }
@@ -42,14 +40,10 @@ console.log(email)
 //////////////////* Menu Actions *//////////////////
 //si hay un menu activo
 export function getMenuActive(comerceId){
-console.log("menu activo")
   return async function (dispatch) {
     try {
       const response = await axios(`menu/lastMenu/${comerceId}`);
-/*       console.log(response.data[0].status) */
-console.log(response)
       const result=response.data;
-      console.log("result",result)
       return dispatch({
         type:MENU_ACTIVE,
         payload:result
@@ -64,17 +58,17 @@ console.log(response)
 export function postMenu(menu,comercio, id) {
   return async function (dispatch, getState) {
     try {
-      id = getState().comerceId;
+      id = getState().user_internal.comerceId;
       if (id){
-        // const response = await axios.post(
-        //   `http://localhost:3001/menu/menuUp/${id}`,
-        //   { commerceJSON: comercio, menuJSON: menu }
-        // );
+        const response = await axios.post(
+          `/menu/menuUp/${id}`,
+          { commerceJSON: comercio, menuJSON: menu }
+        );
       }else {
-        //const response = await axios.post(
-        //   `http://localhost:3001/menu/menuUp/0`,
-        //   { commerceJSON: comercio, menuJSON: menu }
-        // );
+        const response = await axios.post(
+          `/menu/menuUp/0`,
+          { commerceJSON: comercio, menuJSON: menu }
+        );
       }
     } catch (error) {
       return error;

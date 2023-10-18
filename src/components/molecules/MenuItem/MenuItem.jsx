@@ -13,7 +13,7 @@ import Loading from "../../atom/loading/Loading";
 export default function MenuItem() {
   const [filterClickedButton, setFilterClickedButton] = useState("Categoria");
   const [menu,setMenu]=useState(false);
-  console.log(menu)
+/*   console.log(menu) */
   const comerceId=useSelector(state=>state.user_internal.comerceId);
 
   useEffect(() => {

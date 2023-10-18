@@ -1,14 +1,10 @@
 import s from "./modal.module.scss";
-import Paragraph from "../../atom/Paragraph/Paragraph";
-import Title from "../../atom/Title/Title";
-import { useState } from "react";
+import Paragraph from "../../../atom/Paragraph/Paragraph";
+import Title from "../../../atom/Title/Title";
 import { Button } from "semantic-ui-react";
-import { useSelector } from "react-redux";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Modal({ open, title, text, text_2, handleModal }) {
-  const comerceId = useSelector((state) => state.user.comerceId);
   const navigate = useNavigate();
 
   const deleteMenu = () => {

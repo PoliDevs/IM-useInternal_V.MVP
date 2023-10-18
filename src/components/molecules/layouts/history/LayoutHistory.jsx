@@ -11,7 +11,7 @@ import axios from "axios";
 export default function LayoutHistory() {
 /*   console.log(getDateCurrent()); */
 const date=getDateCurrent();
-console.log(date)
+
   const comerceId = useSelector((state) => state.user_internal.comerceId);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -22,7 +22,7 @@ console.log(date)
 
   //nesesito filtrar las ordenes para que me queden solo las delivered
   const orderDelivered = orderDate.filter((cur) => cur.status === "delivered");
-  console.log(orderDelivered)
+ /*  console.log(orderDelivered) */
   const { t, i18n } = useTranslation();
 
   useEffect(() => {

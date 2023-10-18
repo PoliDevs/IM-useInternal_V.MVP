@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ReactComponent as XIcon } from "../../../assets/XIcon.svg";
+import { ReactComponent as XIcon } from "../../../assets/xIcon.svg";
 import InstructionContainer from "../../atom/InstructionContainer/InstructionContainer";
 import UploadMenuTitle from "../../atom/UploadMenuTitle/UploadMenuTitle";
 import LineText from "../../atom/LineText/LineText";
@@ -67,7 +67,7 @@ export default function InstructionThree() {
         <InstructionButton
           helpText={"Necesito ayuda"}
           text={"Continuar"}
-          path={file && "/instructions/onDemand"}
+          path={/* file && */ "/instructions/onDemand"}
           handleClick={handleClick}
         />
       </main>

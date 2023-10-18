@@ -10,7 +10,6 @@ export default function WelcomeButton({ text, path }) {
   const handleClick = () => {
     //aca preguntar si tiene un menu y guardarlo en redux
     menuActive.length !== 0 ? navigate(path) : navigate("/instructions");
-    console.log(menuActive);
   };
 
   return (
