@@ -9,14 +9,23 @@ export default function DeleteMenuCurrent() {
   const handleModal = () => {
     setModal(!modal)
   };
-/*   const handleCancel = () => {
-    setModal(false);
-  }; */
+  const handleDowload=()=>{
+    // Aquí debes agregar lógica para descargar el archivo
+    // Puedes usar la etiqueta <a> para ello
+    const fileUrl = '../../../../../../public/ExcelFile/I-Menu.xlsx'; // Reemplaza con la ruta real de tu archivo
+    const link = document.createElement('a');
+    link.href = fileUrl;
+    link.download = 'Imenu_Template'; // Puedes especificar un nombre para el archivo
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
   return (
     <>
       <MenuStep
         text={"Menu.xlm"}
         icon_1={"ArrowDownload"}
+        onClick_icon_1={handleDowload}
         className={"menu_option"}
         icon_2={"XIcon"}
         onClick_icon_2={handleModal}

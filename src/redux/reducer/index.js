@@ -44,6 +44,7 @@ export const rootReducer = (state = initalState, { type, payload }) => {
     //loginGoogle
     case LOGIN_ACTION_GOOGLE: {
       const data = jwtDecode(payload.data.token);
+      console.log(data)
       const user_internal = {
         token: payload.data.token,
         id: data.id,
@@ -62,7 +63,7 @@ export const rootReducer = (state = initalState, { type, payload }) => {
       };
     };
 
-    //para oreguntar menu activo
+    //para preguntar menu activo
     case MENU_ACTIVE:{
       return {
         ...state,
