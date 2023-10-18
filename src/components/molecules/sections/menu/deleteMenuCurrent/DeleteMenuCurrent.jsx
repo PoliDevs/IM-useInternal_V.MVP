@@ -1,6 +1,6 @@
 import React from "react";
 import MenuStep from "../../../MenuStep/MenuStep";
-import Modal from "../../../modal/Modal";
+import Modal from "../../../modals/menuDeleteModal/Modal";
 import { useState } from "react";
 
 export default function DeleteMenuCurrent() {

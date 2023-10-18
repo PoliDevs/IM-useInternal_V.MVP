@@ -6,7 +6,9 @@ const initalState = {
     ? JSON.parse(localStorage.getItem("user_internal"))
     : {},
   usuario: "",
-  localOpenValue:null,
+  localOpenValue:localStorage.getItem("localOpenValue")
+  ?JSON.parse(localStorage.getItem("localOpenValue"))
+  :null,
   id: 1,
   local: true,
   orders: [],
@@ -53,6 +55,7 @@ export const rootReducer = (state = initalState, { type, payload }) => {
       // Guardar el token y la información del usuario en localStorage
       localStorage.setItem("token", JSON.stringify(payload.data.token));
       localStorage.setItem("user_internal", JSON.stringify(user_internal));
+      
       return {
         ...state,
         user_internal,
@@ -69,9 +72,11 @@ export const rootReducer = (state = initalState, { type, payload }) => {
 
     //local cerrado o abierto
     case LOCAL_OPEN_VALUE:{
+      const localOpenValue=payload;
+      localStorage.setItem("localOpenValue",JSON.stringify(localOpenValue))
       return{
         ...state,
-        localOpenValue:payload
+        localOpenValue
       }
     };
 

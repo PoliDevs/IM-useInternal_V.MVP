@@ -24,14 +24,12 @@ export default function Open_closed({onBlur}) {
       setTimeout(()=>{
         onBlur()
       },[500])
-      console.log(localUiValue, "stado local");
     } else {
       dispatch(openLocal(comerceId));
       setLocalUiValue(!localUiValue);
       setTimeout(()=>{
         onBlur()
       },[500])
-      console.log(localUiValue, "stado local");
     }
   };
 
