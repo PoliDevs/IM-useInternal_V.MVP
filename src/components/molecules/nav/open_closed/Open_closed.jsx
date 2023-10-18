@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { localOpen, openLocal, closedLocal } from "../../../../redux/actions";
 import Switch from "react-switch";
 
-export default function Open_closed() {
+export default function Open_closed({onBlur}) {
   const comerceId = useSelector((state) => state.user_internal.comerceId);
   const localOpenValue = useSelector((state) => state.localOpenValue);
   const [localUiValue, setLocalUiValue] = useState(localOpenValue); // Estado local solo para la interfaz
@@ -21,10 +21,16 @@ export default function Open_closed() {
     if (localUiValue) {
       dispatch(closedLocal(comerceId));
       setLocalUiValue(!localUiValue);
+      setTimeout(()=>{
+        onBlur()
+      },[500])
       console.log(localUiValue, "stado local");
     } else {
       dispatch(openLocal(comerceId));
       setLocalUiValue(!localUiValue);
+      setTimeout(()=>{
+        onBlur()
+      },[500])
       console.log(localUiValue, "stado local");
     }
   };

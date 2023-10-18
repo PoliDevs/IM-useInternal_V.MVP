@@ -45,7 +45,7 @@ export default function Nav() {
       >
         <User_cicle heigth={36} />
       </div>
-      {userActive ? <Open_closed /> : null}
+      {userActive ? <Open_closed onBlur={toggleUserBackground} /> : null}
     </nav>
   );
 }
