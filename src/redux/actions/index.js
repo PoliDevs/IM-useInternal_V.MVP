@@ -26,7 +26,6 @@ export function loginActionGoogle(payload){
   return async function (dispatch) {
     try {
       const response = await axios.post("loginemployee/loginG",email);
-      console.log(response)
       return dispatch({
         type:LOGIN_ACTION_GOOGLE,
         payload:response
@@ -59,7 +58,7 @@ export function getMenuActive(comerceId){
 export function postMenu(menu,comercio, id) {
   return async function (dispatch, getState) {
     try {
-      id = getState().comerceId;
+      id = getState().user_internal.comerceId;
       if (id){
         const response = await axios.post(
           `/menu/menuUp/${id}`,

@@ -139,6 +139,7 @@ export default function InstructionTwo() {
       setError(true);
       return alert("Se debe ingresar un nombre de comercio");
     } else {
+      console.log(menu,comercio,id,"component")
       dispatch(postMenu(menu, comercio, id));
     }
   };

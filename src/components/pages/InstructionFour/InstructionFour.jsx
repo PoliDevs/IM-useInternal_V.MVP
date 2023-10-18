@@ -5,8 +5,13 @@ import UploadMenuTitle from '../../atom/UploadMenuTitle/UploadMenuTitle';
 import InstructionButton from '../../molecules/InstructionButton/InstructionButton';
 import MenuStep from '../../molecules/MenuStep/MenuStep';
 import s from './InstructionFour.module.scss';
+import { useSelector } from 'react-redux';
 
 export default function InstructionFour() {
+
+  const token=useSelector(state=>state.user_internal.token)
+  console.log(token)
+
   return (
     <InstructionContainer>
       <main className={s.mainContainer}>
@@ -23,7 +28,7 @@ export default function InstructionFour() {
         <InstructionButton
           helpText={"Necesito ayuda"}
           text={"Continuar"}
-          path={"/"}
+          path={token?"/dashboard":"/"}
         />
       </main>
     </InstructionContainer>
