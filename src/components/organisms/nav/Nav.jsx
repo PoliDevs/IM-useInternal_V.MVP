@@ -32,7 +32,7 @@ export default function Nav() {
       >
         <Bars_3 heigth={36} />
       </div>
-      {barsActive ? <Bars onLinkClick={toggleBarsBackground} /> : null}
+      {barsActive ? <Bars onLinkClick={toggleBarsBackground}/> : null}
       <div className={s.logo}>
       <img src={logo} height={52} ></img>
       </div>
