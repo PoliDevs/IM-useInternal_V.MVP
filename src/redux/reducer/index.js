@@ -6,7 +6,9 @@ const initalState = {
     ? JSON.parse(localStorage.getItem("user_internal"))
     : {},
   usuario: "",
-  localOpenValue:null,
+  localOpenValue:localStorage.getItem("localOpenValue")
+  ?JSON.parse(localStorage.getItem("localOpenValue"))
+  :null,
   id: 1,
   local: true,
   orders: [],
@@ -42,6 +44,7 @@ export const rootReducer = (state = initalState, { type, payload }) => {
     //loginGoogle
     case LOGIN_ACTION_GOOGLE: {
       const data = jwtDecode(payload.data.token);
+      console.log(data)
       const user_internal = {
         token: payload.data.token,
         id: data.id,
@@ -53,13 +56,14 @@ export const rootReducer = (state = initalState, { type, payload }) => {
       // Guardar el token y la información del usuario en localStorage
       localStorage.setItem("token", JSON.stringify(payload.data.token));
       localStorage.setItem("user_internal", JSON.stringify(user_internal));
+      
       return {
         ...state,
         user_internal,
       };
     };
 
-    //para oreguntar menu activo
+    //para preguntar menu activo
     case MENU_ACTIVE:{
       return {
         ...state,
@@ -69,9 +73,11 @@ export const rootReducer = (state = initalState, { type, payload }) => {
 
     //local cerrado o abierto
     case LOCAL_OPEN_VALUE:{
+      const localOpenValue=payload;
+      localStorage.setItem("localOpenValue",JSON.stringify(localOpenValue))
       return{
         ...state,
-        localOpenValue:payload
+        localOpenValue
       }
     };
 

@@ -26,6 +26,7 @@ export default function useFirebase(setError) {
     signInWithPopup(auth, provider)
       .then((result) => {
         if (result) {
+          console.log(result.user)
           const email = result.user.email;
           dispatch(loginActionGoogle(email))
             .then((response) => {

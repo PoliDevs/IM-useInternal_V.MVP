@@ -21,8 +21,8 @@ import "semantic-ui-css/semantic.min.css";
 import { useState } from "react";
 import axios from "axios";
 import QrGenerator from "./components/molecules/QrCodeGenerator/QrCodeGenerator.jsx";
-axios.defaults.baseURL = "http://localhost:3001/";
-//axios.defaults.baseURL='https://nodejs-production-bbf9.up.railway.app';
+//axios.defaults.baseURL = "http://localhost:3001/";
+axios.defaults.baseURL='https://nodejs-production-bbf9.up.railway.app';
 
 function App() {
   const [unreadMessages, setUnreadMessages] = useState(`${4}`);

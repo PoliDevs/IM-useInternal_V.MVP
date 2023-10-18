@@ -6,7 +6,7 @@ export default function Links({children,to,onclick}) {
     const secundary="#FFFFFF";
   return (
     <>
-    <Link className={s.link} to={to} onclick={onclick}>{children}</Link>
+    <Link className={s.link} to={to} onClick={()=>onclick()}>{children}</Link>
     </>
   )
 }
