@@ -1,5 +1,6 @@
 @import '../../../scss/colors.scss';
 
+
 header {
     padding: 0.5rem 0;
     width: 100%;
@@ -9,31 +10,43 @@ header {
     //oficial
     background-color: $color-ten;
 
-    div {
+    .content_1 {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 0 10px;
+        margin: 21px 130px 10px 130px;
 
         .TbArrowBackUp {
-            margin-right: auto;
-            font-size: 25px;
+            //position: relative;
+            position: absolute;
+            //right:115px;
+            left: 0;
+            margin-left: 10px;
             cursor: pointer;
             z-index: 20;
         }
 
         >h1 {
-            flex: 1;
-            position: relative;
-            left: -20px;
-            font-size: 36px;
             display: flex;
+            flex: 1;
             justify-content: center;
             align-items: center;
             gap: 5px;
         }
     }
+
+    pre {
+        /*  margin: 0 130px 21px 130px; */
+        margin: 0 130px 21px 130px;
+
+    }
 }
+
+.closed {
+    background-color: #250B3D;
+    color: $text-secondary;
+}
+
 
 @media screen and (max-width: 500px) {
     header {
