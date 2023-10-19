@@ -33,7 +33,7 @@ const handleModal=()=>{
         <div className={`${s.frame} ${s.right}`}></div>
       </div>
       <WelcomeButton text={"Comenzar"} path={"/dashboard"} />
-      {/* { modal?<WelcomeModal handleModal={handleModal}/> :null} */}
+      {/* { !modal?<WelcomeModal handleModal={handleModal}/> :null} */}
     </div>
   );
 }
