@@ -1,13 +1,16 @@
 import s from './header.module.scss';
-import { TbArrowBackUp } from "react-icons/tb";
-import {Store,Menu,History,Sales,Config} from "../../atom/iconsHerocoins/icons";
+/* import { TbArrowBackUp } from "react-icons/tb"; */
+import {Store,Menu,History,Sales,Config,ArrowUturnLeft, StoreClosed} from "../../atom/iconsHerocoins/icons";
 import HugeTitle from '../../atom/HugeTitle/HugeTitle';
 import LineText from '../../atom/LineText/LineText';
+import { useNavigate,useLocation } from 'react-router-dom';
 
-export default function Header({icon,title,detail}) {
+export default function Header({icon,title,detail,color,off}) {
+  const navigate=useNavigate();
+  const {pathname}=useLocation();
+
   const handleBackClick = () => {
-   window.history.back();
-   console.log("dasd")
+   navigate("/dashboard")
   };
 
   const optionIcon={
@@ -16,20 +19,17 @@ export default function Header({icon,title,detail}) {
     "history":<History heigth={"24"}/>,
     "sales":<Sales heigth={"24"}/>,
     "config":<Config heigth={"24"} />,
+    "storeClosed":<StoreClosed height={"24"} />
   }
-  const iconEnd=optionIcon[icon];
+
   return (
-    <header>
-      <div>
-     <TbArrowBackUp className={s.TbArrowBackUp} onClick={handleBackClick} />
-{/*       <h1>
-        {optionIcon[icon]}
-        {title}
-      </h1> */}
+    <header className={off ? s.closed : null}>
+      <div className={s.content_1}>
+      {pathname !=="/dashboard" ? <ArrowUturnLeft heigth={"24"} onClick={handleBackClick} className={s.TbArrowBackUp}/>:null}
+     {/* <TbArrowBackUp className={s.TbArrowBackUp} onClick={handleBackClick} /> */}
       <HugeTitle text={title} icon={optionIcon[icon]} fontSize={"28px"} />
       </div>
-      {/* <span>{detail}</span> */}
-      <LineText text={detail} centered disabled />
+      <LineText text={detail} centered disabled={!off} secundary={off} />
     </header>
   );
 }
