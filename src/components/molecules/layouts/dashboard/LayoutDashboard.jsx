@@ -184,7 +184,7 @@ const handleCardStatusChange = (newStatus, orderId) => {
                 content={"Nuevos"}
                 color={"#4B47FF"}
                 number={statusTables("orderPlaced").length}
-              />
+                />
               {renderOrdesCards("orderPlaced")}
             </section>
             <section>

@@ -74,7 +74,7 @@ const textButton=(value)=>textButtonStatus[value];
     await axios.put(`order/change-status/${order}/${comerceId}`,{status:newStatus})
   };
   return (
-    <div className={s.content_card} style={{ minWidth:"150px",maxWidth:"340px"/* ,width:width?`${width}px`:"376px" */}}>
+    <div className={s.content_card} style={{ minWidth:"300px",maxWidth:"340px"/* ,width:width?`${width}px`:"376px" */}}>
       <div>
         <h4>
           {delivery ? (

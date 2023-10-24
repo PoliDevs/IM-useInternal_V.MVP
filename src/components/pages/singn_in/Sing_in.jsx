@@ -15,12 +15,12 @@ export default function Sing_in() {
   return (
     <main className={s.mainContainer}>
         <>
-          <aside className={s.loginContainer}>
+          <div className={s.loginContainer}>
            <div className={s.logo} ></div>
             <Title text={"Da el primer paso:"} />
             <LineText  text={"Ingresa utilizando tu correo de google"} />
             <GoogleButton text={"Accede con google"} signInWithGoogle={signInWithGoogle} />
-          </aside>
+          </div>
           <section className={s.sloganContainer}>
           <div className={s.content_2}>
             <h2 className={s.bigText_1}>La velocidad es</h2>

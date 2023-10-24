@@ -8,3 +8,15 @@
 /*     border-top: $border; */
     min-height: 79vh;
 }
+
+@media screen and (max-width:900px) {
+    .container {
+        width: 100%;
+        background-color:$background-secundary;
+        display: flex;
+        justify-content: center;
+        padding: 1rem 2rem;
+    /*     border-top: $border; */
+        min-height: 0;
+    }
+    }

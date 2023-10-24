@@ -3,7 +3,6 @@
 .content_LayoutDashboard {
   display: flex;
   flex-direction: column;
-
   width: 100%;
 
   /* background-color: aqua; */
@@ -24,15 +23,24 @@
       border-right: 2px solid $color-nineth;
     }
   }
-
-  /*     > div:nth-child(1) {
-      } */
-
-/*   >div:nth-child(2) {
-    border-left: 2px solid $color-nineth;
-    border-right: 2px solid $color-nineth;
-  }
- */
-
-
 }
+
+/* @media screen and (max-width:900px) {
+  .content_orders{
+    flex-direction: column;
+    background-color: rgba(0, 255, 255, 0.377);
+    gap: 5px;
+    >section {
+      width: 100%;
+      min-height: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      background-color: rgba(78, 21, 136, 0.486);
+    }
+    >section:nth-child(2) {
+      border-left: 2px solid $color-nineth;
+      border-right: 2px solid $color-nineth;
+    }
+  }
+  } */
