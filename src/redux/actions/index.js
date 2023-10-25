@@ -149,7 +149,7 @@ export async function getOrders() {
 export function getAllPos(id){
   return async function (dispatch){
     try {
-      let response = await axios.get(`http://localhost:3001/pos/all/${id}`);
+      let response = await axios.get(`/pos/all/${id}`);
       let allPos = response.data[0].sectors;
       return dispatch({
         type: GET_ALL_POS,

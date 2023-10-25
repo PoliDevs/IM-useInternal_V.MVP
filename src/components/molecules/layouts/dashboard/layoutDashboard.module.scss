@@ -42,9 +42,10 @@
   }
   .content_orders {
     flex-direction: column;
+    justify-content: flex-start;
     gap: 5px;
-    height: 500px;
     overflow-y: scroll;
+    height: 1500px;
     >section:nth-child(2) {
       border-top: 2px solid $color-nineth;
       border-bottom: 2px solid $color-nineth;
