@@ -10,7 +10,8 @@ import QRCode from "qrcode";
 import React from "react";
 import JSZip from "jszip";
 export default function QrGenerator() {
-  const commerceId = useSelector((state) => state.user.comerceId);
+  const commerceId = useSelector((state) => state.user_internal.comerceId);
+  console.log(commerceId)
   const allPos = useSelector((state) => state.allPos);
   const [selectedSector, setSelectedSector] = useState("");
   const [selectedTable, setSelectedTable] = useState("");

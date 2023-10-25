@@ -74,7 +74,7 @@ const textButton=(value)=>textButtonStatus[value];
     await axios.put(`order/change-status/${order}/${comerceId}`,{status:newStatus})
   };
   return (
-    <div className={s.content_card} style={{ minWidth:"300px",maxWidth:"340px"/* ,width:width?`${width}px`:"376px" */}}>
+    <div className={s.content_card} style={{minWidth:"250px",maxWidth:"376px" , /* width:width?`${width}px`:null  */}}>
       <div>
         <h4>
           {delivery ? (
@@ -161,8 +161,14 @@ const textButton=(value)=>textButtonStatus[value];
                   padding: "7px",
                   color: "white",
                   margin: "0 0 5px 0",
-                  fontSize: "16px", // Añadir esta línea para el tamaño de la fuente
+                  fontSize: "16px",
                   borderRadius: "10px",
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.transform = "scale(1.05)"; // Escala el botón al 110% en hover
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = "scale(1)"; // Devuelve el botón a su tamaño original al salir del hover
                 }}
               >
                 {textButton(status)}
