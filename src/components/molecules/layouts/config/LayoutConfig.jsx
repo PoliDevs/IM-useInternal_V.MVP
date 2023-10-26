@@ -3,20 +3,23 @@ import Loading from '../../../atom/loading/Loading';
 import s from './layoutConfig.module.scss';
 import LargeButton from '../../../atom/LargeButton/LargeButton';
 import { useTranslation } from "react-i18next";
-import { renderContentRight } from '../../../../utils/functions';
 import PersonalData from '../../sections/config/personalData/PersonalData';
 import ComerceData from '../../sections/config/comerceData/ComerceData';
 import Mp from '../../sections/config/MP/Mp';
 
 export default function LayoutConfig() {
-    const { t, i18n } = useTranslation();
-    const [selectedOption, setSelectedOption] = useState("datosPersonales");
+    const [t,i18n]= useTranslation("global");
+    const personalData=t("config.select.personal data");
+    const businessData=t("config.select.business data");
+    const paymentData=t("config.select.payment market");
+    console.log(personalData,businessData,paymentData)
+    const [selectedOption, setSelectedOption] = useState(personalData);
     
 /*     const contentDescription = renderContentRight(selectedOption); */
     const optionToComponent = {
-        "datosPersonales": <PersonalData />,
-        "datosNegocio": <ComerceData />,
-        "mercadoPago": <Mp />,
+        [t("config.select.personal data")]: <PersonalData />,
+        [t("config.select.business data")]: <ComerceData />,
+        [t("config.select.payment market")]: <Mp />,
       };
 
     const handleOptionClick = (option) => {
@@ -27,19 +30,19 @@ export default function LayoutConfig() {
         <div className={s.containerd}>
             <section>
                 <LargeButton
-                    text={"Datos personales"}
+                    text={personalData}
                     icon={"arrowRight"}
-                    onClick={() => handleOptionClick("datosPersonales")}
+                    onClick={() => handleOptionClick(personalData)}
                 />
                 <LargeButton
-                    text={"Datos de negocio"}
+                    text={businessData}
                     icon={"arrowRight"}
-                    onClick={() => handleOptionClick("datosNegocio")}
+                    onClick={() => handleOptionClick(businessData)}
                 />
                 <LargeButton
-                    text={"Mercado pago"}
+                    text={paymentData}
                     icon={"arrowRight"}
-                    onClick={() => handleOptionClick("mercadoPago")}
+                    onClick={() => handleOptionClick(paymentData)}
                 />
             </section>
             {/* {contentDescription && React.createElement(contentDescription.component, contentDescription.props)} */}

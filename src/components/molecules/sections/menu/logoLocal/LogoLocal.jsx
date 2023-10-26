@@ -1,11 +1,13 @@
 import MenuStep from "../../../MenuStep/MenuStep";
 import { Button } from "semantic-ui-react";
+import { useTranslation } from "react-i18next";
 
 export default function LogoLocal() {
+  const [t,i18n]=useTranslation("global");
   return (
     <>
       <MenuStep
-        text="LogoBStore.jpg"
+        text={t("menu.logo local.file")}
         icon_1="ArrowDownload"
         className="menu_option"
         icon_2=""
@@ -25,7 +27,7 @@ export default function LogoLocal() {
         }}
       >
         {" "}
-        Reemplazar imagen
+        {t("menu.logo local.replace image")}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

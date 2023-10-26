@@ -1,5 +1,14 @@
 import axios from "axios";
-import { LOCAL_OPEN_VALUE,GET_ORDERS,LOGIN_ACTION,LOGIN_ACTION_GOOGLE,MENU_ACTIVE,OPEN_LOCAL,CLOSED_LOCAL, GET_ALL_POS } from "./actionTypes";
+import { LOCAL_OPEN_VALUE,GET_ORDERS,LOGIN_ACTION,LOGIN_ACTION_GOOGLE,MENU_ACTIVE,OPEN_LOCAL,CLOSED_LOCAL, GET_ALL_POS,LANGUAGE} from "./actionTypes";
+
+//lenguaje
+export function selectLanguage(payload) {
+  console.log(payload,"action")
+return {
+  type:LANGUAGE,
+  payload:payload
+}
+}
 
 //nos logueamos
 export function loginAction(payload){
@@ -128,8 +137,6 @@ export function closedLocal(comerceId) {
   }
 
 
-
-
 export async function getOrders() {
   return async function (dispatch) {
     try {
@@ -149,7 +156,7 @@ export async function getOrders() {
 export function getAllPos(id){
   return async function (dispatch){
     try {
-      let response = await axios.get(`http://localhost:3001/pos/all/${id}`);
+      let response = await axios.get(`/pos/all/${id}`);
       let allPos = response.data[0].sectors;
       return dispatch({
         type: GET_ALL_POS,

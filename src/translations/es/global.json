@@ -1,55 +1,161 @@
 {
-  "internal": {
-    "auth": {
-      "googleAcces": "Accede con Google",
-      "or": "O bien",
-      "name": "Nombre",
-      "email": "Email",
-      "password": "Contraseña",
-      "confirmpassword": "Confirmar contraseña",
-      "forgot": "Olvidé mi contraseña",
-      "login": "Iniciar Sesión",
-      "register": "Registrarse"
+  "singn in": {
+    "take the first step": "Da el primer paso",
+    "login using your Google email": "Ingresa utilizando tu correo de google",
+    "login with Google": "Accede con google",
+    "speed is": "La velocidad es",
+    "our plate": "Nuestro plato",
+    "strong": "fuerte",
+    "select a language":"Seleccione un idioma"
+  },
+  "welcome": {
+    "welcome": "¡Bienvenido!",
+    "now you can start receiving orders": "Ahora puedes comenzar a recibir pedidos",
+    "start": "Comenzar"
+  },
+  "nav": {
+    "operation screen": "Pantalla de operación",
+    "menu": "Menú",
+    "sales": "Ventas",
+    "history": "Historial",
+    "setting": "Configuración",
+    "open or close local": "Abre o cierra local"
+  },
+  "header": {
+    "open local": {
+      "orders received": "Pedidos recibidos",
+      "your orders are here in order of entry": "Tus pedidos estan aqui por orden de ingreso"
     },
-    "nav": {
-      "operation screen": "Pantalla de operación",
-      "Menu": "Menú",
-      "Sales": "Ventas",
-      "History": "Historial",
-      "Setting": "Configuración",
-      "Open or close local": "Abre o cierra local"
+    "closed local": {
+      "premises closed": "Local cerrado",
+      "open the store to start": "Mientras tu local esté cerrado no llegarán",
+      "to receive orders": "pedidos nuevos"
     },
-    "header": {
-      "open local": {
-        "orders received": "Pedidos recibidos",
-        "Your orders are here in order of entry": "Tus pedidos estan aqui por orden de ingreso"
-      },
-      "closed local": {
-        "premises closed": "Local cerrado",
-        "Open the store to start": "Abre el local para comenzar",
-        "to receive orders": " a recibir pedidos"
-      },
-      "menu": {
-        "detail": "Gestiona tu menú desde aquí"
-      },
-      "sales": {
-        "detail": "Aquí se encuentran tus ventas"
-      },
-      "history": {
-        "detail": "Aquí están tus pedidos entregados"
-      },
-      "setting": {
-        "detail": "Aquí están tus datos, planes y configuraciones generales"
-      }
+    "menu": {
+      "text": "Menú",
+      "detail": "Gestiona tu menú desde aquí"
     },
     "sales": {
-      "this week": "",
-      "weekly Total": "Total semanal",
-      "today": "Hoy",
-      "today you sold": "hoy vendiste",
-      "today you received": "hoy recibiste",
-      "orders": "pedidos"
+      "text": "Ventas",
+      "detail": "Aquí se encuentran tus ventas"
+    },
+    "history": {
+      "text": "Historial",
+      "detail": "Aquí están tus pedidos entregados"
+    },
+    "setting": {
+      "text": "Configuración",
+      "detail": "Aquí están tus datos, planes y configuraciones generales"
     }
-    
+  },
+  "dashboard": {
+    "all": "Todos",
+    "local orders": "Pedidos en local",
+    "platform orders": "Pedidos por plataforma",
+    "new": "Nuevos",
+    "preparing": "Preparando",
+    "ready": "Listo"
+  },
+  "sales": {
+    "this week": "Esta semana",
+    "weekly Total": "Total Semanal:$",
+    "today": "Hoy",
+    "today you sold": "Hoy vendiste",
+    "today you received": "Hoy recibiste",
+    "orders": "pedidos"
+  },
+  "history": {
+    "today": "Hoy",
+    "until": "Hasta",
+    "select a date": "Seleccione una fecha"
+  },
+  "menu": {
+    "manage current menu": "Gestionar menú actual",
+    "delete current menu": "Eliminar menú actual",
+    "download menu template": "Descargar plantilla de menú",
+    "local logo": "Logo del local",
+    "menu item": {
+      "category": "Categoria",
+      "products": "Productos",
+      "add product": "Agregar Producto",
+      "emoji": "Emoji",
+      "product": "Producto",
+      "price": "Precio",
+      "on/off": "On/Off"
+    },
+    "delete menu current": {
+      "file": "Menu.xlm",
+      "modal": {
+        "do you want to delete the menu": "¿Deseas eliminar el menú?",
+        "if you delete the menu you must upload another one": "Si eliminas el menú debes subir otro.",
+        "in the meantime, your store will remain closed": "Mientras tanto tu local permanecerá cerrado.",
+        "confirm": "Si,Eliminar",
+        "cancel": "Cancelar"
+      }
+    },
+    "download template": {
+      "download template": "Descargar plantilla"
+    },
+    "logo local": {
+      "file": "LogoBStore.jpg",
+      "replace image": "Reemplazar imagen"
+    }
+  },
+  "config": {
+    "select": {
+      "personal data": "Datos personales",
+      "business data": "Datos de negocio",
+      "payment market": "Mercado pago"
+    },
+    "personal data": {
+      "title": "Datos personales",
+      "input_1": "Nombre y Apellido",
+      "input_2": "Teléfono"
+    },
+    "business data": {
+      "title": "Datos de negocio",
+      "input_1": "Nombre del negocio",
+      "input_2": "Teléfono"
+    },
+    "payment market": {
+      "title": "Mercado pago",
+      "input_1": "Alias",
+      "input_2": "Key mercado pago"
+    }
+  },
+  "card": {
+    "order placed": "Pasar a preparando",
+    "order in preparation": "Pasar a listo",
+    "order ready": "Pasar a entregado",
+    "delivered": "Entregado",
+    "sector": "Sector",
+    "table": "Mesa",
+    "order": "Pedido",
+    "received at": "Recibido a las",
+    "total": "Total",
+    "observations": "Observaciones"
+  },
+  "instructions": {
+    "title": "Empecemos con tu menú",
+    "sub title": "Intenta cumplir con los pasos antes de empezar a operar",
+    "steps":{
+      "step_1": "Descarga nuestra plantilla para menú",
+      "step_2": "Sube tu menú unas vez que hayas guardado los productos",
+      "step_3": "Sube la imagen de tu logo",
+      "step_4": "¡Abre tu local para empezar a vender!",
+      "text_1":"Descargar plantilla",
+      "text_2":"Subir menú",
+      "text_3":"Sube la imagen del logo de tu local",
+      "text_3_1":"condiciones:",
+      "text_3_2":"-Tu imagen debe ser cuadrada 1:1",
+      "text_3_3":"-Formato JPG",
+      "text_3_4":"-Peso maximo: 100KB",
+      "text_3_5":"Subir imagen",
+      "text_4":"Abre y cierra tu local a demanda"
+    },
+    "button":{
+      "i need help": "Nesecito ayuda ",
+      "continue": "Continuar"
+    }
   }
 }

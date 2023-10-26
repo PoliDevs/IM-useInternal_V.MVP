@@ -13,3 +13,6 @@ export const GET_ALL_POS = "GET_ALL_POS";
 
 //////////////////* Order Action Type *///////////////////////////
 export const GET_ORDERS="GET_ORDERS";
+
+//////////////////* Select languaje *///////////////////////////
+export const LANGUAGE="LANGUAGE";

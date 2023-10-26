@@ -30,3 +30,11 @@
     border-radius: $border-primary-radius;
   }
 }
+
+@media screen and (max-width:900px) {
+  .button{
+    height: 60px;
+    font-size: $title;
+  }
+}
+

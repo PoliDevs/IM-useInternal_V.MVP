@@ -8,34 +8,32 @@
     flex-direction: column;
     position: absolute;
     left: 0px;
-    top: 38px;
-    padding: 1rem ;
+    top: 50px;
+    padding: 30px 10px 0px 10px ;
     border-radius: $border-primary-radius;
     text-decoration: none;
-    min-width: content;
-    width: 30%;
+    width: 333px;
     border: $border;
     z-index: 21;
 
     >article {
-        margin: 0px 0 18px 0;
+        margin: 0px 0 10px 0;
         font-size: 21px;
         font-weight: bolder;
         display: flex;
         align-items: center;
-/*         padding: 5px; */
-        border-radius: $border-primary-radius;
         color: $text-primary;
+        border: none;
+        padding: 0;
+        gap: 10px;
+        height: 48px;
+        width: 288px;
         &:hover {
             background-color: $background-tertiary;
             color: $text-secondary;
             cursor: pointer;
+            padding: 0 0 0 10px;
         }
-    }
-      
-    svg {
-        width: 30px;
-        margin-right: 2px;
     }
 }
 

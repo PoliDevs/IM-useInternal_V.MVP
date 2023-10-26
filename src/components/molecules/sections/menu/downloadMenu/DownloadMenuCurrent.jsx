@@ -1,7 +1,9 @@
 import React from 'react';
 import MenuStep from "../../../MenuStep/MenuStep";
+import { useTranslation } from 'react-i18next';
 
 export default function DownloadMenuCurrent() {
+  const [t,i18n]=useTranslation("global");
   const handleDowload=()=>{
     // Aquí debes agregar lógica para descargar el archivo
     // Puedes usar la etiqueta <a> para ello
@@ -15,7 +17,7 @@ export default function DownloadMenuCurrent() {
   }
   return (
     <MenuStep
-    text= {"Descargar plantilla"}
+    text= {t("menu.download template.download template")}
     icon_1={"ArrowDownload"}
     className= {"menu_option"}
     icon_2= ""
