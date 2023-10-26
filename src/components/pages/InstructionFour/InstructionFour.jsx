@@ -6,8 +6,10 @@ import InstructionButton from '../../molecules/InstructionButton/InstructionButt
 import MenuStep from '../../molecules/MenuStep/MenuStep';
 import s from './InstructionFour.module.scss';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next'; 
 
 export default function InstructionFour() {
+  const [t,i18n]=useTranslation("global");
 
   const token=useSelector(state=>state.user_internal.token)
   console.log(token)
@@ -16,18 +18,18 @@ export default function InstructionFour() {
     <InstructionContainer>
       <main className={s.mainContainer}>
         <div className={s.textContainer}>
-          <UploadMenuTitle text={"Empecemos con tu menú"} />
+          <UploadMenuTitle text={t("instructions.title")} />
           <LineText
-            text={"Intenta cumplir con los pasos antes de empezar a operar"}
+            text={t("instructions.sub title")}
             centered={true}
             bold={true}
           />
-          <MenuStep number={4} text={"¡Abre tu local para empezar a vender!"} />
+          <MenuStep number={4} text={t("instructions.steps.step_4")} />
           <Open_Close />
         </div>
         <InstructionButton
-          helpText={"Necesito ayuda"}
-          text={"Continuar"}
+          helpText={t("instructions.button.i need help")}
+          text={t("instructions.button.continue")}
           path={token?"/dashboard":"/"}
         />
       </main>

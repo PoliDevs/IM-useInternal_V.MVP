@@ -5,13 +5,9 @@
   flex-grow: 1;
   justify-content: space-between;
   align-items: center;
-  //padding: 0.1rem;
+  padding: 5px 15px 5px 5px;
   background-color: $background-quaternary;
   color:$text-secondary;
-
-  >span{
-    letter-spacing:4px;
-  }
   
   .cloud{
     background-color: $text-secondary;
@@ -22,10 +18,7 @@
 }
 
   .logo{
-    display: flex;
-    justify-content: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+    height: 30px;
   }
 
 .anotherCustomBackground{
@@ -34,5 +27,17 @@
 
 .iconContainer{
 cursor: pointer;
-margin: 0 10px;
+padding: 3px;
+border-radius: 12px 12px 2px 0;
+/* margin: 0 10px; */
+}
+
+@media screen and (max-width:900px) {
+  .nav{
+    height: 65px;
+    padding: 5px 15px 5px 15px;
+  }
+  .logo{
+    height: 30px;
+  }
 }

@@ -4,10 +4,12 @@ import {Store,Menu,History,Sales,Config,ArrowUturnLeft, StoreClosed} from "../..
 import HugeTitle from '../../atom/HugeTitle/HugeTitle';
 import LineText from '../../atom/LineText/LineText';
 import { useNavigate,useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
-export default function Header({icon,title,detail,color,off}) {
+export default function Header({icon,title,detail,detail_2,color,off}) {
   const navigate=useNavigate();
   const {pathname}=useLocation();
+  const [t,i18n]=useTranslation("global");
 
   const handleBackClick = () => {
    navigate("/dashboard")
@@ -29,7 +31,10 @@ export default function Header({icon,title,detail,color,off}) {
      {/* <TbArrowBackUp className={s.TbArrowBackUp} onClick={handleBackClick} /> */}
       <HugeTitle text={title} icon={optionIcon[icon]} fontSize={"28px"} />
       </div>
+      <div className={s.content_2}>
       <LineText text={detail} centered disabled={!off} secundary={off} />
+      <LineText text={detail_2} centered disabled={!off} secundary={off} />
+      </div>
     </header>
   );
 }

@@ -9,21 +9,21 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 
 export default function LayoutHistory() {
-/*   console.log(getDateCurrent()); */
-const date=getDateCurrent();
+const todayDate=getDateCurrent();
 
   const comerceId = useSelector((state) => state.user_internal.comerceId);
   const [isLoading, setIsLoading] = useState(false);
 
   const [selectDatePiker, setSelectDatePiker] = useState(null); // Estado para la fecha seleccionada solo para el piker
-  const [selectDate, setSelectDate] = useState(date); // Estado para la fecha seleccionada
+  const [selectDate, setSelectDate] = useState(todayDate); // Estado para la fecha seleccionada
 
   const [orderDate, setOrderDate] = useState([]); // todas las orders de un dia seleccionado, por default es la fecha actual
 
   //nesesito filtrar las ordenes para que me queden solo las delivered
   const orderDelivered = orderDate.filter((cur) => cur.status === "delivered");
  /*  console.log(orderDelivered) */
-  const { t, i18n } = useTranslation();
+   //const [t,i18n]=useTranslation("global");
+   const [t,i18n]=useTranslation("global");
 
   useEffect(() => {
 /*     const timeout = setTimeout(() => { */
@@ -48,14 +48,18 @@ const date=getDateCurrent();
   // actualizar la fecha seleccionada
   const handleDateChange = (date) => {
     setSelectDatePiker(date)
-    const newDate = date.toLocaleDateString(i18n.language, {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    }).replace(/\//g, '-'); // Reemplaza las barras con guiones
-    setSelectDate(newDate.split("-").reverse().join("-"));
+    if(date){
+      const newDate = date.toLocaleDateString(i18n.language, {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+      }).replace(/\//g, '-'); // Reemplaza las barras con guiones
+      setSelectDate(newDate.split("-").reverse().join("-"));
+    }else{
+      setSelectDate(todayDate)
+    }
   };
-
+  
   return (
     <div className={s.containerd}>
       {isLoading ? (
@@ -69,7 +73,7 @@ const date=getDateCurrent();
           <div>
               <div className={s.content_date}>
                 <span className={s.date}>
-                  {selectDate===date?"hoy":selectDate.split("-").reverse().join("/") /* .toLocaleDateString(i18n.language, {
+                  {selectDate===todayDate?t("history.today") :selectDate/* .split("-").reverse().join("/") */ /* .toLocaleDateString(i18n.language, {
                     day: "numeric",
                     month: "numeric",
                     year: "numeric",

@@ -2,8 +2,11 @@ import s from "./layoutSales.module.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { getDateCurrent,getLastMonday } from "../../../../utils/functions";
+import { useTranslation } from "react-i18next";
+import Title from "../../../atom/Title/Title";
 
 export default function LayoutSales() {
+  const [t,i18n]=useTranslation("global")
   const [week, setWeek] = useState(null);
   const date=getDateCurrent();//dia actual
   const monday=getLastMonday();//lunes
@@ -11,17 +14,6 @@ export default function LayoutSales() {
   const comerceId = useSelector((state) => state.user_internal.comerceId);
 
   useEffect(() => {
-/*     const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `order/vtas/${comerceId}?dateFrom=${monday}&dateTo=${date}`
-        );
-        // Actualiza el estado con los datos obtenidos
-        setWeek(response.data);
-      } catch (error) {
-        console.error("Error al obtener los datos:", error);
-      }
-    }; */
 
     const fetchData = async () => {
       try {
@@ -66,27 +58,25 @@ export default function LayoutSales() {
   return (
     <div className={s.containerd}>
       <div className={s.content_1}>
-        <span>Esta semana</span>
-        <br />
-        <span>
-        Total semanal:$
+        {/* <span>Esta semana</span> */}
+        <Title text={t("sales.this week")} />
+        <Title text={t("sales.weekly Total")}>
           <b style={{ fontWeight: "700" }}>{totalWeek&&Math.floor(totalWeek)} </b>
-        </span>
+        </Title>
         <div className={s.grafico}>
           <SalesChart week={totalOrToday&&totalOrToday} />
         </div>
       </div>
       <div className={s.content_2}>
-        <span>Hoy</span>
+        <Title text={t("sales.today")} bold />
         <div>
           <div className={s.orders}>
-            <span>{`hoy vendiste $${week&&today_orders_money.tot_diario}`} </span>
+            <Title text={`${t("sales.today you sold")} $${week&&today_orders_money.tot_diario}`}/>
           </div>
           <div className={s.sales}>
-            <span>
-            hoy recibiste {week&&today_orders_money.pedidos}{" "}
-            pedidos
-            </span>
+            <Title
+            text={`${t("sales.today you received")} ${week&&today_orders_money.pedidos}${" "} ${t("sales.orders")} `}
+            />
           </div>
         </div>
       </div>

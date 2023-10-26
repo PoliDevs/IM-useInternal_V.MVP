@@ -7,6 +7,7 @@ import OrderItem from "./orderItem/OrderItem";
 import Paragraph from "../../atom/Paragraph/Paragraph";
 import LineText from "../../atom/LineText/LineText";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Chevron_right,Chevron_down } from "../../atom/iconsHerocoins/icons";
 
@@ -30,6 +31,11 @@ export default function Card({
   //
   onStatusChange, // Nuevo prop para manejar cambios de estado en el componente padre
 }) {
+  const [t,i18n]=useTranslation("global")
+  const orderPlaced=t("card.order placed");
+  const orderInPreparation=t("card.order in preparation");
+  const orderReady=t("card.order ready");
+  const delivered=t("card.delivered");
   const comerceId=useSelector(state=>state.user_internal.comerceId)
 
   const [seeOrder, setSeeOrder] = useState(true);//con esto mostramos o ocultamos la orden, icon
@@ -43,10 +49,10 @@ export default function Card({
 
   //busca el status de la order para cambiar el texto del boton
   const textButtonStatus={
-    orderPlaced:"Pasar a preparando",
-    orderInPreparation:"Pasar a listo",
-    orderReady:"Pasar a entregado",
-    delivered:"Entregado"
+    orderPlaced:orderPlaced,
+    orderInPreparation:orderInPreparation,
+    orderReady:orderReady,
+    delivered:delivered
   }
 const textButton=(value)=>textButtonStatus[value];
 
@@ -74,7 +80,7 @@ const textButton=(value)=>textButtonStatus[value];
     await axios.put(`order/change-status/${order}/${comerceId}`,{status:newStatus})
   };
   return (
-    <div className={s.content_card} style={{ minWidth:"150px",maxWidth:"340px"/* ,width:width?`${width}px`:"376px" */}}>
+    <div className={s.content_card} style={{minWidth:"250px",maxWidth:"376px" , /* width:width?`${width}px`:null  */}}>
       <div>
         <h4>
           {delivery ? (
@@ -85,7 +91,7 @@ const textButton=(value)=>textButtonStatus[value];
               }}
             />
           ) : (
-            `Sector ${sectorNumber} Mesa ${tableNumber}`
+            `${t("card.sector")}  ${sectorNumber} ${t("card.table")}  ${tableNumber}`
           )}
           {seeOrder?<Chevron_right  heigth={24} onClick={handleSeeOrder} />:<Chevron_down heigth={24}  onClick={handleSeeOrder}/>}
         </h4>
@@ -93,7 +99,7 @@ const textButton=(value)=>textButtonStatus[value];
           <div>
             <Paragraph
               start
-              text={`Pedido N° ${numOrder} - Recibido a las ${hour.slice(0, 5)}`}
+              text={`${t("card.order")} N° ${numOrder} - ${t("card.received at")} ${hour.slice(0, 5)}`}
             />
             {menu &&
               menu.name.map((cur, idx) => {
@@ -149,7 +155,7 @@ const textButton=(value)=>textButtonStatus[value];
                 );
               })}
             <div>
-              <LineText bold text={`Total:$ ${total || "***"}`} />
+              <LineText bold text={`${t("card.total")} :$ ${total || "***"}`} />
               <Button
               onClick={()=>{
                 handleStatus(status,order);
@@ -161,8 +167,14 @@ const textButton=(value)=>textButtonStatus[value];
                   padding: "7px",
                   color: "white",
                   margin: "0 0 5px 0",
-                  fontSize: "16px", // Añadir esta línea para el tamaño de la fuente
+                  fontSize: "16px",
                   borderRadius: "10px",
+                }}
+                onMouseEnter={(e) => {
+                  e.target.style.transform = "scale(1.05)"; // Escala el botón al 110% en hover
+                }}
+                onMouseLeave={(e) => {
+                  e.target.style.transform = "scale(1)"; // Devuelve el botón a su tamaño original al salir del hover
                 }}
               >
                 {textButton(status)}

@@ -1,9 +1,9 @@
 import s from './Title.module.scss';
 
-export default function Title({text, bold}) {
+export default function Title({text, bold,children}) {
   return (
     <h2 className={`${s.title} ${bold && s.bold}`}>
-      {text}
+      {text}{children}
     </h2>
   )
 }

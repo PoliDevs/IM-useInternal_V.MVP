@@ -6,42 +6,49 @@ import DownloadMenuCurrent from "../../sections/menu/downloadMenu/DownloadMenuCu
 import LogoLocal from "../../sections/menu/logoLocal/LogoLocal";
 import s from "./LayoutMenu.module.scss";
 import { useState} from "react";
+import { useTranslation } from "react-i18next";
 
 export default function LayoutMenu() {
-  const [selectedOption, setSelectedOption] = useState("Gestionar menú actual");
+  const [t,i18n]=useTranslation("global");
+  const manageCurrentMenu=t("menu.manage current menu");
+  const deleteCurrentMenu=t("menu.delete current menu");
+  const downloadMenuTemplate=t("menu.download menu template");
+  const localLogo=t("menu.local logo");
+
+  const [selectedOption, setSelectedOption] = useState(manageCurrentMenu);
   
   const handleOptionClick = (option) => {
     setSelectedOption(option);
   };
   
   const optionToComponent = {
-    "Gestionar menú actual": <MenuItem />,
-    "Eliminar menú actual": <DeleteMenuCurrent />,
-    "Descargar plantilla de menú": <DownloadMenuCurrent />,
-    "Logo del local": <LogoLocal />,
+    [t("menu.manage current menu")]: <MenuItem />,
+    [t("menu.delete current menu")]: <DeleteMenuCurrent />,
+    [t("menu.download menu template")]: <DownloadMenuCurrent />,
+    [t("menu.local logo")]: <LogoLocal />,
   };
   return (
     <div className={s.containerd}>
       <section className={s.buttonContent}>
         <LargeButton
-          text={"Gestionar menú actual"}
+          text={manageCurrentMenu}
           icon={"arrowRight"}
-          onClick={() => handleOptionClick("Gestionar menú actual")}
+          onClick={() => handleOptionClick(manageCurrentMenu)}
         />
         <LargeButton
-          text={"Eliminar menú actual"}
+          text={deleteCurrentMenu}
           icon={"arrowRight"}
-          onClick={() => handleOptionClick("Eliminar menú actual")}
+          onClick={() => handleOptionClick(deleteCurrentMenu)}
         />
         <LargeButton
-          text={"Descargar plantilla de menú"}
+          text={downloadMenuTemplate}
           icon={"arrowDownload"}
-          onClick={() => handleOptionClick("Descargar plantilla de menú")}
+          onClick={() => handleOptionClick(downloadMenuTemplate)}
         />
         <LargeButton
-          text={"Logo del local"}
+          text={localLogo}
           icon={"arrowRight"}
-          onClick={() => handleOptionClick("Logo del local")}
+          onClick={() => handleOptionClick(localLogo)}
         />
       </section>
       <section className={s.menuContent}>

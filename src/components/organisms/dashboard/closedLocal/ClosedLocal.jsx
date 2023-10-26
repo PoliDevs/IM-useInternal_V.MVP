@@ -8,8 +8,10 @@ import LayoutDashboard from "../../../molecules/layouts/dashboard/LayoutDashboar
 import LayoutContainer from "../../../molecules/layouts/section/LayoutContainer";
 import Container from "../../../atom/container/Container";
 import Header from "../../../molecules/Header/Header";
+import { useTranslation } from "react-i18next";
 
 export default function ClosedLocal({ open }) {
+  const [t,i18n]=useTranslation("global")
   const [allOrders, setAllOrders] = useState([]);
   const comerceId = useSelector((state) => state.user_internal.comerceId);
   const dateCurrent = getDateCurrent();
@@ -45,8 +47,9 @@ export default function ClosedLocal({ open }) {
         <Header
           off
           icon="storeClosed"
-          title={"Local cerrado"}
-          detail={`Mientras tu local esté cerrado no llegarán \n pedidos nuevos`}
+          title={t("header.closed local.premises closed")}
+          detail={t(`header.closed local.open the store to start`)}
+          detail_2={t(`header.closed local.to receive orders`)}
         />
         {statusTables("orderPlaced").length > 0 ||
         statusTables("orderInPreparation").length ||

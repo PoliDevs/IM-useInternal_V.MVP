@@ -5,27 +5,34 @@ import SubTitleUnderline from "../../../atom/subTitleUnderline/SubTitleUnderline
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ButtonGreen from "../../../atom/buttons/ButtonGreen";
-import { getDateCurrent} from "../../../../utils/functions";
+import { getDateCurrent } from "../../../../utils/functions";
+import { useTranslation } from "react-i18next";
 
-export default function LayoutDashboard({interval}) {
+export default function LayoutDashboard({ interval }) {
+const [t,i18n]=useTranslation("global")
+const all=t("dashboard.all")
+const localOrders=t("dashboard.local orders")
+const platformOrders=t("dashboard.platform orders")
+
+
   const comerceId = useSelector((state) => state.user_internal.comerceId);
   const [allOrders, setAllOrders] = useState([]); // Almacenamos todas las ordenes
   const dateCurrent = getDateCurrent(); //fecha actual
-  const [filterClickedButton, setFilterClickedButton] = useState("Todos"); //filtrado
+  const [filterClickedButton, setFilterClickedButton] = useState(all); //filtrado
   const [cardStatusChanged, setCardStatusChanged] = useState(false);
 
   // Función para manejar cambios de estado en las tarjetas
-const handleCardStatusChange = (newStatus, orderId) => {
-  // Realiza la lógica necesaria para manejar el cambio de estado de la tarjeta aquí
-/*   console.log(`Cambiar el estado de la tarjeta a: ${newStatus}, Orden: ${orderId}`); */
+  const handleCardStatusChange = (newStatus, orderId) => {
+    // Realiza la lógica necesaria para manejar el cambio de estado de la tarjeta aquí
+    /*   console.log(`Cambiar el estado de la tarjeta a: ${newStatus}, Orden: ${orderId}`); */
 
-  // Actualiza el estado para indicar que hubo cambios en las tarjetas
-  setCardStatusChanged(true);
+    // Actualiza el estado para indicar que hubo cambios en las tarjetas
+    setCardStatusChanged(true);
 
-  // Puedes realizar operaciones adicionales aquí, como actualizar datos en el servidor o modificar el estado local
-};
+    // Puedes realizar operaciones adicionales aquí, como actualizar datos en el servidor o modificar el estado local
+  };
 
-  const renderOrdesCards = (status,) => {
+  const renderOrdesCards = (status) => {
     const statusOrder = statusTables(status);
     return (
       statusOrder.length > 0 &&
@@ -44,10 +51,9 @@ const handleCardStatusChange = (newStatus, orderId) => {
             handleCardStatusChange(newStatus, orderId);
           }}
           //news
-          accountemail={cur.account} 
+          accountemail={cur.account}
           accountname={cur.name}
           googleemail={cur.googleEmail}
-
           //tomamos menu , product y detail de cada orden
           //si llegara a ser un {[""]}
           menu={cur.menu && cur.menu.name[0].length > 0 && cur.menu}
@@ -64,71 +70,20 @@ const handleCardStatusChange = (newStatus, orderId) => {
       ))
     );
   };
-  
-  // useEffect(() => {
-  //   const fetchData = () => {
-  //     if (filterClickedButton === "Pedidos en local") {
-  //     return  axios(
-  //         `order/orderesNotDelivery/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`
-  //       )
-  //         .then((response) => {
-  //           const data = response.data;
-  //           setAllOrders(data);
-  //         })
-  //         .catch((error) => {
-  //           console.error("Error al realizar la solicitud:", error);
-  //         });
-  //     } else if (filterClickedButton === "Pedidos por plataforma") {
-  //      return axios(
-  //         `order/orderesDelivery/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`
-  //       )
-  //         .then((response) => {
-  //           const data = response.data;
-  //           setAllOrders(data);
-  //         })
-  //         .catch((error) => {
-  //           console.error("Error al realizar la solicitud:", error);
-  //         });
-  //     } else {
-  //      axios(
-  //         `order/paidOrderes/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`
-  //       )
-  //         .then((response) => {
-  //           const data = response.data;
-  //           setAllOrders(data);
-  //         })
-  //         .catch((error) => {
-  //           console.error("Error al realizar la solicitud:", error);
-  //         });
-  //     }
-  //   };
-
-  //   if (cardStatusChanged) {
-  //     fetchData();
-  //     // Restablece el estado de cardStatusChanged a false
-  //     setCardStatusChanged(false);
-  //   }
-  //     fetchData()
-
-  //     const intervalId =setInterval(fetchData, 20000);
-  //     // Limpia el intervalo si el componente se desmonta
-  //      () => clearInterval(intervalId);
-
-  // }, [filterClickedButton,cardStatusChanged /* renderOrdesCards */]);
 
   //?
   useEffect(() => {
     const fetchData = async () => {
       let endpoint;
-  
-      if (filterClickedButton === "Pedidos en local") {
+
+      if (filterClickedButton === localOrders) {
         endpoint = `order/orderesNotDelivery/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`;
-      } else if (filterClickedButton === "Pedidos por plataforma") {
+      } else if (filterClickedButton === platformOrders) {
         endpoint = `order/orderesDelivery/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`;
       } else {
         endpoint = `order/paidOrderes/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`;
       }
-  
+
       try {
         const response = await axios(endpoint);
         const data = response.data;
@@ -137,73 +92,76 @@ const handleCardStatusChange = (newStatus, orderId) => {
         console.error("Error al realizar la solicitud:", error);
       }
     };
-  
+
     if (cardStatusChanged) {
       fetchData();
       // Restablece el estado de cardStatusChanged a false
       setCardStatusChanged(false);
     }
-  
+
     fetchData(); // Realiza la solicitud inicial
-  
+
     const intervalId = setInterval(fetchData, 20000);
-  
+
     // Limpia el intervalo si el componente se desmonta
     return () => clearInterval(intervalId);
   }, [filterClickedButton, cardStatusChanged /* renderOrdesCards */]);
-  
 
   const statusTables = (status) => {
     return allOrders.filter((cur) => cur.status === status);
   };
   /* console.log(allOrders) */
   return (
-
-        <div className={s.content_LayoutDashboard}>
-          <div>
-            <ButtonGreen
-              text={"Todos"}
-              active={filterClickedButton === "Todos"}
-              onClick={() => setFilterClickedButton("Todos")}
-            />
-            <ButtonGreen
-              text={"Pedidos en local"}
-              active={filterClickedButton === "Pedidos en local"}
-              onClick={() => setFilterClickedButton("Pedidos en local")}
-            />
-            <ButtonGreen
-              text={"Pedidos por plataforma"}
-              active={filterClickedButton === "Pedidos por plataforma"}
-              onClick={() => setFilterClickedButton("Pedidos por plataforma")}
-            />
-          </div>
-          <br />
-          <div className={s.content_orders}>
-            <section>
-              <SubTitleUnderline
-                content={"Nuevos"}
-                color={"#4B47FF"}
-                number={statusTables("orderPlaced").length}
-              />
-              {renderOrdesCards("orderPlaced")}
-            </section>
-            <section>
-              <SubTitleUnderline
-                content={"Preparando"}
-                color={"#FF4A4A"}
-                number={statusTables("orderInPreparation").length}
-              />
-              {renderOrdesCards("orderInPreparation")}
-            </section>
-            <section>
-              <SubTitleUnderline
-                content={"Listo"}
-                color={"#40CB5F"}
-                number={statusTables("orderReady").length}
-              />
-              {renderOrdesCards("orderReady")}
-            </section>
-          </div>
-        </div>
+    <div className={s.content_LayoutDashboard}>
+      <div>
+        <ButtonGreen
+          text={all}
+          active={filterClickedButton === all}
+          onClick={() => setFilterClickedButton(all)}
+        />
+        <ButtonGreen
+          text={localOrders}
+          active={filterClickedButton === localOrders}
+          onClick={() => setFilterClickedButton(localOrders)}
+        />
+        <ButtonGreen
+          text={platformOrders}
+          active={filterClickedButton === platformOrders}
+          onClick={() => setFilterClickedButton(platformOrders)}
+        />
+      </div>
+      <br />
+      <div className={s.status_orders}>
+        <SubTitleUnderline
+          content={t("dashboard.new")}
+          color={"#4B47FF"}
+          number={statusTables("orderPlaced").length}
+          status={"#orderPlaced"}
+        />
+        <SubTitleUnderline
+          content={t("dashboard.preparing")}
+          color={"#FF4A4A"}
+          number={statusTables("orderInPreparation").length}
+          status={"#orderInPreparation"}
+        />
+        <SubTitleUnderline
+          content={t("dashboard.ready")}
+          color={"#40CB5F"}
+          number={statusTables("orderReady").length}
+          status={"#orderReady"}
+        />
+      </div>
+      <div className={s.content_orders}>
+        <section className={s.content_status_orders} id="orderPlaced" >
+          {renderOrdesCards("orderPlaced")}
+        </section>
+        <section  className={s.content_status_orders} id="orderInPreparation" >
+          {renderOrdesCards("orderInPreparation")}
+        </section>
+        <section  className={s.content_status_orders} id="orderReady">
+          {renderOrdesCards("orderReady")}
+        </section>
+      </div>
+    </div>
   );
 };
