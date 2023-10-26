@@ -7,30 +7,28 @@ import axios from "axios";
 import LayoutDashboard from "../../../molecules/layouts/dashboard/LayoutDashboard";
 import LayoutContainer from "../../../molecules/layouts/section/LayoutContainer";
 import Container from "../../../atom/container/Container";
+import Header from "../../../molecules/Header/Header";
 
 export default function ClosedLocal({ open }) {
   const [allOrders, setAllOrders] = useState([]);
   const comerceId = useSelector((state) => state.user_internal.comerceId);
   const dateCurrent = getDateCurrent();
   const [filterClickedButton, setFilterClickedButton] = useState("Todos"); //filtrado
-  useEffect(
-    () => {
-      const fetchData = async () => {
-          await axios(
-            `order/paidOrderes/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`
-          )
-            .then((response) => {
-              const data = response.data;
-              setAllOrders(data);
-            })
-            .catch((error) => {
-              console.error("Error al realizar la solicitud:", error);
-            });
-      };
-      fetchData();
-    },
-    []
-  );
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios(
+        `order/paidOrderes/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`
+      )
+        .then((response) => {
+          const data = response.data;
+          setAllOrders(data);
+        })
+        .catch((error) => {
+          console.error("Error al realizar la solicitud:", error);
+        });
+    };
+    fetchData();
+  }, []);
 
   const statusTables = (status) => {
     //filtra por status
@@ -38,21 +36,26 @@ export default function ClosedLocal({ open }) {
   };
   return (
     <Container>
-    <div className={s.centered_content}>
-      <Store heigth={"36px"} />
+      <div className={s.centered_content}>
+        {/*       <Store heigth={"36px"} />
       <h2>{"Local cerrado"}</h2>
       <span>{"Abre el local para comenzar"}</span>
       <br />
-      <span>{" a recibir pedidos"}</span>
-      {/*         <OpenLocal /> */}
-      {statusTables("orderPlaced").length > 0 ||
-      statusTables("orderInPreparation").length ||
-      statusTables("orderReady").length ? (
-        <LayoutContainer>
-          <LayoutDashboard interval={true} />
-        </LayoutContainer>
-      ) : null}
-    </div>
-      </Container>
+      <span>{" a recibir pedidos"}</span> */}
+        <Header
+          off
+          icon="storeClosed"
+          title={"Local cerrado"}
+          detail={`Mientras tu local esté cerrado no llegarán \n pedidos nuevos`}
+        />
+        {statusTables("orderPlaced").length > 0 ||
+        statusTables("orderInPreparation").length ||
+        statusTables("orderReady").length ? (
+          <LayoutContainer>
+            <LayoutDashboard interval={true} />
+          </LayoutContainer>
+        ) : null}
+      </div>
+    </Container>
   );
 }
