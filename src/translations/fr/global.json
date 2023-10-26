@@ -1,0 +1,161 @@
+{
+  "singn in": {
+    "take the first step": "Faites le premier pas",
+    "login using your Google email": "Connectez-vous avec votre email Google",
+    "login with Google": "Se connecter avec Google",
+    "speed is": "La vitesse est",
+    "our plate": "Notre plat",
+    "strong": "fort",
+    "select a language": "Sélectionnez une langue"
+  },
+  "welcome": {
+    "welcome": "Bienvenue!",
+    "now you can start receiving orders": "Maintenant, vous pouvez commencer à recevoir des commandes",
+    "start": "Commencer"
+  },
+  "nav": {
+    "operation screen": "Écran d'opération",
+    "menu": "Menu",
+    "sales": "Ventes",
+    "history": "Historique",
+    "setting": "Paramètres",
+    "open or close local": "Ouvrir ou fermer le local"
+  },
+  "header": {
+    "open local": {
+      "orders received": "Commandes reçues",
+      "your orders are here in order of entry": "Vos commandes sont ici dans l'ordre d'arrivée"
+    },
+    "closed local": {
+      "premises closed": "Local fermé",
+      "open the store to start": "Tant que votre magasin est fermé, vous ne recevrez pas",
+      "to receive orders": "de nouvelles commandes"
+    },
+    "menu": {
+      "text": "Menu",
+      "detail": "Gérez votre menu à partir d'ici"
+    },
+    "sales": {
+      "text": "Ventes",
+      "detail": "Ici se trouvent vos ventes"
+    },
+    "history": {
+      "text": "Historique",
+      "detail": "Ici se trouvent vos commandes livrées"
+    },
+    "setting": {
+      "text": "Paramètres",
+      "detail": "Ici se trouvent vos données, plans et paramètres généraux"
+    }
+  },
+  "dashboard": {
+    "all": "Tout",
+    "local orders": "Commandes locales",
+    "platform orders": "Commandes par plateforme",
+    "new": "Nouvelles",
+    "preparing": "Préparation",
+    "ready": "Prêt"
+  },
+  "sales": {
+    "this week": "Cette semaine",
+    "weekly Total": "Total hebdomadaire : $",
+    "today": "Aujourd'hui",
+    "today you sold": "Aujourd'hui, vous avez vendu",
+    "today you received": "Aujourd'hui, vous avez reçu",
+    "orders": "commandes"
+  },
+  "history": {
+    "today": "Aujourd'hui",
+    "until": "Jusqu'à",
+    "select a date": "Sélectionnez une date"
+  },
+  "menu": {
+    "manage current menu": "Gérez le menu actuel",
+    "delete current menu": "Supprimez le menu actuel",
+    "download menu template": "Téléchargez le modèle de menu",
+    "local logo": "Logo du local",
+    "menu item": {
+      "category": "Catégorie",
+      "products": "Produits",
+      "add product": "Ajouter un produit",
+      "emoji": "Émoji",
+      "product": "Produit",
+      "price": "Prix",
+      "on/off": "Activé/Désactivé"
+    },
+    "delete menu current": {
+      "file": "Menu.xlm",
+      "modal": {
+        "do you want to delete the menu": "Voulez-vous supprimer le menu ?",
+        "if you delete the menu you must upload another one": "Si vous supprimez le menu, vous devez en charger un autre.",
+        "in the meantime, your store will remain closed": "Pendant ce temps, votre magasin restera fermé.",
+        "confirm": "Oui, Supprimer",
+        "cancel": "Annuler"
+      }
+    },
+    "download template": {
+      "download template": "Télécharger le modèle"
+    },
+    "logo local": {
+      "file": "LogoBStore.jpg",
+      "replace image": "Remplacez l'image"
+    }
+  },
+  "config": {
+    "select": {
+      "personal data": "Données personnelles",
+      "business data": "Données commerciales",
+      "payment market": "Paiement du marché"
+    },
+    "personal data": {
+      "title": "Données personnelles",
+      "input_1": "Nom et Prénom",
+      "input_2": "Téléphone"
+    },
+    "business data": {
+      "title": "Données commerciales",
+      "input_1": "Nom de l'entreprise",
+      "input_2": "Téléphone"
+    },
+    "payment market": {
+      "title": "Paiement du marché",
+      "input_1": "Alias",
+      "input_2": "Clé du paiement du marché"
+    }
+  },
+  "card": {
+    "order placed": "Passer à la préparation",
+    "order in preparation": "Passer à prêt",
+    "order ready": "Passer à livré",
+    "delivered": "Livré",
+    "sector": "Secteur",
+    "table": "Table",
+    "order": "Commande",
+    "received at": "Reçu à",
+    "total": "Total",
+    "observations": "Observations"
+  },
+  "instructions": {
+    "title": "Commençons avec votre menu",
+    "sub title": "Essayez de suivre les étapes avant de commencer à opérer",
+    "steps": {
+      "step_1": "Téléchargez notre modèle de menu",
+      "step_2": "Téléchargez votre menu une fois que vous avez enregistré les produits",
+      "step_3": "Téléchargez l'image de votre logo",
+      "step_4": "Ouvrez votre magasin pour commencer à vendre !",
+      "text_1": "Télécharger le modèle",
+      "text_2": "Télécharger le menu",
+      "text_3": "Télécharger l'image du logo du local",
+      "text_3_1": "Conditions :",
+      "text_3_2": "- Votre image doit être carrée (rapport 1:1)",
+      "text_3_3": "- Format : JPG",
+      "text_3_4": "- Taille maximale du fichier : 100 Ko",
+      "text_3_5": "Télécharger l'image",
+      "text_4": "Ouvrez et fermez votre magasin à la demande"
+    },
+    "button": {
+      "i need help": "J'ai besoin d'aide",
+      "continue": "Continuer"
+    }
+  }
+}

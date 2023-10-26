@@ -1,54 +1,162 @@
 {
-  "internal": {
-    "auth": {
-      "googleAcces": "Accede con Google",
-      "or": "O bien",
-      "name": "Nombre",
-      "email": "Email",
-      "password": "Contraseña",
-      "confirmpassword": "Confirmar contraseña",
-      "forgot": "Olvidé mi contraseña",
-      "login": "Iniciar Sesión",
-      "register": "Registrarse"
+  "singn in":{
+    "take the first step":"Take the first step",
+    "login using your Google email":"Login using your Google email",
+    "login with Google":"Login with Google",
+    "speed is":"Speed is",
+    "our plate":"Our plate",
+    "strong":"strong",
+    "select a language":"Select a language"
+  },
+  "welcome":{
+    "welcome":"¡Welcome!",
+    "now you can start receiving orders":"Now you can start receiving orders",
+    "start":"Start"
+  },
+  "nav": {
+    "operation screen": "Operation screen",
+    "menu": "Menu",
+    "sales": "Sales",
+    "history": "History",
+    "setting": "Setting",
+    "open or close local": "Open or close local"
+  },
+  "header": {
+    "open local": {
+      "orders received": "Orders received",
+      "your orders are here in order of entry": "Your orders are here in order of entry"
     },
-    "nav": {
-      "operation screen": "Pantalla de operación",
-      "Menu": "Menú",
-      "Sales": "Ventas",
-      "History": "Historial",
-      "Setting": "Configuración",
-      "Open or close local": "Abre o cierra local"
+    "closed local": {
+      "premises closed": "Premises closed",
+      "open the store to start": "Open the store to start",
+      "to receive orders": "to receive orders"
     },
-    "header": {
-      "open local": {
-        "orders received":"Pedidos recibidos",
-        "Your orders are here in order of entry":"Tus pedidos estan aqui por orden de ingreso"
-      },
-      "closed local":{
-        "premises closed":"Local cerrado",
-        "Open the store to start":"Abre el local para comenzar",
-        "to receive orders":" a recibir pedidos"
-      },
-      "menu":{
-        "detail":"Gestiona tu menú desde aquí"
-      },
-      "sales":{
-        "detail":"Aquí se encuentran tus ventas"
-      },
-      "history":{
-        "detail":"Aquí están tus pedidos entregados"
-      },
-      "setting":{
-        "detail":"Aquí están tus datos, planes y configuraciones generales"
-      }
+    "menu": {
+      "text":"Menu",
+      "detail": "Manage your menu from here"
     },
     "sales": {
-      "This week": "This week",
-      "Weekly Total": "Weekly Total",
-      "Today": "Today",
-      "today you sold": "today you sold",
-      "today you received": "today you received",
-      "orders": "orders"
-    }    
-  }
+      "text":"Sales",
+      "detail": "Here are your sales"
+    },
+    "history": {
+      "text":"History",
+      "detail": "Here are your orders delivered"
+    },
+    "setting": {
+      "text":"Setting",
+      "detail": "Here are your data, plans and general settings"
+    }
+  },
+  "dashboard": {
+    "all": "All",
+    "local orders": "Local orders",
+    "platform orders": "Platform orders",
+    "new": "New",
+    "preparing": "Preparing",
+    "ready": "Ready"
+  },
+  "sales": {
+    "this week": "This week",
+    "weekly Total": "Weekly Total: $",
+    "today": "Today",
+    "today you sold": "Today you sold",
+    "today you received": "Today you received",
+    "orders": "Orders"
+  },
+  "history": {
+    "today": "Today",
+    "until": "Until",
+    "select a date": "Select a date"
+  },
+  "menu": {
+    "manage current menu": "Manage current menu",
+    "delete current menu": "Delete current menu",
+    "download menu template": "Download menu template",
+    "local logo": "Local logo",
+    "menu item": {
+      "category": "Category",
+      "products": "Products",
+      "add product": "Add Product",
+      "emoji": "Emoji",
+      "product": "Product",
+      "price": "Price",
+      "on/off": "On/Off"
+    },
+    "delete menu current": {
+      "file": "Menu.xlm",
+      "modal": {
+        "do you want to delete the menu": "Do you want to delete the menu?",
+        "if you delete the menu you must upload another one": "If you delete the menu you must upload another one.",
+        "in the meantime, your store will remain closed": "In the meantime, your store will remain closed.",
+        "confirm":"Yes, Delete",
+        "cancel":"Cancel"
+      }
+    },
+    "download template":{
+      "download template":"Download template"
+    },
+    "logo local":{
+      "file":"LogoBStore.jpg",
+      "replace image":"Replace image"
+    }
+  },
+  "config":{
+    "select":{
+      "personal data":"Personal data",
+      "business data":"Business data",
+      "payment market":"payment market"
+    },
+    "personal data":{
+      "title":"Personal data",
+      "input_1":"Name and Surname",
+      "input_2":"phone"
+    },
+    "business data":{
+      "title":"Business data",
+      "input_1":"Business name",
+      "input_2":"phone"
+    },
+    "payment market":{
+      "title":"Mercado pago",
+      "input_1":"Alias",
+      "input_2":"Key mercado pago"
+    }
+  },
+  "card": {
+    "order placed": "Order placed",
+    "order in preparation": "Order in preparation",
+    "order ready": "Order ready",
+    "delivered": "delivered",
+    "sector": "Sector",
+    "table": "Table",
+    "order": "Order",
+    "received at": "Received at",
+    "total": "Total",
+    "observations":"Observations"
+  },
+  "instructions": {
+    "title": "Let's Start with Your Menu",
+    "sub title": "Try to complete the steps before beginning operations",
+    "steps": {
+        "step_1": "Download our menu template",
+        "step_2": "Upload your menu once you've saved the products",
+        "step_3": "Upload your local logo image",
+        "step_4": "Open your establishment to start selling!",
+        "text_1": "Download Template",
+        "text_2": "Upload Menu",
+        "text_3": "Upload your local logo image",
+        "text_3_1": "Conditions:",
+        "text_3_2": "- Your image must be square (1:1 ratio)",
+        "text_3_3": "- Format: JPG",
+        "text_3_4": "- Maximum file size: 100KB",
+        "text_3_5": "Upload Image",
+        "text_4": "Open and close your establishment on demand"
+    },
+    "button": {
+        "i need help": "I need help",
+        "continue": "Continue"
+    }
+}
+
 }

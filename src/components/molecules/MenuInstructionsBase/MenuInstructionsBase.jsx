@@ -4,29 +4,31 @@ import UploadMenuTitle from '../../atom/UploadMenuTitle/UploadMenuTitle';
 import InstructionButton from '../InstructionButton/InstructionButton';
 import MenuStep from '../MenuStep/MenuStep';
 import s from './MenuInstructionsBase.module.scss';
+import { useTranslation } from 'react-i18next';
 
 export default function MenuInstructionsBase() {
+  const [t,i18n]=useTranslation("global");
   return (
     <InstructionContainer>
       <main className={s.mainContainer}>
         <div className={s.textContainer}>
-          <UploadMenuTitle text={"Empecemos con tu menú"} />
+          <UploadMenuTitle text={t("instructions.title")} />
           <LineText
-            text={"Intenta cumplir con los pasos antes de empezar a operar"}
+            text={t("instructions.sub title")}
             centered={true}
             bold={true}
           />
-          <MenuStep light={true} number={1} text={"Descarga nuestra plantilla para menú"} />
+          <MenuStep light={true} number={1} text={t("instructions.steps.step_1")} />
           <MenuStep light={true}
             number={2}
-            text={"Sube tu menú unas vez que hayas guardado los productos"}
+            text={t("instructions.steps.step_2")}
           />
-          <MenuStep light={true} number={3} text={"Sube la imagen de tu logo"} />
-          <MenuStep light={true} number={4} text={"¡Abre tu local para empezar a vender!"} />
+          <MenuStep light={true} number={3} text={t("instructions.steps.step_3")} />
+          <MenuStep light={true} number={4} text={t("instructions.steps.step_4")} />
         </div>
         <InstructionButton
-          helpText={"Necesito ayuda"}
-          text={"Continuar"}
+          helpText={t("instructions.button.i need help")}
+          text={t("instructions.button.continue")}
           path={"/instructions/download"}
         />
       </main>

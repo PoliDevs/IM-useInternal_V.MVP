@@ -1,55 +1,162 @@
 {
-  "internal": {
-    "auth": {
-      "googleAcces": "Accede con Google",
-      "or": "O bien",
-      "name": "Nombre",
-      "email": "Email",
-      "password": "Contraseña",
-      "confirmpassword": "Confirmar contraseña",
-      "forgot": "Olvidé mi contraseña",
-      "login": "Iniciar Sesión",
-      "register": "Registrarse"
+    "singn in": {
+      "take the first step": "Dê o primeiro passo",
+      "login using your Google email": "Faça login usando seu e-mail do Google",
+      "login with Google": "Acesse com o Google",
+      "speed is": "A velocidade é",
+      "our plate": "Nosso prato",
+      "strong": "forte",
+      "select a language": "Selecione um idioma"
+    },
+    "welcome": {
+      "welcome": "Bem-vindo!",
+      "now you can start receiving orders": "Agora você pode começar a receber pedidos",
+      "start": "Começar"
     },
     "nav": {
-      "operation screen": "Pantalla de operación",
-      "Menu": "Menú",
-      "Sales": "Ventas",
-      "History": "Historial",
-      "Setting": "Configuración",
-      "Open or close local": "Abre o cierra local"
+      "operation screen": "Tela de operação",
+      "menu": "Cardápio",
+      "sales": "Vendas",
+      "history": "Histórico",
+      "setting": "Configurações",
+      "open or close local": "Abrir ou fechar local"
     },
     "header": {
       "open local": {
-        "orders received":"Pedidos recibidos",
-        "Your orders are here in order of entry":"Tus pedidos estan aqui por orden de ingreso"
+        "orders received": "Pedidos recebidos",
+        "your orders are here in order of entry": "Seus pedidos estão aqui na ordem de entrada"
       },
-      "closed local":{
-        "premises closed":"Local cerrado",
-        "Open the store to start":"Abre el local para comenzar",
-        "to receive orders":" a recibir pedidos"
+      "closed local": {
+        "premises closed": "Local fechado",
+        "open the store to start": "Enquanto sua loja estiver fechada, você não receberá",
+        "to receive orders": "novos pedidos"
       },
-      "menu":{
-        "detail":"Gestiona tu menú desde aquí"
+      "menu": {
+        "text": "Cardápio",
+        "detail": "Gerencie seu cardápio daqui"
       },
-      "sales":{
-        "detail":"Aquí se encuentran tus ventas"
+      "sales": {
+        "text": "Vendas",
+        "detail": "Aqui estão suas vendas"
       },
-      "history":{
-        "detail":"Aquí están tus pedidos entregados"
+      "history": {
+        "text": "Histórico",
+        "detail": "Aqui estão seus pedidos entregues"
       },
-      "setting":{
-        "detail":"Aquí están tus datos, planes y configuraciones generales"
+      "setting": {
+        "text": "Configuração",
+        "detail": "Aqui estão seus dados, planos e configurações gerais"
       }
     },
+    "dashboard": {
+      "all": "Todos",
+      "local orders": "Pedidos locais",
+      "platform orders": "Pedidos por plataforma",
+      "new": "Novos",
+      "preparing": "Preparando",
+      "ready": "Pronto"
+    },
     "sales": {
-      "This week": "Esta semana",
-      "Weekly Total": "Total semanal",
-      "Today": "Hoje",
-      "today you sold": "hoje você vendeu",
-      "today you received": "hoje você recebeu",
+      "this week": "Esta semana",
+      "weekly Total": "Total semanal: $",
+      "today": "Hoje",
+      "today you sold": "Hoje você vendeu",
+      "today you received": "Hoje você recebeu",
       "orders": "pedidos"
+    },
+    "history": {
+      "today": "Hoje",
+      "until": "Até",
+      "select a date": "Selecione uma data"
+    },
+    "menu": {
+      "manage current menu": "Gerenciar cardápio atual",
+      "delete current menu": "Excluir cardápio atual",
+      "download menu template": "Baixar modelo de cardápio",
+      "local logo": "Logo do local",
+      "menu item": {
+        "category": "Categoria",
+        "products": "Produtos",
+        "add product": "Adicionar produto",
+        "emoji": "Emoji",
+        "product": "Produto",
+        "price": "Preço",
+        "on/off": "Ligar/Desligar"
+      },
+      "delete menu current": {
+        "file": "Menu.xlm",
+        "modal": {
+          "do you want to delete the menu": "Deseja excluir o cardápio?",
+          "if you delete the menu you must upload another one": "Se você excluir o cardápio, deverá fazer upload de outro.",
+          "in the meantime, your store will remain closed": "Enquanto isso, sua loja permanecerá fechada.",
+          "confirm": "Sim, Excluir",
+          "cancel": "Cancelar"
+        }
+      },
+      "download template": {
+        "download template": "Baixar modelo"
+      },
+      "local logo": {
+        "file": "LogoBStore.jpg",
+        "replace image": "Substituir imagem"
+      }
+    },
+    "config": {
+      "select": {
+        "personal data": "Dados pessoais",
+        "business data": "Dados do negócio",
+        "payment market": "Mercado Pago"
+      },
+      "personal data": {
+        "title": "Dados pessoais",
+        "input_1": "Nome e Sobrenome",
+        "input_2": "Telefone"
+      },
+      "business data": {
+        "title": "Dados do negócio",
+        "input_1": "Nome do negócio",
+        "input_2": "Telefone"
+      },
+      "payment market": {
+        "title": "Mercado Pago",
+        "input_1": "Apelido",
+        "input_2": "Chave do Mercado Pago"
+      }
+    },
+    "card": {
+      "order placed": "Mover para preparando",
+      "order in preparation": "Mover para pronto",
+      "order ready": "Mover para entregue",
+      "delivered": "Entregue",
+      "sector": "Setor",
+      "table": "Mesa",
+      "order": "Pedido",
+      "received at": "Recebido às",
+      "total": "Total",
+      "observations": "Observações"
+    },
+    "instructions": {
+      "title": "Vamos começar com seu cardápio",
+      "sub title": "Tente seguir as etapas antes de começar a operar",
+      "steps": {
+        "step_1": "Baixe o modelo do cardápio",
+        "step_2": "Faça o upload do cardápio após salvar os produtos",
+        "step_3": "Faça o upload da imagem do logotipo do seu estabelecimento",
+        "step_4": "Abra seu estabelecimento para começar a vender!",
+        "text_1": "Baixar modelo",
+        "text_2": "Carregar cardápio",
+        "text_3": "Carregar a imagem do logotipo do local",
+        "text_3_1": "Condições:",
+        "text_3_2": "- Sua imagem deve ser quadrada (proporção 1:1)",
+        "text_3_3": "- Formato: JPG",
+        "text_3_4": "- Tamanho máximo de arquivo: 100KB",
+        "text_3_5": "Carregar imagem",
+        "text_4": "Abra e feche seu estabelecimento conforme a demanda"
+      },
+      "button": {
+        "i need help": "Preciso de ajuda",
+        "continue": "Continuar"
+      }
     }
-    
   }
-}
+  

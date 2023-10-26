@@ -17,16 +17,48 @@ import Sales from "./components/pages/sales/Sales";
 
 import Menu from "./components/pages/menu/Menu";
 import "semantic-ui-css/semantic.min.css";
-// import Favicon from 'react-favicon';
 import { useState } from "react";
 import axios from "axios";
 import QrGenerator from "./components/molecules/QrCodeGenerator/QrCodeGenerator.jsx";
 //axios.defaults.baseURL = "http://localhost:3001/";
 axios.defaults.baseURL='https://nodejs-production-bbf9.up.railway.app';
 
-function App() {
-  const [unreadMessages, setUnreadMessages] = useState(`${4}`);
+import i18next from "i18next";
+import global_es from "./translations/es/global.json";
+import global_en from "./translations/en/global.json";
+import global_pt from "./translations/pt/global.json";
+import global_pt_bra from "./translations/pt-br/global.json";
+import global_fr from "./translations/fr/global.json";
+import global_it from "./translations/it/global.json";
 
+function App() {
+  //?
+  const language=useSelector(state=>state.language)
+  i18next.init({
+    interpolation: { escapeValue: false },
+    lng: language,
+    resources: {
+      es: {
+        global: global_es,
+      },
+      en: {
+        global: global_en,
+      },
+      pt: {
+        global: global_pt,
+      },
+      pt_bra: {
+        global: global_pt_bra,
+      },
+      fr: {
+        global: global_fr,
+      },
+      it: {
+        global: global_it,
+      },
+    },
+  });
+  //?
   const user_internal = useSelector((state) => state.user_internal);
   const location = useLocation();
 
@@ -35,7 +67,6 @@ function App() {
   return (
     <>
       {shouldShowNav&&<Nav/>}
-      {/* {shouldShowNav&&<Favicon url="/vite.svg" alertCount={unreadMessages} badgePosition="bottom-left"/>} */}
      
       <Routes>
         <Route path="/singn_in" element={<Login />} />

@@ -11,8 +11,10 @@ import * as XLSX from "xlsx";
 import s from "./InstructionTwo.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { postMenu } from "../../../redux/actions";
+import { useTranslation } from "react-i18next";
 
 export default function InstructionTwo() {
+  const [t,i18n]=useTranslation("global");
   const [file, setFile] = useState(null);
   const [menu, setMenu] = useState(null);
   const [comercio, setComercio] = useState(null);
@@ -91,6 +93,7 @@ export default function InstructionTwo() {
   };
 
   const formattedCommerce = () => {
+    console.log(comercio)
     setComercio(
       comercio.map((d) => {
         d["Nombre de comercio"] ? (d["name"] = d["Nombre de comercio"]) : "";
@@ -148,15 +151,15 @@ export default function InstructionTwo() {
     <InstructionContainer>
       <main className={s.mainContainer}>
         <div className={s.textContainer}>
-          <UploadMenuTitle text={"Empecemos con tu menú"} />
+          <UploadMenuTitle text={t("instructions.title")} />
           <LineText
-            text={"Intenta cumplir con los pasos antes de empezar a operar"}
+            text={t("instructions.sub title")}
             centered={true}
             bold={true}
           />
           <MenuStep
             number={2}
-            text={"Sube  tu menú una vez que hayas guardado tus productos"}
+            text={t("instructions.steps.step_2")}
           />
           <>
             {submiting ? (
@@ -165,7 +168,7 @@ export default function InstructionTwo() {
               <File
                 step={2}
                 typeIcon={"upload"}
-                text={"Subir menú"}
+                text={t("instructions.steps.text_2")}
                 file={file}
                 setFile={setFile}
                 menu={menu}
@@ -188,8 +191,8 @@ export default function InstructionTwo() {
           </>
         </div>
         <InstructionButton
-          helpText={"Necesito ayuda"}
-          text={"Continuar"}
+          helpText={t("instructions.button.i need help")}
+          text={t("instructions.button.continue")}
           path={menu && !error && "/instructions/image"}
           handleClick={handleClick}
         />

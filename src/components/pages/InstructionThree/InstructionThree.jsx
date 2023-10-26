@@ -7,8 +7,10 @@ import MenuStep from "../../molecules/MenuStep/MenuStep";
 import File from "../../molecules/File/File";
 import InstructionButton from "../../molecules/InstructionButton/InstructionButton";
 import s from "./InstructionThree.module.scss";
+import { useTranslation } from "react-i18next";
 
 export default function InstructionThree() {
+  const [t,i18n]=useTranslation("global");
   const [file, setFile] = useState(null);
   const [image, setImage] = useState(null);
   const [submiting, setSubmiting] = useState(false);
@@ -27,23 +29,23 @@ export default function InstructionThree() {
     <InstructionContainer>
       <main className={s.mainContainer}>
         <div className={s.textContainer}>
-          <UploadMenuTitle text={"Empecemos con tu menú"} />
+          <UploadMenuTitle text={t("instructions.title")} />
           <LineText
-            text={"Intenta cumplir con los pasos antes de empezar a operar"}
+            text={t("instructions.sub title")}
             centered={true}
             bold={true}
           />
           <MenuStep
             number={3}
             text={
-              "Sube la imagen del logo de tu local \ncondiciones: \n -Tu imagen debe ser cuadrada 1:1 \n -Formato JPG \n -Peso maximo: 100KB"
+              `${t("instructions.steps.text_3")} \n${t("instructions.steps.text_3_1")} \n ${t("instructions.steps.text_3_2")}\n ${t("instructions.steps.text_3_3")} \n ${t("instructions.steps.text_3_4")}`
             }
           />
           <>
             <File
               step={3}
               typeIcon={"upload"}
-              text={"Subir imagen"}
+              text={t("instructions.steps.text_3_5")}
               file={file}
               setFile={setFile}
               menu={image}
@@ -65,8 +67,8 @@ export default function InstructionThree() {
           </>
         </div>
         <InstructionButton
-          helpText={"Necesito ayuda"}
-          text={"Continuar"}
+          helpText={t("instructions.button.i need help")}
+          text={t("instructions.button.continue")}
           path={/* file && */ "/instructions/onDemand"}
           handleClick={handleClick}
         />

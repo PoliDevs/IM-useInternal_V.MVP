@@ -5,10 +5,14 @@ import { useDispatch,useSelector } from "react-redux";
 import { useEffect} from "react";
 import { getMenuActive } from "../../../redux/actions";
 import logo from "../../../assets/logo_imenu_blanco.png"
+import { useTranslation } from "react-i18next";
 /* import WelcomeModal from "../../molecules/modals/welcomeModal/WelcomeModal"; */
 
 export default function Welcome() {
   const user_internal = useSelector((state) => state.user_internal);
+  const language=useSelector(state=>state.language)
+  console.log(language)
+  const [t,i18n]=useTranslation("global")
   const dispatch=useDispatch();
 /*   const [modal,setModal]=useState(false);
 
@@ -27,12 +31,12 @@ const handleModal=()=>{
           <div className={s.logo}>
             <img src={logo} alt="IMENU" />
           </div>
-          <HugeTitle text={"¡Bienvenido!"} />
-          <p className={s.paragraph}>Ahora puedes comenzar a recibir pedidos</p>
+          <HugeTitle text={t("welcome.welcome")} />
+          <p className={s.paragraph}>{t("welcome.now you can start receiving orders")}</p>
         </div>
         <div className={`${s.frame} ${s.right}`}></div>
       </div>
-      <WelcomeButton text={"Comenzar"} path={"/dashboard"} />
+      <WelcomeButton text={t("welcome.start")} path={"/dashboard"} />
       {/* { !modal?<WelcomeModal handleModal={handleModal}/> :null} */}
     </div>
   );

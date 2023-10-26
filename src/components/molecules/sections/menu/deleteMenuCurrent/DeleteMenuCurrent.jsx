@@ -2,8 +2,10 @@ import React from "react";
 import MenuStep from "../../../MenuStep/MenuStep";
 import Modal from "../../../modals/menuDeleteModal/Modal";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export default function DeleteMenuCurrent() {
+  const [t,i18n]=useTranslation("global");
   const [modal, setModal] = useState(false);
   
   const handleModal = () => {
@@ -23,7 +25,7 @@ export default function DeleteMenuCurrent() {
   return (
     <>
       <MenuStep
-        text={"Menu.xlm"}
+        text={t("menu.delete menu current.file")}
         icon_1={"ArrowDownload"}
         onClick_icon_1={handleDowload}
         className={"menu_option"}
@@ -34,10 +36,12 @@ export default function DeleteMenuCurrent() {
       <Modal
       open={modal}
       //open={true}
-      title={"¿Deseas eliminar el menú?"}
-      text={"Si eliminas el menú debes subir otro."}
-      text_2={"Mientras tanto tu local permanecerá cerrado"}
+      title={t("menu.delete menu current.modal.do you want to delete the menu")}
+      text={t("menu.delete menu current.modal.if you delete the menu you must upload another one")}
+      text_2={t("menu.delete menu current.modal.in the meantime, your store will remain closed")}
       handleModal={handleModal}
+      text_cancel={t("menu.delete menu current.modal.cancel")}
+      text_confirm={t("menu.delete menu current.modal.confirm")}
       />
       :null}
       </>

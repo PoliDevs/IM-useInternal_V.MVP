@@ -9,9 +9,13 @@ import { useState,useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Loading from "../../atom/loading/Loading";
+import { useTranslation } from "react-i18next";
 
 export default function MenuItem() {
-  const [filterClickedButton, setFilterClickedButton] = useState("Categoria");
+  const [t,i18n]=useTranslation("global");
+  const category=t("menu.menu item.category")
+  const products=t("menu.menu item.products")
+  const [filterClickedButton, setFilterClickedButton] = useState(category);
   const [menu,setMenu]=useState(false);
 /*   console.log(menu) */
   const comerceId=useSelector(state=>state.user_internal.comerceId);
@@ -51,27 +55,25 @@ export default function MenuItem() {
     <div className={s.menuItemContainer}>
       <div>
         <ButtonGreen
-          text={"Categoria"}
-          active={filterClickedButton === "Categoria"}
-          onClick={() => setFilterClickedButton("Categoria")}
+          text={category}
+          active={filterClickedButton === category}
+          onClick={() => setFilterClickedButton(category)}
         ></ButtonGreen>
         <ButtonGreen
-          text={"Productos"}
-          active={filterClickedButton === "Productos"}
-          onClick={() => setFilterClickedButton("Productos")}
+          text={products}
+          active={filterClickedButton === products}
+          onClick={() => setFilterClickedButton(products)}
         ></ButtonGreen>
       </div>
       <br />
-      <Button primary size="huge">
-        Agregar Producto
-      </Button>
+      <Button primary size="huge">{t("menu.menu item.add product")}</Button>
       <div>
         <div className={s.content_menu_table}>
           <section className={s.menu_opciones}>
-            <LineText text={"Emoji"} secundary={true}  />
-            <LineText text={"Producto"} secundary={true}  />
-            <LineText text={"Precio"} secundary={true}  />
-            <LineText text={"On/Off"} secundary={true} />
+            <LineText text={t("menu.menu item.emoji")} secundary={true}  />
+            <LineText text={t("menu.menu item.product")} secundary={true}  />
+            <LineText text={t("menu.menu item.price")} secundary={true}  />
+            <LineText text={t("menu.menu item.on/off")} secundary={true} />
           </section>
           <div className={s.menu_table}>
             {!menu?<Loading/>:menu.map((item, index) => (

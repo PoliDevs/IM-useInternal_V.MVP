@@ -4,7 +4,7 @@ import Title from "../../../atom/Title/Title";
 import { Button } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
 
-export default function Modal({ open, title, text, text_2, handleModal }) {
+export default function Modal({ open, title, text, text_2, handleModal,text_confirm,text_cancel }) {
   const navigate = useNavigate();
 
   const deleteMenu = () => {
@@ -47,9 +47,9 @@ export default function Modal({ open, title, text, text_2, handleModal }) {
             </div>
             <div className={s.content_buttons}>
               <Button secondary onClick={() => handleModal()}>
-                Cancelar
+                {text_cancel}
               </Button>
-              <Button primary onClick={deleteMenu}>Si , Eliminar</Button>
+              <Button primary onClick={deleteMenu}>{text_confirm}</Button>
             </div>
           </div>
         </>

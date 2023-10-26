@@ -22,7 +22,8 @@ const todayDate=getDateCurrent();
   //nesesito filtrar las ordenes para que me queden solo las delivered
   const orderDelivered = orderDate.filter((cur) => cur.status === "delivered");
  /*  console.log(orderDelivered) */
-  const { t, i18n } = useTranslation();
+   //const [t,i18n]=useTranslation("global");
+   const [t,i18n]=useTranslation("global");
 
   useEffect(() => {
 /*     const timeout = setTimeout(() => { */
@@ -72,7 +73,7 @@ const todayDate=getDateCurrent();
           <div>
               <div className={s.content_date}>
                 <span className={s.date}>
-                  {selectDate===todayDate?"hoy":selectDate/* .split("-").reverse().join("/") */ /* .toLocaleDateString(i18n.language, {
+                  {selectDate===todayDate?t("history.today") :selectDate/* .split("-").reverse().join("/") */ /* .toLocaleDateString(i18n.language, {
                     day: "numeric",
                     month: "numeric",
                     year: "numeric",

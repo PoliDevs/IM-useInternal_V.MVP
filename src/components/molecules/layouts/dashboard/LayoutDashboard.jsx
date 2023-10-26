@@ -6,12 +6,19 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import ButtonGreen from "../../../atom/buttons/ButtonGreen";
 import { getDateCurrent } from "../../../../utils/functions";
+import { useTranslation } from "react-i18next";
 
 export default function LayoutDashboard({ interval }) {
+const [t,i18n]=useTranslation("global")
+const all=t("dashboard.all")
+const localOrders=t("dashboard.local orders")
+const platformOrders=t("dashboard.platform orders")
+
+
   const comerceId = useSelector((state) => state.user_internal.comerceId);
   const [allOrders, setAllOrders] = useState([]); // Almacenamos todas las ordenes
   const dateCurrent = getDateCurrent(); //fecha actual
-  const [filterClickedButton, setFilterClickedButton] = useState("Todos"); //filtrado
+  const [filterClickedButton, setFilterClickedButton] = useState(all); //filtrado
   const [cardStatusChanged, setCardStatusChanged] = useState(false);
 
   // Función para manejar cambios de estado en las tarjetas
@@ -69,9 +76,9 @@ export default function LayoutDashboard({ interval }) {
     const fetchData = async () => {
       let endpoint;
 
-      if (filterClickedButton === "Pedidos en local") {
+      if (filterClickedButton === localOrders) {
         endpoint = `order/orderesNotDelivery/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`;
-      } else if (filterClickedButton === "Pedidos por plataforma") {
+      } else if (filterClickedButton === platformOrders) {
         endpoint = `order/orderesDelivery/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`;
       } else {
         endpoint = `order/paidOrderes/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`;
@@ -108,37 +115,37 @@ export default function LayoutDashboard({ interval }) {
     <div className={s.content_LayoutDashboard}>
       <div>
         <ButtonGreen
-          text={"Todos"}
-          active={filterClickedButton === "Todos"}
-          onClick={() => setFilterClickedButton("Todos")}
+          text={all}
+          active={filterClickedButton === all}
+          onClick={() => setFilterClickedButton(all)}
         />
         <ButtonGreen
-          text={"Pedidos en local"}
-          active={filterClickedButton === "Pedidos en local"}
-          onClick={() => setFilterClickedButton("Pedidos en local")}
+          text={localOrders}
+          active={filterClickedButton === localOrders}
+          onClick={() => setFilterClickedButton(localOrders)}
         />
         <ButtonGreen
-          text={"Pedidos por plataforma"}
-          active={filterClickedButton === "Pedidos por plataforma"}
-          onClick={() => setFilterClickedButton("Pedidos por plataforma")}
+          text={platformOrders}
+          active={filterClickedButton === platformOrders}
+          onClick={() => setFilterClickedButton(platformOrders)}
         />
       </div>
       <br />
       <div className={s.status_orders}>
         <SubTitleUnderline
-          content={"Nuevos"}
+          content={t("dashboard.new")}
           color={"#4B47FF"}
           number={statusTables("orderPlaced").length}
           status={"#orderPlaced"}
         />
         <SubTitleUnderline
-          content={"Preparando"}
+          content={t("dashboard.preparing")}
           color={"#FF4A4A"}
           number={statusTables("orderInPreparation").length}
           status={"#orderInPreparation"}
         />
         <SubTitleUnderline
-          content={"Listo"}
+          content={t("dashboard.ready")}
           color={"#40CB5F"}
           number={statusTables("orderReady").length}
           status={"#orderReady"}

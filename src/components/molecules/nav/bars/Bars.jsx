@@ -1,28 +1,30 @@
 import Links from "../../../atom/Link/Link";
 import s from "./bars.module.scss";
+import { useTranslation } from "react-i18next";
 
 export default function Bars({ onLinkClick}) {
+  const [t,i18n]=useTranslation("global")
 
   return (
     <div className={s.containerd_bars}>
       <article>
-        <Links to="/dashboard" onClick={onLinkClick} text={"Pantalla de operación"} icon={"store"} >
+        <Links to="/dashboard" onClick={onLinkClick} text={t("nav.operation screen")} icon={"store"} >
         </Links>
       </article>
       <article>
-        <Links to="/menu" onClick={onLinkClick} text={"Menú"} icon={"menu"}>
+        <Links to="/menu" onClick={onLinkClick} text={t("nav.menu")} icon={"menu"}>
         </Links>
       </article>
       <article>
-        <Links to="/sales" onClick={onLinkClick} text={"Ventas"} icon={"sales"}>
+        <Links to="/sales" onClick={onLinkClick} text={t("nav.sales")} icon={"sales"}>
         </Links>
       </article>
       <article>
-        <Links to="/history" onClick={onLinkClick} text={"Historial"} icon={"history"}>
+        <Links to="/history" onClick={onLinkClick} text={t("nav.history")} icon={"history"}>
         </Links>
       </article>
       <article>
-        <Links to="/config" onClick={onLinkClick}  text={"Configuración"} icon={"config"}>
+        <Links to="/config" onClick={onLinkClick}  text={t("nav.setting")} icon={"config"}>
         </Links>
       </article>
     </div>
