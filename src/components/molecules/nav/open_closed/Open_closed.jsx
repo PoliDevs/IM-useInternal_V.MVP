@@ -42,8 +42,8 @@ export default function Open_closed({onBlur}) {
         onChange={handleLocalValue}
         checked={localUiValue}
         className={s.switch}
-        height={43}
-        width={120}
+        height={40}
+        width={100}
         />
         </div>
     </div>

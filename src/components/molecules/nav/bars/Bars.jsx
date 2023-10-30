@@ -27,6 +27,10 @@ export default function Bars({ onLinkClick}) {
         <Links to="/config" onClick={onLinkClick}  text={t("nav.setting")} icon={"config"}>
         </Links>
       </article>
+      <article>
+        <Links to="/QrGenerator" onClick={onLinkClick}  text={t("nav.qr")} icon={"qr"}>
+        </Links>
+      </article>
     </div>
   );
 }

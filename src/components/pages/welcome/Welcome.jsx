@@ -10,8 +10,6 @@ import { useTranslation } from "react-i18next";
 
 export default function Welcome() {
   const user_internal = useSelector((state) => state.user_internal);
-  const language=useSelector(state=>state.language)
-  console.log(language)
   const [t,i18n]=useTranslation("global")
   const dispatch=useDispatch();
 /*   const [modal,setModal]=useState(false);

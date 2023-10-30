@@ -1,5 +1,4 @@
 import { Routes, Route,useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
 import ProtectedRoutes from "./components/atom/ProtectedRoutes/ProtectedRoutes.jsx";
 import Instructions from "./components/pages/Instructions/Instructions.jsx";
 import InstructionOne from "./components/pages/IntructionOne/InstructionOne.jsx";
@@ -14,52 +13,14 @@ import Login from "./components/pages/login/Login.jsx";
 import Config from "./components/pages/config/Config";
 import Nav from "./components/organisms/nav/Nav.jsx";
 import Sales from "./components/pages/sales/Sales";
-
 import Menu from "./components/pages/menu/Menu";
 import "semantic-ui-css/semantic.min.css";
-import { useState } from "react";
 import axios from "axios";
-import QrGenerator from "./components/molecules/QrCodeGenerator/QrCodeGenerator.jsx";
+import GeneratorQr from "./components/pages/generatorQr/GeneratorQr.jsx";
 //axios.defaults.baseURL = "http://localhost:3001/";
 axios.defaults.baseURL='https://nodejs-production-bbf9.up.railway.app';
 
-import i18next from "i18next";
-import global_es from "./translations/es/global.json";
-import global_en from "./translations/en/global.json";
-import global_pt from "./translations/pt/global.json";
-import global_pt_bra from "./translations/pt-br/global.json";
-import global_fr from "./translations/fr/global.json";
-import global_it from "./translations/it/global.json";
-
 function App() {
-  //?
-  const language=useSelector(state=>state.language)
-  i18next.init({
-    interpolation: { escapeValue: false },
-    lng: language,
-    resources: {
-      es: {
-        global: global_es,
-      },
-      en: {
-        global: global_en,
-      },
-      pt: {
-        global: global_pt,
-      },
-      pt_bra: {
-        global: global_pt_bra,
-      },
-      fr: {
-        global: global_fr,
-      },
-      it: {
-        global: global_it,
-      },
-    },
-  });
-  //?
-  const user_internal = useSelector((state) => state.user_internal);
   const location = useLocation();
 
   // Determina si debes mostrar el componente <Nav />
@@ -84,7 +45,8 @@ function App() {
           <Route path="/instructions/uploadMenu" element={<InstructionTwo />} />
           <Route path="/instructions/image" element={<InstructionThree />} />
           <Route path="/instructions/onDemand" element={<InstructionFour />} />
-          <Route path='/QrGenerator' element={<QrGenerator/>}/>
+          {/* <Route path='/QrGenerator' element={<QrGenerator/>}/> */}
+          <Route path='/QrGenerator' element={<GeneratorQr/>}/>
           {/* </Route> */}
         {/* </Route> */}
       </Routes>

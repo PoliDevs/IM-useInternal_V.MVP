@@ -12,7 +12,6 @@ export default function LayoutConfig() {
     const personalData=t("config.select.personal data");
     const businessData=t("config.select.business data");
     const paymentData=t("config.select.payment market");
-    console.log(personalData,businessData,paymentData)
     const [selectedOption, setSelectedOption] = useState(personalData);
     
 /*     const contentDescription = renderContentRight(selectedOption); */
