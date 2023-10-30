@@ -47,7 +47,7 @@ export default function QrGenerator() {
     return objetoCifrado;
   };
 
-  cifrarUrl()
+  //cifrarUrl()
 
   //?descifro la url
   const descifrarUrl = (url) => {
@@ -59,7 +59,7 @@ export default function QrGenerator() {
     return objetoOriginal;
   };
 
-  descifrarUrl()
+  //descifrarUrl()
 
   useEffect(() => {
     dispatch(getAllPos(commerceId));
