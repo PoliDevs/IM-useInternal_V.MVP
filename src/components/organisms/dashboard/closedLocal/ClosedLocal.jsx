@@ -1,6 +1,5 @@
 import s from "./closedLocal.module.scss";
 import { useSelector } from "react-redux";
-import { Store } from "../../../atom/iconsHerocoins/icons";
 import { useState, useEffect } from "react";
 import { getDateCurrent } from "../../../../utils/functions";
 import axios from "axios";
@@ -15,7 +14,7 @@ export default function ClosedLocal({ open }) {
   const [allOrders, setAllOrders] = useState([]);
   const comerceId = useSelector((state) => state.user_internal.comerceId);
   const dateCurrent = getDateCurrent();
-  const [filterClickedButton, setFilterClickedButton] = useState("Todos"); //filtrado
+
   useEffect(() => {
     const fetchData = async () => {
       await axios(
@@ -30,7 +29,7 @@ export default function ClosedLocal({ open }) {
         });
     };
     fetchData();
-  }, []);
+  }, [allOrders]);
 
   const statusTables = (status) => {
     //filtra por status
@@ -39,11 +38,6 @@ export default function ClosedLocal({ open }) {
   return (
     <Container>
       <div className={s.centered_content}>
-        {/*       <Store heigth={"36px"} />
-      <h2>{"Local cerrado"}</h2>
-      <span>{"Abre el local para comenzar"}</span>
-      <br />
-      <span>{" a recibir pedidos"}</span> */}
         <Header
           off
           icon="storeClosed"
@@ -52,10 +46,10 @@ export default function ClosedLocal({ open }) {
           detail_2={t(`header.closed local.to receive orders`)}
         />
         {statusTables("orderPlaced").length > 0 ||
-        statusTables("orderInPreparation").length ||
-        statusTables("orderReady").length ? (
+        statusTables("orderInPreparation").length > 0||
+        statusTables("orderReady").length > 0 ? (
           <LayoutContainer>
-            <LayoutDashboard interval={true} />
+            <LayoutDashboard/>
           </LayoutContainer>
         ) : null}
       </div>

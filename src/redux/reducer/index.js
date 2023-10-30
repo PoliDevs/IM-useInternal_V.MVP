@@ -1,4 +1,4 @@
-import { LANGUAGE,GET_ORDERS, LOGIN_ACTION,LOGIN_ACTION_GOOGLE,MENU_ACTIVE,LOCAL_OPEN_VALUE,OPEN_LOCAL,CLOSED_LOCAL, GET_ALL_POS } from "../actions/actionTypes";
+import { GET_ORDERS, LOGIN_ACTION,LOGIN_ACTION_GOOGLE,MENU_ACTIVE,LOCAL_OPEN_VALUE,OPEN_LOCAL,CLOSED_LOCAL, GET_ALL_POS } from "../actions/actionTypes";
 import jwtDecode from "jwt-decode";
 
 const initalState = {
@@ -9,7 +9,6 @@ const initalState = {
   localOpenValue:localStorage.getItem("localOpenValue")
   ?JSON.parse(localStorage.getItem("localOpenValue"))
   :null,
-  language:localStorage.getItem("lan")?JSON.parse(localStorage.getItem("lan")):"es",
   id: 1,
   local: true,
   orders: [],
@@ -21,17 +20,6 @@ const initalState = {
 
 export const rootReducer = (state = initalState, { type, payload }) => {
   switch (type) {
-    //language
-    case LANGUAGE:{
-      const language=payload;
-      console.log(language,"reducer")
-      localStorage.setItem("lan",JSON.stringify(language))
-      return{
-        ...state,
-        language,
-      }
-    }
-
     //loguin 
     case LOGIN_ACTION: {
       const data = jwtDecode(payload.data.token);
@@ -56,7 +44,6 @@ export const rootReducer = (state = initalState, { type, payload }) => {
     //loginGoogle
     case LOGIN_ACTION_GOOGLE: {
       const data = jwtDecode(payload.data.token);
-      console.log(data)
       const user_internal = {
         token: payload.data.token,
         id: data.id,

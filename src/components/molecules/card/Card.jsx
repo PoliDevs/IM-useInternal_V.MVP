@@ -46,7 +46,6 @@ export default function Card({
     setSeeOrder(!seeOrder);
   };
 
-
   //busca el status de la order para cambiar el texto del boton
   const textButtonStatus={
     orderPlaced:orderPlaced,

@@ -1,14 +1,5 @@
 import axios from "axios";
-import { LOCAL_OPEN_VALUE,GET_ORDERS,LOGIN_ACTION,LOGIN_ACTION_GOOGLE,MENU_ACTIVE,OPEN_LOCAL,CLOSED_LOCAL, GET_ALL_POS,LANGUAGE} from "./actionTypes";
-
-//lenguaje
-export function selectLanguage(payload) {
-  console.log(payload,"action")
-return {
-  type:LANGUAGE,
-  payload:payload
-}
-}
+import { LOCAL_OPEN_VALUE,GET_ORDERS,LOGIN_ACTION,LOGIN_ACTION_GOOGLE,MENU_ACTIVE,OPEN_LOCAL,CLOSED_LOCAL, GET_ALL_POS} from "./actionTypes";
 
 //nos logueamos
 export function loginAction(payload){
@@ -35,6 +26,7 @@ export function loginActionGoogle(payload){
   return async function (dispatch) {
     try {
       const response = await axios.post("loginemployee/loginG",email);
+      console.log(email,response)
       return dispatch({
         type:LOGIN_ACTION_GOOGLE,
         payload:response
@@ -65,7 +57,10 @@ export function getMenuActive(comerceId){
 
 
 export function postMenu(menu,comercio, id) {
+  console.log(menu,"menu transformado")
+  console.log(comercio,"comercio transformado")
   return async function (dispatch, getState) {
+    console.log(id)
     try {
       id = getState().user_internal.comerceId;
       if (id){

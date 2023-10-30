@@ -19,6 +19,7 @@
     "sales": "Ventes",
     "history": "Historique",
     "setting": "Paramètres",
+    "qr":"Les tables QR",
     "open or close local": "Ouvrir ou fermer le local"
   },
   "header": {
@@ -46,6 +47,10 @@
     "setting": {
       "text": "Paramètres",
       "detail": "Ici se trouvent vos données, plans et paramètres généraux"
+    },
+    "generator qr":{
+      "text":"Générateur QR",
+      "detail": "Ici vous pouvez générer le qr de vos tables"
     }
   },
   "dashboard": {
@@ -122,6 +127,14 @@
       "input_1": "Alias",
       "input_2": "Clé du paiement du marché"
     }
+  },
+  "generator qr":{
+    "select pos":"Sélectionnez Pos",
+    "select an option":"Choisir une option",
+    "all pos":"Toutes les pos",
+    "generate code":"Générer du code",
+    "dowload code":"Télécharger le/s code/s QR",
+    "print code":"Imprimer le/s code/s" 
   },
   "card": {
     "order placed": "Passer à la préparation",
