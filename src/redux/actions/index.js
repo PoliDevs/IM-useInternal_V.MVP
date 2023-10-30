@@ -26,7 +26,6 @@ export function loginActionGoogle(payload){
   return async function (dispatch) {
     try {
       const response = await axios.post("loginemployee/loginG",email);
-      console.log(email,response)
       return dispatch({
         type:LOGIN_ACTION_GOOGLE,
         payload:response

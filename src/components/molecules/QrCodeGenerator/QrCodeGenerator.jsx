@@ -265,10 +265,8 @@ export default function QrGenerator() {
               <option value="Todos">{t("generator qr.select pos")}</option>
               {allPos.map((p) =>
                 p.pos.map((pos, index) =>{
-                  console.log(p)
                   let url=pos.qrCode;
                   let nunTable=url.split("/").slice(6).toString()
-                  console.log("num",nunTable)
                 return  <option key={index} value={pos.id}>{`${p.name} - ${t("card.table")} ${nunTable}`}</option>
                 }
                 )

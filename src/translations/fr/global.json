@@ -129,7 +129,7 @@
     }
   },
   "generator qr":{
-    "select pos":"Sélectionnez Pos",
+    "select pos":"Tous",
     "select an option":"Choisir une option",
     "all pos":"Toutes les pos",
     "generate code":"Générer du code",
