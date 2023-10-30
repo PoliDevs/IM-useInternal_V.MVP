@@ -51,7 +51,7 @@
     },
     "generator qr":{
       "text":"Générateur QR",
-      "detail": "Ici vous pouvez générer le qr de vos tables"
+      "detail": "Ici vous pouvez générer le QR de vos tables"
     }
   },
   "dashboard": {
