@@ -19,7 +19,9 @@
     "sales": "Sales",
     "history": "History",
     "setting": "Setting",
-    "open or close local": "Open or close local"
+    "qr": "Tables QR",
+    "open or close local": "Open or close local",
+    "version":"Version MVP"
   },
   "header": {
     "open local": {
@@ -46,6 +48,10 @@
     "setting": {
       "text":"Setting",
       "detail": "Here are your data, plans and general settings"
+    },
+    "generator qr":{
+      "text":"Generator QR",
+      "detail": "Here you can generate the qr of your tables"
     }
   },
   "dashboard": {
@@ -122,6 +128,14 @@
       "input_1":"Alias",
       "input_2":"Key mercado pago"
     }
+  },
+  "generator qr":{
+    "select pos":"All",
+    "select an option":"Select n option",
+    "all pos":"All pos",
+    "generate code":"Generate code",
+    "dowload code":"dowload code/s Qr",
+    "print code":"print code/s"
   },
   "card": {
     "order placed": "Order placed",

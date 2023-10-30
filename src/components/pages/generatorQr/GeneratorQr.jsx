@@ -1,19 +1,19 @@
 import Header from '../../molecules/Header/Header';
 import Container from '../../atom/container/Container';
 import LayoutContainer from '../../molecules/layouts/section/LayoutContainer';
-import LayoutConfig from '../../molecules/layouts/config/LayoutConfig';
+import QrGenerator from '../../molecules/QrCodeGenerator/QrCodeGenerator';
 import { useTranslation } from "react-i18next";
 
-export default function Config() {
-  const [t,i18n]=useTranslation("global")
+export default function GeneratorQr() {
+    const [t,i18n]=useTranslation("global");
   return (
     <Container>
       <Header 
-      icon="config" 
-      title={t("header.setting.text")} 
-      detail={t("header.setting.detail")} />
+      icon="qr" 
+      title={t("header.generator qr.text")} 
+      detail={t("header.generator qr.detail")} />
       <LayoutContainer>
-        <LayoutConfig/>
+        <QrGenerator/>
       </LayoutContainer>
     </Container>
   )

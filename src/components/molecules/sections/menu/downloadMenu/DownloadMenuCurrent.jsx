@@ -4,10 +4,11 @@ import { useTranslation } from 'react-i18next';
 
 export default function DownloadMenuCurrent() {
   const [t,i18n]=useTranslation("global");
+  const lan=i18n.language;
   const handleDowload=()=>{
     // Aquí debes agregar lógica para descargar el archivo
     // Puedes usar la etiqueta <a> para ello
-    const fileUrl = '../../../../../../public/ExcelFile/I-Menu.xlsx'; // Reemplaza con la ruta real de tu archivo
+    const fileUrl =  lan==="es"?"/ExcelFile/I-Menu_ES.xlsx":'/ExcelFile/I-Menu.xlsx'; // Reemplaza con la ruta real de tu archivo
     const link = document.createElement('a');
     link.href = fileUrl;
     link.download = 'Imenu_Template'; // Puedes especificar un nombre para el archivo

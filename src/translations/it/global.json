@@ -19,7 +19,9 @@
       "sales": "Vendite",
       "history": "Cronologia",
       "setting": "Impostazioni",
-      "open or close local": "Apri o chiudi il locale"
+      "qr": "Tabelle QR",
+      "open or close local": "Apri o chiudi il locale",
+      "version":"Versione MVP"
     },
     "header": {
       "open local": {
@@ -46,6 +48,10 @@
       "setting": {
         "text": "Impostazioni",
         "detail": "Qui trovi i tuoi dati, piani e impostazioni generali"
+      },
+      "generator qr":{
+        "text":"Generatore QR",
+        "detail": "Qui puoi generare i qr delle tue tabelle"
       }
     },
     "dashboard": {
@@ -122,6 +128,14 @@
         "input_1": "Alias",
         "input_2": "Chiave Mercato Pago"
       }
+    },
+    "generator qr":{
+      "select pos":"Tutto",
+      "select an option":"Seleziona un'opzione",
+      "all pos":"Tutte le posizioni",
+      "generate code":"Genera codice",
+      "dowload code":"Scarica il/i codice/i QR",
+      "print code":"Stampa il/i codice/i"
     },
     "card": {
       "order placed": "Passa a Preparazione",

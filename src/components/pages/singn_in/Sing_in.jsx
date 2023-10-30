@@ -6,20 +6,15 @@ import LineText from "../../atom/LineText/LineText";
 import useFirebase from "../../../firebase/firebase.config";
 import { useTranslation } from "react-i18next";
 import { Select } from "semantic-ui-react";
-import { selectLanguage } from "../../../redux/actions";
-import { useSelector,useDispatch } from "react-redux";
 
 export default function Sing_in() {
   const [error, setError] = useState(false);
-  const dispatch=useDispatch();
-  const language = useSelector((state) => state.language);
-  console.log(language)
-
   const [t, i18n] = useTranslation("global");
   const { signInWithGoogle } = useFirebase(setError);
   useEffect(() => {
     // Borra el localStorage al cargar el componente
     localStorage.clear();
+    i18n.changeLanguage("es");
   }, []);
 
   const optionLan = [
@@ -35,8 +30,8 @@ export default function Sing_in() {
     /*     const {value}=e.target; */
 /*     dispatch(selectLanguage(value));
     i18n.changeLanguage(value); */
-    dispatch(selectLanguage(value)); // Despacha la acción para actualizar el idioma
     i18n.changeLanguage(value);
+    localStorage.setItem("Lang", value);
   };
 
   return (

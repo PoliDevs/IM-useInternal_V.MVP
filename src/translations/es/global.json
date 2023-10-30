@@ -19,7 +19,9 @@
     "sales": "Ventas",
     "history": "Historial",
     "setting": "Configuración",
-    "open or close local": "Abre o cierra local"
+    "qr": "Mesas QR",
+    "open or close local": "Abre o cierra local",
+    "version":"Versión MVP"
   },
   "header": {
     "open local": {
@@ -46,6 +48,10 @@
     "setting": {
       "text": "Configuración",
       "detail": "Aquí están tus datos, planes y configuraciones generales"
+    },
+    "generator qr":{
+      "text":"Generador QR",
+      "detail": "Aquí podras generar lo qr de tus mesas"
     }
   },
   "dashboard": {
@@ -122,6 +128,14 @@
       "input_1": "Alias",
       "input_2": "Key mercado pago"
     }
+  },
+  "generator qr":{
+    "select pos":"Todos",
+    "select an option":"Selecciona una opción",
+    "all pos":"Todos los Pos",
+    "generate code":"Generar codigo",
+    "dowload code":"Descargar codigo/s Qr",
+    "print code":"Imprimir codigo/s"
   },
   "card": {
     "order placed": "Pasar a preparando",

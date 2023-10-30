@@ -8,14 +8,14 @@ import ButtonGreen from "../../../atom/buttons/ButtonGreen";
 import { getDateCurrent } from "../../../../utils/functions";
 import { useTranslation } from "react-i18next";
 
-export default function LayoutDashboard({ interval }) {
+export default function LayoutDashboard() {
 const [t,i18n]=useTranslation("global")
 const all=t("dashboard.all")
 const localOrders=t("dashboard.local orders")
 const platformOrders=t("dashboard.platform orders")
 
-
   const comerceId = useSelector((state) => state.user_internal.comerceId);
+
   const [allOrders, setAllOrders] = useState([]); // Almacenamos todas las ordenes
   const dateCurrent = getDateCurrent(); //fecha actual
   const [filterClickedButton, setFilterClickedButton] = useState(all); //filtrado
@@ -110,7 +110,6 @@ const platformOrders=t("dashboard.platform orders")
   const statusTables = (status) => {
     return allOrders.filter((cur) => cur.status === status);
   };
-  /* console.log(allOrders) */
   return (
     <div className={s.content_LayoutDashboard}>
       <div>

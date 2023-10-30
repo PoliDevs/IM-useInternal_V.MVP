@@ -19,7 +19,9 @@
       "sales": "Vendas",
       "history": "Histórico",
       "setting": "Configurações",
-      "open or close local": "Abrir ou fechar local"
+      "qr": "Tabelas qr",
+      "open or close local": "Abrir ou fechar local",
+      "version":"versão MVP"
     },
     "header": {
       "open local": {
@@ -46,6 +48,10 @@
       "setting": {
         "text": "Configuração",
         "detail": "Aqui estão seus dados, planos e configurações gerais"
+      },
+      "generator qr": {
+        "text": "Gerador de QR",
+        "detail": "Aqui você pode gerar o QR para suas mesas"
       }
     },
     "dashboard": {
@@ -96,7 +102,7 @@
       "download template": {
         "download template": "Baixar modelo"
       },
-      "local logo": {
+      "logo local": {
         "file": "LogoBStore.jpg",
         "replace image": "Substituir imagem"
       }
@@ -122,6 +128,14 @@
         "input_1": "Apelido",
         "input_2": "Chave do Mercado Pago"
       }
+    },
+    "generator qr":{
+      "select pos":"Todos",
+      "select an option":"Selecione uma opção",
+      "all pos":"Todas as pos",
+      "generate code":"Gerar código",
+      "dowload code":"Baixar código/s QR",
+      "print code":"Imprimir código/s"
     },
     "card": {
       "order placed": "Mover para preparando",
