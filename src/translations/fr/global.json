@@ -20,7 +20,8 @@
     "history": "Historique",
     "setting": "Paramètres",
     "qr":"Les tables QR",
-    "open or close local": "Ouvrir ou fermer le local"
+    "open or close local": "Ouvrir ou fermer le local",
+    "version":"Version MVP"
   },
   "header": {
     "open local": {

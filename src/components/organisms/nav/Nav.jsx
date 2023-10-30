@@ -3,8 +3,9 @@ import { useState } from "react";
 import Bars from "../../molecules/nav/bars/Bars";
 import Open_closed from "../../molecules/nav/open_closed/Open_closed";
 import { Bars_3, User_cicle } from "../../atom/iconsHerocoins/icons";
-import logo from "../../../assets/logo_imenu_blanco.png"
-import logoNav from "../../../assets/logo nav.svg"
+import logoNav from "../../../assets/logo nav.svg";
+import Title from "../../atom/Title/Title";
+
 
 export default function Nav() {
   const [barsActive, setBarsActive] = useState(false);
@@ -32,8 +33,9 @@ export default function Nav() {
         <Bars_3 heigth={36} />
       </div>
       {barsActive ? <Bars onLinkClick={toggleBarsBackground}/> : null}
-      <div>
-      <img src={logoNav} className={s.logo}></img>
+      <div style={{display:"flex",gap:"5px"}}>
+      <img src={logoNav} className={s.logo}/>
+      <Title text={"/Version MVP"}/>
       </div>
       <div
         className={`${s.iconContainer} ${
