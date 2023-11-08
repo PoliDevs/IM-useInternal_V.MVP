@@ -67,24 +67,22 @@
     }
   }
 
-  @media screen and (min-width: 430px) {
+  @media screen and (min-width: 250px) {
     .welcomeContainer {
       flex-direction: column;
       justify-content: center;
       align-items: center;
-
       .frame {
         display: none;
       }
-
       .textContainer {
         margin-bottom: 50px;
         padding: 65px 31px 80px 31px;
         height: 100%;
-
         .logo {
           height: 70px;
           width: 90px;
+
         }
 
         .paragraph {
@@ -114,8 +112,4 @@
       }
     }
   }
-}
-
-@media screen and (max-width:900px) {
-  
 }
