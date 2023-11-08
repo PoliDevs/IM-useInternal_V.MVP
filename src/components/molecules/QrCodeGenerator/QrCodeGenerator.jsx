@@ -10,19 +10,41 @@ import QRCode from "qrcode";
 import React from "react";
 import JSZip from "jszip";
 import { useTranslation } from "react-i18next";
+import Loading from "../../atom/loading/Loading";
+import { Button } from "semantic-ui-react";
 
 export default function QrGenerator() {
-  const [t,i18n]=useTranslation("global");
+  const [t, i18n] = useTranslation("global");
   const commerceId = useSelector((state) => state.user_internal.comerceId);
   const allPos = useSelector((state) => state.allPos);
   const [selectedSector, setSelectedSector] = useState("");
   const [selectedTable, setSelectedTable] = useState("");
+  const [selectedColor, setSelectedColor] = useState(t("generator qr.white"));
   const [number, setNumber] = useState(0);
   const [zip, setZip] = useState();
   const [toPrint, setToPrint] = useState();
   const [names, setNames] = useState([]);
   const [done, setDone] = useState(false);
+  const [loading, setLoading] = useState(true);
   // const [loading, setLoading] = useState(true);
+
+  let colorQr = {
+    [t("generator qr.white")]: { dark: "#2b2b2b", light: "#fefefe" },
+    [t("generator qr.orange")]: { dark: "#2b2b2b", light: "#f57c3f" },
+    [t("generator qr.yellow")]: { dark: "#2b2b2b", light: "#ffcc00" },
+    [t("generator qr.blue")]: { dark: "#2b2b2b", light: "#6997fa" },
+    [t("generator qr.green")]: { dark: "#2b2b2b", light: "#7eba8d" },
+    [t("generator qr.purple")]: { dark: "#2b2b2b", light: "#9b86db" },
+  };
+
+  let nameColors = [
+    t("generator qr.white"),
+    t("generator qr.orange"),
+    t("generator qr.yellow"),
+    t("generator qr.blue"),
+    t("generator qr.green"),
+    t("generator qr.purple"),
+  ];
 
   const array = [];
   // const names = [];
@@ -31,19 +53,13 @@ export default function QrGenerator() {
   const qrProps = {
     width: 300,
     margin: 1,
-    color: {
-      dark: "#2b2b2b",
-      light: "#fefefe",
-    },
+    color: colorQr[selectedColor],
   };
   const key = import.meta.env.VITE_REACT_APP_KEY;
 
   //?cifro la url
   const cifrarUrl = (url) => {
-    const objetoCifrado = CryptoJS.AES.encrypt(
-      (url),
-      key
-    ).toString();
+    const objetoCifrado = CryptoJS.AES.encrypt(url, key).toString();
     return objetoCifrado;
   };
 
@@ -55,7 +71,7 @@ export default function QrGenerator() {
       "U2FsdGVkX19uu5cq311Cxo4OwthXNXx2VvKxivdoNyI=",
       key
     );
-    const objetoOriginal = (bytes.toString(CryptoJS.enc.Utf8));
+    const objetoOriginal = bytes.toString(CryptoJS.enc.Utf8);
     return objetoOriginal;
   };
 
@@ -63,6 +79,7 @@ export default function QrGenerator() {
 
   useEffect(() => {
     dispatch(getAllPos(commerceId));
+    setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -86,12 +103,16 @@ export default function QrGenerator() {
       let sector = allPos.filter((s) => s.name === e.target.value);
       setSelectedSector(sector);
     }
-    setSelectedTable('')
+    setSelectedTable("");
   };
 
   const handleTableSelect = (e) => {
     setSelectedTable(e.target.value);
   };
+  const handleColorSelect = (e) => {
+    setSelectedColor(e.target.value);
+  };
+  //console.log(selectedColor)
 
   const generateZip = async (array) => {
     //? Convierto los elementos de array a tipo Blob
@@ -145,51 +166,45 @@ export default function QrGenerator() {
     //       }
     //     }
     //   }
-    // } else 
+    // } else
     if (selectedTable === "Todos") {
       // for (const p of selectedSector[0].pos) {
-        for (const p of allPos[0].pos) {
-          // let name = `Sector ${selectedSector[0].name} - Mesa ${p.id}`;
-          let url=p.qrCode;
-          let nunTable=url.split("/").slice(6).toString()
-          let name = `Sector Ventas - ${t("card.table")} ${nunTable}`;
-          addName(name);
-          //* Encriptar Url de la mesa.
-          //p.qrCode tiene la info a encriptar
-           //let result = cifrarUrl("Aca iria por ej: 20/20/1");
-           //let url="https://im-front-use-customer.vercel.app/language";
-           
-           let urlFirst=url.split("/").splice(0,4).join("/");;
-           let result = cifrarUrl(url.substring(50));
-           
-           //console.log("cifrar url",result)
+      for (const p of allPos[0].pos) {
+        // let name = `Sector ${selectedSector[0].name} - Mesa ${p.id}`;
+        let url = p.qrCode;
+        let nunTable = url.split("/").slice(6).toString();
+        let name = `Sector Ventas - ${t("card.table")} ${nunTable}`;
+        addName(name);
+        //* Encriptar Url de la mesa.
+        //p.qrCode tiene la info a encriptar
+        //let result = cifrarUrl("Aca iria por ej: 20/20/1");
+        //let url="https://im-front-use-customer.vercel.app/language";
 
-          //* Encriptar Url de la mesa.
-          //console.log(allPos[0].pos)
-          //console.log(p)
-          const r = await QRCode.toDataURL(
-            `${urlFirst}/${result}`,
-            qrProps
-          );
-          array.push(r);
-        }
+        let urlFirst = url.split("/").splice(0, 4).join("/");
+        let result = cifrarUrl(url.substring(50));
+
+        //console.log("cifrar url",result)
+
+        //* Encriptar Url de la mesa.
+        //console.log(allPos[0].pos)
+        //console.log(p)
+        const r = await QRCode.toDataURL(`${urlFirst}/${result}`, qrProps);
+        array.push(r);
+      }
     } else {
       // const p = selectedSector[0].pos.find((p) => p.id == selectedTable);
       const p = allPos[0].pos.find((p) => p.id == selectedTable);
-      let url=p.qrCode;
-      let nunTable=url.split("/").slice(6).toString()
-      
-      let urlFirst=url.split("/").splice(0,4).join("/");;
+      let url = p.qrCode;
+      let nunTable = url.split("/").slice(6).toString();
+
+      let urlFirst = url.split("/").splice(0, 4).join("/");
       let result = cifrarUrl(url.substring(50));
       if (p) {
         // let name = `Sector ${selectedSector[0].name} - Mesa ${p.id}`;
         let name = `Sector Ventas - ${t("card.table")} ${nunTable}`;
         addName(name);
         //const url = await QRCode.toDataURL(p.qrCode, qrProps);
-        const r = await QRCode.toDataURL(
-          `${urlFirst}/${result}`,
-          qrProps
-        );
+        const r = await QRCode.toDataURL(`${urlFirst}/${result}`, qrProps);
         array.push(r);
       }
     }
@@ -226,9 +241,11 @@ export default function QrGenerator() {
     );
   });
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <div className={s.mainContainer}>
-{/*       <h1 className={s.mainTitle}>Generar codigos Qr</h1> */}
+      {/*       <h1 className={s.mainTitle}>Generar codigos Qr</h1> */}
       <div className={s.headerContainer}>
         {/* //! seleccion de sectores desactivada */}
         {/* <div className={s.selectContainer}>
@@ -250,7 +267,7 @@ export default function QrGenerator() {
           </select>
         </div> */}
         {/* {selectedSector === "Todos" ? ( */}
-        { allPos[0]?.pos ? (
+        {allPos[0]?.pos ? (
           <div className={s.selectContainer}>
             <label className={s.label}>{t("generator qr.select pos")}</label>
             <select
@@ -260,53 +277,64 @@ export default function QrGenerator() {
               placeholder="Seleccione una opción"
             >
               <option value="" disabled hidden>
-              {t("generator qr.select an option")}
+                {t("generator qr.select an option")}
               </option>
-              <option value="Todos">{t("generator qr.select pos")}</option>
+              <option value="Todos">{t("generator qr.value_option")}</option>
               {allPos.map((p) =>
-                p.pos.map((pos, index) =>{
-                  let url=pos.qrCode;
-                  let nunTable=url.split("/").slice(6).toString()
-                return  <option key={index} value={pos.id}>{`${p.name} - ${t("card.table")} ${nunTable}`}</option>
-                }
-                )
+                p.pos.map((pos, index) => {
+                  let url = pos.qrCode;
+                  let nunTable = url.split("/").slice(6).toString();
+                  return (
+                    <option key={index} value={pos.id}>{`${p.name} - ${t(
+                      "card.table"
+                    )} ${nunTable}`}</option>
+                  );
+                })
               )}
             </select>
+
+            <label className={s.label}>{t("generator qr.select color")}</label>
+            <select
+              value={selectedColor}
+              onChange={handleColorSelect}
+              className={s.select}
+            >
+              {nameColors.map((cur, idx) => {
+                return (
+                  <option key={idx} value={cur}>
+                    {cur}
+                  </option>
+                );
+              })}
+            </select>
           </div>
-        ) 
-        // : selectedSector[0]?.pos.length ? (
-        //   <div className={s.selectContainer}>
-        //     <label className={s.label}>Seleccionar Pos</label>
-        //     <select
-        //       value={selectedTable}
-        //       onChange={handleTableSelect}
-        //       className={s.select}
-        //     >
-        //       <option value="" disabled hidden>
-        //         Selecciona una opción
-        //       </option>
-        //       <option value="Todos">Todos los Pos</option>
-        //       {selectedSector[0].pos.map((table, index) => (
-        //         <option key={index} value={table.id}>
-        //           {table.id}
-        //         </option>
-        //       ))}
-        //     </select>
-        //   </div>
-        // ) 
-        : 
-        (
+        ) : (
+          // : selectedSector[0]?.pos.length ? (
+          //   <div className={s.selectContainer}>
+          //     <label className={s.label}>Seleccionar Pos</label>
+          //     <select
+          //       value={selectedTable}
+          //       onChange={handleTableSelect}
+          //       className={s.select}
+          //     >
+          //       <option value="" disabled hidden>
+          //         Selecciona una opción
+          //       </option>
+          //       <option value="Todos">Todos los Pos</option>
+          //       {selectedSector[0].pos.map((table, index) => (
+          //         <option key={index} value={table.id}>
+          //           {table.id}
+          //         </option>
+          //       ))}
+          //     </select>
+          //   </div>
+          // )
           selectedSector !== "" && <p>No hay mesas asignadas a este sector</p>
         )}
         {
           //* Boton para generar Codigos Qr*//}
         }
-        <button
-          className={s.generatorButton}
-          onClick={() => selectedTable && generateArray()}
-        >
-          {t("generator qr.generate code")}
-        </button>
+        <Button primary size="large" onClick={() => selectedTable && generateArray()} >{t("generator qr.generate code")}</Button>
       </div>
       {/* {qrCode && <img src={qrCode} />} */}
       <div className={s.buttons}>

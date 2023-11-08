@@ -1,17 +1,17 @@
 {
-  "singn in":{
-    "take the first step":"Take the first step",
-    "login using your Google email":"Login using your Google email",
-    "login with Google":"Login with Google",
-    "speed is":"Speed is",
-    "our plate":"Our plate",
-    "strong":"strong",
-    "select a language":"Select a language"
+  "singn in": {
+    "take the first step": "Take the first step",
+    "login using your Google email": "Login using your Google email",
+    "login with Google": "Login with Google",
+    "speed is": "Speed is",
+    "our plate": "Our plate",
+    "strong": "strong",
+    "select a language": "Select a language"
   },
-  "welcome":{
-    "welcome":"¡Welcome!",
-    "now you can start receiving orders":"Now you can start receiving orders",
-    "start":"Start"
+  "welcome": {
+    "welcome": "¡Welcome!",
+    "now you can start receiving orders": "Now you can start receiving orders",
+    "start": "Start"
   },
   "nav": {
     "operation screen": "Operation screen",
@@ -21,7 +21,7 @@
     "setting": "Setting",
     "qr": "Tables QR",
     "open or close local": "Open or close local",
-    "version":"Version MVP"
+    "version": "Version MVP"
   },
   "header": {
     "open local": {
@@ -34,23 +34,23 @@
       "to receive orders": "to receive orders"
     },
     "menu": {
-      "text":"Menu",
+      "text": "Menu",
       "detail": "Manage your menu from here"
     },
     "sales": {
-      "text":"Sales",
+      "text": "Sales",
       "detail": "Here are your sales"
     },
     "history": {
-      "text":"History",
+      "text": "History",
       "detail": "Here are your orders delivered"
     },
     "setting": {
-      "text":"Setting",
+      "text": "Setting",
       "detail": "Here are your data, plans and general settings"
     },
-    "generator qr":{
-      "text":"Generator QR",
+    "generator qr": {
+      "text": "Generator QR",
       "detail": "Here you can generate the QR of your tables"
     }
   },
@@ -95,47 +95,55 @@
         "do you want to delete the menu": "Do you want to delete the menu?",
         "if you delete the menu you must upload another one": "If you delete the menu you must upload another one.",
         "in the meantime, your store will remain closed": "In the meantime, your store will remain closed.",
-        "confirm":"Yes, Delete",
-        "cancel":"Cancel"
+        "confirm": "Yes, Delete",
+        "cancel": "Cancel"
       }
     },
-    "download template":{
-      "download template":"Download template"
+    "download template": {
+      "download template": "Download template"
     },
-    "logo local":{
-      "file":"LogoBStore.jpg",
-      "replace image":"Replace image"
+    "logo local": {
+      "file": "LogoBStore.jpg",
+      "replace image": "Replace image"
     }
   },
-  "config":{
-    "select":{
-      "personal data":"Personal data",
-      "business data":"Business data",
-      "payment market":"payment market"
+  "config": {
+    "select": {
+      "personal data": "Personal data",
+      "business data": "Business data",
+      "payment methods": "Payment methods"
     },
-    "personal data":{
-      "title":"Personal data",
-      "input_1":"Name and Surname",
-      "input_2":"phone"
+    "personal data": {
+      "title": "Personal data",
+      "input_1": "Name and Surname",
+      "input_2": "phone"
     },
-    "business data":{
-      "title":"Business data",
-      "input_1":"Business name",
-      "input_2":"phone"
+    "business data": {
+      "title": "Business data",
+      "input_1": "Business name",
+      "input_2": "phone"
     },
-    "payment market":{
-      "title":"Mercado pago",
-      "input_1":"Alias",
-      "input_2":"Key mercado pago"
+    "payment market": {
+      "title": "Mercado pago",
+      "input_1": "Alias",
+      "input_2": "Key mercado pago"
     }
   },
-  "generator qr":{
-    "select pos":"All",
-    "select an option":"Select n option",
-    "all pos":"All pos",
-    "generate code":"Generate code",
-    "dowload code":"dowload code/s Qr",
-    "print code":"print code/s"
+  "generator qr": {
+    "select pos": "Table",
+    "value_option": "All",
+    "select color": "Color",
+    "select an option": "Select n option",
+    "all pos": "All pos",
+    "generate code": "Generate code",
+    "dowload code": "dowload code/s Qr",
+    "print code": "print code/s",
+    "white": "White",
+    "orange": "Orange",
+    "yellow": "Yellow",
+    "blue": "Blue",
+    "green": "Green",
+    "purple": "Purple"
   },
   "card": {
     "order placed": "Order placed",
@@ -147,30 +155,29 @@
     "order": "Order",
     "received at": "Received at",
     "total": "Total",
-    "observations":"Observations"
+    "observations": "Observations"
   },
   "instructions": {
     "title": "Let's Start with Your Menu",
     "sub title": "Try to complete the steps before beginning operations",
     "steps": {
-        "step_1": "Download our menu template",
-        "step_2": "Upload your menu once you've saved the products",
-        "step_3": "Upload your local logo image",
-        "step_4": "Open your establishment to start selling!",
-        "text_1": "Download Template",
-        "text_2": "Upload Menu",
-        "text_3": "Upload your local logo image",
-        "text_3_1": "Conditions:",
-        "text_3_2": "- Your image must be square (1:1 ratio)",
-        "text_3_3": "- Format: JPG",
-        "text_3_4": "- Maximum file size: 100KB",
-        "text_3_5": "Upload Image",
-        "text_4": "Open and close your establishment on demand"
+      "step_1": "Download our menu template",
+      "step_2": "Upload your menu once you've saved the products",
+      "step_3": "Upload your local logo image",
+      "step_4": "Open your establishment to start selling!",
+      "text_1": "Download Template",
+      "text_2": "Upload Menu",
+      "text_3": "Upload your local logo image",
+      "text_3_1": "Conditions:",
+      "text_3_2": "- Your image must be square (1:1 ratio)",
+      "text_3_3": "- Format: JPG",
+      "text_3_4": "- Maximum file size: 100KB",
+      "text_3_5": "Upload Image",
+      "text_4": "Open and close your establishment on demand"
     },
     "button": {
-        "i need help": "I need help",
-        "continue": "Continue"
+      "i need help": "I need help",
+      "continue": "Continue"
     }
-}
-
+  }
 }

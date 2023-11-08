@@ -12,6 +12,12 @@
         background: $background-buttom-primary-desable;
         border-radius: 10px;
     }
+    &:focus {
+        outline: none; /* Eliminar el contorno al enfocar */
+        box-shadow: none; /* Eliminar la sombra al enfocar */
+        border: none; /* Eliminar el borde al enfocar */
+        background: $background-buttom-primary-active; /* Restaurar el color de fondo original */
+    }
 }
 
 .ui.secondary.button {
@@ -27,6 +33,12 @@
         background: $background-buttom-secundary-active;
         border: $border-hover ;
         border-radius: 10px;
+    }
+    &:focus {
+        outline: none; /* Eliminar el contorno al enfocar */
+        box-shadow: none; /* Eliminar la sombra al enfocar */
+        border: none; /* Eliminar el borde al enfocar */
+        background: $background-buttom-primary-active; /* Restaurar el color de fondo original */
     }
 }
 
