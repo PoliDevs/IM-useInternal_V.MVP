@@ -130,12 +130,20 @@
     }
   },
   "generator qr":{
-    "select pos":"Tous",
+    "select pos":"Tableau",
+    "value_option":"Tous",
+    "select color":"Couleur",
     "select an option":"Choisir une option",
     "all pos":"Toutes les pos",
     "generate code":"Générer du code",
     "dowload code":"Télécharger le/s code/s QR",
-    "print code":"Imprimer le/s code/s" 
+    "print code":"Imprimer le/s code/s",
+    "white": "Blanc",
+    "orange": "Orange",
+    "yellow": "Jaune",
+    "blue": "Bleu",
+    "green": "Vert",
+    "purple": "Violet"
   },
   "card": {
     "order placed": "Passer à la préparation",
@@ -143,7 +151,7 @@
     "order ready": "Passer à livré",
     "delivered": "Livré",
     "sector": "Secteur",
-    "table": "Table",
+    "table": "Tableau",
     "order": "Commande",
     "received at": "Reçu à",
     "total": "Total",

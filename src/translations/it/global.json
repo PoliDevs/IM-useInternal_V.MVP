@@ -130,12 +130,20 @@
       }
     },
     "generator qr":{
-      "select pos":"Tutto",
+      "select pos":"Tavolo",
+      "value_option":"Tutto",
+      "select color":"Colore",
       "select an option":"Seleziona un'opzione",
       "all pos":"Tutte le posizioni",
       "generate code":"Genera codice",
       "dowload code":"Scarica il/i codice/i QR",
-      "print code":"Stampa il/i codice/i"
+      "print code":"Stampa il/i codice/i",
+      "white": "Bianco",
+      "orange": "Arancia",
+      "yellow": "Giallo",
+      "blue": "Blu",
+      "green": "Verde",
+      "purple": "Viola"
     },
     "card": {
       "order placed": "Passa a Preparazione",

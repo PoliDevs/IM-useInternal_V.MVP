@@ -130,12 +130,20 @@
     }
   },
   "generator qr":{
-    "select pos":"Todos",
+    "select pos":"Mesa",
+    "value_option":"Todos",
+    "select color":"Color",
     "select an option":"Selecciona una opción",
     "all pos":"Todos los Pos",
     "generate code":"Generar codigo",
     "dowload code":"Descargar codigo/s Qr",
-    "print code":"Imprimir codigo/s"
+    "print code":"Imprimir codigo/s",
+    "white": "Blanco",
+    "orange": "Naranja",
+    "yellow": "Amarillo",
+    "blue": "Azul",
+    "green": "Verde",
+    "purple": "Morado"
   },
   "card": {
     "order placed": "Pasar a preparando",
