@@ -10,6 +10,8 @@ import QRCode from "qrcode";
 import React from "react";
 import JSZip from "jszip";
 import { useTranslation } from "react-i18next";
+import Loading from "../../atom/loading/Loading";
+import { Button } from "semantic-ui-react";
 
 export default function QrGenerator() {
   const [t, i18n] = useTranslation("global");
@@ -23,6 +25,7 @@ export default function QrGenerator() {
   const [toPrint, setToPrint] = useState();
   const [names, setNames] = useState([]);
   const [done, setDone] = useState(false);
+  const [loading, setLoading] = useState(true);
   // const [loading, setLoading] = useState(true);
 
   let colorQr = {
@@ -41,7 +44,7 @@ export default function QrGenerator() {
     t("generator qr.blue"),
     t("generator qr.green"),
     t("generator qr.purple"),
-     ];
+  ];
 
   const array = [];
   // const names = [];
@@ -50,8 +53,6 @@ export default function QrGenerator() {
   const qrProps = {
     width: 300,
     margin: 1,
-    //color: { dark: "#ff6600", light: "#ffff"},
-    //color: { dark: "#2b2b2b", light: "#ff6600"},
     color: colorQr[selectedColor],
   };
   const key = import.meta.env.VITE_REACT_APP_KEY;
@@ -78,6 +79,7 @@ export default function QrGenerator() {
 
   useEffect(() => {
     dispatch(getAllPos(commerceId));
+    setLoading(false);
   }, []);
 
   useEffect(() => {
@@ -239,7 +241,9 @@ export default function QrGenerator() {
     );
   });
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <div className={s.mainContainer}>
       {/*       <h1 className={s.mainTitle}>Generar codigos Qr</h1> */}
       <div className={s.headerContainer}>
@@ -330,12 +334,7 @@ export default function QrGenerator() {
         {
           //* Boton para generar Codigos Qr*//}
         }
-        <button
-          className={s.generatorButton}
-          onClick={() => selectedTable && generateArray()}
-        >
-          {t("generator qr.generate code")}
-        </button>
+        <Button primary size="large" onClick={() => selectedTable && generateArray()} >{t("generator qr.generate code")}</Button>
       </div>
       {/* {qrCode && <img src={qrCode} />} */}
       <div className={s.buttons}>
