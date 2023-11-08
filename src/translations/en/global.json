@@ -111,7 +111,7 @@
     "select":{
       "personal data":"Personal data",
       "business data":"Business data",
-      "payment market":"payment market"
+      "payment methods":"Payment methods"
     },
     "personal data":{
       "title":"Personal data",

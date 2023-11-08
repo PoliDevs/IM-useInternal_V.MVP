@@ -111,7 +111,7 @@
       "select": {
         "personal data": "Dati personali",
         "business data": "Dati dell'attività",
-        "payment market": "Mercato Pago"
+        "payment methods": "Modalità di pagamento"
       },
       "personal data": {
         "title": "Dati personali",
