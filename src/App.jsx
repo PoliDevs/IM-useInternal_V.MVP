@@ -9,7 +9,6 @@ import Dashboard from "./components/pages/dashboard/Dashboard";
 import Welcome from "./components/pages/welcome/Welcome.jsx";
 import Sing_in from "./components/pages/singn_in/Sing_in.jsx";
 import History from "./components/pages/history/History";
-import Login from "./components/pages/login/Login.jsx";
 import Config from "./components/pages/config/Config";
 import Nav from "./components/organisms/nav/Nav.jsx";
 import Sales from "./components/pages/sales/Sales";
@@ -30,7 +29,6 @@ function App() {
       {shouldShowNav&&<Nav/>}
      
       <Routes>
-        <Route path="/singn_in" element={<Login />} />
         <Route path="/" element={<Sing_in />} />
         {/* <Route element={<ProtectedRoutes isAllowed={!!user_internal} />}> */}
           <Route path="/welcome" element={<Welcome />} />
