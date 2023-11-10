@@ -35,7 +35,6 @@ export default function Nav() {
       {barsActive ? <Bars onLinkClick={toggleBarsBackground}/> : null}
       <div style={{display:"flex",gap:"5px"}}>
       <img src={logoNav} className={s.logo}/>
-      <Title text={"V.MVP"}/>
       </div>
       <div
         className={`${s.iconContainer} ${
