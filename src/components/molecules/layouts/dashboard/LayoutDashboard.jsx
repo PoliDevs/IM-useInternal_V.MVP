@@ -4,32 +4,20 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import SubTitleUnderline from "../../../atom/subTitleUnderline/SubTitleUnderline";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ButtonGreen from "../../../atom/buttons/ButtonGreen";
 import { getDateCurrent } from "../../../../utils/functions";
 import { useTranslation } from "react-i18next";
 
 export default function LayoutDashboard() {
-const [t,i18n]=useTranslation("global")
-const all=t("dashboard.all")
-const localOrders=t("dashboard.local orders")
-const platformOrders=t("dashboard.platform orders")
-
+  const [t,i18n]=useTranslation("global")
   const comerceId = useSelector((state) => state.user_internal.comerceId);
-
   const [allOrders, setAllOrders] = useState([]); // Almacenamos todas las ordenes
   const dateCurrent = getDateCurrent(); //fecha actual
-  const [filterClickedButton, setFilterClickedButton] = useState(all); //filtrado
-  const [cardStatusChanged, setCardStatusChanged] = useState(false);
+  const [cardStatusChanged, setCardStatusChanged] = useState(false);//reques al cambiar de status la card
 
   // Función para manejar cambios de estado en las tarjetas
   const handleCardStatusChange = (newStatus, orderId) => {
-    // Realiza la lógica necesaria para manejar el cambio de estado de la tarjeta aquí
-    /*   console.log(`Cambiar el estado de la tarjeta a: ${newStatus}, Orden: ${orderId}`); */
-
     // Actualiza el estado para indicar que hubo cambios en las tarjetas
     setCardStatusChanged(true);
-
-    // Puedes realizar operaciones adicionales aquí, como actualizar datos en el servidor o modificar el estado local
   };
 
   const renderOrdesCards = (status) => {
@@ -57,15 +45,9 @@ const platformOrders=t("dashboard.platform orders")
           //tomamos menu , product y detail de cada orden
           //si llegara a ser un {[""]}
           menu={cur.menu && cur.menu.name[0].length > 0 && cur.menu}
-          products={
-            cur.products && cur.products.name[0].length > 0 && cur.products
-          }
+          products={cur.products && cur.products.name[0].length > 0 && cur.products}
           dishes={cur.dishes && cur.dishes.name[0].length > 0 && cur.dishes}
-          additionals={
-            cur.additionals &&
-            cur.additionals.name[0].length > 0 &&
-            cur.additionals
-          }
+          additionals={cur.additionals &&cur.additionals.name[0].length > 0 &&cur.additionals}
         />
       ))
     );
@@ -74,62 +56,30 @@ const platformOrders=t("dashboard.platform orders")
   //?
   useEffect(() => {
     const fetchData = async () => {
-      let endpoint;
-
-      if (filterClickedButton === localOrders) {
-        endpoint = `order/orderesNotDelivery/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`;
-      } else if (filterClickedButton === platformOrders) {
-        endpoint = `order/orderesDelivery/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`;
-      } else {
-        endpoint = `order/paidOrderes/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`;
-      }
-
       try {
-        const response = await axios(endpoint);
+        const response = await axios(`order/paidOrderes/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`);
         const data = response.data;
         setAllOrders(data);
       } catch (error) {
         console.error("Error al realizar la solicitud:", error);
       }
     };
-
     if (cardStatusChanged) {
       fetchData();
       // Restablece el estado de cardStatusChanged a false
       setCardStatusChanged(false);
     }
-
     fetchData(); // Realiza la solicitud inicial
-
     const intervalId = setInterval(fetchData, 20000);
-
     // Limpia el intervalo si el componente se desmonta
     return () => clearInterval(intervalId);
-  }, [filterClickedButton, cardStatusChanged /* renderOrdesCards */]);
+  }, [cardStatusChanged]);
 
   const statusTables = (status) => {
     return allOrders.filter((cur) => cur.status === status);
   };
   return (
     <div className={s.content_LayoutDashboard}>
-      <div>
-        <ButtonGreen
-          text={all}
-          active={filterClickedButton === all}
-          onClick={() => setFilterClickedButton(all)}
-        />
-        <ButtonGreen
-          text={localOrders}
-          active={filterClickedButton === localOrders}
-          onClick={() => setFilterClickedButton(localOrders)}
-        />
-        <ButtonGreen
-          text={platformOrders}
-          active={filterClickedButton === platformOrders}
-          onClick={() => setFilterClickedButton(platformOrders)}
-        />
-      </div>
-      <br />
       <div className={s.status_orders}>
         <SubTitleUnderline
           content={t("dashboard.new")}
