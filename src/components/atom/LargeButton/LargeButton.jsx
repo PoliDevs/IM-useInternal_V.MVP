@@ -20,7 +20,9 @@ export default function LargeButton({text, icon,onClick}) {
     arrowDownload: <ArrowDownload className={s.icon} />
   }
   return (
-    <button className={`${s.button} ${active && s.active}`} onClick={handleClick} onBlur={handleBlur}>
+    <button className={`${s.button} ${active && s.active}`}
+     onClick={handleClick}
+      onBlur={handleBlur}>
       <Paragraph text={text} secundary={active && true} />
       {icon && icons[icon]}
     </button>

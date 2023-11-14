@@ -26,24 +26,31 @@ export default function DeleteMenuCurrent() {
     <>
       <MenuStep
         text={t("menu.delete menu current.file")}
-        icon_1={"ArrowDownload"}
-        onClick_icon_1={handleDowload}
+        // icon_1={"ArrowDownload"}
+        // onClick_icon_1={handleDowload}
+        onClick={handleDowload}
         className={"menu_option"}
         icon_2={"XIcon"}
         onClick_icon_2={handleModal}
       />
-      {modal?
-      <Modal
-      open={modal}
-      //open={true}
-      title={t("menu.delete menu current.modal.do you want to delete the menu")}
-      text={t("menu.delete menu current.modal.if you delete the menu you must upload another one")}
-      text_2={t("menu.delete menu current.modal.in the meantime, your store will remain closed")}
-      handleModal={handleModal}
-      text_cancel={t("menu.delete menu current.modal.cancel")}
-      text_confirm={t("menu.delete menu current.modal.confirm")}
-      />
-      :null}
-      </>
+      {modal ? (
+        <Modal
+          open={modal}
+          //open={true}
+          title={t(
+            "menu.delete menu current.modal.do you want to delete the menu"
+          )}
+          text={t(
+            "menu.delete menu current.modal.if you delete the menu you must upload another one"
+          )}
+          text_2={t(
+            "menu.delete menu current.modal.in the meantime, your store will remain closed"
+          )}
+          handleModal={handleModal}
+          text_cancel={t("menu.delete menu current.modal.cancel")}
+          text_confirm={t("menu.delete menu current.modal.confirm")}
+        />
+      ) : null}
+    </>
   );
 }

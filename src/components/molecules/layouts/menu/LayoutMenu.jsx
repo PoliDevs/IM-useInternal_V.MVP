@@ -25,7 +25,7 @@ export default function LayoutMenu() {
     [t("menu.manage current menu")]: <MenuItem />,
     [t("menu.delete current menu")]: <DeleteMenuCurrent />,
     [t("menu.download menu template")]: <DownloadMenuCurrent />,
-    [t("menu.local logo")]: <LogoLocal />,
+    // [t("menu.local logo")]: <LogoLocal />,
   };
   return (
     <div className={s.containerd}>
@@ -45,11 +45,11 @@ export default function LayoutMenu() {
           icon={"arrowDownload"}
           onClick={() => handleOptionClick(downloadMenuTemplate)}
         />
-        <LargeButton
+        {/* <LargeButton
           text={localLogo}
           icon={"arrowRight"}
           onClick={() => handleOptionClick(localLogo)}
-        />
+        /> */}
       </section>
       <section className={s.menuContent}>
         {optionToComponent[selectedOption]}
