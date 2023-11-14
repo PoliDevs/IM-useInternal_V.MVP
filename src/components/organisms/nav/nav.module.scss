@@ -1,6 +1,11 @@
 @import '../../../scss/colors.scss';
 
 .nav{
+  position: fixed; /* Agrega esta línea */
+  top: 0; /* Agrega esta línea para fijar la barra en la parte superior */
+  left: 0; /* Agrega esta línea para fijar la barra en la parte izquierda */
+  width: 100%; /* Agrega esta línea para que ocupe el 100% del ancho */
+  z-index: 50;
   display: flex;
   flex-grow: 1;
   justify-content: space-between;

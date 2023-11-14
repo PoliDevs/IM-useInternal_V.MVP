@@ -26,7 +26,7 @@
   "header": {
     "open local": {
       "orders received": "Pedidos recibidos",
-      "your orders are here in order of entry": "Tus pedidos estan aqui por orden de ingreso"
+      "your orders are here in order of entry": "Tus pedidos están aquí por orden de ingreso"
     },
     "closed local": {
       "premises closed": "Local cerrado",
@@ -51,7 +51,7 @@
     },
     "generator qr":{
       "text":"Generador QR",
-      "detail": "Aquí podras generar los QR de tus mesas"
+      "detail": "Aquí podrás generar los QR de tus mesas"
     }
   },
   "dashboard": {
@@ -60,7 +60,7 @@
     "platform orders": "Pedidos por plataforma",
     "new": "Nuevos",
     "preparing": "Preparando",
-    "ready": "Listo"
+    "ready": "Listos"
   },
   "sales": {
     "this week": "Esta semana",
