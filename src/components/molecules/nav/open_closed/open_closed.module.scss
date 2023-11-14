@@ -16,7 +16,9 @@
   border-radius: $border-secondary-radius;
   padding: 2rem;
   z-index: 2;
-
+  &:hover{
+    cursor: pointer;
+  }
 }
 .content{
   width: 149px;
