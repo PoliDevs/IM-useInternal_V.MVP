@@ -5,11 +5,11 @@ import { localOpen, openLocal, closedLocal } from "../../../../redux/actions";
 import Switch from "react-switch";
 import { useTranslation } from "react-i18next";
 
-export default function Open_closed({onBlur}) {
+export default function Open_closed({ handlestate, onBlur }) {
   const comerceId = useSelector((state) => state.user_internal.comerceId);
   const localOpenValue = useSelector((state) => state.localOpenValue);
   const [localUiValue, setLocalUiValue] = useState(localOpenValue); // Estado local solo para la interfaz
-  const [t,i18n]=useTranslation("global")
+  const [t, i18n] = useTranslation("global");
 
   const dispatch = useDispatch();
 
@@ -22,30 +22,43 @@ export default function Open_closed({onBlur}) {
     if (localUiValue) {
       dispatch(closedLocal(comerceId));
       setLocalUiValue(!localUiValue);
-      setTimeout(()=>{
-        onBlur()
-      },[500])
+      setTimeout(() => {
+        handlestate();
+      }, [500]);
     } else {
       dispatch(openLocal(comerceId));
       setLocalUiValue(!localUiValue);
-      setTimeout(()=>{
-        onBlur()
-      },[500])
+      setTimeout(() => {
+        handlestate();
+      }, [500]);
+    }
+  };
+
+  const handleOnBlur = () => {
+    if (localUiValue) {
+      setLocalUiValue(false);
     }
   };
 
   return (
-    <div className={s.containerd_switch}>
-      <div className={s.content}>
-      <b>{t("nav.open or close local")}</b>
-      <Switch
-        onChange={handleLocalValue}
-        checked={localUiValue}
-        className={s.switch}
-        height={40}
-        width={100}
+    <div
+      className={s.containerd_switch}
+      //handleState={handlestate}
+      tabIndex={0}
+      onBlur={handleOnBlur}
+      onClick={handleLocalValue}
+    >
+      <div className={s.content} tabIndex={0} onBlur={handleOnBlur}>
+        <b>{t("nav.open or close local")}</b>
+        <Switch
+          //onChange={handleLocalValue}
+          checked={localUiValue}
+          className={s.switch}
+          height={40}
+          width={100}
+          //tabIndex={-1}
         />
-        </div>
+      </div>
     </div>
   );
 }

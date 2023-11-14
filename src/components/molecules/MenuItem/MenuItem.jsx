@@ -4,7 +4,6 @@ import LineText from "../../atom/LineText/LineText";
 import SelectIcon from "../../atom/SelectIcon/SelectIcon";
 import s from "./MenuItem.module.scss";
 import { Button } from "semantic-ui-react";
-import ButtonGreen from "../../atom/buttons/ButtonGreen";
 import { useState,useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -13,9 +12,6 @@ import { useTranslation } from "react-i18next";
 
 export default function MenuItem() {
   const [t,i18n]=useTranslation("global");
-  const category=t("menu.menu item.category")
-  const products=t("menu.menu item.products")
-  const [filterClickedButton, setFilterClickedButton] = useState(category);
   const [menu,setMenu]=useState(false);
 /*   console.log(menu) */
   const comerceId=useSelector(state=>state.user_internal.comerceId);
@@ -53,19 +49,6 @@ export default function MenuItem() {
   
   return (
     <div className={s.menuItemContainer}>
-      <div>
-        <ButtonGreen
-          text={category}
-          active={filterClickedButton === category}
-          onClick={() => setFilterClickedButton(category)}
-        ></ButtonGreen>
-        <ButtonGreen
-          text={products}
-          active={filterClickedButton === products}
-          onClick={() => setFilterClickedButton(products)}
-        ></ButtonGreen>
-      </div>
-      <br />
       <Button primary size="huge">{t("menu.menu item.add product")}</Button>
       <div>
         <div className={s.content_menu_table}>

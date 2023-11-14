@@ -9,7 +9,7 @@ import LineText from "../../atom/LineText/LineText";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { Chevron_right,Chevron_down } from "../../atom/iconsHerocoins/icons";
+import { Chevron_up,Chevron_down } from "../../atom/iconsHerocoins/icons";
 
 export default function Card({
   status,
@@ -81,7 +81,7 @@ const textButton=(value)=>textButtonStatus[value];
   return (
     <div className={s.content_card} style={{minWidth:"250px",maxWidth:"376px" , /* width:width?`${width}px`:null  */}}>
       <div>
-        <h4>
+        <h4 onClick={handleSeeOrder}>
           {delivery ? (
             <PedidosYa
               style={{
@@ -92,7 +92,7 @@ const textButton=(value)=>textButtonStatus[value];
           ) : (
             `${t("card.sector")}  ${sectorNumber} ${t("card.table")}  ${tableNumber}`
           )}
-          {seeOrder?<Chevron_right  heigth={24} onClick={handleSeeOrder} />:<Chevron_down heigth={24}  onClick={handleSeeOrder}/>}
+          {seeOrder?<Chevron_up  heigth={24}  />:<Chevron_down heigth={24}  onClick={handleSeeOrder}/>}
         </h4>
         {seeOrder ? (
           <div>

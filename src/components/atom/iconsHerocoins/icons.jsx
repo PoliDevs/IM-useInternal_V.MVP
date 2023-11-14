@@ -130,7 +130,7 @@ export function Store({ heigth }) {
   );
 }
 
-export function Bars_3({ heigth }) {
+export function Bars_3({ heigth, width }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -140,6 +140,7 @@ export function Bars_3({ heigth }) {
       stroke="currentColor"
       className="w-6 h-6"
       height={heigth}
+      width={width}
     >
       <path
         strokeLinecap="round"
@@ -150,7 +151,7 @@ export function Bars_3({ heigth }) {
   );
 }
 
-export function User_cicle({ heigth }) {
+export function User_cicle({ heigth, width }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -160,6 +161,7 @@ export function User_cicle({ heigth }) {
       stroke="currentColor"
       className="w-6 h-6"
       height={heigth}
+      width={width}
     >
       <path
         strokeLinecap="round"
@@ -170,7 +172,7 @@ export function User_cicle({ heigth }) {
   );
 }
 
-export function Chevron_right({ heigth, onClick }) {
+export function Chevron_up({ heigth, onClick }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -185,7 +187,7 @@ export function Chevron_right({ heigth, onClick }) {
       <path
         strokeLinecap="round"
         strokeLinejoin="round"
-        d="M8.25 4.5l7.5 7.5-7.5 7.5"
+        d="M4.5 15.75l7.5-7.5 7.5 7.5"
       />
     </svg>
   );
