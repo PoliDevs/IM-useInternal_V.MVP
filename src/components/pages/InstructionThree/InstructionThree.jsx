@@ -8,6 +8,7 @@ import File from "../../molecules/File/File";
 import InstructionButton from "../../molecules/InstructionButton/InstructionButton";
 import s from "./InstructionThree.module.scss";
 import { useTranslation } from "react-i18next";
+import Container from "../../atom/container/Container";
 
 export default function InstructionThree() {
   const [t,i18n]=useTranslation("global");
@@ -26,6 +27,7 @@ export default function InstructionThree() {
   }
 
   return (
+    <Container marginTop>
     <InstructionContainer>
       <main className={s.mainContainer}>
         <div className={s.textContainer}>
@@ -74,5 +76,6 @@ export default function InstructionThree() {
         />
       </main>
     </InstructionContainer>
+    </Container>
   );
 }

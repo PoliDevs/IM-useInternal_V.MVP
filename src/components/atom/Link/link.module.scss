@@ -11,10 +11,9 @@
     text-decoration: none;
     margin: 0;
     font-size: $title;
-    //background-color: aqua;
-    
     &:hover{
         color: $text-secondary;
         font-size: 20px;
+        padding: 0 0 0 10px;
     }
 }

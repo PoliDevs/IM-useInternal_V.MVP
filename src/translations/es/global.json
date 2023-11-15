@@ -77,7 +77,7 @@
   },
   "menu": {
     "manage current menu": "Gestionar menú actual",
-    "delete current menu": "Eliminar menú actual",
+    "replace current menu": "Reemplazar menú actual",
     "download menu template": "Descargar plantilla de menú",
     "local logo": "Logo del local",
     "menu item": {

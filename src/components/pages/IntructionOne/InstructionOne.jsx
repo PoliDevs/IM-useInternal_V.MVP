@@ -6,11 +6,13 @@ import s from "./InstructionOne.module.scss";
 import InstructionButton from "../../molecules/InstructionButton/InstructionButton";
 import InstructionContainer from "../../atom/InstructionContainer/InstructionContainer";
 import { useTranslation } from "react-i18next";
+import Container from "../../atom/container/Container";
 
 export default function InstructionOne() {
   const [t,i18n]=useTranslation("global");
 
   return (
+    <Container marginTop >
     <InstructionContainer>
       <main className={s.mainContainer}>
         <div className={s.textContainer}>
@@ -34,5 +36,6 @@ export default function InstructionOne() {
         />
       </main>
     </InstructionContainer>
+    </Container>
   );
 }
