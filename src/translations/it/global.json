@@ -56,7 +56,7 @@
     },
     "dashboard": {
       "all": "Tutto",
-      "local orders": "Ordini locali",
+      "local orders": "Ordini locali (Presto)",
       "platform orders": "Ordini tramite piattaforma",
       "new": "Nuovi",
       "preparing": "In preparazione",
@@ -79,11 +79,11 @@
       "manage current menu": "Gestisci il menu attuale",
       "replace current menu": "Sostituisci il menu attuale",
       "download menu template": "Scarica il modello del menu",
-      "local logo": "Logo del locale",
+      "local logo": "Logo del locale (Presto)",
       "menu item": {
         "category": "Categoria",
         "products": "Prodotti",
-        "add product": "Aggiungi Prodotto",
+        "add product": "Aggiungi Prodotto (Presto)",
         "emoji": "Emoji",
         "product": "Prodotto",
         "price": "Prezzo",
