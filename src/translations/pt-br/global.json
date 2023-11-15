@@ -92,10 +92,10 @@
       "delete menu current": {
         "file": "Menu.xlm",
         "modal": {
-          "do you want to delete the menu": "Deseja excluir o cardápio?",
-          "if you delete the menu you must upload another one": "Se você excluir o cardápio, deverá fazer upload de outro.",
-          "in the meantime, your store will remain closed": "Enquanto isso, sua loja permanecerá fechada.",
-          "confirm": "Sim, Excluir",
+          "do you want to replace menu": "Deseja substituir o menu?",
+          "text_1": "Sugerimos que você feche temporariamente seu negócio enquanto atualiza o menu.",
+          "text_2": "Para evitar encomendas imprevistas",
+          "confirm": "Sim, substituir",
           "cancel": "Cancelar"
         }
       },

@@ -264,7 +264,7 @@ export function StoreClosed({ height }) {
     height,
     backgroundImage: `url(${StoreClosedImg})`,
   }; */
-  return <img src={StoreClosedImg} height={height} />;
+  return <img src={StoreClosedImg} alt="Closed" height={height} />;
 }
 
 export function XMark({ heigth, onClick, zIndex, className }) {
