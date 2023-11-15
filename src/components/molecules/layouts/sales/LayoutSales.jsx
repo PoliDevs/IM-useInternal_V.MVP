@@ -59,7 +59,7 @@ export default function LayoutSales() {
     <div className={s.containerd}>
       <div className={s.content_1}>
         {/* <span>Esta semana</span> */}
-        <Title text={t("sales.this week")} />
+        {/* <Title text={t("sales.this week")} /> */}
         <Title text={t("sales.weekly Total")}>
           <b style={{ fontWeight: "700" }}>{totalWeek&&Math.floor(totalWeek)} </b>
         </Title>

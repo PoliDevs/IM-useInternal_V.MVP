@@ -18,11 +18,12 @@ export default function DownloadMenuCurrent() {
   }
   return (
     <MenuStep
-    text= {t("menu.download template.download template")}
-    icon_1={"ArrowDownload"}
-    className= {"menu_option"}
-    icon_2= ""
-    onClick_icon_1={handleDowload}
+      text={t("menu.download template.download template")}
+      icon_1={"ArrowDownload"}
+      className={"menu_option"}
+      icon_2=""
+      // onClick_icon_1={handleDowload}
+      onClick={handleDowload}
     />
-  )
+  );
 }
