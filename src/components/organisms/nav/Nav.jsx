@@ -33,13 +33,13 @@ export default function Nav() {
   };
 
   return (
-    <nav className={s.nav} onFocus={handleBlur}>
+    <nav className={s.nav}/*  onFocus={handleBlur} */>
       <div
         className={`${s.iconContainer} ${
           !barsActive ? s.customBackground : s.anotherCustomBackground
         }`}
         onClick={toggleBarsBackground}
-        onBlur={handleBlur}
+       /*  onBlur={handleBlur} */
         tabIndex={0} // Añade tabIndex para que el contenedor pueda recibir el enfoque
       >
         <Bars_3 heigth={36} />
