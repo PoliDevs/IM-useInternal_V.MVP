@@ -39,6 +39,14 @@
     }
 }
 
+.containerd_bars_inactive {
+    position: absolute;
+    left: 0px;
+    top: 550px;
+    border-radius: $border-primary-radius;
+    z-index: 21;
+}
+
 /* @media screen and (max-width: 730px) {
     .containerd_bars {
         width: 70%;
