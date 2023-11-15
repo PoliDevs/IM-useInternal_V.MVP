@@ -1,6 +1,6 @@
-import {  useState } from "react";
+import { useState } from "react";
 import s from "./card.module.scss";
-import {Button } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 import { ReactComponent as Rappi } from "../../../assets/rappi.svg";
 import { ReactComponent as PedidosYa } from "../../../assets/pedidosYa.svg";
 import OrderItem from "./orderItem/OrderItem";
@@ -9,7 +9,10 @@ import LineText from "../../atom/LineText/LineText";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { Chevron_up,Chevron_down } from "../../atom/iconsHerocoins/icons";
+import { Chevron_up, Chevron_down } from "../../atom/iconsHerocoins/icons";
+import ButtonCard from "../../atom/buttons/buttonCard/ButtonCard";
+import ContentRow from "../../atom/contentRow/ContentRow";
+
 
 export default function Card({
   status,
@@ -23,6 +26,7 @@ export default function Card({
   products,
   dishes,
   additionals,
+  offButtons,
   width,
   //news
   accountemail,
@@ -31,14 +35,14 @@ export default function Card({
   //
   onStatusChange, // Nuevo prop para manejar cambios de estado en el componente padre
 }) {
-  const [t,i18n]=useTranslation("global")
-  const orderPlaced=t("card.order placed");
-  const orderInPreparation=t("card.order in preparation");
-  const orderReady=t("card.order ready");
-  const delivered=t("card.delivered");
-  const comerceId=useSelector(state=>state.user_internal.comerceId)
+  const [t, i18n] = useTranslation("global");
+  const orderPlaced = t("card.order placed");
+  const orderInPreparation = t("card.order in preparation");
+  const orderReady = t("card.order ready");
+  const delivered = t("card.delivered");
+  const comerceId = useSelector((state) => state.user_internal.comerceId);
 
-  const [seeOrder, setSeeOrder] = useState(true);//con esto mostramos o ocultamos la orden, icon
+  const [seeOrder, setSeeOrder] = useState(true); //con esto mostramos o ocultamos la orden, icon
 
   const numOrder = order.split("-")[1].trim();
 
@@ -47,39 +51,60 @@ export default function Card({
   };
 
   //busca el status de la order para cambiar el texto del boton
-  const textButtonStatus={
-    orderPlaced:orderPlaced,
-    orderInPreparation:orderInPreparation,
-    orderReady:orderReady,
-    delivered:delivered
-  }
-const textButton=(value)=>textButtonStatus[value];
+  const textButtonStatus = {
+    orderPlaced: orderPlaced,
+    orderInPreparation: orderInPreparation,
+    orderReady: orderReady,
+    delivered: delivered,
+  };
+  const textButton = (value) => textButtonStatus[value];
 
-  const statusColorButton={
-    orderPlaced:"#FF4A4A",
-    orderInPreparation:"#40CB5F",
-    orderReady:"#000000",
-    delivered:"#000000",
-  }
+  const statusColorButton = {
+    orderPlaced: "#FF4A4A",
+    orderInPreparation: "#40CB5F",
+    orderReady: "#000000",
+    delivered: "#000000",
+  };
   const colorButton = (arg) => statusColorButton[arg];
 
-  //cambiamos el status del pedido
-  const handleStatus = async(status,order) => {
-    let newStatus="";
-    if(status==="orderPlaced"){newStatus="orderInPreparation"}
-    if(status==="orderInPreparation"){
-      newStatus="orderReady";
-     return await axios.put(`order/status-ready/${order}/${comerceId}`,{status:newStatus,
-      accountemail,
-      accountname,
-      googleemail
-    })
+  //cambiamos el status al que sigue
+  const handleStatus = async (status, order) => {
+    let newStatus = "";
+    if (status === "orderPlaced") {
+      newStatus = "orderInPreparation";
     }
-    if(status==="orderReady"){newStatus="delivered"}
-    await axios.put(`order/change-status/${order}/${comerceId}`,{status:newStatus})
+    if (status === "orderInPreparation") {
+      newStatus = "orderReady";
+    }
+    if (status === "orderReady") {
+      newStatus = "delivered";
+    }
+    await axios.put(`order/change-status/${order}/${comerceId}`, {
+      status: newStatus,
+    });
   };
+
+    //cambiamos el status al que sigue
+    const handleStatusBack = async (status, order) => {
+      let newStatus = "";
+      if (status === "orderInPreparation") {
+        newStatus = "orderPlaced";
+      }
+      if (status === "orderReady") {
+        newStatus = "orderInPreparation";
+      }
+      await axios.put(`order/change-status/${order}/${comerceId}`, {
+        status: newStatus,
+      });
+    };
   return (
-    <div className={s.content_card} style={{minWidth:"250px",maxWidth:"376px" , /* width:width?`${width}px`:null  */}}>
+    <div
+      className={s.content_card}
+      style={{
+        minWidth: "250px",
+        maxWidth: "376px" /* width:width?`${width}px`:null  */,
+      }}
+    >
       <div>
         <h4 onClick={handleSeeOrder}>
           {delivery ? (
@@ -90,15 +115,23 @@ const textButton=(value)=>textButtonStatus[value];
               }}
             />
           ) : (
-            `${t("card.sector")}  ${sectorNumber} ${t("card.table")}  ${tableNumber}`
+            `${t("card.sector")}  ${sectorNumber} ${t(
+              "card.table"
+            )}  ${tableNumber}`
           )}
-          {seeOrder?<Chevron_up  heigth={24}  />:<Chevron_down heigth={24}  onClick={handleSeeOrder}/>}
+          {seeOrder ? (
+            <Chevron_up heigth={24} />
+          ) : (
+            <Chevron_down heigth={24} onClick={handleSeeOrder} />
+          )}
         </h4>
         {seeOrder ? (
           <div>
             <Paragraph
               start
-              text={`${t("card.order")} N° ${numOrder} - ${t("card.received at")} ${hour.slice(0, 5)}`}
+              text={`${t("card.order")} N° ${numOrder} - ${t(
+                "card.received at"
+              )} ${hour.slice(0, 5)}`}
             />
             {menu &&
               menu.name.map((cur, idx) => {
@@ -107,7 +140,7 @@ const textButton=(value)=>textButtonStatus[value];
                     key={idx}
                     amount={menu.amount[idx]}
                     name={cur}
-                    cost={menu.cost[idx]*menu.amount[idx]}
+                    cost={menu.cost[idx] * menu.amount[idx]}
                     detail={menu.detail[idx].length > 0 && menu.detail[idx]}
                   />
                 );
@@ -119,7 +152,7 @@ const textButton=(value)=>textButtonStatus[value];
                     key={idx}
                     amount={products.amount[idx]}
                     name={cur}
-                    cost={products.cost[idx]*products.amount[idx]}
+                    cost={products.cost[idx] * products.amount[idx]}
                     detail={
                       products.detail[idx].length > 0 && products.detail[idx]
                     }
@@ -131,7 +164,7 @@ const textButton=(value)=>textButtonStatus[value];
                 return (
                   <OrderItem
                     key={idx}
-                    amount={dishes.amount[idx]*dishes.amount[idx]}
+                    amount={dishes.amount[idx] * dishes.amount[idx]}
                     name={cur}
                     cost={dishes.cost[idx]}
                     detail={dishes.detail[idx].length > 0 && dishes.detail[idx]}
@@ -145,7 +178,7 @@ const textButton=(value)=>textButtonStatus[value];
                     key={idx}
                     amount={additionals.amount[idx]}
                     name={cur}
-                    cost={additionals.cost[idx]*additionals.cost[idx]}
+                    cost={additionals.cost[idx] * additionals.cost[idx]}
                     detail={
                       additionals.detail[idx].length > 0 &&
                       additionals.detail[idx]
@@ -154,34 +187,31 @@ const textButton=(value)=>textButtonStatus[value];
                 );
               })}
             <div>
-              <LineText bold text={`${t("card.total")} :$ ${total || "***"}`} />
-              <Button
-              onClick={()=>{
-                handleStatus(status,order);
-                const newStatus =  textButton(status) //getStatus(status); // Calcula el nuevo estado aquí
-                onStatusChange(newStatus,numOrder); // Llama a la función con el nuevo estado
-              }}
-                style={{
-                  background:colorButton(status),
-                  padding: "7px",
-                  color: "white",
-                  margin: "0 0 5px 0",
-                  fontSize: "16px",
-                  borderRadius: "10px",
+              <LineText end bold text={`${t("card.total")} :$ ${total || "***"}`} />
+              <ContentRow  justifyContent={status === "orderInPreparation" || status === "orderReady"?"space-between":"flex-end"}>
+              {status === "orderInPreparation" || status === "orderReady" ? (
+                <ButtonCard iconName={"backSpace"} background={colorButton(status)} 
+                onClick={()=>{
+                  handleStatusBack(status,order)
+                  const newStatus = textButton(status); //getStatus(status); // Calcula el nuevo estado aquí
+                  onStatusChange(newStatus, numOrder); // Llama a la función con el nuevo estado
+                }}/>
+                ) : null}
+              <ButtonCard
+                text={textButton(status)}
+                background={colorButton(status)}
+                onClick={() => {
+                  if (offButtons) return null;
+                  handleStatus(status, order);
+                  const newStatus = textButton(status); //getStatus(status); // Calcula el nuevo estado aquí
+                  onStatusChange(newStatus, numOrder); // Llama a la función con el nuevo estado
                 }}
-                onMouseEnter={(e) => {
-                  e.target.style.transform = "scale(1.05)"; // Escala el botón al 110% en hover
-                }}
-                onMouseLeave={(e) => {
-                  e.target.style.transform = "scale(1)"; // Devuelve el botón a su tamaño original al salir del hover
-                }}
-              >
-                {textButton(status)}
-              </Button>
+                ></ButtonCard>
+                </ContentRow>
             </div>
           </div>
         ) : null}
       </div>
     </div>
   );
-};
+}

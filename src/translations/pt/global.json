@@ -77,7 +77,7 @@
     },
     "menu": {
       "manage current menu": "Gerenciar cardápio atual",
-      "delete current menu": "Excluir cardápio atual",
+      "replace current menu": "Reemplazar cardápio atual",
       "download menu template": "Baixar modelo de cardápio",
       "local logo": "Logo do local",
       "menu item": {

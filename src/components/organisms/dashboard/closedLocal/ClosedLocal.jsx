@@ -37,7 +37,6 @@ export default function ClosedLocal({ open }) {
   };
   return (
     <Container>
-      <div className={s.centered_content}>
         <Header
           off
           icon="storeClosed"
@@ -52,7 +51,6 @@ export default function ClosedLocal({ open }) {
             <LayoutDashboard/>
           </LayoutContainer>
         ) : null}
-      </div>
     </Container>
   );
 }

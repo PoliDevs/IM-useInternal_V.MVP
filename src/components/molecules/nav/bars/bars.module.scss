@@ -1,7 +1,6 @@
 @import '../../../../scss/colors.scss';
 
 .containerd_bars {
-    /*     position: relative; */
     color: $text-primary;
     background-color: $background-secundary;
     display: flex;
@@ -15,6 +14,9 @@
     width: 333px;
     border: $border;
     z-index: 21;
+    &:hover{
+        cursor:default;
+    }
 
     >article {
         margin: 0px 0 10px 0;
@@ -32,7 +34,7 @@
             background-color: $background-tertiary;
             color: $text-secondary;
             cursor: pointer;
-            padding: 0 0 0 10px;
+            /* padding: 0 0 0 10px; */
         }
     }
 }

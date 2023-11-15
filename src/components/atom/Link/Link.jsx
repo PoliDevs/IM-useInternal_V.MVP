@@ -12,6 +12,6 @@ export default function Links({ text, to, onclick,icon }) {
     "qr":<QrCode heigth={"25"} />,
   }
   return (
-      <Link className={s.link} to={to} onClick={() => onclick()}> {optionIcon[icon]}{text}</Link>
+      <Link className={s.link} to={to} onClick={onclick}> {optionIcon[icon]}{text}</Link>
   );
 }

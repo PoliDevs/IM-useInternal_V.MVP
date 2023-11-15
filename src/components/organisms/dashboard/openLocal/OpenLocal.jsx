@@ -5,7 +5,7 @@ import Container from "../../../atom/container/Container";
 import { useTranslation } from "react-i18next";
 
 export default function OpenLocal() {
-  const [t,i18n]=useTranslation("global")
+  const [t, i18n] = useTranslation("global");
   return (
     <Container>
       <Header
