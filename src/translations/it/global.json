@@ -79,11 +79,11 @@
       "manage current menu": "Gestisci il menu attuale",
       "delete current menu": "Elimina il menu attuale",
       "download menu template": "Scarica il modello del menu",
-      "local logo": "Logo del locale",
+      "local logo": "Logo del locale (Presto)",
       "menu item": {
         "category": "Categoria",
         "products": "Prodotti",
-        "add product": "Aggiungi Prodotto",
+        "add product": "Aggiungi Prodotto (Presto)",
         "emoji": "Emoji",
         "product": "Prodotto",
         "price": "Prezzo",
