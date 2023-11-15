@@ -6,7 +6,8 @@ import InstructionButton from '../../molecules/InstructionButton/InstructionButt
 import MenuStep from '../../molecules/MenuStep/MenuStep';
 import s from './InstructionFour.module.scss';
 import { useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next'; 
+import { useTranslation } from 'react-i18next';
+import Container from "../../atom/container/Container";
 
 export default function InstructionFour() {
   const [t,i18n]=useTranslation("global");
@@ -15,6 +16,7 @@ export default function InstructionFour() {
   console.log(token)
 
   return (
+    <Container>
     <InstructionContainer>
       <main className={s.mainContainer}>
         <div className={s.textContainer}>
@@ -34,5 +36,6 @@ export default function InstructionFour() {
         />
       </main>
     </InstructionContainer>
+    </Container>
   );
 }

@@ -1,70 +1,76 @@
 import s from "./nav.module.scss";
-import { useState } from "react";
+import { useState,useRef,useEffect } from "react";
 import Bars from "../../molecules/nav/bars/Bars";
 import Open_closed from "../../molecules/nav/open_closed/Open_closed";
-import { Bars_3, User_cicle } from "../../atom/iconsHerocoins/icons";
+import { Bars_3, Store, StoreClosed } from "../../atom/iconsHerocoins/icons";
 import logoNav from "../../../assets/logo nav.svg";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 export default function Nav() {
   const [barsActive, setBarsActive] = useState(false);
   const [userActive, setUserActive] = useState(false);
+  const barsContainerRef = useRef(null);
+  const userContainerRef = useRef(null);
+
+  const localValue = useSelector((state) => state.localOpenValue);
 
   //cambia el fondo de los iconos
   const toggleBarsBackground = () => {
     userActive && setUserActive(false);
     setBarsActive(!barsActive);
   };
-  const handleBlur = () => {
-    if (barsActive) {
-      setTimeout(() => setBarsActive(false), [100]);
-      
-    }
-  };
-  const handleBlurUser = () => {
-    if (userActive) {
-      setTimeout(() => setUserActive(false), [250]);
-    }
-  };
+  
   //cambia el fondo de los iconos
   const toggleUserBackground = async () => {
     barsActive && setBarsActive(false);
     setUserActive(!userActive);
   };
 
+  const handleDocumentClick = (event) => {
+    if (barsContainerRef.current && !barsContainerRef.current.contains(event.target)) {
+      setBarsActive(false);
+    }
+
+    if (userContainerRef.current && !userContainerRef.current.contains(event.target)) {
+      setTimeout(() => setUserActive(false), [250]);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleDocumentClick);
+    return () => {
+      document.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
+
+
   return (
-    <nav className={s.nav} onFocus={handleBlur}>
+    <nav className={s.nav}>
       <div
+        ref={barsContainerRef}
         className={`${s.iconContainer} ${
-          !barsActive ? s.customBackground : s.anotherCustomBackground
+        !barsActive ? s.customBackground : s.anotherCustomBackground
         }`}
         onClick={toggleBarsBackground}
-        onBlur={handleBlur}
-        tabIndex={0} // Añade tabIndex para que el contenedor pueda recibir el enfoque
       >
-        <Bars_3 heigth={36} />
-        {barsActive ? <Bars onLinkClick={toggleBarsBackground} /> : null}
+        <Bars_3 heigth={36}/>
       </div>
-      <div style={{ display: "flex", gap: "5px" }}>
+        {barsActive ? <Bars onLinkClick={toggleBarsBackground}/> : null}
         <Link to={"/dashboard"}>
           <img src={logoNav} className={s.logo} />
         </Link>
-      </div>
       <div
         className={`${s.iconContainer} ${
           !userActive ? s.customBackground : s.anotherCustomBackground
         }`}
         onClick={toggleUserBackground}
-        onBlur={handleBlurUser}
-        tabIndex={0} // Añade tabIndex para que el contenedor pueda recibir el enfoque
+        ref={userContainerRef}
       >
-        <User_cicle heigth={36} />
+        {localValue ? <Store heigth={36} /> : <StoreClosed height={36} />}
       </div>
       {userActive ? (
-        <Open_closed
-          handlestate={toggleUserBackground}
-          //onBlur={toggleUserBackground}
-        />
+        <Open_closed handlestate={toggleUserBackground}/>
       ) : null}
     </nav>
   );

@@ -12,6 +12,9 @@
   background-color: $color-sixth;
   margin: 5px;
   border: $border_primary;
+  &:hover{
+    cursor: pointer;
+  }
   
   .icon {
     width: 20px;

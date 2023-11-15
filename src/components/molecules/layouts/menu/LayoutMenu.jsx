@@ -1,7 +1,7 @@
 import React from "react";
 import LargeButton from "../../../atom/LargeButton/LargeButton";
 import MenuItem from "../../MenuItem/MenuItem";
-import DeleteMenuCurrent from "../../sections/menu/deleteMenuCurrent/DeleteMenuCurrent";
+import DeleteMenuCurrent from "../../sections/menu/replaceMenuCurrent/ReplaceMenuCurrent";
 import DownloadMenuCurrent from "../../sections/menu/downloadMenu/DownloadMenuCurrent";
 import LogoLocal from "../../sections/menu/logoLocal/LogoLocal";
 import s from "./LayoutMenu.module.scss";
@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 export default function LayoutMenu() {
   const [t,i18n]=useTranslation("global");
   const manageCurrentMenu=t("menu.manage current menu");
-  const deleteCurrentMenu=t("menu.delete current menu");
+  const deleteCurrentMenu=t("menu.replace current menu");
   const downloadMenuTemplate=t("menu.download menu template");
   const localLogo=t("menu.local logo");
 
@@ -23,7 +23,7 @@ export default function LayoutMenu() {
   
   const optionToComponent = {
     [t("menu.manage current menu")]: <MenuItem />,
-    [t("menu.delete current menu")]: <DeleteMenuCurrent />,
+    [t("menu.replace current menu")]: <DeleteMenuCurrent />,
     [t("menu.download menu template")]: <DownloadMenuCurrent />,
     // [t("menu.local logo")]: <LogoLocal />,
   };

@@ -5,10 +5,10 @@ import { localOpen, openLocal, closedLocal } from "../../../../redux/actions";
 import Switch from "react-switch";
 import { useTranslation } from "react-i18next";
 
-export default function Open_closed({ handlestate, onBlur }) {
+export default function Open_closed({ handlestate }) {
   const comerceId = useSelector((state) => state.user_internal.comerceId);
   const localOpenValue = useSelector((state) => state.localOpenValue);
-  const [localUiValue, setLocalUiValue] = useState(localOpenValue); // Estado local solo para la interfaz
+  const [localUiValue, setLocalUiValue] = useState(localOpenValue);
   const [t, i18n] = useTranslation("global");
 
   const dispatch = useDispatch();
@@ -43,7 +43,6 @@ export default function Open_closed({ handlestate, onBlur }) {
   return (
     <div
       className={s.containerd_switch}
-      //handleState={handlestate}
       tabIndex={0}
       onBlur={handleOnBlur}
       onClick={handleLocalValue}
@@ -51,12 +50,11 @@ export default function Open_closed({ handlestate, onBlur }) {
       <div className={s.content} tabIndex={0} onBlur={handleOnBlur}>
         <b>{t("nav.open or close local")}</b>
         <Switch
-          //onChange={handleLocalValue}
+          onChange={handleLocalValue}
           checked={localUiValue}
           className={s.switch}
           height={40}
           width={100}
-          //tabIndex={-1}
         />
       </div>
     </div>

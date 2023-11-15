@@ -15,6 +15,7 @@ export default function LargeButton({text, icon, onClick, disabled}) {
   const handleBlur = () => {
     setActive(false);
   }
+  
   const icons = {
     arrowRight: <ArrowLongRight className={s.icon} />,
     arrowDownload: <ArrowDownload className={s.icon} />
