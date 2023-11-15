@@ -89,13 +89,13 @@
       "price": "Prix",
       "on/off": "Activé/Désactivé"
     },
-    "delete menu current": {
+    "replace menu current": {
       "file": "Menu.xlm",
       "modal": {
-        "do you want to delete the menu": "Voulez-vous supprimer le menu ?",
-        "if you delete the menu you must upload another one": "Si vous supprimez le menu, vous devez en charger un autre.",
-        "in the meantime, your store will remain closed": "Pendant ce temps, votre magasin restera fermé.",
-        "confirm": "Oui, Supprimer",
+        "do you want to replace menu": "Voulez-vous remplacer le menu ?",
+        "text_1": "Nous vous suggérons de fermer temporairement votre entreprise le temps de mettre à jour le menu.",
+        "text_2": "Afin d'éviter les commandes imprévues.",
+        "confirm": "Oui, remplacer",
         "cancel": "Annuler"
       }
     },

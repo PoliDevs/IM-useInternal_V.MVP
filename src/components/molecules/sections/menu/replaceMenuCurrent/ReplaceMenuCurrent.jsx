@@ -25,7 +25,7 @@ export default function DeleteMenuCurrent() {
   return (
     <>
       <MenuStep
-        text={t("menu.delete menu current.file")}
+        text={t("menu.replace menu current.file")}
         icon_1={"ArrowDownload"}
         onClick_icon_1={handleDowload}
         className={"menu_option"}
@@ -36,12 +36,12 @@ export default function DeleteMenuCurrent() {
       <Modal
       open={modal}
       //open={true}
-      title={t("menu.delete menu current.modal.do you want to delete the menu")}
-      text={t("menu.delete menu current.modal.if you delete the menu you must upload another one")}
-      text_2={t("menu.delete menu current.modal.in the meantime, your store will remain closed")}
+      title={t("menu.replace menu current.modal.do you want to replace menu")}
+      text={t("menu.replace menu current.modal.text_1")}
+      text_2={t("menu.replace menu current.modal.text_2")}
       handleModal={handleModal}
-      text_cancel={t("menu.delete menu current.modal.cancel")}
-      text_confirm={t("menu.delete menu current.modal.confirm")}
+      text_cancel={t("menu.replace menu current.modal.cancel")}
+      text_confirm={t("menu.replace menu current.modal.confirm")}
       />
       :null}
       </>

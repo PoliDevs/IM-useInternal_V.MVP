@@ -2,11 +2,17 @@
   display: flex;
   align-items: center; /* Alinea verticalmente los elementos */
   font-size: 20px;
+  &:hover{
+    cursor: default;
+  }
 }
 
 .text {
   //font-size: 20px;
   border-bottom: 2px solid;
+  &:hover{
+    cursor: default;
+  }
 }
 
 .elevatedNumber {
@@ -19,16 +25,16 @@
   margin-left: 5px; /* Espacio entre el texto y el número */
   /* Agrega sombra si deseas un efecto de elevación más realista */
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  &:hover{
+    cursor: default;
+  }
 }
 
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 700px) {
   .textContainer {
     flex-direction: column; /* Cambia la dirección de los elementos a columna */
     text-align: center; /* Centra el texto y el número horizontalmente */
-  &:hover{
-    cursor: pointer;
-  }
   }
 
   .elevatedNumber {
