@@ -28,3 +28,11 @@
     color: $color-sixth
   }
 }
+
+.disabled {
+  background-color: $text-desable;
+  color: $text-secondary;
+  .icon {
+    color: $color-sixth
+  }
+}
