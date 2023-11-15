@@ -91,6 +91,7 @@ const todayDate=getDateCurrent();
                       delivery={cur.delivery}
                       total={cur.paid}
                       width={320}
+                      offButtons={true}
                       menu={cur.menu && cur.menu.name[0].length > 0 && cur.menu}
                       products={
                         cur.products &&

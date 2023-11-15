@@ -12,6 +12,7 @@ import s from "./InstructionTwo.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { postMenu } from "../../../redux/actions";
 import { useTranslation } from "react-i18next";
+import Container from "../../atom/container/Container";
 
 export default function InstructionTwo() {
   const [t,i18n]=useTranslation("global");
@@ -270,6 +271,7 @@ export default function InstructionTwo() {
   };
 
   return (
+    <Container marginTop >
     <InstructionContainer>
       <main className={s.mainContainer}>
         <div className={s.textContainer}>
@@ -320,5 +322,6 @@ export default function InstructionTwo() {
         />
       </main>
     </InstructionContainer>
+    </Container>
   );
 }

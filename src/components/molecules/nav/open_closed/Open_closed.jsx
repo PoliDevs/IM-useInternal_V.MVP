@@ -51,7 +51,7 @@ export default function Open_closed({ handlestate, onBlur }) {
       <div className={s.content} tabIndex={0} onBlur={handleOnBlur}>
         <b>{t("nav.open or close local")}</b>
         <Switch
-          //onChange={handleLocalValue}
+          onChange={handleLocalValue}
           checked={localUiValue}
           className={s.switch}
           height={40}
