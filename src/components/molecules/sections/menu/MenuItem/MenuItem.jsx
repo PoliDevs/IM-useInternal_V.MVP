@@ -51,7 +51,7 @@ export default function MenuItem() {
   
   return (
     <div className={s.menuItemContainer}>
-      <Button primary size="huge">{t("menu.menu item.add product")}</Button>
+      <Button primary size="huge" disabled >{t("menu.menu item.add product")}</Button>
       <div>
         <div className={s.content_menu_table}>
           <section className={s.menu_opciones}>
