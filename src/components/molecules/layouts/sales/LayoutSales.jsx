@@ -117,11 +117,12 @@ export function SalesChart({ week }) {
       offsetY: 500,
       style: {
         colors: ["#000"], // Establece el color del texto en negro
+        fontSize: "20px",//tamaño de letras arriba
       },
     },
     plotOptions: {
       bar: {
-        columnWidth: "55%", // Ancho de las barras
+        columnWidth: "50%", // Ancho de las barras
         endingShape: "rounded", // Forma de las barras (puede ser "rounded", "flat", etc.)
         borderRadius: 18,
       },

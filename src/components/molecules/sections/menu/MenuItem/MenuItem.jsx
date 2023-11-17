@@ -1,14 +1,13 @@
-import { ReactComponent as Eye } from "../../../assets/Eye.svg";
-import { ReactComponent as EyeSlash } from "../../../assets/EyeSlash.svg";
-import LineText from "../../atom/LineText/LineText";
-import SelectIcon from "../../atom/SelectIcon/SelectIcon";
+import LineText from "../../../../atom/LineText/LineText";
+import SelectIcon from "../../../../atom/SelectIcon/SelectIcon";
 import s from "./MenuItem.module.scss";
 import { Button } from "semantic-ui-react";
 import { useState,useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import Loading from "../../atom/loading/Loading";
+import Loading from "../../../../atom/loading/Loading";
 import { useTranslation } from "react-i18next";
+import { Eye,Eye_slash } from "../../../../atom/iconsHerocoins/icons";
 
 export default function MenuItem() {
   const [t,i18n]=useTranslation("global");
@@ -46,6 +45,9 @@ export default function MenuItem() {
       console.error("Error al cambiar el estado active:", error);
     }
   };
+
+  // Ordenar el menú para que los elementos inactivos aparezcan al final
+  //const sortedMenu = menu?.sort((a, b) => (a.active === b.active ? 0 : a.active ? -1 : 1));
   
   return (
     <div className={s.menuItemContainer}>
@@ -70,7 +72,7 @@ export default function MenuItem() {
                 <LineText text={item.name} disabled={!item.active} />
                 <LineText text={`$${item.cost}`} disabled={!item.active} />
                 <div onClick={() => handleClickEyes(index,item.id)}>
-                  {item.active?<Eye className={s.eyeIcon}></Eye>:<EyeSlash className={s.eyeIconSlash}></EyeSlash>}
+                  {item.active?<Eye heigth={24} ></Eye>:<Eye_slash heigth={24}/>}
                 </div>
               </div>
             ))}
