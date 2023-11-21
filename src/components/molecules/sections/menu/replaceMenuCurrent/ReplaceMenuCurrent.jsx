@@ -11,9 +11,8 @@ export default function DeleteMenuCurrent() {
   const handleModal = () => {
     setModal(!modal)
   };
-  const handleDowload=()=>{
-    // Aquí debes agregar lógica para descargar el archivo
-    // Puedes usar la etiqueta <a> para ello
+
+/*   const handleDowload=()=>{
     const fileUrl = lan==="es"?"/ExcelFile/I-Menu_ES.xlsx":'/ExcelFile/I-Menu.xlsx'; // Reemplaza con la ruta real de tu archivo
     const link = document.createElement('a');
     link.href = fileUrl;
@@ -21,16 +20,18 @@ export default function DeleteMenuCurrent() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-  }
+  } */
+
   return (
     <>
       <MenuStep
         text={t("menu.replace menu current.file")}
-        icon_1={"ArrowDownload"}
-        onClick_icon_1={handleDowload}
+/*         icon_1={"ArrowDownload"}
+        onClick_icon_1={handleDowload} */
         className={"menu_option"}
         icon_2={"XIcon"}
         onClick_icon_2={handleModal}
+        onClick={handleModal}
       />
       {modal?
       <Modal

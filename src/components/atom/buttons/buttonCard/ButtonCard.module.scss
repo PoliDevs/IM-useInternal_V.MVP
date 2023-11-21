@@ -12,3 +12,8 @@
       cursor: pointer;
     }
   }
+  .buttonCard_off{
+    &:hover {
+      cursor: default;
+    }
+  }

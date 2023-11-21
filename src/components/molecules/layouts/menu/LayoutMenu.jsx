@@ -27,6 +27,8 @@ export default function LayoutMenu() {
     [t("menu.download menu template")]: <DownloadMenuCurrent />,
     // [t("menu.local logo")]: <LogoLocal />,
   };
+  
+
   return (
     <div className={s.containerd}>
       <section className={s.buttonContent}>
@@ -34,16 +36,19 @@ export default function LayoutMenu() {
           text={manageCurrentMenu}
           icon={"arrowRight"}
           onClick={() => handleOptionClick(manageCurrentMenu)}
+          selected={selectedOption === manageCurrentMenu}
         />
         <LargeButton
           text={deleteCurrentMenu}
           icon={"arrowRight"}
           onClick={() => handleOptionClick(deleteCurrentMenu)}
+          selected={selectedOption === deleteCurrentMenu}
         />
         <LargeButton
           text={downloadMenuTemplate}
           icon={"arrowDownload"}
           onClick={() => handleOptionClick(downloadMenuTemplate)}
+          selected={selectedOption === downloadMenuTemplate}
         />
       </section>
       <section className={s.menuContent}>
