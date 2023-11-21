@@ -52,8 +52,8 @@ export default function Open_closed({ handlestate }) {
         <Switch
           onChange={handleLocalValue}
           checked={localUiValue}
-          className={s.switch}
-          height={40}
+          className={localUiValue?s.switch:s.switchClosed}
+          height={50}
           width={100}
         />
       </div>

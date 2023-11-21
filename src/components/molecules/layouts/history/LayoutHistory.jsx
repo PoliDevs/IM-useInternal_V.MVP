@@ -74,9 +74,6 @@ const todayDate=getDateCurrent();
               <div className={s.content_date}>
                 <span className={s.date}>
                   {selectDate===todayDate?t("history.today") :selectDate/* .split("-").reverse().join("/") */ /* .toLocaleDateString(i18n.language, {
-                    day: "numeric",
-                    month: "numeric",
-                    year: "numeric",
                   }) */}
                 </span>
                 <div className={s.containerd_card}>
@@ -92,6 +89,7 @@ const todayDate=getDateCurrent();
                       total={cur.paid}
                       width={320}
                       offButtons={true}
+                      history={true}
                       menu={cur.menu && cur.menu.name[0].length > 0 && cur.menu}
                       products={
                         cur.products &&

@@ -26,12 +26,19 @@
                 display: flex;
                 flex-wrap: wrap;
                 align-items: start;
-/*                 align-items: start;
-                flex-wrap: wrap; */
+                justify-content: start;
+                width: 100%;
+                gap: 10px;
             }
         }
     }
 }
 .date{
     text-align: center;
+}
+
+@media screen and (max-width:900px) {
+    .containerd_card{
+        background-color: darkcyan;
+    }
 }
