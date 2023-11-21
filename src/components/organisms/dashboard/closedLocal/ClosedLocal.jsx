@@ -43,6 +43,7 @@ export default function ClosedLocal({ open }) {
           title={t("header.closed local.premises closed")}
           detail={t(`header.closed local.open the store to start`)}
           detail_2={t(`header.closed local.to receive orders`)}
+          height={130}
         />
         {statusTables("orderPlaced").length > 0 ||
         statusTables("orderInPreparation").length > 0||

@@ -27,7 +27,7 @@ export default function Card({
   dishes,
   additionals,
   offButtons,
-  width,
+  history,
   //news
   accountemail,
   accountname,
@@ -97,12 +97,12 @@ export default function Card({
         status: newStatus,
       });
     };
+    console.log(history)
   return (
     <div
-      className={s.content_card}
+      className={`${s.content_card} ${history&&s.content_card_history} `}
       style={{
-        minWidth: "250px",
-        maxWidth: "376px" /* width:width?`${width}px`:null  */,
+        minWidth:"300px",
       }}
     >
       <div>

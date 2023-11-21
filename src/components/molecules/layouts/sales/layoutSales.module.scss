@@ -105,22 +105,34 @@
         justify-content: space-around;
         align-items: center;
         width: 100%;
-
         flex-direction: column-reverse;
         gap: 21px;
         padding: 5px;
         background-color: transparent;
+        min-height: 75vh;
     }
 
     .content_1 {
         width: 100%;
-        height: 550px;
+        height: 450px;
         border: $border;
     }
 
     .content_2 {
         width: 100%;
-        height: 400px;
         border: $border;
+        height: 250px; /* Establecer una altura específica para content_2 */
     }
+
+    .apex {
+        height: 250px;
+        >foreignObject{
+            background-color: rgb(70, 196, 11);
+        }
+        >div {
+            display: flex;
+            height: 250px;
+        }
+    }
+
 }

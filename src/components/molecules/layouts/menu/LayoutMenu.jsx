@@ -1,6 +1,6 @@
 import React from "react";
 import LargeButton from "../../../atom/LargeButton/LargeButton";
-import MenuItem from "../../MenuItem/MenuItem";
+import MenuItem from "../../sections/menu/MenuItem/MenuItem";
 import DeleteMenuCurrent from "../../sections/menu/replaceMenuCurrent/ReplaceMenuCurrent";
 import DownloadMenuCurrent from "../../sections/menu/downloadMenu/DownloadMenuCurrent";
 import LogoLocal from "../../sections/menu/logoLocal/LogoLocal";
@@ -45,11 +45,6 @@ export default function LayoutMenu() {
           icon={"arrowDownload"}
           onClick={() => handleOptionClick(downloadMenuTemplate)}
         />
-        {/* <LargeButton
-          text={localLogo}
-          icon={"arrowRight"}
-          onClick={() => handleOptionClick(localLogo)}
-        /> */}
       </section>
       <section className={s.menuContent}>
         {optionToComponent[selectedOption]}

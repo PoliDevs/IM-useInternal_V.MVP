@@ -6,7 +6,7 @@ import LineText from '../../atom/LineText/LineText';
 import { useNavigate,useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-export default function Header({icon,title,detail,detail_2,color,off}) {
+export default function Header({icon,title,detail,detail_2,color,off,height}) {
   const navigate=useNavigate();
   const {pathname}=useLocation();
   const [t,i18n]=useTranslation("global");
@@ -26,7 +26,7 @@ export default function Header({icon,title,detail,detail_2,color,off}) {
   }
 
   return (
-    <header className={off ? s.closed : null}>
+    <header className={off ? s.closed : null} style={{height:height}} >
       <div className={s.content_1}>
       {pathname !=="/dashboard" ? <ArrowUturnLeft heigth={"24"} onClick={handleBackClick} className={s.TbArrowBackUp}/>:null}
      {/* <TbArrowBackUp className={s.TbArrowBackUp} onClick={handleBackClick} /> */}
