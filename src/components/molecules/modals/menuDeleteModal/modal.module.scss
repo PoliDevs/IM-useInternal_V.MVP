@@ -28,4 +28,13 @@
     display: flex;
     justify-content: center;
 }
-  
+
+.closed_modal{
+  position: relative;
+  left: 90%;
+  height: 35px;
+  width: 35px;
+  &:hover{
+    cursor: pointer;
+  }
+}

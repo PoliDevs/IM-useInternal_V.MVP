@@ -97,7 +97,6 @@ export default function Card({
         status: newStatus,
       });
     };
-    console.log(history)
   return (
     <div
       className={`${s.content_card} ${history&&s.content_card_history} `}
@@ -200,6 +199,7 @@ export default function Card({
               <ButtonCard
                 text={textButton(status)}
                 background={colorButton(status)}
+                offButtons={offButtons}
                 onClick={() => {
                   if (offButtons) return null;
                   handleStatus(status, order);

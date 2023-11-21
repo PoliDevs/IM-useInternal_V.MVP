@@ -33,16 +33,19 @@ export default function LayoutConfig() {
           text={personalData}
           icon={"arrowRight"}
           onClick={() => handleOptionClick(personalData)}
+          selected={selectedOption === personalData}
         />
         <LargeButton
           text={businessData}
           icon={"arrowRight"}
           onClick={() => handleOptionClick(businessData)}
+          selected={selectedOption === businessData}
         />
         <LargeButton
           text={paymentData}
           icon={"arrowRight"}
           onClick={() => handleOptionClick(paymentData)}
+          selected={selectedOption === paymentData}
         />
         <LargeButton
           text={localLogo}

@@ -4,16 +4,12 @@ import { ReactComponent as ArrowDownload } from "../../../assets/ArrowDownload.s
 import Paragraph from '../Paragraph/Paragraph';
 import s from './LargeButton.module.scss';
 
-export default function LargeButton({text, icon, onClick, disabled}) {
+export default function LargeButton({text, icon, onClick, disabled,selected}) {
   const [active, setActive] = useState(false);
 
   const handleClick = () => {
-    setActive(true);
+    setActive(!active);
     onClick()
-  }
-
-  const handleBlur = () => {
-    setActive(false);
   }
   
   const icons = {
@@ -21,10 +17,9 @@ export default function LargeButton({text, icon, onClick, disabled}) {
     arrowDownload: <ArrowDownload className={s.icon} />
   }
   return (
-    <button className={`${s.button} ${active && s.active} ${disabled && s.disabled}`}
-     onClick={handleClick}
-      onBlur={handleBlur}>
-      <Paragraph text={text} secundary={active || disabled && true} />
+    <button  className={`${s.button} ${selected && s.active} ${disabled && s.disabled}`}
+     onClick={handleClick}>
+      <Paragraph text={text} secundary={selected || disabled && true} />
       {icon && icons[icon]}
     </button>
   )

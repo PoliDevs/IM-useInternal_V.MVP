@@ -18,7 +18,8 @@ body {
 }
 
 body {
-  overflow-y: scroll; /* Mostrar scrollbar vertical siempre */
+  overflow-y: auto; /* Por defecto, mostrará la barra de desplazamiento solo cuando sea necesario */
+  //overflow-y: scroll; /* Mostrar scrollbar vertical siempre */
 }
 
 body::-webkit-scrollbar {
