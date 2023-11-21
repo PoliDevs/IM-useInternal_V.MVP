@@ -12,7 +12,7 @@ import { Eye,Eye_slash } from "../../../../atom/iconsHerocoins/icons";
 export default function MenuItem() {
   const [t,i18n]=useTranslation("global");
   const [menu,setMenu]=useState(false);
-/*   console.log(menu) */
+
   const comerceId=useSelector(state=>state.user_internal.comerceId);
 
   useEffect(() => {
@@ -46,9 +46,9 @@ export default function MenuItem() {
     }
   };
 
-  // Ordenar el menú para que los elementos inactivos aparezcan al final
-  //const sortedMenu = menu?.sort((a, b) => (a.active === b.active ? 0 : a.active ? -1 : 1));
-  
+  //Ordenar el menú para que los elementos inactivos aparezcan al final
+  const sortedMenu = menu && menu.length&& menu.sort((a, b) => (a.active === b.active ? 0 : a.active ? -1 : 1));
+
   return (
     <div className={s.menuItemContainer}>
       <Button primary size="huge" disabled >{t("menu.menu item.add product")}</Button>
@@ -61,7 +61,7 @@ export default function MenuItem() {
             <LineText text={t("menu.menu item.on/off")} secundary={true} />
           </section>
           <div className={s.menu_table}>
-            {!menu?<Loading/>:menu.map((item, index) => (
+            {!sortedMenu?<Loading/>:sortedMenu.map((item, index) => (
               <div
                 key={index}
                 className={`${s.line_menu} ${

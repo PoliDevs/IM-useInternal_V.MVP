@@ -45,11 +45,6 @@ export default function LayoutMenu() {
           icon={"arrowDownload"}
           onClick={() => handleOptionClick(downloadMenuTemplate)}
         />
-        {/* <LargeButton
-          text={localLogo}
-          icon={"arrowRight"}
-          onClick={() => handleOptionClick(localLogo)}
-        /> */}
       </section>
       <section className={s.menuContent}>
         {optionToComponent[selectedOption]}

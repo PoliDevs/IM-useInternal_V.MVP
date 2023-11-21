@@ -8,7 +8,7 @@
   width: 100%;
 /*     background: red; */
   >section{
-/*         background-color: rgb(41, 167, 37); */
+/*    background-color: rgb(41, 167, 37); */
       width: 35%;
       &:first-child {
           border-right: 2px solid black; /* Agrega un borde derecho de color negro al primer section */
@@ -24,9 +24,16 @@
   flex-direction: column;
 }
 
-.menuContent_delete{
-  width: 100%;
-  background-color: red;
-  justify-content: space-between;
+@media screen and (max-width:900px) {
+  .containerd {
+    >section{
+        width: 48%;
+        align-items: center;
+    }
+  }
+  .buttonContent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
-

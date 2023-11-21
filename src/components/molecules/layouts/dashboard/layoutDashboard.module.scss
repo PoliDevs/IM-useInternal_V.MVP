@@ -16,8 +16,8 @@
   padding-top: 17px;
   padding-bottom: 10px;
   z-index: 40;
-  top: 187px;
-  background-color:$background-secundary;
+  top: 177px;
+  background-color: $background-secundary;
 }
 
 .content_orders {
@@ -26,6 +26,7 @@
   justify-content: space-around;
   width: 100%;
   min-height: 55vh;
+
   >section:nth-child(2) {
     border-left: 2px solid $color-nineth;
     border-right: 2px solid $color-nineth;
@@ -46,23 +47,21 @@
   .status_orders {
     display: flex;
     justify-content: space-around;
-    //height: 60px;
-    width: calc(100% - 4rem);
-    //padding-top: 0px;
+    width: 100%;
     position: fixed;
-     padding-top: 45px;
+    padding-top: 45px;
     //z-index: 50;
     top: 177px;
-    //top: 197px;
-    background-color:$background-secundary;
+    background-color: $background-secundary;
   }
-  .content_orders {
+   .content_orders {
     flex-direction: column;
     justify-content: flex-start;
     gap: 10px;
-    margin-top: 15px;
-/*     overflow-y: scroll;
-    height: 1500px; */
+    margin-top: 75px;
+    padding-top: 10px;
+    overflow-y: scroll;
+    height: 700px;
     >section:nth-child(2) {
       border-top: 2px solid $color-nineth;
       border-bottom: 2px solid $color-nineth;
@@ -75,11 +74,9 @@
       width: 100%;
       min-height: max-content;
       flex-direction: row;
-      align-items: start;
       margin: 10px 0;
       flex-wrap: wrap;
     }
-
 }
 
 @media screen and (max-width: 660px) {
