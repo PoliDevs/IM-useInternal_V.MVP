@@ -49,7 +49,7 @@ export default function ClosedLocal({ open }) {
         statusTables("orderInPreparation").length > 0||
         statusTables("orderReady").length > 0 ? (
           <LayoutContainer>
-            <LayoutDashboard/>
+            <LayoutDashboard  closed/>
           </LayoutContainer>
         ) : null}
     </Container>

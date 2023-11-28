@@ -189,7 +189,7 @@ export default function Card({
               <LineText end bold text={`${t("card.total")} :$ ${total || "***"}`} />
               <ContentRow  justifyContent={status === "orderInPreparation" || status === "orderReady"?"space-between":"flex-end"}>
               {status === "orderInPreparation" || status === "orderReady" ? (
-                <ButtonCard iconName={"backSpace"} background={colorButton(status)} 
+                <ButtonCard iconName={"chevronLeft"} background={colorButton(status)} 
                 onClick={()=>{
                   handleStatusBack(status,order)
                   const newStatus = textButton(status); //getStatus(status); // Calcula el nuevo estado aquí

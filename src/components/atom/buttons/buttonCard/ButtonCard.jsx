@@ -1,10 +1,10 @@
 import s from './ButtonCard.module.scss';
-import { BackSpace } from '../../iconsHerocoins/icons';
+import { ChevronLeft } from '../../iconsHerocoins/icons';
 
 export default function ButtonCard({color,onClick,background,text,iconName,offButtons}) {
   
   let icon={
-    "backSpace":<BackSpace heigth={18}/>,
+    "chevronLeft":<ChevronLeft heigth={18}/>,
   }
     return (
     <button style={{background:background,color:color}} onClick={onClick} className={`${s.buttonCard} ${offButtons&&s.buttonCard_off} `} 
