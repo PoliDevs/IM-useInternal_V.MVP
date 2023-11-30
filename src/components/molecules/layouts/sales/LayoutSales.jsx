@@ -14,13 +14,9 @@ export default function LayoutSales() {
   const comerceId = useSelector((state) => state.user_internal.comerceId);
 
   useEffect(() => {
-
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `order/vtas/${comerceId}?dateFrom=${monday}&dateTo=${date}`
-        );
-        
+        const response = await axios.get(`order/vtas/${comerceId}?dateFrom=${monday}&dateTo=${date}`);
         // Verifica si falta algún día en la respuesta y agrégalo con pedidos y tot_diario en cero.
         const updatedWeek = [];
         const startDate = new Date(monday);
@@ -38,7 +34,6 @@ export default function LayoutSales() {
             });
           }
         }
-        
         // Actualiza el estado con los datos obtenidos, incluyendo el día 4.
         setWeek(updatedWeek);
       } catch (error) {
@@ -58,8 +53,6 @@ export default function LayoutSales() {
   return (
     <div className={s.containerd}>
       <div className={s.content_1}>
-        {/* <span>Esta semana</span> */}
-        {/* <Title text={t("sales.this week")} /> */}
         <Title text={t("sales.weekly Total")}>
           <b style={{ fontWeight: "700" }}>{totalWeek&&Math.floor(totalWeek)} </b>
         </Title>
@@ -117,11 +110,12 @@ export function SalesChart({ week }) {
       offsetY: 500,
       style: {
         colors: ["#000"], // Establece el color del texto en negro
+        fontSize: "20px",//tamaño de letras arriba
       },
     },
     plotOptions: {
       bar: {
-        columnWidth: "55%", // Ancho de las barras
+        columnWidth: "50%", // Ancho de las barras
         endingShape: "rounded", // Forma de las barras (puede ser "rounded", "flat", etc.)
         borderRadius: 18,
       },

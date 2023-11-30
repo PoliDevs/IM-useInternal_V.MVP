@@ -16,11 +16,11 @@
 }
 
 .elevatedNumber {
-  padding: 0px 8px;
+  padding: 0px 10px;
   font-size: 13px;
   font-weight: 700;
   color: #fff;
-  border-radius: 50%;
+  border-radius: 100%;
   transform: translateY(-50%); /* Mueve el número hacia arriba */
   margin-left: 5px; /* Espacio entre el texto y el número */
   /* Agrega sombra si deseas un efecto de elevación más realista */
@@ -31,10 +31,10 @@
 }
 
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 900px) {
   .textContainer {
-    flex-direction: column; /* Cambia la dirección de los elementos a columna */
-    text-align: center; /* Centra el texto y el número horizontalmente */
+    flex-direction: column; 
+    text-align: center; 
   }
 
   .elevatedNumber {

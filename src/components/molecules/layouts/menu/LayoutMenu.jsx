@@ -1,6 +1,6 @@
 import React from "react";
 import LargeButton from "../../../atom/LargeButton/LargeButton";
-import MenuItem from "../../MenuItem/MenuItem";
+import MenuItem from "../../sections/menu/MenuItem/MenuItem";
 import DeleteMenuCurrent from "../../sections/menu/replaceMenuCurrent/ReplaceMenuCurrent";
 import DownloadMenuCurrent from "../../sections/menu/downloadMenu/DownloadMenuCurrent";
 import LogoLocal from "../../sections/menu/logoLocal/LogoLocal";
@@ -27,6 +27,8 @@ export default function LayoutMenu() {
     [t("menu.download menu template")]: <DownloadMenuCurrent />,
     // [t("menu.local logo")]: <LogoLocal />,
   };
+  
+
   return (
     <div className={s.containerd}>
       <section className={s.buttonContent}>
@@ -34,22 +36,20 @@ export default function LayoutMenu() {
           text={manageCurrentMenu}
           icon={"arrowRight"}
           onClick={() => handleOptionClick(manageCurrentMenu)}
+          selected={selectedOption === manageCurrentMenu}
         />
         <LargeButton
           text={deleteCurrentMenu}
           icon={"arrowRight"}
           onClick={() => handleOptionClick(deleteCurrentMenu)}
+          selected={selectedOption === deleteCurrentMenu}
         />
         <LargeButton
           text={downloadMenuTemplate}
           icon={"arrowDownload"}
           onClick={() => handleOptionClick(downloadMenuTemplate)}
+          selected={selectedOption === downloadMenuTemplate}
         />
-        {/* <LargeButton
-          text={localLogo}
-          icon={"arrowRight"}
-          onClick={() => handleOptionClick(localLogo)}
-        /> */}
       </section>
       <section className={s.menuContent}>
         {optionToComponent[selectedOption]}

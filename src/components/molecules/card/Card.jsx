@@ -27,7 +27,7 @@ export default function Card({
   dishes,
   additionals,
   offButtons,
-  width,
+  history,
   //news
   accountemail,
   accountname,
@@ -99,10 +99,9 @@ export default function Card({
     };
   return (
     <div
-      className={s.content_card}
+      className={`${s.content_card} ${history&&s.content_card_history} `}
       style={{
-        minWidth: "250px",
-        maxWidth: "376px" /* width:width?`${width}px`:null  */,
+        minWidth:"300px",
       }}
     >
       <div>
@@ -190,7 +189,7 @@ export default function Card({
               <LineText end bold text={`${t("card.total")} :$ ${total || "***"}`} />
               <ContentRow  justifyContent={status === "orderInPreparation" || status === "orderReady"?"space-between":"flex-end"}>
               {status === "orderInPreparation" || status === "orderReady" ? (
-                <ButtonCard iconName={"backSpace"} background={colorButton(status)} 
+                <ButtonCard iconName={"chevronLeft"} background={colorButton(status)} 
                 onClick={()=>{
                   handleStatusBack(status,order)
                   const newStatus = textButton(status); //getStatus(status); // Calcula el nuevo estado aquí
@@ -200,6 +199,7 @@ export default function Card({
               <ButtonCard
                 text={textButton(status)}
                 background={colorButton(status)}
+                offButtons={offButtons}
                 onClick={() => {
                   if (offButtons) return null;
                   handleStatus(status, order);

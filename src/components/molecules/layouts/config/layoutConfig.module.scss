@@ -14,8 +14,17 @@
           }
     }
 }
+
 .containerd > section:nth-child(2) {
     padding-left: 20px;
     display: flex;
     flex-direction: column;
 }
+
+@media screen and (max-width:900px) {
+    .containerd {
+      >section{
+          width: 48%;
+      }
+    }
+  }

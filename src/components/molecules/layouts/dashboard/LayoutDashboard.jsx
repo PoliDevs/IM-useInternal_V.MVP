@@ -7,7 +7,7 @@ import axios from "axios";
 import { getDateCurrent } from "../../../../utils/functions";
 import { useTranslation } from "react-i18next";
 
-export default function LayoutDashboard() {
+export default function LayoutDashboard({closed}) {
   const [t,i18n]=useTranslation("global")
   const comerceId = useSelector((state) => state.user_internal.comerceId);
   const [allOrders, setAllOrders] = useState([]); // Almacenamos todas las ordenes
@@ -80,7 +80,7 @@ export default function LayoutDashboard() {
   };
   return (
     <div className={s.content_LayoutDashboard}>
-      <div className={s.status_orders}>
+      <div className={`${s.status_orders} ${closed&&s.status_orders_closed} `}>
         <SubTitleUnderline
           content={t("dashboard.new")}
           color={"#4B47FF"}

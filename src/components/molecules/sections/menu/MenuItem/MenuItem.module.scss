@@ -1,4 +1,4 @@
-@import '../../../scss/colors.scss';
+@import '../../../../../scss/colors.scss';
 
 .menuItemContainer {
   width: 100%;
@@ -44,20 +44,6 @@
 
 .inactiveLine {
   color: red
-}
-
-.eyeIcon {
-  width: 24px;
-  height: 24px;
-  color: $text-primary;
-  cursor: pointer;
-}
-
-.eyeIconSlash {
-  width: 24px;
-  height: 24px;
-  color: $text-primary;
-  cursor: pointer;
 }
 
 .emoji {
