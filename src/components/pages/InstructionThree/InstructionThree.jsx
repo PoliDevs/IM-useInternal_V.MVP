@@ -9,6 +9,8 @@ import InstructionButton from "../../molecules/InstructionButton/InstructionButt
 import s from "./InstructionThree.module.scss";
 import { useTranslation } from "react-i18next";
 import Container from "../../atom/container/Container";
+import { useDispatch } from "react-redux";
+import { postImg } from "../../../redux/actions";
 
 export default function InstructionThree() {
   const [t,i18n]=useTranslation("global");
@@ -23,7 +25,7 @@ export default function InstructionThree() {
 
   const handleClick = () => {
     //action to upload image
-    clearImage()
+   postImg(file);
   }
 
   return (
@@ -55,7 +57,7 @@ export default function InstructionThree() {
               submitting={submiting}
               setSubmitting={setSubmiting}
             />
-            {image !== null && (
+            {file !== null && (
               <div className={s.uploadedFile}>
                 <LineText text={"Logo.JPG"} secundary={true} />
                 <div className={s.icons}>
@@ -71,7 +73,7 @@ export default function InstructionThree() {
         <InstructionButton
           helpText={t("instructions.button.i need help")}
           text={t("instructions.button.continue")}
-          path={/* file && */ "/instructions/onDemand"}
+          path={file &&  "/instructions/onDemand"}
           handleClick={handleClick}
         />
       </main>

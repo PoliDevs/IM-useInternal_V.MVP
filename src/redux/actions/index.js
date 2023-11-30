@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOCAL_OPEN_VALUE,GET_ORDERS,LOGIN_ACTION,LOGIN_ACTION_GOOGLE,MENU_ACTIVE,OPEN_LOCAL,CLOSED_LOCAL, GET_ALL_POS} from "./actionTypes";
+import { LOCAL_OPEN_VALUE,GET_ORDERS,LOGIN_ACTION,LOGIN_ACTION_GOOGLE,MENU_ACTIVE,OPEN_LOCAL,CLOSED_LOCAL, GET_ALL_POS, POST_NEW_IMG} from "./actionTypes";
 
 //nos logueamos
 export function loginAction(payload){
@@ -159,5 +159,23 @@ export function getAllPos(id){
     } catch (error) {
       console.error(error)
     }
+  }
+}
+
+
+export async function postImg (img) {
+  try {
+    let response = await axios.post(
+      "https://tenkiweb.com/public_html/imenu/img/",
+      img,
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "http://127.0.0.1:5173/",
+        },
+      }
+    );
+    console.log(response);
+  } catch (error) {
+    console.error(error);
   }
 }
