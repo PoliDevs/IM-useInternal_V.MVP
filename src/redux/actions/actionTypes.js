@@ -10,6 +10,7 @@ export const POST_MENU = "POST_MENU";
 export const OPEN_LOCAL="OPEN_LOCAL";
 export const CLOSED_LOCAL="CLOSED_LOCAL";
 export const GET_ALL_POS = "GET_ALL_POS";
+export const POST_NEW_IMG = "POST_NEW_IMG";
 
 //////////////////* Order Action Type *///////////////////////////
 export const GET_ORDERS="GET_ORDERS";
