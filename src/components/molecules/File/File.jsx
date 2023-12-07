@@ -19,11 +19,14 @@ export default function File({
     setSubmitting(true);
 
     let xlfile = acceptedFiles[0];
+    // console.log('Nombre de archivo subido: ', xlfile.name);
     let reader = new FileReader();
     if (step !== 3){
       reader.readAsArrayBuffer(xlfile);
     }else {
-      reader.readAsDataURL(xlfile);
+      // reader.readAsDataURL(xlfile);
+      setFile(xlfile);
+      return
     }
     reader.onload = (e) => {
     setFile(e.target.result);

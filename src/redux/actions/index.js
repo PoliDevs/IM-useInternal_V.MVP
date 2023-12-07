@@ -1,5 +1,16 @@
 import axios from "axios";
-import { LOCAL_OPEN_VALUE,GET_ORDERS,LOGIN_ACTION,LOGIN_ACTION_GOOGLE,MENU_ACTIVE,OPEN_LOCAL,CLOSED_LOCAL, GET_ALL_POS} from "./actionTypes";
+import { CLEAR_STATE,LOCAL_OPEN_VALUE,GET_ORDERS,LOGIN_ACTION,LOGIN_ACTION_GOOGLE,MENU_ACTIVE,OPEN_LOCAL,CLOSED_LOCAL, GET_ALL_POS, POST_NEW_IMG} from "./actionTypes";
+
+//limpiamos redux
+
+export function clearState() {
+  return function (dispatch) {
+    console.log("CLearState")
+    return dispatch({
+      type:CLEAR_STATE
+    })
+  }
+}
 
 //nos logueamos
 export function loginAction(payload){
@@ -67,11 +78,13 @@ export function postMenu(menu,comercio, id) {
           `/menu/menuUp/${id}`,
           { commerceJSON: comercio, menuJSON: menu }
         );
+        console.log("entro al primero",response)
       }else {
         const response = await axios.post(
           `/menu/menuUp/0`,
           { commerceJSON: comercio, menuJSON: menu }
         );
+        console.log("entro al segundo",response)
       }
     } catch (error) {
       return error;
@@ -159,5 +172,23 @@ export function getAllPos(id){
     } catch (error) {
       console.error(error)
     }
+  }
+}
+
+
+export async function postImg (img) {
+  try {
+    let response = await axios.post(
+      "https://tenkiweb.com/public_html/imenu/img/",
+      img,
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "http://127.0.0.1:5173/",
+        },
+      }
+    );
+    console.log(response);
+  } catch (error) {
+    console.error(error);
   }
 }
