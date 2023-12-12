@@ -8,6 +8,7 @@ import axios from "axios";
 import Loading from "../../../../atom/loading/Loading";
 import { useTranslation } from "react-i18next";
 import { Eye,Eye_slash } from "../../../../atom/iconsHerocoins/icons";
+import { arrangedAlphabetically } from "../../../../../utils/functions";
 
 export default function MenuItem() {
   const [t,i18n]=useTranslation("global");
@@ -28,26 +29,40 @@ export default function MenuItem() {
   }, []);
 
   const handleClickEyes = async (index, id) => {
+    console.log(index,id)
     try {
       const updatedMenu = [...menu]; // Clonar el estado del menú actual
       const updatedItem = { ...updatedMenu[index] }; // Clonar el elemento actual
       updatedItem.active = !updatedItem.active; // Cambiar el estado 'active'
       updatedMenu[index] = updatedItem; // Actualizar el elemento en el clon del menú
-      setMenu(updatedMenu); // Actualizar el estado 'menu' con el nuevo menú
-  
       // Luego, realizar la solicitud PUT al servidor para cambiar el estado 'active' en la base de datos
       if (updatedItem.active) {
         await axios.put(`menu/active/${id}`);
       } else {
         await axios.put(`menu/inactive/${id}`);
       }
+      setMenu([...updatedMenu]);
     } catch (error) {
       console.error("Error al cambiar el estado active:", error);
     }
   };
 
-  //Ordenar el menú para que los elementos inactivos aparezcan al final
-  const sortedMenu = menu && menu.length&& menu.sort((a, b) => (a.active === b.active ? 0 : a.active ? -1 : 1));
+
+  //const sortedMenu = menu && menu.length&& menu.sort((a, b) => (a.active === b.active ? 0 : a.active ? -1 : 1));
+
+  const menuToLowerCase=menu && menu.length && menu.map(cur=>({...cur,name:cur.name.toLowerCase()}));
+  console.log(menuToLowerCase)
+  const sortedMenu = menu && menu.length && menu.sort((a, b) => {
+    // Ordenar por estado activo (activos primero)
+    const sortByActive = a.active === b.active ? 0 : a.active ? -1 : 1;
+  
+    // Si tienen el mismo estado, ordenar alfabéticamente por nombre
+    const sortByAlphabetical = a.name.localeCompare(b.name);
+  
+    // Aplicar ambos criterios de ordenación
+    return sortByActive !== 0 ? sortByActive : sortByAlphabetical;
+  });
+  
 
   return (
     <div className={s.menuItemContainer}>
@@ -81,4 +96,4 @@ export default function MenuItem() {
       </div>
     </div>
   );
-}
+};
