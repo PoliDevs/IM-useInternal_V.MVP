@@ -30,6 +30,7 @@ export const rootReducer = (state = initalState, { type, payload }) => {
     //loguin 
     case LOGIN_ACTION: {
       const data = jwtDecode(payload.data.token);
+      console.log(data)
       const user_internal = {
         token: payload.data.token,
         email: data.email,
@@ -51,6 +52,7 @@ export const rootReducer = (state = initalState, { type, payload }) => {
     //loginGoogle
     case LOGIN_ACTION_GOOGLE: {
       const data = jwtDecode(payload.data.token);
+      console.log(data)
       const user_internal = {
         token: payload.data.token,
         id: data.id,

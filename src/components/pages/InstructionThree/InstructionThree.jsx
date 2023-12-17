@@ -9,28 +9,56 @@ import InstructionButton from "../../molecules/InstructionButton/InstructionButt
 import s from "./InstructionThree.module.scss";
 import { useTranslation } from "react-i18next";
 import Container from "../../atom/container/Container";
-import { useDispatch } from "react-redux";
-import { postImg } from "../../../redux/actions";
+import axios from "axios";
+//import { postImg } from "../../../redux/actions";
 import { useSelector } from "react-redux";
+import { uploadFile } from "../../../firebase/firebase.config";
 
 export default function InstructionThree() {
   const [t,i18n]=useTranslation("global");
   const [file, setFile] = useState(null);
   const [image, setImage] = useState(null);
   const [submiting, setSubmiting] = useState(false);
-  const comerceId=useSelector(state=>state.user_internal)
-  console.log(comerceId)
+  const [redirectToNextPage, setRedirectToNextPage] = useState(false);
+  const comerceId=useSelector(state=>state.user_internal.comerceId);
 
   const clearImage = () => {
     setFile(null);
     setImage(null);
   };
 
-  const handleClick = () => {
-    //action to upload image
-   //postImg(file);
-  }
+/*   const  handleClick= async(img)=> {
+    console.log(img)
+    try {
+      let response = await axios.post(
+        "https://tenkiweb.com/imenu/img/",
+        img,
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "http://127.0.0.1:5173/",
+          },
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  } */
 
+  //firebase
+  const handleClick=async ()=>{
+    try {
+      //throw new Error('Fallo interbo intente mas tarde')
+      const result=await uploadFile(file,comerceId.toString())
+      setRedirectToNextPage(true);
+      console.log(redirectToNextPage)
+      console.log(result)
+    } catch (error) {
+      console.log(error)
+      alert(error)
+    }
+  }
+  //console.log(redirectToNextPage)
   return (
     <Container marginTop>
     <InstructionContainer>
@@ -77,11 +105,12 @@ export default function InstructionThree() {
         <InstructionButton
           helpText={t("instructions.button.i need help")}
           text={t("instructions.button.continue")}
-          path={/* file &&  */ "/instructions/onDemand"}
-          handleClick={handleClick}
+          //path={redirectToNextPage ? "/instructions/onDemand" : null}
+          path={redirectToNextPage ? "/instructions/onDemand" : null}
+          handleClick={() => handleClick(file)}
         />
       </main>
     </InstructionContainer>
     </Container>
   );
-}
+};
