@@ -4,7 +4,7 @@ import PaymentMethods from '../../sections/config/PaymentMethods/PaymentMethods'
 import PersonalData from '../../sections/config/personalData/PersonalData';
 import ComerceData from '../../sections/config/comerceData/ComerceData';
 import LargeButton from '../../../atom/LargeButton/LargeButton';
-import LogoLocal from '../../sections/menu/logoLocal/LogoLocal';
+import LogoComerce from '../../sections/config/logoComerce/LogoComerce';
 import s from './layoutConfig.module.scss';
 
 export default function LayoutConfig() {
@@ -19,7 +19,7 @@ export default function LayoutConfig() {
     [t("config.select.personal data")]: <PersonalData />,
     [t("config.select.business data")]: <ComerceData />,
     [t("config.select.payment methods")]: <PaymentMethods />,
-    [t("menu.local logo")]: <LogoLocal />,
+    [t("menu.local logo")]: <LogoComerce />,
   };
 
   const handleOptionClick = (option) => {
@@ -50,8 +50,9 @@ export default function LayoutConfig() {
         <LargeButton
           text={localLogo}
           icon={"arrowRight"}
-          disabled={true}
-        //   onClick={() => handleOptionClick(localLogo)}
+          /* disabled={true} */
+          onClick={() => handleOptionClick(localLogo)}
+          selected={selectedOption === localLogo}
         />
       </section>
       {optionToComponent[selectedOption]}

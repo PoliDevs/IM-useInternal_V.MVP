@@ -5,6 +5,8 @@ import { ReactComponent as ArrowUpload } from "../../../assets/ArrowUpload.svg";
 import { useDropzone } from "react-dropzone";
 import Title from "../../atom/Title/Title";
 import s from "./File.module.scss";
+//import { uploadFile } from "../../../firebase/firebase.config";
+//import { useSelector } from "react-redux";
 
 export default function File({
   typeIcon,
@@ -13,6 +15,7 @@ export default function File({
   setSubmitting,
   step
 }) {
+  //const comerceId=useSelector(state=>state.user_internal.comerceId);
 
   const onDrop = useCallback((acceptedFiles) => {
     // Do something with the files
@@ -62,7 +65,7 @@ export default function File({
   ) : (
     <div {...getRootProps()} className={s.file}>
       <ArrowUpload className={s.icon} />
-      <input {...getInputProps()} />
+      <input {...getInputProps()} /* onChange={uploadFile(setFile,comerceId.toString())} */ />
       {isDragActive ? (
         <Title text={"Arroja tu archivo aqui"} bold={true} />
       ) : (

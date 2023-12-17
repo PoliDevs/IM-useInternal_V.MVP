@@ -1,0 +1,10 @@
+@import '../../../../scss/colors.scss';
+
+.button_primary{
+    display: flex;
+    gap: 10px;
+    border: $border_primary;
+    border-radius: $border-primary-radius;
+    background-color:$color-sixth;
+    color: $text-primary;
+}

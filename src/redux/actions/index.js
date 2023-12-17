@@ -176,7 +176,7 @@ export function getAllPos(id){
 }
 
 
-export async function postImg (img) {
+export async function postImg (img) { 
   try {
     let response = await axios.post(
       "https://tenkiweb.com/public_html/imenu/img/",

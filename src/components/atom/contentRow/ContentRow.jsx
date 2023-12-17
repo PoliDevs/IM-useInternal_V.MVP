@@ -1,9 +1,9 @@
 
 import s from './contentRow.module.scss';
 
-export default function ContentRow({children,justifyContent}) {
+export default function ContentRow({children,justifyContent,width,border,alignItems}) {
 //space-around;space-between;space-evenly;center;
   return (
-    <div className={s.contentRow} style={{justifyContent}} >{children}</div>
+    <div className={s.contentRow} style={{justifyContent,width,border,alignItems}} >{children}</div>
   )
 }
