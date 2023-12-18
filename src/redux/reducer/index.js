@@ -60,6 +60,8 @@ export const rootReducer = (state = initalState, { type, payload }) => {
         phone: data.phone,
         email: data.email,
         comerceId: data.commerceId,
+        commercialPlan:data["commerce.commercialPlan.id"],
+        commerceName:data["commerce.name"]
       };
       // Guardar el token y la información del usuario en localStorage
       localStorage.setItem("token", JSON.stringify(payload.data.token));

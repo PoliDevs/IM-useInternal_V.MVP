@@ -90,7 +90,7 @@
         "on/off": "Acceso/Spento"
       },
       "replace menu current": {
-        "file": "Menu.xlm",
+        "file": "Menu.xlsx",
         "modal": {
           "do you want to replace menu": "Vuoi sostituire il menu?",
           "text_1": "Ti consigliamo di chiudere temporaneamente la tua attività mentre aggiorni il menu.",
@@ -179,5 +179,16 @@
         "i need help": "Ho bisogno di aiuto",
         "continue": "Continua"
       }
+    },
+    "plan 1":{
+      "cartel plan 1":{
+        "title":"Presto avremo più funzionalità",
+        "text_1":"Vous pourrez voir des mesures importantes pour votre entreprise",
+        "text_2":"Nous travaillons pour vous offrir un meilleur service"
+      },
+      "history":{
+        "text_1":"Non l'hai ancora fatto",
+        "text_2":"ricevuto ordini"
+      }
     }
-  }  
+  }

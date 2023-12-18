@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
-import PaymentMethods from '../../sections/config/PaymentMethods/PaymentMethods';
-import PersonalData from '../../sections/config/personalData/PersonalData';
-import ComerceData from '../../sections/config/comerceData/ComerceData';
-import LargeButton from '../../../atom/LargeButton/LargeButton';
-import LogoComerce from '../../sections/config/logoComerce/LogoComerce';
-import s from './layoutConfig.module.scss';
+import PaymentMethods from "../../sections/config/PaymentMethods/PaymentMethods";
+import PersonalData from "../../sections/config/personalData/PersonalData";
+import ComerceData from "../../sections/config/comerceData/ComerceData";
+import LargeButton from "../../../atom/LargeButton/LargeButton";
+import LogoComerce from "../../sections/config/logoComerce/LogoComerce";
+import s from "./layoutConfig.module.scss";
+import CartelPlanUno from "../../CartelPlanUno/CartelPlanUno";
 
 export default function LayoutConfig() {
   const [t, i18n] = useTranslation("global");
@@ -34,12 +35,14 @@ export default function LayoutConfig() {
           icon={"arrowRight"}
           onClick={() => handleOptionClick(personalData)}
           selected={selectedOption === personalData}
+          disabled
         />
         <LargeButton
           text={businessData}
           icon={"arrowRight"}
           onClick={() => handleOptionClick(businessData)}
           selected={selectedOption === businessData}
+          disabled
         />
         <LargeButton
           text={paymentData}
@@ -53,6 +56,11 @@ export default function LayoutConfig() {
           /* disabled={true} */
           onClick={() => handleOptionClick(localLogo)}
           selected={selectedOption === localLogo}
+        />
+        <CartelPlanUno
+          title={t("plan 1.cartel plan 1.title")}
+          text_1={'Podras configurar para cobrar a traves de mercado pago'}
+          width={"520px"}
         />
       </section>
       {optionToComponent[selectedOption]}

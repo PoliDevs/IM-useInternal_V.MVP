@@ -1,0 +1,9 @@
+@import '../../../scss/colors.scss';
+
+.contentColumn{
+    display: flex;
+    flex-direction: column;
+    min-height: 80px;
+    border-radius: $border-primary-radius;
+    padding: 15px;
+}

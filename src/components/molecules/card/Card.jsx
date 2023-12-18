@@ -84,7 +84,7 @@ export default function Card({
     });
   };
 
-    //cambiamos el status al que sigue
+    //cambiamos el status al anterior
     const handleStatusBack = async (status, order) => {
       let newStatus = "";
       if (status === "orderInPreparation") {
