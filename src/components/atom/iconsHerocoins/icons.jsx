@@ -1,6 +1,6 @@
 import React from "react";
 
-export function ArrowsUpDown({ height,onClick }) {
+export function ArrowsUpDown({ height, onClick }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -18,6 +18,28 @@ export function ArrowsUpDown({ height,onClick }) {
         d="M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5"
       />
     </svg>
+  );
+}
+
+export function LockClosed({ height, onClick }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="w-6 h-6"
+      height={height}
+      onClick={onClick}
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+      />
+    </svg>
+    /*  */
   );
 }
 
@@ -91,16 +113,18 @@ export function Menu({ heigth }) {
   );
 }
 
-export function History({ heigth }) {
+export function HistoryIcon({ heigth,color,stroke }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       viewBox="0 0 24 24"
-      strokeWidth={1.5}
+      strokeWidth={stroke || 1.5}
+      /* strokeWidth={1.5} */
       stroke="currentColor"
       className="w-6 h-6"
       height={heigth}
+      style={{color}}
     >
       <path
         strokeLinecap="round"

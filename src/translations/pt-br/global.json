@@ -1,183 +1,194 @@
 {
-    "singn in": {
-      "take the first step": "Dê o primeiro passo",
-      "login using your Google email": "Faça login usando seu e-mail do Google",
-      "login with Google": "Acesse com o Google",
-      "speed is": "A velocidade é",
-      "our plate": "Nosso prato",
-      "strong": "forte",
-      "select a language": "Selecione um idioma"
+  "singn in": {
+    "take the first step": "Dê o primeiro passo",
+    "login using your Google email": "Faça login usando seu e-mail do Google",
+    "login with Google": "Acesse com o Google",
+    "speed is": "A velocidade é",
+    "our plate": "Nosso prato",
+    "strong": "forte",
+    "select a language": "Selecione um idioma"
+  },
+  "welcome": {
+    "welcome": "Bem-vindo!",
+    "now you can start receiving orders": "Agora você pode começar a receber pedidos",
+    "start": "Começar"
+  },
+  "nav": {
+    "operation screen": "Tela de operação",
+    "menu": "Cardápio",
+    "sales": "Vendas",
+    "history": "Histórico",
+    "setting": "Configurações",
+    "qr": "Tabelas qr",
+    "open or close local": "Abrir ou fechar local",
+    "version": "versão MVP"
+  },
+  "header": {
+    "open local": {
+      "orders received": "Pedidos recebidos",
+      "your orders are here in order of entry": "Seus pedidos estão aqui na ordem de entrada"
     },
-    "welcome": {
-      "welcome": "Bem-vindo!",
-      "now you can start receiving orders": "Agora você pode começar a receber pedidos",
-      "start": "Começar"
-    },
-    "nav": {
-      "operation screen": "Tela de operação",
-      "menu": "Cardápio",
-      "sales": "Vendas",
-      "history": "Histórico",
-      "setting": "Configurações",
-      "qr": "Tabelas qr",
-      "open or close local": "Abrir ou fechar local",
-      "version":"versão MVP"
-    },
-    "header": {
-      "open local": {
-        "orders received": "Pedidos recebidos",
-        "your orders are here in order of entry": "Seus pedidos estão aqui na ordem de entrada"
-      },
-      "closed local": {
-        "premises closed": "Local fechado",
-        "open the store to start": "Enquanto sua loja estiver fechada, você não receberá",
-        "to receive orders": "novos pedidos"
-      },
-      "menu": {
-        "text": "Cardápio",
-        "detail": "Gerencie seu cardápio daqui"
-      },
-      "sales": {
-        "text": "Vendas",
-        "detail": "Aqui estão suas vendas"
-      },
-      "history": {
-        "text": "Histórico",
-        "detail": "Aqui estão seus pedidos entregues"
-      },
-      "setting": {
-        "text": "Configuração",
-        "detail": "Aqui estão seus dados, planos e configurações gerais"
-      },
-      "generator qr": {
-        "text": "Gerador de QR",
-        "detail": "Aqui você pode gerar o QR para suas mesas"
-      }
-    },
-    "dashboard": {
-      "all": "Todos",
-      "local orders": "Pedidos locais",
-      "platform orders": "Pedidos por plataforma",
-      "new": "Novos",
-      "preparing": "Preparando",
-      "ready": "Pronto"
-    },
-    "sales": {
-      "this week": "Esta semana",
-      "weekly Total": "Total semanal: $",
-      "today": "Hoje",
-      "today you sold": "Hoje você vendeu",
-      "today you received": "Hoje você recebeu",
-      "orders": "pedidos"
-    },
-    "history": {
-      "today": "Hoje",
-      "until": "Até",
-      "select a date": "Selecione uma data"
+    "closed local": {
+      "premises closed": "Local fechado",
+      "open the store to start": "Enquanto sua loja estiver fechada, você não receberá",
+      "to receive orders": "novos pedidos"
     },
     "menu": {
-      "manage current menu": "Gerenciar cardápio atual",
-      "replace current menu": "Reemplazar cardápio atual",
-      "download menu template": "Baixar modelo de cardápio",
-      "local logo": "Logo do local (breve)",
-      "menu item": {
-        "category": "Categoria",
-        "products": "Produtos",
-        "add product": "Adicionar produto (breve)",
-        "emoji": "Emoji",
-        "product": "Produto",
-        "price": "Preço",
-        "on/off": "Ligar/Desligar"
-      },
-      "delete menu current": {
-        "file": "Menu.xlm",
-        "modal": {
-          "do you want to replace menu": "Deseja substituir o menu?",
-          "text_1": "Sugerimos que você feche temporariamente seu negócio enquanto atualiza o menu.",
-          "text_2": "Para evitar encomendas imprevistas",
-          "confirm": "Sim, substituir",
-          "cancel": "Cancelar"
-        }
-      },
-      "download template": {
-        "download template": "Baixar modelo"
-      },
-      "logo local": {
-        "file": "LogoBStore.jpg",
-        "replace image": "Substituir imagem"
-      }
+      "text": "Cardápio",
+      "detail": "Gerencie seu cardápio daqui"
     },
-    "config": {
-      "select": {
-        "personal data": "Dados pessoais",
-        "business data": "Dados do negócio",
-        "payment methods": "Métodos de pagamento"
-      },
-      "personal data": {
-        "title": "Dados pessoais",
-        "input_1": "Nome e Sobrenome",
-        "input_2": "Telefone"
-      },
-      "business data": {
-        "title": "Dados do negócio",
-        "input_1": "Nome do negócio",
-        "input_2": "Telefone"
-      },
-      "payment market": {
-        "title": "Mercado Pago",
-        "input_1": "Token",
-        "input_2": "Key"
-      }
+    "sales": {
+      "text": "Vendas",
+      "detail": "Aqui estão suas vendas"
     },
-    "generator qr":{
-      "select pos":"Mesa",
-      "value_option":"Todos",
-      "select color":"Cor",
-      "select an option":"Selecione uma opção",
-      "all pos":"Todas as pos",
-      "generate code":"Gerar código",
-      "dowload code":"Baixar código/s QR",
-      "print code":"Imprimir código/s",
-      "white": "Branco",
-      "orange": "Laranja",
-      "yellow": "Amarelo",
-      "blue": "Azul",
-      "green": "Verde",
-      "purple": "Roxo"
+    "history": {
+      "text": "Histórico",
+      "detail": "Aqui estão seus pedidos entregues"
     },
-    "card": {
-      "order placed": "Mover para preparando",
-      "order in preparation": "Mover para pronto",
-      "order ready": "Mover para entregue",
-      "delivered": "Entregue",
-      "sector": "Setor",
-      "table": "Mesa",
-      "order": "Pedido",
-      "received at": "Recebido às",
-      "total": "Total",
-      "observations": "Observações"
+    "setting": {
+      "text": "Configuração",
+      "detail": "Aqui estão seus dados, planos e configurações gerais"
     },
-    "instructions": {
-      "title": "Vamos começar com o seu cardápio",
-      "sub title": "Tente seguir as etapas antes de começar a operar",
-      "steps": {
-        "step_1": "Baixe o modelo de cardápio",
-        "step_2": "Faça o upload do cardápio após salvar os produtos",
-        "step_3": "Faça o upload da imagem do logotipo do seu estabelecimento",
-        "step_4": "Abra seu estabelecimento para começar a vender!",
-        "text_1": "Baixar modelo",
-        "text_2": "Carregar cardápio",
-        "text_3": "Carregar a imagem do logotipo do local",
-        "text_3_1": "Condições:",
-        "text_3_2": "- Sua imagem deve ser quadrada (proporção 1:1)",
-        "text_3_3": "- Formato: JPG",
-        "text_3_4": "- Tamanho máximo de arquivo: 100KB",
-        "text_3_5": "Carregar imagem",
-        "text_4": "Abra e feche o seu estabelecimento conforme a demanda"
-      },
-      "button": {
-        "i need help": "Preciso de ajuda",
-        "continue": "Continuar"
-      }
+    "generator qr": {
+      "text": "Gerador de QR",
+      "detail": "Aqui você pode gerar o QR para suas mesas"
     }
-  }  
+  },
+  "dashboard": {
+    "all": "Todos",
+    "local orders": "Pedidos locais",
+    "platform orders": "Pedidos por plataforma",
+    "new": "Novos",
+    "preparing": "Preparando",
+    "ready": "Pronto"
+  },
+  "sales": {
+    "this week": "Esta semana",
+    "weekly Total": "Total semanal: $",
+    "today": "Hoje",
+    "today you sold": "Hoje você vendeu",
+    "today you received": "Hoje você recebeu",
+    "orders": "pedidos"
+  },
+  "history": {
+    "today": "Hoje",
+    "until": "Até",
+    "select a date": "Selecione uma data"
+  },
+  "menu": {
+    "manage current menu": "Gerenciar cardápio atual",
+    "replace current menu": "Reemplazar cardápio atual",
+    "download menu template": "Baixar modelo de cardápio",
+    "local logo": "Logo do local (breve)",
+    "menu item": {
+      "category": "Categoria",
+      "products": "Produtos",
+      "add product": "Adicionar produto (breve)",
+      "emoji": "Emoji",
+      "product": "Produto",
+      "price": "Preço",
+      "on/off": "Ligar/Desligar"
+    },
+    "delete menu current": {
+      "file": "Menu.xlsx",
+      "modal": {
+        "do you want to replace menu": "Deseja substituir o menu?",
+        "text_1": "Sugerimos que você feche temporariamente seu negócio enquanto atualiza o menu.",
+        "text_2": "Para evitar encomendas imprevistas",
+        "confirm": "Sim, substituir",
+        "cancel": "Cancelar"
+      }
+    },
+    "download template": {
+      "download template": "Baixar modelo"
+    },
+    "logo local": {
+      "file": "LogoBStore.jpg",
+      "replace image": "Substituir imagem"
+    }
+  },
+  "config": {
+    "select": {
+      "personal data": "Dados pessoais",
+      "business data": "Dados do negócio",
+      "payment methods": "Métodos de pagamento"
+    },
+    "personal data": {
+      "title": "Dados pessoais",
+      "input_1": "Nome e Sobrenome",
+      "input_2": "Telefone"
+    },
+    "business data": {
+      "title": "Dados do negócio",
+      "input_1": "Nome do negócio",
+      "input_2": "Telefone"
+    },
+    "payment market": {
+      "title": "Mercado Pago",
+      "input_1": "Token",
+      "input_2": "Key"
+    }
+  },
+  "generator qr": {
+    "select pos": "Mesa",
+    "value_option": "Todos",
+    "select color": "Cor",
+    "select an option": "Selecione uma opção",
+    "all pos": "Todas as pos",
+    "generate code": "Gerar código",
+    "dowload code": "Baixar código/s QR",
+    "print code": "Imprimir código/s",
+    "white": "Branco",
+    "orange": "Laranja",
+    "yellow": "Amarelo",
+    "blue": "Azul",
+    "green": "Verde",
+    "purple": "Roxo"
+  },
+  "card": {
+    "order placed": "Mover para preparando",
+    "order in preparation": "Mover para pronto",
+    "order ready": "Mover para entregue",
+    "delivered": "Entregue",
+    "sector": "Setor",
+    "table": "Mesa",
+    "order": "Pedido",
+    "received at": "Recebido às",
+    "total": "Total",
+    "observations": "Observações"
+  },
+  "instructions": {
+    "title": "Vamos começar com o seu cardápio",
+    "sub title": "Tente seguir as etapas antes de começar a operar",
+    "steps": {
+      "step_1": "Baixe o modelo de cardápio",
+      "step_2": "Faça o upload do cardápio após salvar os produtos",
+      "step_3": "Faça o upload da imagem do logotipo do seu estabelecimento",
+      "step_4": "Abra seu estabelecimento para começar a vender!",
+      "text_1": "Baixar modelo",
+      "text_2": "Carregar cardápio",
+      "text_3": "Carregar a imagem do logotipo do local",
+      "text_3_1": "Condições:",
+      "text_3_2": "- Sua imagem deve ser quadrada (proporção 1:1)",
+      "text_3_3": "- Formato: JPG",
+      "text_3_4": "- Tamanho máximo de arquivo: 100KB",
+      "text_3_5": "Carregar imagem",
+      "text_4": "Abra e feche o seu estabelecimento conforme a demanda"
+    },
+    "button": {
+      "i need help": "Preciso de ajuda",
+      "continue": "Continuar"
+    }
+  },
+  "plan 1":{
+    "cartel plan 1": {
+      "title": "Teremos mais recursos em breve",
+      "text_1": "Você poderá ver métricas importantes para o seu negócio",
+      "text_2": "Estamos trabalhando para lhe oferecer um melhor serviço"
+    },
+    "history":{
+      "text_1":"Non l'hai ancora fatto",
+      "text_2":"ricevuto ordini"
+    }
+  }
+}

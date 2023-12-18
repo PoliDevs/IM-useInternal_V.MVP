@@ -18,7 +18,6 @@ export default function Dashboard() {
   }, [comerceId]);
 
   return (
-    /*     <div className={s.container_dashboard}> */
     <>
       {loader ? (
         <Loading center bold />
@@ -28,6 +27,5 @@ export default function Dashboard() {
         <ClosedLocal />
       )}
     </>
-    /*     </div> */
   );
 };
