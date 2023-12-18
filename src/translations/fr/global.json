@@ -90,7 +90,7 @@
       "on/off": "Activé/Désactivé"
     },
     "replace menu current": {
-      "file": "Menu.xlm",
+      "file": "Menu.xlsx",
       "modal": {
         "do you want to replace menu": "Voulez-vous remplacer le menu ?",
         "text_1": "Nous vous suggérons de fermer temporairement votre entreprise le temps de mettre à jour le menu.",
@@ -178,6 +178,18 @@
     "button": {
       "i need help": "J'ai besoin d'aide",
       "continue": "Continuer"
+    }
+  },
+  "plan 1":{
+
+    "cartel plan 1":{
+      "title":"Nous aurons bientôt plus de fonctionnalités",
+      "text_1":"Vous pourrez voir des mesures importantes pour votre entreprise",
+      "text_2":"Nous travaillons pour vous offrir un meilleur service"
+    },
+    "history":{
+      "text_1":"Vous ne l'avez pas encore",
+      "text_2":"reçu des commandes"
     }
   }
 }

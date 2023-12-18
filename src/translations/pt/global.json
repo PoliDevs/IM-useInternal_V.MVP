@@ -90,7 +90,7 @@
         "on/off": "Ligar/Desligar"
       },
       "replace menu current": {
-        "file": "Menu.xlm",
+        "file": "Menu.xlsx",
         "modal": {
           "do you want to replace menu": "Deseja substituir o menu?",
           "text_1": "Sugerimos que você feche temporariamente seu negócio enquanto atualiza o menu.",
@@ -178,6 +178,17 @@
       "button": {
         "i need help": "Preciso de ajuda",
         "continue": "Continuar"
+      }
+    },
+    "plan 1":{
+      "cartel plan 1":{
+        "title":"Teremos mais recursos em breve",
+        "text_1":"Você poderá ver métricas importantes para o seu negócio",
+        "text_2":"Estamos trabalhando para lhe oferecer um melhor serviço"
+      },
+      "history":{
+        "text_1":"Non l'hai ancora fatto",
+        "text_2":"ricevuto ordini"
       }
     }
   }

@@ -90,7 +90,7 @@
       "on/off": "On/Off"
     },
     "replace menu current": {
-      "file": "Menu.xlm",
+      "file": "Menu.xlsx",
       "modal": {
         "do you want to replace menu": "Do you want to replace menu?",
         "text_1": "We suggest you temporarily close your business while you update the menu.",
@@ -179,5 +179,14 @@
       "i need help": "I need help",
       "continue": "Continue"
     }
+  },
+  "plan 1":{
+    "cartel plan 1":{
+      "title":"We will have more features soon",
+      "text_1":"You will be able to see important metrics for your business",
+      "text_2":"We are working to provide you with a better service"
+    },
+    "text_1":"You haven't yet",
+    "text_2":"received orders"
   }
 }

@@ -1,6 +1,6 @@
 import s from './header.module.scss';
 /* import { TbArrowBackUp } from "react-icons/tb"; */
-import {Store,Menu,History,Sales,Config,ArrowUturnLeft, StoreClosed,QrCode} from "../../atom/iconsHerocoins/icons";
+import {Store,Menu,HistoryIcon,Sales,Config,ArrowUturnLeft, StoreClosed,QrCode} from "../../atom/iconsHerocoins/icons";
 import HugeTitle from '../../atom/HugeTitle/HugeTitle';
 import LineText from '../../atom/LineText/LineText';
 import { useNavigate,useLocation } from 'react-router-dom';
@@ -18,7 +18,7 @@ export default function Header({icon,title,detail,detail_2,color,off,height}) {
   const optionIcon={
     "store":<Store heigth={"24"}/>,
     "menu":<Menu heigth={"24"}/>,
-    "history":<History heigth={"24"}/>,
+    "history":<HistoryIcon heigth={"24"}/>,
     "sales":<Sales heigth={"24"}/>,
     "config":<Config heigth={"24"} />,
     "qr":<QrCode heigth={"24"} />,

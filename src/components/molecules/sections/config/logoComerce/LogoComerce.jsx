@@ -47,6 +47,7 @@ export default function LogoComerce() {
         setIsLoading(true); // Marca como cargando
         await uploadFile(newFile, comerceId.toString());
         setClickCount((prevCount) => prevCount + 1);
+        setNewFile(false)
       } else {
         console.log("No hay nueva imagen para cargar.");
       }
@@ -79,7 +80,6 @@ export default function LogoComerce() {
       </ContentRow>
       <Separator height="20px" />
       <InputButton
-        input
         onChange={handleImageUpload}
         icon="arrowsUpDown"
         text={t("menu.logo local.replace image")}
@@ -95,7 +95,7 @@ export default function LogoComerce() {
           <img
             src={URL.createObjectURL(newFile)}
             alt="foto"
-            style={{ maxWidth: "50%", border: "2px solid #000" }}
+            style={{ maxWidth: "40%", border: "2px solid #000" }}
           />
           <Button
             secondary

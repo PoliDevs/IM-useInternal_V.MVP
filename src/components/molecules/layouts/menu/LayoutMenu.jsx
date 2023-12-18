@@ -46,7 +46,7 @@ export default function LayoutMenu() {
         />
         <LargeButton
           text={downloadMenuTemplate}
-          icon={"arrowDownload"}
+          icon={"arrowRight"}
           onClick={() => handleOptionClick(downloadMenuTemplate)}
           selected={selectedOption === downloadMenuTemplate}
         />
