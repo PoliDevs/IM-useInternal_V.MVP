@@ -10,7 +10,8 @@ import { useTranslation } from "react-i18next";
 
 export default function Welcome() {
   const user_internal = useSelector((state) => state.user_internal);
-  const comerceId=useSelector(state=>state.user_internal)
+  const comerceId=useSelector(state=>state.user_internal.comerceId)
+  
   console.log(comerceId)
   const [t,i18n]=useTranslation("global")
   const dispatch=useDispatch();

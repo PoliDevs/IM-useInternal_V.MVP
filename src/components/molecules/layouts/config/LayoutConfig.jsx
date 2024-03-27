@@ -51,7 +51,7 @@ export default function LayoutConfig() {
           selected={selectedOption === paymentData}
         />
         <LargeButton
-          text={localLogo}
+          text={"Logo del local"}
           icon={"arrowRight"}
           /* disabled={true} */
           onClick={() => handleOptionClick(localLogo)}

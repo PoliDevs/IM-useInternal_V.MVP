@@ -1,36 +1,30 @@
-import { CLEAR_STATE,GET_ORDERS, LOGIN_ACTION,LOGIN_ACTION_GOOGLE,MENU_ACTIVE,LOCAL_OPEN_VALUE,OPEN_LOCAL,CLOSED_LOCAL, GET_ALL_POS } from "../actions/actionTypes";
+import { CLEAR_STATE, GET_ORDERS, LOGIN_ACTION, LOGIN_ACTION_GOOGLE, MENU_ACTIVE, LOCAL_OPEN_VALUE, OPEN_LOCAL, CLOSED_LOCAL, UPDATE_USER_INTERNAL, GET_ALL_POS } from "../actions/actionTypes";
 import jwtDecode from "jwt-decode";
 
-const initalState = {
-  user_internal: localStorage.getItem("user_internal")
-    ? JSON.parse(localStorage.getItem("user_internal"))
-    : {},
+const initialState = {
+  user_internal: localStorage.getItem("user_internal") ? JSON.parse(localStorage.getItem("user_internal")) : {},
   usuario: "",
-  localOpenValue:localStorage.getItem("localOpenValue")
-  ?JSON.parse(localStorage.getItem("localOpenValue"))
-  :null,
+  localOpenValue: localStorage.getItem("localOpenValue") ? JSON.parse(localStorage.getItem("localOpenValue")) : null,
   id: 1,
   local: true,
   orders: [],
-  menuActive:localStorage.getItem("menuActivo")
-  ? localStorage.getItem("menuActivo")
-  : [],
+  menuActive: localStorage.getItem("menuActivo") ? localStorage.getItem("menuActivo") : [],
   allPos: []
 };
 
-export const rootReducer = (state = initalState, { type, payload }) => {
+export const rootReducer = (state = initialState, { type, payload }) => {
   switch (type) {
-    //Clear State
+    // Restablece el estado a los valores iniciales
     case CLEAR_STATE:
       return {
         ...state,
         user_internal: {},
         menuActive: []
-      }; // Restablece el estado a los valores iniciales
+      };
+    
     //loguin 
     case LOGIN_ACTION: {
       const data = jwtDecode(payload.data.token);
-      console.log(data)
       const user_internal = {
         token: payload.data.token,
         email: data.email,
@@ -40,88 +34,84 @@ export const rootReducer = (state = initalState, { type, payload }) => {
         lastName: data.lastName,
         phone: data.phone,
       };
-      // Guardar el token y la información del usuario en localStorage
       localStorage.setItem("token", JSON.stringify(payload.data.token));
       localStorage.setItem("user_internal", JSON.stringify(user_internal));
       return {
         ...state,
         user_internal,
       };
-    };
+    }
 
     //loginGoogle
     case LOGIN_ACTION_GOOGLE: {
       const data = jwtDecode(payload.data.token);
-      console.log(data)
       const user_internal = {
         token: payload.data.token,
         id: data.id,
-        name:data.name,
+        name: data.name,
         phone: data.phone,
         email: data.email,
         comerceId: data.commerceId,
-        commercialPlan:data["commerce.commercialPlan.id"],
-        commerceName:data["commerce.name"]
+        commercialPlan: data["commerce.commercialPlan.id"],
+        commerceName: data["commerce.name"]
       };
-      // Guardar el token y la información del usuario en localStorage
       localStorage.setItem("token", JSON.stringify(payload.data.token));
       localStorage.setItem("user_internal", JSON.stringify(user_internal));
-      
       return {
         ...state,
         user_internal,
       };
-    };
+    }
 
     //para preguntar menu activo
-    case MENU_ACTIVE:{
+    case MENU_ACTIVE:
       return {
         ...state,
-        menuActive:payload
+        menuActive: payload
       };
-    };
-
+    
     //local cerrado o abierto
     case LOCAL_OPEN_VALUE:{
-      const localOpenValue=payload;
-      localStorage.setItem("localOpenValue",JSON.stringify(localOpenValue))
-      return{
+      const localOpenValue = payload;
+      localStorage.setItem("localOpenValue", JSON.stringify(localOpenValue))
+      return {
         ...state,
         localOpenValue
       }
-    };
+    }
 
     //abrimos local
-    case OPEN_LOCAL:{
-      return{
+    case OPEN_LOCAL:
+      return {
         ...state,
-        localOpenValue:payload
+        localOpenValue: payload
       }
 
-    }
-
-    //ceramos local
-    case CLOSED_LOCAL:{
-      return{
+    //cerramos local
+    case CLOSED_LOCAL:
+      return {
         ...state,
-        localOpenValue:payload
+        localOpenValue: payload
       }
-    }
 
+    // Actualizar el estado user_internal con los nuevos datos
+    case UPDATE_USER_INTERNAL:
+      return {
+        ...state,
+        user_internal: payload
+      };
 
     //busca todas las ordenes
     case GET_ORDERS:
-      //esta linea solo es para forkear
       const arrayOrders = payload.slice(0, payload.length - 1);
-      //
       return {
         ...state,
         orders: arrayOrders,
       };
-      break;
 
     case GET_ALL_POS:
-      return {...state, allPos: payload}
+      return { ...state, allPos: payload };
+
     default:
       return state;
   }

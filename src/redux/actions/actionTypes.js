@@ -17,3 +17,6 @@ export const GET_ORDERS="GET_ORDERS";
 
 //////////////////* Clear State *///////////////////////////
 export const CLEAR_STATE="CLEAR_STATE";
+
+// En tus constantes de acciones de Redux
+export const UPDATE_USER_INTERNAL = 'UPDATE_USER_INTERNAL';

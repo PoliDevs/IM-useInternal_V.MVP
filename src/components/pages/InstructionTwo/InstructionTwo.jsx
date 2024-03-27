@@ -33,8 +33,8 @@ export default function InstructionTwo() {
       const worksheet2 = workbook.Sheets[worksheetName2];
       const data = XLSX.utils.sheet_to_json(worksheet);
       const data2 = XLSX.utils.sheet_to_json(worksheet2);
-      setMenu(data);
-      setComercio(data2);
+      setMenu(data2);
+      setComercio(data);
     }
   }, [file]);
   useEffect(() => {
@@ -51,11 +51,44 @@ export default function InstructionTwo() {
         if (!comercio[0]["Commerce Name"]) {
           setError(true);
         } else setError(false);
-      };
+      }
     }
+     /* if (comercio !== null) {
+      const comercioYDireccion = comercio
+        .filter(
+          (item) =>
+            item["__EMPTY_1"] === "Nombre del comercio" ||
+            item["__EMPTY_1"] === "Direccion"
+        )
+        .map((item) => ({
+          [item["__EMPTY_1"]]: item["__EMPTY_2"],
+        }));
+        setComercio(comercioYDireccion)
+      console.log("Arreglo de comercio:", comercioYDireccion);*/
+
+    if (comercio && comercio.length > 3) {
+      const nombreDelComercio = comercio[3]?.__EMPTY_2;
+      const dirrecionDelComercio = comercio[4]?.__EMPTY_2;
+      console.log(nombreDelComercio, dirrecionDelComercio);
+      if (nombreDelComercio && dirrecionDelComercio) {
+        // Guarda los valores en el localStorage
+        localStorage.setItem('nombreDelComercio', nombreDelComercio);
+        localStorage.setItem('dirrecionDelComercio', dirrecionDelComercio);
+      } else {
+        console.error('Uno o ambos valores son undefined, no se puede guardar en localStorage.');
+      }
+    } else {
+      console.error(
+        "El arreglo 'comercio' no está definido o no tiene suficientes elementos."
+      );
+    }
+    console.log("Arreglo de comercio:", comercio);
+    
   }, [comercio]);
 
   function emojiToUnicode(emoji) {
+    if (!emoji) return null; // Devuelve una cadena vacía si emoji es nulo o indefinido
+    
     const codeUnits = [];
     for (let i = 0; i < emoji.length; i++) {
       codeUnits.push(emoji.charCodeAt(i).toString(16).toUpperCase());
@@ -74,16 +107,16 @@ export default function InstructionTwo() {
         if (m.Precio&&m.Precio === undefined) m.Precio = null;
         if (m.Cost&& m.Cost === undefined) m.Cost = null;
         m.Emoji = emojiToUnicode(m.Emoji);
-        m["photo"] = m["Emoji"];
-        m["category"] = m["Name category"]|| m["Nombre de la categoria"];
-        m["name"] = m["Name product"] || m["Nombre de productos"];
+        m["photo"] = m["Emoji"] || "";
+        m["category"] = m["Name category"]|| m["CATEGORIA"];
+        m["name"] = m["Name product"] || m["PRODUCTO"];
         m["cost"] = m["Cost"] || m["Precio"];
-        m["description"] = m["Description"] || m["Descripción"];
-        m["discount"] = m["Discount"] || m["Descuento"];
-        m["promotion"] = m["Promotion"] || m["Promoción"];
-        m["surcharge"] = m["Surcharge"] || m["Recargo"];
-        m["menuType"] = m["Menu type"] || m["Tipo de menu"];
-        m["validity"] = m["Validity"] || m["Validez"];
+        m["description"] = m["Description"] || m["DESCRIPCIÓN"];
+        m["discount"] = m["Discount"] || m["Descuento"] || "";
+        m["promotion"] = m["Promotion"] || m["Promoción"] || "";
+        m["surcharge"] = m["Surcharge"] || m["Recargo"] || "";
+        m["menuType"] = m["Menu type"] || m["Tipo de menu"] || "";
+        m["validity"] = m["Validity"] || m["Validez"] || "";
         delete m["Emoji"];
         delete m["Name category"] || delete m["Nombre de la categoria"];
         delete m["Name product"] || delete m["Nombre de productos"];
@@ -144,6 +177,14 @@ export default function InstructionTwo() {
    */
 
   const formattedCommerce = () => {
+    const localStorageGoogleUser = localStorage.getItem("googleUser");
+    const nombreDelComercio = localStorage.getItem('nombreDelComercio');
+    const dirrecionDelComercio = localStorage.getItem('dirrecionDelComercio');
+    
+    // Eliminar comillas del valor del localStorage
+    const googleUserWithoutQuotes = localStorageGoogleUser.replace(
+      /['"]+/g,
+      "")
     setComercio(
       comercio.map((d) => {
         if(d["Commerce Name"]){
@@ -157,7 +198,7 @@ export default function InstructionTwo() {
           d["Type of food"] ? (d["tipoDeComida"] = d["Type of food"]) :d["tipoDeComida"] = "";
           d["Name"] ? (d["firstNameEmployeer"] = d["Name"]) : d["firstNameEmployeer"] = "";
           d["LastName"] ? (d["lastNameEmployeer"] = d["LastName"]) : d["lastNameEmployeer"] = "";
-          d["Google user"] ? (d["googleUserEmployeer"] = d["Google user"]) : d["googleUserEmployeer"] = "";
+          d["googleUserEmployeer"] = googleUserWithoutQuotes || "";
           d["Secondary email"] ? (d["emailEmployeer"] = d["Secondary email"]) : d["emailEmployeer"] = "";
           d["Tables"] ? d["mesas"] = d["Tables"] : d["mesas"] = '';
           
@@ -318,7 +359,7 @@ export default function InstructionTwo() {
         <InstructionButton
           helpText={t("instructions.button.i need help")}
           text={t("instructions.button.continue")}
-          path={menu && !error && "/instructions/image"}
+          path={menu && !error && "/instructions/onDemand"}
           handleClick={handleClick}
         />
       </main>

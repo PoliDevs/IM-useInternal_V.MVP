@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CLEAR_STATE,LOCAL_OPEN_VALUE,GET_ORDERS,LOGIN_ACTION,LOGIN_ACTION_GOOGLE,MENU_ACTIVE,OPEN_LOCAL,CLOSED_LOCAL, GET_ALL_POS, POST_NEW_IMG} from "./actionTypes";
+import { CLEAR_STATE,LOCAL_OPEN_VALUE,GET_ORDERS,LOGIN_ACTION,LOGIN_ACTION_GOOGLE,MENU_ACTIVE,OPEN_LOCAL,CLOSED_LOCAL, GET_ALL_POS, UPDATE_USER_INTERNAL/*POST_NEW_IMG*/} from "./actionTypes";
 
 //limpiamos redux
 
@@ -17,7 +17,7 @@ export function loginAction(payload){
 return async function (dispatch) {
   try {
     const response = await axios.post("loginemployee/login",payload);
-/*     console.log(response.data.token) */
+    console.log("Este es",response.data.token)
     return dispatch({
       type:LOGIN_ACTION,
       payload:response
@@ -26,7 +26,7 @@ return async function (dispatch) {
     return error
   }
 }
-};
+}
 
 
 //loguin Google
@@ -34,6 +34,8 @@ export function loginActionGoogle(payload){
   const email={
     googleUser: payload
 }
+  console.log(email);
+  localStorage.setItem("googleUser", JSON.stringify(email.googleUser));
   return async function (dispatch) {
     try {
       const response = await axios.post("loginemployee/loginG",email);
@@ -50,10 +52,10 @@ export function loginActionGoogle(payload){
 
 //////////////////* Menu Actions *//////////////////
 //si hay un menu activo
-export function getMenuActive(comerceId){
+export function getMenuActive(commerceId){
   return async function (dispatch) {
     try {
-      const response = await axios(`menu/lastMenu/${comerceId}`);
+      const response = await axios(`menu/lastMenu/${commerceId}`);
       const result=response.data;
       return dispatch({
         type:MENU_ACTIVE,
@@ -66,26 +68,44 @@ export function getMenuActive(comerceId){
 }
 
 
-export function postMenu(menu,comercio, id) {
-  console.log(menu,"menu transformado")
-  console.log(comercio,"comercio transformado")
+export function postMenu(menu, comercio, id) {
+  console.log(menu, "menu transformado");
+  console.log(comercio, "comercio transformado");
   return async function (dispatch, getState) {
-    console.log(id)
+    console.log(id);
     try {
       id = getState().user_internal.comerceId;
-      if (id){
-        const response = await axios.post(
-          `/menu/menuUp/${id}`,
-          { commerceJSON: comercio, menuJSON: menu }
-        );
-        console.log("entro al primero",response)
-      }else {
-        const response = await axios.post(
-          `/menu/menuUp/0`,
-          { commerceJSON: comercio, menuJSON: menu }
-        );
-        console.log("entro al segundo",response)
+      let response;
+      if (id) {
+        response = await axios.post(`/menu/menuUp/${id}`, {
+          commerceJSON: comercio,
+          menuJSON: menu,
+        });
+        console.log("entro al primero", response);
+      } else {
+        response = await axios.post(`/menu/menuUp/0`, {
+          commerceJSON: comercio,
+          menuJSON: menu,
+        });
+        console.log("entro al segundo", response);
       }
+      localStorage.setItem("menuResponse", JSON.stringify(response));
+
+     /* // Obtener el estado actual de user_internal
+      const currentState = getState().user_internal;
+
+      // Agregar menuResponse.data a user_internal sin modificar el resto del estado
+      const updatedUserInternal = {
+        ...currentState,
+        menuResponse: response.data,
+        // Aquí puedes agregar cualquier otro dato adicional que desees agregar
+      };
+      
+      dispatch({
+        type: 'UPDATE_USER_INTERNAL',
+        payload: updatedUserInternal
+      });
+        */
     } catch (error) {
       return error;
     }
@@ -175,7 +195,13 @@ export function getAllPos(id){
   }
 }
 
-
+export function updateUserInternal(updatedUserInternal) {
+  return {
+    type: UPDATE_USER_INTERNAL,
+    payload: updatedUserInternal
+  };
+}
+/*
 export async function postImg (img) { 
   try {
     let response = await axios.post(
@@ -191,4 +217,4 @@ export async function postImg (img) {
   } catch (error) {
     console.error(error);
   }
-}
+}*/

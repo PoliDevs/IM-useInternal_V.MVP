@@ -1,15 +1,15 @@
 import s from "./layoutSales.module.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { getDateCurrent,getLastMonday } from "../../../../utils/functions";
+import { getDateCurrent, getLastMonday } from "../../../../utils/functions";
 import { useTranslation } from "react-i18next";
 import Title from "../../../atom/Title/Title";
 
 export default function LayoutSales() {
-  const [t,i18n]=useTranslation("global")
+  const [t, i18n] = useTranslation("global")
   const [week, setWeek] = useState(null);
-  const date=getDateCurrent();//dia actual
-  const monday=getLastMonday();//lunes
+  const date = getDateCurrent(); // día actual
+  const monday = getLastMonday(); // lunes
 
   const comerceId = useSelector((state) => state.user_internal.comerceId);
 
@@ -40,35 +40,39 @@ export default function LayoutSales() {
         console.error("Error al obtener los datos:", error);
       }
     };
-  
+
     fetchData(); // Llama a la función fetchData
   }, []); // Asegúrate de pasar un arreglo vacío como segundo argumento para que se ejecute solo una vez
-  //console.log(week)
 
-  const totalWeek=week&&week.reduce((acc,cur)=>acc+ cur.tot_diario,0);//total dinero de la semana
-  const totalWeekOrders=week&&week.reduce((acc,cur)=>acc+ cur.pedidos,0);//total ordenes vendidas de la semana
-  const totalOrToday=week&&week.map(cur=>cur.tot_diario);//dinero ganado por dia
-  const today_orders_money=week&&week.find(cur=>cur.date===date);// pedidos y ventas de hoy
+  const totalWeek = week && week.reduce((acc, cur) => acc + cur.tot_diario, 0); // total dinero de la semana
+  const totalWeekOrders = week && week.reduce((acc, cur) => acc + cur.pedidos, 0); // total ordenes vendidas de la semana
+
+  const today_orders_money = week && week.reduce(cur => cur.date === date); // pedidos y ventas de hoy
+  
+  const todayOrdersMoneyValue = today_orders_money ? today_orders_money.tot_diario : 0;
+
+  console.log("Datos para el día actual:", todayOrdersMoneyValue);
+
 
   return (
     <div className={s.containerd}>
       <div className={s.content_1}>
         <Title text={t("sales.weekly Total")}>
-          <b style={{ fontWeight: "700" }}>{totalWeek&&Math.floor(totalWeek)} </b>
+          <b style={{ fontWeight: "700" }}>{totalWeek && Math.floor(totalWeek)} </b>
         </Title>
         <div className={s.grafico}>
-          <SalesChart week={totalOrToday&&totalOrToday} />
+          <SalesChart week={week && week.map(cur => Math.floor(cur.tot_diario))} />
         </div>
       </div>
       <div className={s.content_2}>
         <Title text={t("sales.today")} bold />
         <div>
           <div className={s.orders}>
-            <Title text={`${t("sales.today you sold")} $${week&&today_orders_money.tot_diario}`}/>
+            <Title text={`${t("sales.today you sold")} $${todayOrdersMoneyValue}`} />
           </div>
           <div className={s.sales}>
             <Title
-            text={`${t("sales.today you received")} ${week&&today_orders_money.pedidos}${" "} ${t("sales.orders")} `}
+              text={`${t("sales.today you received")}${week&&today_orders_money.pedidos} ${t("sales.orders")} `}
             />
           </div>
         </div>
@@ -81,9 +85,6 @@ import ReactApexChart from "react-apexcharts";
 import { useSelector } from "react-redux";
 
 export function SalesChart({ week }) {
-  //const newWeek=week&&week.map(cur=> roundToTwoDecimalPlaces(cur))
-  const newWeek=week&&week.map(cur=> Math.floor(cur))
-
   const options = {
     chart: {
       toolbar: {
@@ -125,7 +126,7 @@ export function SalesChart({ week }) {
   const series = [
     {
       name: "Sales",
-      data: newWeek
+      data: week
     },
   ];
 

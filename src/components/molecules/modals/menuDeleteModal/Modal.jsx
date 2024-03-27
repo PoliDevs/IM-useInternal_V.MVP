@@ -9,7 +9,7 @@ export default function Modal({ open, title, text, text_2, handleModal,text_conf
   const navigate = useNavigate();
 
   const deleteMenu = () => {
-    navigate(`/instructions`);
+    navigate(`/instructions/uploadMenu`);
   };
 
   return (

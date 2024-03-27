@@ -90,22 +90,11 @@ const todayDate=getDateCurrent();
                       width={320}
                       offButtons={true}
                       history={true}
-                      menu={cur.menu && cur.menu.name[0].length > 0 && cur.menu}
-                      products={
-                        cur.products &&
-                        cur.products.name[0].length > 0 &&
-                        cur.products
-                      }
-                      dishes={
-                        cur.dishes &&
-                        cur.dishes.name[0].length > 0 &&
-                        cur.dishes
-                      }
-                      additionals={
-                        cur.additionals &&
-                        cur.additionals.name[0].length > 0 &&
-                        cur.additionals
-                      }
+                      menu={cur.menu && cur.menu.name && cur.menu.name.length > 0 && cur.menu}
+                      products={cur.products && cur.products.name && cur.products.name.length > 0 && cur.products}
+                      dishes={cur.dishes && cur.dishes.name && cur.dishes.name.length > 0 && cur.dishes}
+                      additionals={cur.additionals && cur.additionals.name && cur.additionals.name.length > 0 && cur.additionals}
+                      
                     />;
                   })}
                 </div>

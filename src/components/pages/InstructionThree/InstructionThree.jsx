@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ReactComponent as XIcon } from "../../../assets/xIcon.svg";
 import InstructionContainer from "../../atom/InstructionContainer/InstructionContainer";
 import UploadMenuTitle from "../../atom/UploadMenuTitle/UploadMenuTitle";
@@ -20,7 +20,8 @@ export default function InstructionThree() {
   const [image, setImage] = useState(null);
   const [submiting, setSubmiting] = useState(false);
   const [redirectToNextPage, setRedirectToNextPage] = useState(false);
-  const comerceId=useSelector(state=>state.user_internal.comerceId);
+  const [commerceId, setCommerceId] = useState(null);
+
 
   const clearImage = () => {
     setFile(null);
@@ -46,57 +47,66 @@ export default function InstructionThree() {
   } */
 
   //firebase
-  const handleClick=async ()=>{
-    try {
-      //throw new Error('Fallo interbo intente mas tarde')
-      const result=await uploadFile(file,comerceId.toString())
-      setRedirectToNextPage(true);
-      console.log(redirectToNextPage)
-      console.log(result)
-    } catch (error) {
-      console.log(error)
-      alert(error)
-    }
+ // Función para obtener commerceId desde localStorage
+ const getCommerceIdFromLocalStorage = () => {
+  const menuResponse = JSON.parse(localStorage.getItem("menuResponse"));
+  if (menuResponse && menuResponse.data && menuResponse.data.objCommerce) {
+    const commerceId = menuResponse.data.CommerceId;
+    return commerceId;
+  } else {
+    console.log("No se encontró el objeto o la propiedad CommerceId en menuResponse.");
+    return null;
   }
-  //console.log(redirectToNextPage)
-  return (
-    <Container marginTop>
+};
+
+useEffect(() => {
+  // Cuando el componente se monta, obtenemos commerceId del localStorage
+  const id = getCommerceIdFromLocalStorage();
+  setCommerceId(id);
+}, []); // Se ejecuta solo una vez al montar el componente
+
+const handleClick = async () => {
+  try {
+    if (!commerceId) {
+      console.log("CommerceId no está definido.");
+      return;
+    }
+    const result = await uploadFile(file, commerceId.toString());
+    setRedirectToNextPage(true);
+    console.log(redirectToNextPage);
+    console.log(result);
+  } catch (error) {
+    console.log(error);
+    alert(error);
+  }
+};
+
+return (
+  <Container marginTop>
     <InstructionContainer>
       <main className={s.mainContainer}>
         <div className={s.textContainer}>
           <UploadMenuTitle text={t("instructions.title")} />
-          <LineText
-            text={t("instructions.sub title")}
-            centered={true}
-            bold={true}
-          />
+          <LineText text={t("instructions.sub title")} centered bold />
           <MenuStep
             number={3}
-            text={
-              `${t("instructions.steps.text_3")} \n${t("instructions.steps.text_3_1")} \n ${t("instructions.steps.text_3_2")}\n ${t("instructions.steps.text_3_3")} \n ${t("instructions.steps.text_3_4")}`
-            }
+            text={`${t("instructions.steps.text_3")} \n${t("instructions.steps.text_3_1")} \n ${t("instructions.steps.text_3_2")}\n ${t("instructions.steps.text_3_3")} \n ${t("instructions.steps.text_3_4")}`}
           />
           <>
             <File
               step={3}
-              typeIcon={"upload"}
+              typeIcon="upload"
               text={t("instructions.steps.text_3_5")}
               file={file}
               setFile={setFile}
-              menu={image}
-              setMenu={setImage}
-              submitting={submiting}
-              setSubmitting={setSubmiting}
+              submitting={false}
+              setSubmitting={() => {}} // Placeholder para setSubmitting
             />
             {file !== null && (
               <div className={s.uploadedFile}>
-                {/* <LineText text={"Logo.JPG"} secundary={true} /> */}
-                <img src={URL.createObjectURL(file)} alt="" height={"90px"} />
+                <img src={URL.createObjectURL(file)} alt="" height="90px" />
                 <div className={s.icons}>
-                  <XIcon
-                    style={{ height: "24px", width: "24px" }}
-                    onClick={clearImage}
-                  />
+                  <XIcon style={{ height: "24px", width: "24px" }} onClick={clearImage} />
                 </div>
               </div>
             )}
@@ -105,12 +115,11 @@ export default function InstructionThree() {
         <InstructionButton
           helpText={t("instructions.button.i need help")}
           text={t("instructions.button.continue")}
-          //path={redirectToNextPage ? "/instructions/onDemand" : null}
           path={redirectToNextPage ? "/instructions/onDemand" : null}
-          handleClick={() => handleClick(file)}
+          handleClick={handleClick}
         />
       </main>
     </InstructionContainer>
-    </Container>
-  );
-};
+  </Container>
+);
+}
