@@ -108,10 +108,10 @@ export default function InstructionTwo() {
         if (m.Cost&& m.Cost === undefined) m.Cost = null;
         m.Emoji = emojiToUnicode(m.Emoji);
         m["photo"] = m["Emoji"] || "";
-        m["category"] = m["Name category"]|| m["CATEGORIA"];
-        m["name"] = m["Name product"] || m["PRODUCTO"];
+        m["category"] = m["Name category"]|| m["Categoria"];
+        m["name"] = m["Name product"] || m["Producto"];
         m["cost"] = m["Cost"] || m["Precio"];
-        m["description"] = m["Description"] || m["DESCRIPCIÓN"];
+        m["description"] = m["Description"] || m["Descripción"];
         m["discount"] = m["Discount"] || m["Descuento"] || "";
         m["promotion"] = m["Promotion"] || m["Promoción"] || "";
         m["surcharge"] = m["Surcharge"] || m["Recargo"] || "";
@@ -216,8 +216,8 @@ export default function InstructionTwo() {
           d["Secondary email"] && delete d["Secondary email"] 
         }else{
 
-          d["Nombre de comercio"] ? (d["name"] = d["Nombre de comercio"]) : "";
-          d["Barrio"] ? (d["neighborhood"] = d["Barrio"]) :  d["neighborhood"] = "";
+          d["Nombre del comercio"] ? (d["name"] = d["Nombre del comercio"]) : "";
+          d["Barrio"] ? (d["neighborhood"] = d["Barrio"]) :  d["Dirección"] = "";
           d["Dirección"] ? (d["address"] = d["Dirección"]) : d["address"] = d["address"] = d["address"] = "";
           d["Horarios"] ? (d["workSchedule"] = d["Horarios"]) : d["workSchedule"] = "";
           d["Email"] ? (d["email"] = d["Email"]) : d["email"] = d["email"] = "";
