@@ -6,14 +6,19 @@ import { Bars_3, Store, StoreClosed } from "../../atom/iconsHerocoins/icons";
 import logoNav from "../../../assets/logo nav.svg";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+
 
 export default function Nav() {
   const [barsActive, setBarsActive] = useState(false);
   const [userActive, setUserActive] = useState(false);
   const barsContainerRef = useRef(null);
   const userContainerRef = useRef(null);
+  const location = useLocation();
 
   const localValue = useSelector((state) => state.localOpenValue);
+
+  const disableNavbar = location.pathname.includes("/instructions");
 
   //cambia el fondo de los iconos
   const toggleBarsBackground = () => {
@@ -46,7 +51,7 @@ export default function Nav() {
 
 
   return (
-    <nav className={s.nav}>
+    <nav className={`${s.nav} ${disableNavbar ? s.disableNav : ""}`}>
       <div
         ref={barsContainerRef}
         className={`${s.iconContainer} ${

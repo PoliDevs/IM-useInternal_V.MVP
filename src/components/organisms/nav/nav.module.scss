@@ -35,6 +35,11 @@ border-radius: 12px 12px 2px 0;
 /* margin: 0 10px; */
 }
 
+.disableNav {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 @media screen and (max-width:900px) {
   .nav{
     height: 65px;
