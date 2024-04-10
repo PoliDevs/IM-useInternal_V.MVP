@@ -1,78 +1,83 @@
-import axios from "axios";
-import { CLEAR_STATE,LOCAL_OPEN_VALUE,GET_ORDERS,LOGIN_ACTION,LOGIN_ACTION_GOOGLE,MENU_ACTIVE,OPEN_LOCAL,CLOSED_LOCAL, GET_ALL_POS, UPDATE_USER_INTERNAL/*POST_NEW_IMG*/} from "./actionTypes";
+import axios from 'axios';
+import {
+  CLEAR_STATE,
+  LOCAL_OPEN_VALUE,
+  GET_ORDERS,
+  LOGIN_ACTION,
+  LOGIN_ACTION_GOOGLE,
+  MENU_ACTIVE,
+  OPEN_LOCAL,
+  CLOSED_LOCAL,
+  GET_ALL_POS,
+  UPDATE_USER_INTERNAL /*POST_NEW_IMG*/,
+} from './actionTypes';
 
 //limpiamos redux
 
 export function clearState() {
   return function (dispatch) {
-    console.log("CLearState")
     return dispatch({
-      type:CLEAR_STATE
-    })
-  }
+      type: CLEAR_STATE,
+    });
+  };
 }
 
 //nos logueamos
-export function loginAction(payload){
-return async function (dispatch) {
-  try {
-    const response = await axios.post("loginemployee/login",payload);
-    console.log("Este es",response.data.token)
-    return dispatch({
-      type:LOGIN_ACTION,
-      payload:response
-    })
-  } catch (error) {
-    return error
-  }
-}
-}
-
-
-//loguin Google
-export function loginActionGoogle(payload){
-  const email={
-    googleUser: payload
-}
-  console.log(email);
-  localStorage.setItem("googleUser", JSON.stringify(email.googleUser));
+export function loginAction(payload) {
   return async function (dispatch) {
     try {
-      const response = await axios.post("loginemployee/loginG",email);
+      const response = await axios.post('loginemployee/login', payload);
+
       return dispatch({
-        type:LOGIN_ACTION_GOOGLE,
-        payload:response
-      })
+        type: LOGIN_ACTION,
+        payload: response,
+      });
+    } catch (error) {
+      return error;
+    }
+  };
+}
+
+//loguin Google
+export function loginActionGoogle(payload) {
+  const email = {
+    googleUser: payload,
+  };
+
+  localStorage.setItem('googleUser', JSON.stringify(email.googleUser));
+  return async function (dispatch) {
+    try {
+      const response = await axios.post('loginemployee/loginG', email);
+      return dispatch({
+        type: LOGIN_ACTION_GOOGLE,
+        payload: response,
+      });
     } catch (error) {
       console.error(/* "Error en la acción loginActionGoogle:", */ error);
-      return error
+      return error;
     }
-  }
-  }
+  };
+}
 
 //////////////////* Menu Actions *//////////////////
 //si hay un menu activo
-export function getMenuActive(commerceId){
+export function getMenuActive(commerceId) {
   return async function (dispatch) {
     try {
       const response = await axios(`menu/lastMenu/${commerceId}`);
-      const result=response.data;
+      const result = response.data;
       return dispatch({
-        type:MENU_ACTIVE,
-        payload:result
-      })
+        type: MENU_ACTIVE,
+        payload: result,
+      });
     } catch (error) {
-      return error
+      return error;
     }
-  }
+  };
 }
 
-
 export function postMenu(menu, comercio, id) {
-  console.log(menu, "menu transformado");
-  console.log(comercio, "comercio transformado");
   return async function (dispatch, getState) {
-    console.log(id);
     try {
       id = getState().user_internal.comerceId;
       let response;
@@ -81,124 +86,103 @@ export function postMenu(menu, comercio, id) {
           commerceJSON: comercio,
           menuJSON: menu,
         });
-        console.log("entro al primero", response);
       } else {
         response = await axios.post(`/menu/menuUp/0`, {
           commerceJSON: comercio,
           menuJSON: menu,
         });
-        console.log("entro al segundo", response);
       }
-      localStorage.setItem("menuResponse", JSON.stringify(response));
-
-     /* // Obtener el estado actual de user_internal
-      const currentState = getState().user_internal;
-
-      // Agregar menuResponse.data a user_internal sin modificar el resto del estado
-      const updatedUserInternal = {
-        ...currentState,
-        menuResponse: response.data,
-        // Aquí puedes agregar cualquier otro dato adicional que desees agregar
-      };
-      
-      dispatch({
-        type: 'UPDATE_USER_INTERNAL',
-        payload: updatedUserInternal
-      });
-        */
+      localStorage.setItem('menuResponse', JSON.stringify(response));
     } catch (error) {
       return error;
     }
   };
 }
 
-
 //si el local esta abierto
 export function localOpen(comerceId) {
   return async function (dispatch) {
     try {
-      const response = await axios(`commerce/openCommerce/${comerceId}`)
-      const result=response.data
+      const response = await axios(`commerce/openCommerce/${comerceId}`);
+      const result = response.data;
       return dispatch({
-        type:LOCAL_OPEN_VALUE,
-        payload:result
-      })
+        type: LOCAL_OPEN_VALUE,
+        payload: result,
+      });
     } catch (error) {
-      return error
+      return error;
     }
-  }
-  }
-
+  };
+}
 
 //abrimos local
 export function openLocal(comerceId) {
   return async function (dispatch) {
     try {
-      const response = await axios.put(`/commerce/open/${comerceId}`)
-      if(response.status===200){
+      const response = await axios.put(`/commerce/open/${comerceId}`);
+      if (response.status === 200) {
         return dispatch({
-          type:OPEN_LOCAL,
-          payload:true
-        })
+          type: OPEN_LOCAL,
+          payload: true,
+        });
       }
     } catch (error) {
-      return error
+      return error;
     }
-  }
-  }
+  };
+}
 //cerramos local
 export function closedLocal(comerceId) {
   return async function (dispatch) {
     try {
-      const response = await axios.put(`/commerce/close/${comerceId}`)
-      if(response.status===200){
+      const response = await axios.put(`/commerce/close/${comerceId}`);
+      if (response.status === 200) {
         return dispatch({
-          type:CLOSED_LOCAL,
-          payload:false
-        })
+          type: CLOSED_LOCAL,
+          payload: false,
+        });
       }
     } catch (error) {
-      return error
+      return error;
     }
-  }
-  }
-
+  };
+}
 
 export async function getOrders() {
   return async function (dispatch) {
     try {
-      const response = await axios.get("order/all");
+      const response = await axios.get('order/all');
       return dispatch({
-        type:GET_ORDERS,
-        payload:response.data
-      })
+        type: GET_ORDERS,
+        payload: response.data,
+      });
     } catch (error) {
-      return error
+      return error;
     }
-  }
+  };
 }
 
 //? Devuelve array con todos los sectores del comercio, dentro de los sectores se encuentran los Pos
 //? Esta accion se debe ejecutar en un useEffect del componente QrGenerator.
-export function getAllPos(id){
-  return async function (dispatch){
+export function getAllPos(id) {
+  return async function (dispatch) {
     try {
       let response = await axios.get(`/pos/all/${id}`);
       let allPos = response.data[0].sectors;
       return dispatch({
         type: GET_ALL_POS,
-        payload: allPos
-      })
+        payload: allPos,
+      });
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 }
 
 export function updateUserInternal(updatedUserInternal) {
   return {
     type: UPDATE_USER_INTERNAL,
-    payload: updatedUserInternal
+    payload: updatedUserInternal,
   };
 }
 /*

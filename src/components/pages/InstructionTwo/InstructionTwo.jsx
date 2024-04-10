@@ -15,16 +15,15 @@ import { useTranslation } from "react-i18next";
 import Container from "../../atom/container/Container";
 
 export default function InstructionTwo() {
-  const [t, i18n] = useTranslation("global");
+  const [t] = useTranslation("global");
   const [file, setFile] = useState(null);
+  const [fileName, setFileName] = useState("");
   const [menu, setMenu] = useState(null);
   const [comercio, setComercio] = useState(null);
   const [submiting, setSubmiting] = useState(false);
   const [error, setError] = useState(false);
   const id = useSelector((state) => state.user_internal.comerceId);
   const dispatch = useDispatch();
-
-  const xlfName = localStorage.getItem("xlfile");
 
   useEffect(() => {
     if (file !== null) {
@@ -234,15 +233,12 @@ export default function InstructionTwo() {
     formattedMenu();
     formattedCommerce();
     if (error) {
-      console.log("error");
       clearMenu();
       setError(true);
       return alert("Se debe ingresar un nombre de comercio");
     } else {
-      console.log("se hiso dispatch en componente");
       dispatch(postMenu(menu, comercio, id));
     }
-    localStorage.removeItem('xlfile');
   };
 
   return (
@@ -271,11 +267,12 @@ export default function InstructionTwo() {
                   setMenu={setMenu}
                   submitting={submiting}
                   setSubmitting={setSubmiting}
+                  setFileName={setFileName}
                 />
               )}
               {menu !== null && (
                 <div className={s.uploadedFile}>
-                  <LineText text={xlfName} secundary={true} />
+                  <LineText text={fileName} secundary={true} />
                   <div className={s.icons}>
                     <XIcon
                       style={{ height: "24px", width: "24px" }}

@@ -5,10 +5,15 @@ import { ReactComponent as ArrowUpload } from "../../../assets/ArrowUpload.svg";
 import { useDropzone } from "react-dropzone";
 import Title from "../../atom/Title/Title";
 import s from "./File.module.scss";
-//import { uploadFile } from "../../../firebase/firebase.config";
-//import { useSelector } from "react-redux";
 
-export default function File({ typeIcon, text, setFile, setSubmitting, step }) {
+export default function File({
+  typeIcon,
+  text,
+  setFile,
+  setSubmitting,
+  step,
+  setFileName,
+}) {
   //const comerceId=useSelector(state=>state.user_internal.comerceId);
 
   const onDrop = useCallback(
@@ -18,10 +23,8 @@ export default function File({ typeIcon, text, setFile, setSubmitting, step }) {
 
       let xlfile = acceptedFiles[0];
 
-      localStorage.setItem("xlfile", xlfile.name);
-
       let reader = new FileReader();
-      
+
       if (step !== 3) {
         reader.readAsArrayBuffer(xlfile);
       } else {
@@ -31,9 +34,10 @@ export default function File({ typeIcon, text, setFile, setSubmitting, step }) {
       }
       reader.onload = (e) => {
         setFile(e.target.result);
+        setFileName(xlfile.name);
       };
     },
-    [setFile, setSubmitting, step]
+    [setFile, setSubmitting, step, setFileName]
   );
 
   const conditionalAccept =
