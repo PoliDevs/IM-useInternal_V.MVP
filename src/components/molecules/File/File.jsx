@@ -8,34 +8,34 @@ import s from "./File.module.scss";
 //import { uploadFile } from "../../../firebase/firebase.config";
 //import { useSelector } from "react-redux";
 
-export default function File({
-  typeIcon,
-  text,
-  setFile,
-  setSubmitting,
-  step
-}) {
+export default function File({ typeIcon, text, setFile, setSubmitting, step }) {
   //const comerceId=useSelector(state=>state.user_internal.comerceId);
 
-  const onDrop = useCallback((acceptedFiles) => {
-    // Do something with the files
-    setSubmitting(true);
+  const onDrop = useCallback(
+    (acceptedFiles) => {
+      // Do something with the files
+      setSubmitting(true);
 
-    let xlfile = acceptedFiles[0];
-    // console.log('Nombre de archivo subido: ', xlfile.name);
-    let reader = new FileReader();
-    if (step !== 3){
-      reader.readAsArrayBuffer(xlfile);
-    }else {
-      // reader.readAsDataURL(xlfile);
-      setFile(xlfile);
-      return
-    }
-    reader.onload = (e) => {
-    setFile(e.target.result);
-  }
-  }, []);
-  
+      let xlfile = acceptedFiles[0];
+
+      localStorage.setItem("xlfile", xlfile.name);
+
+      let reader = new FileReader();
+      
+      if (step !== 3) {
+        reader.readAsArrayBuffer(xlfile);
+      } else {
+        // reader.readAsDataURL(xlfile);
+        setFile(xlfile);
+        return;
+      }
+      reader.onload = (e) => {
+        setFile(e.target.result);
+      };
+    },
+    [setFile, setSubmitting, step]
+  );
+
   const conditionalAccept =
     step !== 3
       ? {
@@ -65,7 +65,9 @@ export default function File({
   ) : (
     <div {...getRootProps()} className={s.file}>
       <ArrowUpload className={s.icon} />
-      <input {...getInputProps()} /* onChange={uploadFile(setFile,comerceId.toString())} */ />
+      <input
+        {...getInputProps()} /* onChange={uploadFile(setFile,comerceId.toString())} */
+      />
       {isDragActive ? (
         <Title text={"Arroja tu archivo aqui"} bold={true} />
       ) : (
