@@ -11,10 +11,11 @@ import Container from "../../atom/container/Container";
 
 export default function InstructionFour() {
   const [t,i18n]=useTranslation("global");
+  const token = useSelector((state) => state.user_internal);
 
-  const token = localStorage.getItem('token');
+  /*const token1 = localStorage.getItem('token');*/
   console.log(token);
-
+  
   return (
     <Container>
     <InstructionContainer>
@@ -32,7 +33,7 @@ export default function InstructionFour() {
         <InstructionButton
           helpText={t("instructions.button.i need help")}
           text={t("instructions.button.continue")}
-          path={token?"/dashboard":"/"}
+          path={token ? "/dashboard" : "/"}
         />
       </main>
     </InstructionContainer>
