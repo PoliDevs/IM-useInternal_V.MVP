@@ -23,6 +23,8 @@ export default function File({
 
       let xlfile = acceptedFiles[0];
 
+      localStorage.setItem("xlfileName", xlfile.name)
+
       let reader = new FileReader();
 
       if (step !== 3) {
