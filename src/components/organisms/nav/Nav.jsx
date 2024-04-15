@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import s from "./nav.module.scss";
 import { useState, useRef, useEffect } from "react";
 import Bars from "../../molecules/nav/bars/Bars";
@@ -14,6 +15,7 @@ export default function Nav() {
   const barsContainerRef = useRef(null);
   const userContainerRef = useRef(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const localValue = useSelector((state) => state.localOpenValue);
 
@@ -47,6 +49,14 @@ export default function Nav() {
     }
   };
 
+  const handleNavigation = () => {
+    if (disableNavbar) {
+      window.location.href = "https://www.octopussoft.com.ar/";
+    } else {
+      navigate("/dashboard");
+    }
+  };
+
   useEffect(() => {
     document.addEventListener("click", handleDocumentClick);
     return () => {
@@ -66,9 +76,9 @@ export default function Nav() {
         {disableNavbar ? null : <Bars_3 heigth={36} />}
       </div>
       {barsActive ? <Bars onLinkClick={toggleBarsBackground} /> : null}
-      <Link to={"https://www.octopussoft.com.ar/"}>
+      <div onClick={handleNavigation} >
         <img src={logoNav} className={s.logo} />
-      </Link>
+      </div>
       <div
         className={`${s.iconContainer} ${
           !userActive ? s.customBackground : s.anotherCustomBackground
