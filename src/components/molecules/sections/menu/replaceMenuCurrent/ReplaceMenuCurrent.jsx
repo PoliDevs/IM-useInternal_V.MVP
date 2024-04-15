@@ -21,7 +21,7 @@ export default function DeleteMenuCurrent() {
     }
     setXlfileName(xlfileNameStorage);
   }, [t]);
-  console.log("xfilenaem", xlfileName);
+  
   /*   const handleDowload=()=>{
     const fileUrl = lan==="es"?"/ExcelFile/I-Menu_ES.xlsx":'/ExcelFile/I-Menu.xlsx'; // Reemplaza con la ruta real de tu archivo
     const link = document.createElement('a');
