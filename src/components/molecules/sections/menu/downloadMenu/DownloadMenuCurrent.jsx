@@ -8,10 +8,10 @@ export default function DownloadMenuCurrent() {
   const handleDowload=()=>{
     // Aquí debes agregar lógica para descargar el archivo
     // Puedes usar la etiqueta <a> para ello
-    const fileUrl =  lan==="es"?"/ExcelFile/I-Menu_ES.xlsx":'/ExcelFile/I-Menu.xlsx'; // Reemplaza con la ruta real de tu archivo
+    const fileUrl = lan==="es" ? "../../../../../../public/ExcelFile/I-Menu_es.xlsx" : '/ExcelFile/I-Menu.xlsx' // Reemplaza con la ruta real de tu archivo
     const link = document.createElement('a');
     link.href = fileUrl;
-    link.download = 'Imenu_Template'; // Puedes especificar un nombre para el archivo
+    link.download = 'Imenu_Template.xlsx'; // Puedes especificar un nombre para el archivo
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

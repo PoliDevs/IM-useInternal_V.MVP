@@ -6,7 +6,7 @@
     "speed is": "La velocidad es",
     "our plate": "Nuestro plato",
     "strong": "fuerte",
-    "select a language":"Seleccione un idioma"
+    "select a language": "Seleccione un idioma"
   },
   "welcome": {
     "welcome": "¡Bienvenido!",
@@ -21,7 +21,7 @@
     "setting": "Configuración",
     "qr": "Mesas QR",
     "open or close local": "Abre o cierra local",
-    "version":"Versión MVP"
+    "version": "Versión MVP"
   },
   "header": {
     "open local": {
@@ -49,8 +49,8 @@
       "text": "Configuración",
       "detail": "Aquí están tus datos, planes y configuraciones generales"
     },
-    "generator qr":{
-      "text":"Generador QR",
+    "generator qr": {
+      "text": "Generador QR",
       "detail": "Aquí podrás generar los QR de tus mesas"
     }
   },
@@ -129,15 +129,15 @@
       "input_2": "Key"
     }
   },
-  "generator qr":{
-    "select pos":"Mesa",
-    "value_option":"Todos",
-    "select color":"Color",
-    "select an option":"Selecciona una opción",
-    "all pos":"Todos los Pos",
-    "generate code":"Generar codigo",
-    "dowload code":"Descargar codigo/s Qr",
-    "print code":"Imprimir codigo/s",
+  "generator qr": {
+    "select pos": "Mesa",
+    "value_option": "Todos",
+    "select color": "Color",
+    "select an option": "Selecciona una opción",
+    "all pos": "Todos los Pos",
+    "generate code": "Generar codigo",
+    "dowload code": "Descargar codigo/s Qr",
+    "print code": "Imprimir codigo/s",
     "white": "Blanco",
     "orange": "Naranja",
     "yellow": "Amarillo",
@@ -160,35 +160,28 @@
   "instructions": {
     "title": "Empecemos con tu menú",
     "sub title": "Intenta cumplir con los pasos antes de empezar a operar",
-    "steps":{
+    "steps": {
       "step_1": "Descarga nuestra plantilla para menú",
       "step_2": "Sube tu menú unas vez que hayas guardado los productos",
-      "step_3": "Sube la imagen de tu logo",
-      "step_4": "¡Abre tu local para empezar a vender!",
-      "text_1":"Descargar plantilla",
-      "text_2":"Subir menú",
-      "text_3":"Sube la imagen del logo de tu local",
-      "text_3_1":"condiciones:",
-      "text_3_2":"-Tu imagen debe ser cuadrada 1:1",
-      "text_3_3":"-Formato JPG",
-      "text_3_4":"-Peso maximo: 100KB",
-      "text_3_5":"Subir imagen",
-      "text_4":"Abre y cierra tu local a demanda"
+      "step_3": "¡Abre tu local para empezar a vender!",
+      "text_1": "Descargar plantilla",
+      "text_2": "Subir menú",
+      "text_3": "Abre y cierra tu local a demanda"
     },
-    "button":{
-      "i need help": "Nesecito ayuda ",
+    "button": {
+      "i need help": "Necesito ayuda ",
       "continue": "Continuar"
-    }
+    }   
   },
-  "plan 1":{
-    "cartel plan 1":{
-      "title":"Próximamente tendremos más funcionalidades",
-      "text_1":"Podrás ver métricas importantes para tu negocio",
-      "text_2":"Estamos trabajando para brindarte un mejor servicio"
+  "plan 1": {
+    "cartel plan 1": {
+      "title": "Próximamente tendremos más funcionalidades",
+      "text_1": "Podrás ver métricas importantes para tu negocio",
+      "text_2": "Estamos trabajando para brindarte un mejor servicio"
     },
-    "history":{
-      "text_1":"Todavía no Has ",
-      "text_2":"recibido pedidos"
+    "history": {
+      "text_1": "Todavía no Has ",
+      "text_2": "recibido pedidos"
     }
   }
 }

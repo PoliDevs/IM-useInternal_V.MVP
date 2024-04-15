@@ -23,7 +23,7 @@ function App() {
   const location = useLocation();
 
   // Determina si debes mostrar el componente <Nav />
-  const shouldShowNav = location.pathname !== "/singn_in" && location.pathname !== "/" && location.pathname !=="/welcome" ;
+  const shouldShowNav = location.pathname !== "/singn_in" && location.pathname !== "/" && location.pathname !=="/welcome";
   return (
     <>
       {shouldShowNav&&<Nav/>}
