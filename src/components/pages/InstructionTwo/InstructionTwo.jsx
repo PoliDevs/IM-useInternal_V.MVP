@@ -28,8 +28,8 @@ export default function InstructionTwo() {
   useEffect(() => {
     if (file !== null) {
       const workbook = XLSX.read(file, { type: "buffer" });
-      const worksheetName1 = workbook.SheetNames[0];
-      const worksheetName2 = workbook.SheetNames[1];
+      const worksheetName1 = workbook.SheetNames[1];
+      const worksheetName2 = workbook.SheetNames[2];
       const worksheet = workbook.Sheets[worksheetName1];
       const worksheet2 = workbook.Sheets[worksheetName2];
       const data = XLSX.utils.sheet_to_json(worksheet);
@@ -90,13 +90,14 @@ export default function InstructionTwo() {
     let date = new Date().toISOString().substring(0, 10);
     let objDate = { date: date };
     setMenu(
-      menu.map((m) => {
-        if (m.Precio && m.Precio === undefined) m.Precio = null;
-        if (m.Cost && m.Cost === undefined) m.Cost = null;
+      menu.map((m, index) => {
+        if (!m["name"]) {
+          m["name"] = "menuy";
+        }
         m.Emoji = emojiToUnicode(m.Emoji);
         m["photo"] = m["Emoji"] || "";
-        m["category"] = m["Name category"] || m["Categoria"];
-        m["name"] = m["Name product"] || m["Producto"];
+        m["category"] = m["Name category"] || m["Categoria"] || " ";
+        m["name"] = m["Name product"] || m["Producto"] || m["Menú"] || `Menu ${index + 1}`;
         m["cost"] = m["Cost"] || m["Precio"];
         m["description"] = m["Description"] || m["Descripción"];
         m["discount"] = m["Discount"] || m["Descuento"] || "";
@@ -121,45 +122,69 @@ export default function InstructionTwo() {
       })
     );
   };
-
+  
+ /*  console.log(menu,"sin transformar") */
+/*   const formattedMenu = () => {
+    const objAditionals = { additional: null };
+    const objProducts = { product: null };
+    const objDishes = { dishes: null };
+    const date = new Date().toISOString().substring(0, 10);
+    const objDate = { date };
+  
+    setMenu(
+      menu.map((m) => {
+        m.Precio = m.Precio || null;
+        m.Emoji = emojiToUnicode(m.Emoji);
+        m.photo = m.Emoji;
+        m.category = m['Name category'] || m['Nombre de la categoria'];
+        m.name = m['Name product'] || m['Nombre de productos'];
+        m.cost = m.Cost || m.Precio;
+        m.description = m.Description || m.Descripción;
+        m.discount = m.Discount || m.Descuento;
+        m.promotion = m.Promotion || m.Promoción;
+        m.surcharge = m.Surcharge || m.Recargo;
+        m.menuType = m['Menu type'] || m['Tipo de menu'];
+        m.validity = m.Validity || m.Validez;
+  
+        delete m.Emoji;
+        delete m['Name category'] || delete m['Nombre de la categoria'];
+        delete m['Name product'] || delete m['Nombre de productos'];
+        delete m.Cost || delete m.Precio;
+        delete m.Description || delete m.Descripción;
+        delete m.Discount || delete m.Descuento;
+        delete m.Promotion || delete m.Promoción;
+        delete m.Surcharge || delete m.Recargo;
+        delete m['Menu type'] || delete m['Tipo de menu'];
+        delete m.Validity || delete m.Validez;
+  
+        Object.assign(m, objAditionals, objProducts, objDishes, objDate);
+        return m;
+      })
+    );
+  };
+   */
   const formattedCommerce = () => {
     const localStorageGoogleUser = localStorage.getItem("googleUser");
-
+    
     // Eliminar comillas del valor del localStorage
-    const googleUserWithoutQuotes = localStorageGoogleUser.replace(
-      /['"]+/g,
-      ""
-    );
+    const googleUserWithoutQuotes = localStorageGoogleUser.replace(/['"]+/g,"")
     setComercio(
       comercio.map((d) => {
-        if (d["Commerce Name"]) {
-          d["Commerce Name"] ? (d["name"] = d["Commerce Name"]) : "";
-          d["Neighborhood"]
-            ? (d["neighborhood"] = d["Neighborhood"])
-            : (d["neighborhood"] = "");
-          d["Address"]
-            ? (d["address"] = d["Address"])
-            : (d["address"] = d["address"] = "");
-          d["Work schedule"]
-            ? (d["workSchedule"] = d["Work schedule"])
-            : (d["workSchedule"] = "");
-          d["Email"] ? (d["email"] = d["Email"]) : (d["email"] = "");
-          d["Phono"] ? (d["phono"] = d["Phono"]) : (d["phono"] = "");
-          d["Type of food"]
-            ? (d["tipoDeComida"] = d["Type of food"])
-            : (d["tipoDeComida"] = "");
-          d["Name"]
-            ? (d["firstNameEmployeer"] = d["Name"])
-            : (d["firstNameEmployeer"] = "");
-          d["LastName"]
-            ? (d["lastNameEmployeer"] = d["LastName"])
-            : (d["lastNameEmployeer"] = "");
+        if(d["Commerce Name"]){
+          d["Nombre del local"] ? (d["name"] = d["Nombre del local"]) :"";
+          const cantidadMesas = d["Cantidad de mesas"] = (d["Cantidad de mesas"] && d["Cantidad de mesas"] >= 1) ? (d["Cantidad de mesas"] <= 10 ? d["Cantidad de mesas"] : 10) : 1;
+          d["Tables"] ? d["mesas"] = d["Tables"] : d["mesas"] = cantidadMesas;
+          d["Horario de trabajo"] ? (d["workSchedule"] = d["Horario de trabajo"]) :d["workSchedule"] = "";
+          d["Dirección"] ? (d["address"] = d["Dirección"]) : d["address"] = "";
+          d["Ciudad"] = d["Ciudad"] || "";
+          d["Provincia"] = d["Provincia"] || "";
+          d["Pais"] = d["Pais"] || "";
           d["googleUserEmployeer"] = googleUserWithoutQuotes || "";
-          d["Secondary email"]
-            ? (d["emailEmployeer"] = d["Secondary email"])
-            : (d["emailEmployeer"] = "");
-          d["Tables"] ? (d["mesas"] = d["Tables"]) : (d["mesas"] = "");
-
+          d["Nombre de contacto"] ? (d["firstNameEmployeer"] = d["Nombre de contacto"]) : d["firstNameEmployeer"] = "";
+          d["e-mail"] ? (d["email"] = d["e-mail"]) : d["email"] = "";
+          d["Telefono"] ? (d["phono"] = d["Telefono"]) : d["phono"] = "";
+          // Agregar más atributos si es necesario
+          
           delete d["Commerce Name"];
           delete d["Neighborhood"];
           delete d["Address"];
@@ -173,52 +198,39 @@ export default function InstructionTwo() {
           delete d["Tables"];
           d["Secondary email"] && delete d["Secondary email"];
         } else {
-          d["Nombre del comercio"]
-            ? (d["name"] = d["Nombre del comercio"])
-            : "";
-          d["Barrio"]
-            ? (d["neighborhood"] = d["Barrio"])
-            : (d["Dirección"] = "");
-          d["Dirección"]
-            ? (d["address"] = d["Dirección"])
-            : (d["address"] = d["address"] = d["address"] = "");
-          d["Horarios"]
-            ? (d["workSchedule"] = d["Horarios"])
-            : (d["workSchedule"] = "");
-          d["Email"]
-            ? (d["email"] = d["Email"])
-            : (d["email"] = d["email"] = "");
-          d["Telefono"] ? (d["phono"] = d["Telefono"]) : (d["phono"] = "");
-          d["Tipo de comida"]
-            ? (d["tipoDeComida"] = d["Tipo de comida"])
-            : (d["tipoDeComida"] = "");
-          d["Nombre"]
-            ? (d["firstNameEmployeer"] = d["Nombre"])
-            : (d["firstNameEmployeer"] = d["firstNameEmployeer"] = "");
-          d["Apellido"]
-            ? (d["lastNameEmployeer"] = d["Apellido"])
-            : (d["lastNameEmployeer"] = "");
-          d["Usuario de Google"]
-            ? (d["googleUserEmployeer"] = d["Usuario de Google"])
-            : (d["googleUserEmployeer"] = "");
-          d["Correo secundario"]
-            ? (d["emailEmployeer"] = d["Correo secundario"])
-            : (d["emailEmployeer"] = "");
-          d["Mesas"] ? (d["mesas"] = d["Mesas"]) : (d["mesas"] = "");
-
-          delete d["Nombre de comercio"];
+          d["Nombre del local"] ? (d["name"] = d["Nombre del local"]) : "";
+          /*d["Cantidad de mesas"] ? (d["mesas"] = d["Cantidad de mesas"]) : d["mesas"] = "";
+          d["Cantidad de mesas"] ? (d["Tables"] = d["Cantidad de mesas"]) : d["mesas"] = "";*/
+          const cantidadMesas = d["Cantidad de mesas"] = (d["Cantidad de mesas"] && d["Cantidad de mesas"] >= 1) ? (d["Cantidad de mesas"] <= 10 ? d["Cantidad de mesas"] : 10) : 1;
+          d["Tables"] ? d["mesas"] = d["tables"] : d["mesas"] = cantidadMesas;
+          d["Horario de trabajo"] ? (d["workSchedule"] = d["Horario de trabajo"]) : d["workSchedule"] = "";
+          d["Dirección"] ? (d["address"] = d["Dirección"]) : d["address"] = "";
+          d["Ciudad"] ? (d["city"] = d["Ciudad"]) : d["city"] = "";
+          d["Provincia"] ? (d["state"] = d["Provincia"]) : d["state"] = "";
+          d["Pais"] ? (d["country"] = d["Pais"]) : d["country"] = "";
+          d["googleUserEmployeer"] = googleUserWithoutQuotes || "";
+          d["Nombre de contacto"] ? (d["firstNameEmployeer"] = d["Nombre de contacto"]) : d["firstNameEmployeer"] = "";
+          d["e-mail"] ? (d["email"] = d["e-mail"]) : d["email"] = "";
+          d["Telefono"] ? (d["phono"] = d["Telefono"]) : d["phono"] = "";
+        
+          
+          delete d["Nombre del Local"];
+          delete d["Pais"];
+          delete d["Provincia"];
+          delete d["Ciudad"];
           delete d["Barrio"];
           delete d["Dirección"];
           delete d["Horarios"];
-          delete d["Email"];
+          delete d["e-mail"];
           delete d["Telefono"];
           delete d["Tipo de comida"];
-          delete d["Nombre"];
+          delete d["Nombre de contacto"];
           delete d["Apellido"];
           delete d["Usuario de Google"];
-          delete d["Mesas"];
+          delete d["Cantidad de mesas"];
           d["Correo secundario"] && delete d["Correo secundario"];
         }
+        // Agregar más condiciones o lógica si es necesario
       })
     );
   };
