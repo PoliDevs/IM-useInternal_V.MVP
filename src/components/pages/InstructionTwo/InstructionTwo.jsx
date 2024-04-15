@@ -122,49 +122,11 @@ export default function InstructionTwo() {
       })
     );
   };
-  
- /*  console.log(menu,"sin transformar") */
-/*   const formattedMenu = () => {
-    const objAditionals = { additional: null };
-    const objProducts = { product: null };
-    const objDishes = { dishes: null };
-    const date = new Date().toISOString().substring(0, 10);
-    const objDate = { date };
-  
-    setMenu(
-      menu.map((m) => {
-        m.Precio = m.Precio || null;
-        m.Emoji = emojiToUnicode(m.Emoji);
-        m.photo = m.Emoji;
-        m.category = m['Name category'] || m['Nombre de la categoria'];
-        m.name = m['Name product'] || m['Nombre de productos'];
-        m.cost = m.Cost || m.Precio;
-        m.description = m.Description || m.Descripción;
-        m.discount = m.Discount || m.Descuento;
-        m.promotion = m.Promotion || m.Promoción;
-        m.surcharge = m.Surcharge || m.Recargo;
-        m.menuType = m['Menu type'] || m['Tipo de menu'];
-        m.validity = m.Validity || m.Validez;
-  
-        delete m.Emoji;
-        delete m['Name category'] || delete m['Nombre de la categoria'];
-        delete m['Name product'] || delete m['Nombre de productos'];
-        delete m.Cost || delete m.Precio;
-        delete m.Description || delete m.Descripción;
-        delete m.Discount || delete m.Descuento;
-        delete m.Promotion || delete m.Promoción;
-        delete m.Surcharge || delete m.Recargo;
-        delete m['Menu type'] || delete m['Tipo de menu'];
-        delete m.Validity || delete m.Validez;
-  
-        Object.assign(m, objAditionals, objProducts, objDishes, objDate);
-        return m;
-      })
-    );
-  };
-   */
+
   const formattedCommerce = () => {
     const localStorageGoogleUser = localStorage.getItem("googleUser");
+    const nombreDelComercio = localStorage.getItem('nombreDelComercio');
+    const dirrecionDelComercio = localStorage.getItem('dirrecionDelComercio');
     
     // Eliminar comillas del valor del localStorage
     const googleUserWithoutQuotes = localStorageGoogleUser.replace(/['"]+/g,"")
