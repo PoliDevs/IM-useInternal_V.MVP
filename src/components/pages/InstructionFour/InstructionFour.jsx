@@ -11,9 +11,9 @@ import Container from "../../atom/container/Container";
 
 export default function InstructionFour() {
   const [t,i18n]=useTranslation("global");
-  const token = useSelector((state) => state.user_internal);
+  const token1 = useSelector((state) => state.user_internal);
 
-  /*const token1 = localStorage.getItem('token');*/
+  const token = localStorage.getItem('token')
   console.log(token);
   
   return (
