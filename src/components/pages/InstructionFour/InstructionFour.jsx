@@ -14,7 +14,11 @@ export default function InstructionFour() {
 
   const token = localStorage.getItem("token");
   console.log(token);
-  
+
+  const handleClickIsAllowed = () => {
+    localStorage.setItem("isAllowedInstructions", true);
+  };
+
   return (
     <Container marginTop>
       <InstructionContainer>
@@ -33,6 +37,7 @@ export default function InstructionFour() {
             helpText={t("instructions.button.i need help")}
             text={t("instructions.button.continue")}
             path={token ? "/dashboard" : "/"}
+            handleClick={handleClickIsAllowed}
           />
         </main>
       </InstructionContainer>
