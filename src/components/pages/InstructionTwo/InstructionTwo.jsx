@@ -302,79 +302,75 @@ export default function InstructionTwo() {
     setFile(null);
     setMenu(null);
     setComercio(null);
+    setError(false);
   };
 
   const handleClick = () => {
+    clearMenu();
     formattedMenu();
     formattedCommerce();
-    if (error) {
+    const showAlert = error || menu === null || menu.length === 0 || comercio === null || comercio.length === 0;
+    if (showAlert) {
+      setError(true);
+      alert("Debe cargar los datos en el menu antes de continuar");
       clearMenu();
-      setError(true);
-      alert("Debe ingresar un nombre de comercio");
-      // Actualizar la página
-      window.location.reload();
-    } else if (menu === null || menu.length === 0 || comercio === null || comercio.length === 0) {
-      // Si el menú o el comercio están vacíos, mostrar una alerta y no avanzar
-      alert("Debe cargar un menú y datos de comercio antes de continuar");
-      setError(true);
-      window.location.reload();
     } else {
       dispatch(postMenu(menu, comercio, id));
     }
   };
-  
+  const showAlert = error || menu === null || menu.length === 0 || comercio === null || comercio.length === 0;
   return (
-    <Container marginTop >
-    <InstructionContainer>
-      <main className={s.mainContainer}>
-        <div className={s.textContainer}>
-          <UploadMenuTitle text={t("instructions.title")} />
-          <LineText
-            text={t("instructions.sub title")}
-            centered={true}
-            bold={true}
-          />
-          <MenuStep
-            number={2}
-            text={t("instructions.steps.step_2")}
-          />
-          <>
-            {submiting ? (
-              <SubmitLoader />
-            ) : (
-              <File
-                step={2}
-                typeIcon={"upload"}
-                text={t("instructions.steps.text_2")}
-                file={file}
-                setFile={setFile}
-                menu={menu}
-                setMenu={setMenu}
-                submitting={submiting}
-                setSubmitting={setSubmiting}
-              />
-            )}
-            {menu !== null && (
-              <div className={s.uploadedFile}>
-                <LineText text={"Menu.XML"} secundary={true} />
-                <div className={s.icons}>
-                  <XIcon
-                    style={{ height: "24px", width: "24px" }}
-                    onClick={clearMenu}
-                  />
+    <Container marginTop>
+      <InstructionContainer>
+        <main className={s.mainContainer}>
+          <div className={s.textContainer}>
+            <UploadMenuTitle text={t("instructions.title")} />
+            <LineText
+              text={t("instructions.sub title")}
+              centered={true}
+              bold={true}
+            />
+            <MenuStep
+              number={2}
+              text={t("instructions.steps.step_2")}
+            />
+            <>
+              {submiting ? (
+                <SubmitLoader />
+              ) : (
+                <File
+                  step={2}
+                  typeIcon={"upload"}
+                  text={t("instructions.steps.text_2")}
+                  file={file}
+                  setFile={setFile}
+                  menu={menu}
+                  setMenu={setMenu}
+                  submitting={submiting}
+                  setSubmitting={setSubmiting}
+                />
+              )}
+              {menu !== null && (
+                <div className={s.uploadedFile}>
+                  <LineText text={"Menu.XML"} secundary={true} />
+                  <div className={s.icons}>
+                    <XIcon
+                      style={{ height: "24px", width: "24px" }}
+                      onClick={clearMenu}
+                    />
+                  </div>
                 </div>
-              </div>
-            )}
-          </>
-        </div>
-        <InstructionButton
-           helpText={t("instructions.button.i need help")}
-           text={t("instructions.button.continue")}
-           path={(menu && comercio && !error) ? "/instructions/onDemand" : null}
-           handleClick={handleClick}
-/>
-      </main>
-    </InstructionContainer>
+              )}
+            </>
+          </div>
+          <InstructionButton
+            helpText={t("instructions.button.i need help")}
+            text={t("instructions.button.continue")}
+            handleClick={handleClick}
+            path={showAlert ? null : "/instructions/onDemand"}
+          />
+        </main>
+      </InstructionContainer>
     </Container>
   );
-}
+}  
