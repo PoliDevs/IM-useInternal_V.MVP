@@ -63,7 +63,7 @@ export default function MenuInstructions({ type, step, stepText, fileText }) {
               ) : (
                 <File
                   step={step}
-                  typeIcon={type}
+                  typeIcon={type} 
                   text={fileText}
                   file={file}
                   setFile={setFile}
