@@ -38,21 +38,25 @@ export default function InstructionTwo() {
     }
   }, [file]);
   useEffect(() => {
-    if (comercio !== null) {
-      setSubmiting(false)
-      if (comercio[0]["Nombre de comercio"]) {
-        console.log("ingreso al primero")
+    if (comercio !== null && typeof comercio !== 'undefined') {
+      setSubmiting(false);
+      if (comercio[0] && comercio[0]["Nombre de comercio"]) {
+        console.log("ingreso al primero");
         if(!comercio[0]["Nombre de comercio"]){
           setError(true);
-        }else setError(false);
+        } else {
+          setError(false);
+        }
       }
-      if (comercio[0]["Commerce Name"]) {
-        console.log("ingreso al segundo")
+    if (comercio && comercio.length > 0 && comercio[0] && comercio[0]["Commerce Name"]) {
+        console.log("ingreso al segundo");
         if (!comercio[0]["Commerce Name"]) {
           setError(true);
-        } else setError(false);
+        } else {
+          setError(false);
+        }
       }
-    }
+  }      
      /* if (comercio !== null) {
       const comercioYDireccion = comercio
         .filter(
@@ -304,16 +308,21 @@ export default function InstructionTwo() {
     formattedMenu();
     formattedCommerce();
     if (error) {
-      console.log("error")
       clearMenu();
       setError(true);
-      return alert("Se debe ingresar un nombre de comercio");
+      alert("Debe ingresar un nombre de comercio");
+      // Actualizar la página
+      window.location.reload();
+    } else if (menu === null || menu.length === 0 || comercio === null || comercio.length === 0) {
+      // Si el menú o el comercio están vacíos, mostrar una alerta y no avanzar
+      alert("Debe cargar un menú y datos de comercio antes de continuar");
+      setError(true);
+      window.location.reload();
     } else {
-      console.log("se hiso dispatch en componente")
       dispatch(postMenu(menu, comercio, id));
     }
   };
-
+  
   return (
     <Container marginTop >
     <InstructionContainer>
@@ -359,11 +368,11 @@ export default function InstructionTwo() {
           </>
         </div>
         <InstructionButton
-          helpText={t("instructions.button.i need help")}
-          text={t("instructions.button.continue")}
-          path={menu && !error && "/instructions/onDemand"}
-          handleClick={handleClick}
-        />
+           helpText={t("instructions.button.i need help")}
+           text={t("instructions.button.continue")}
+           path={(menu && comercio && !error) ? "/instructions/onDemand" : null}
+           handleClick={handleClick}
+/>
       </main>
     </InstructionContainer>
     </Container>
