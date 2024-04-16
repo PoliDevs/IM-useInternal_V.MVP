@@ -43,11 +43,11 @@ export default function Sing_in() {
     <main className={s.mainContainer}>
       <>
         <div className={s.loginContainer}>
-          <Select
+          {/* <Select
             options={optionLan}
             placeholder={t("singn in.select a language")}
             onChange={handleLanguage}
-          />
+          /> */}
           <div className={s.logo}></div>
           {/*            <select onChange={handleLanguage} >
             <option  value="es">es</option>

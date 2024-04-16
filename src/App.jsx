@@ -41,12 +41,13 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/sales" element={<Sales />} />
           <Route path="/config" element={<Config />} />
+          <Route path="/instructions" element={<Instructions />} />
+          <Route path="/instructions/download" element={<InstructionOne />} />
+          <Route path="/instructions/uploadMenu" element={<InstructionTwo />} />
+          <Route path="/instructions/image" element={<InstructionThree />} />
+          <Route path="/instructions/onDemand" element={<InstructionFour />} />
         </Route>
-        <Route path="/instructions" element={<Instructions />} />
-        <Route path="/instructions/download" element={<InstructionOne />} />
-        <Route path="/instructions/uploadMenu" element={<InstructionTwo />} />
-        <Route path="/instructions/image" element={<InstructionThree />} />
-        <Route path="/instructions/onDemand" element={<InstructionFour />} />
+
         {/* <Route path='/QrGenerator' element={<QrGenerator/>}/> */}
         <Route path="/QrGenerator" element={<GeneratorQr />} />
         <Route

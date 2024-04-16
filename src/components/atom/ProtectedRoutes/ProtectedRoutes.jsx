@@ -1,6 +1,8 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 export default function ProtectedRoutes({ children }) {
+  const location = useLocation();
+  const instructionsPath = location.pathname.includes("/instructions");
   const googleUser = localStorage.getItem("googleUser");
   const token = localStorage.getItem("token");
   const isAllowInstructions = localStorage.getItem("isAllowedInstructions");
@@ -9,7 +11,7 @@ export default function ProtectedRoutes({ children }) {
     return <Navigate to="/" replace />;
   }
 
-  if (!isAllowInstructions) {
+  if (!isAllowInstructions && !instructionsPath) {
     return <Navigate to="/instructions" replace />;
   }
 
