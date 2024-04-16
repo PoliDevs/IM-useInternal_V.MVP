@@ -57,6 +57,24 @@ export default function InstructionTwo() {
           setError(false);
         }
       }
+       if (comercio && comercio.length > 3) {
+      const nombreDelComercio = comercio[3]?.__EMPTY_2;
+      const dirrecionDelComercio = comercio[4]?.__EMPTY_2;
+
+      if (nombreDelComercio && dirrecionDelComercio) {
+        // Guarda los valores en el localStorage
+        localStorage.setItem("nombreDelComercio", nombreDelComercio);
+        localStorage.setItem("dirrecionDelComercio", dirrecionDelComercio);
+      } else {
+        console.error(
+          "Uno o ambos valores son undefined, no se puede guardar en localStorage."
+        );
+      }
+    } else {
+      console.error(
+        "El arreglo 'comercio' no está definido o no tiene suficientes elementos."
+      );
+    }
     console.log("Arreglo de comercio:", comercio);
     
   }, [comercio]);
