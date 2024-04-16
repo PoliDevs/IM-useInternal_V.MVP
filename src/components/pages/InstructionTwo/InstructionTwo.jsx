@@ -39,14 +39,14 @@ export default function InstructionTwo() {
     }
   }, [file]);
   useEffect(() => {
-    if (comercio !== null && typeof comercio !== 'undefined') {
+    if (comercio !== null && comercio.length > 0) {
       setSubmiting(false);
-      if (comercio[0] && comercio[0]["Nombre de comercio"]) {
+      if (comercio[0]["Nombre de comercio"]) {
         if (!comercio[0]["Nombre de comercio"]) {
           setError(true);
         } else setError(false);
       }
-      if (comercio && comercio.length > 0 && comercio[0] && comercio[0]["Commerce Name"]) {
+      if (comercio[0]["Commerce Name"]) {
         if (!comercio[0]["Commerce Name"]) {
           setError(true);
         } else setError(false);
@@ -72,10 +72,9 @@ export default function InstructionTwo() {
       );
     }
   }, [comercio]);
-  
 
   function emojiToUnicode(emoji) {
-    if (!emoji) return null; 
+    if (!emoji) return null; // Devuelve una cadena vacía si emoji es nulo o indefinido
 
     const codeUnits = [];
     for (let i = 0; i < emoji.length; i++) {
@@ -146,7 +145,7 @@ export default function InstructionTwo() {
           d["Nombre de contacto"] ? (d["firstNameEmployeer"] = d["Nombre de contacto"]) : d["firstNameEmployeer"] = "";
           d["e-mail"] ? (d["email"] = d["e-mail"]) : d["email"] = "";
           d["Telefono"] ? (d["phono"] = d["Telefono"]) : d["phono"] = "";
-          
+          // Agregar más atributos si es necesario
           
           delete d["Commerce Name"];
           delete d["Neighborhood"];
@@ -193,31 +192,28 @@ export default function InstructionTwo() {
           delete d["Cantidad de mesas"];
           d["Correo secundario"] && delete d["Correo secundario"];
         }
-        
+        // Agregar más condiciones o lógica si es necesario
       })
     );
   };
+
   const clearMenu = () => {
     setFile(null);
     setMenu(null);
     setComercio(null);
-    setError(false);
   };
 
   const handleClick = () => {
-    clearMenu();
     formattedMenu();
     formattedCommerce();
-    const showAlert = error || menu === null || menu.length === 0 || comercio === null || comercio.length === 0;
-    if (showAlert) {
-      setError(true);
-      alert("Debe cargar los datos en el menu antes de continuar");
+    if (error) {
       clearMenu();
+      setError(true);
+      return alert("Se debe ingresar un nombre de comercio");
     } else {
       dispatch(postMenu(menu, comercio, id));
     }
   };
-  const showAlert = error || menu === null || menu.length === 0 || comercio === null || comercio.length === 0;
 
   return (
     <Container marginTop>
@@ -264,7 +260,7 @@ export default function InstructionTwo() {
           <InstructionButton
             helpText={t("instructions.button.i need help")}
             text={t("instructions.button.continue")}
-            path={showAlert ? null : "/instructions/onDemand"}
+            path={menu && !error && "/instructions/onDemand"}
             handleClick={handleClick}
           />
         </main>
