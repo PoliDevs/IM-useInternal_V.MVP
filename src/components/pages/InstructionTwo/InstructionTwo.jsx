@@ -48,6 +48,7 @@ export default function InstructionTwo() {
           setError(false);
         }
       }
+    }
     if (comercio && comercio.length > 0 && comercio[0] && comercio[0]["Commerce Name"]) {
         console.log("ingreso al segundo");
         if (!comercio[0]["Commerce Name"]) {
@@ -56,36 +57,6 @@ export default function InstructionTwo() {
           setError(false);
         }
       }
-  }      
-     /* if (comercio !== null) {
-      const comercioYDireccion = comercio
-        .filter(
-          (item) =>
-            item["__EMPTY_1"] === "Nombre del comercio" ||
-            item["__EMPTY_1"] === "Direccion"
-        )
-        .map((item) => ({
-          [item["__EMPTY_1"]]: item["__EMPTY_2"],
-        }));
-        setComercio(comercioYDireccion)
-      console.log("Arreglo de comercio:", comercioYDireccion);*/
-
-    if (comercio && comercio.length > 3) {
-      const nombreDelComercio = comercio[3]?.__EMPTY_2;
-      const dirrecionDelComercio = comercio[4]?.__EMPTY_2;
-      console.log(nombreDelComercio, dirrecionDelComercio);
-      if (nombreDelComercio && dirrecionDelComercio) {
-        // Guarda los valores en el localStorage
-        localStorage.setItem('nombreDelComercio', nombreDelComercio);
-        localStorage.setItem('dirrecionDelComercio', dirrecionDelComercio);
-      } else {
-        console.error('Uno o ambos valores son undefined, no se puede guardar en localStorage.');
-      }
-    } else {
-      console.error(
-        "El arreglo 'comercio' no está definido o no tiene suficientes elementos."
-      );
-    }
     console.log("Arreglo de comercio:", comercio);
     
   }, [comercio]);
