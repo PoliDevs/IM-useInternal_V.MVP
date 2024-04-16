@@ -69,7 +69,7 @@ export default function MenuItem() {
 
   return (
     <div className={s.menuItemContainer}>
-      <Button primary size="huge" disabled>
+      <Button primary size="small" disabled >
         {t("menu.menu item.add product")}
       </Button>
       <div>

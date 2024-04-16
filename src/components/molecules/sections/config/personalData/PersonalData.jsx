@@ -6,8 +6,22 @@ export default function PersonalData() {
   const [t, i18n] = useTranslation("global");
 
   return (
-    <section style={{ height:"200px",display:"flex",justifyContent:"start",alignItems:"center" }}>
-      <CartelPlanUno margin width={"100%"} title={t("plan 1.cartel plan 1.title")} text_1={t("plan 1.cartel plan 1.text_1")} text_2={t("plan 1.cartel plan 1.text_2")}  />
+    <section
+      style={{
+        width: "60%",
+        height: "230px",
+        display: "flex",
+        justifyContent: "start",
+        alignItems: "center",
+      }}
+    >
+      <CartelPlanUno
+        margin
+        width={"100%"}
+        title={t("plan 1.cartel plan 1.title")}
+        text_1={t("plan 1.cartel plan 1.text_1")}
+        text_2={t("plan 1.cartel plan 1.text_2")}
+      />
     </section>
   );
 }
