@@ -17,6 +17,7 @@ import Container from "../../atom/container/Container";
 export default function InstructionTwo() {
   const [t,i18n]=useTranslation("global");
   const [file, setFile] = useState(null);
+  const [fileName, setFileName] = useState("");
   const [menu, setMenu] = useState(null);
   const [comercio, setComercio] = useState(null);
   const [submiting, setSubmiting] = useState(false);
@@ -128,47 +129,6 @@ export default function InstructionTwo() {
       })
     );
   };
-  
- /*  console.log(menu,"sin transformar") */
-/*   const formattedMenu = () => {
-    const objAditionals = { additional: null };
-    const objProducts = { product: null };
-    const objDishes = { dishes: null };
-    const date = new Date().toISOString().substring(0, 10);
-    const objDate = { date };
-  
-    setMenu(
-      menu.map((m) => {
-        m.Precio = m.Precio || null;
-        m.Emoji = emojiToUnicode(m.Emoji);
-        m.photo = m.Emoji;
-        m.category = m['Name category'] || m['Nombre de la categoria'];
-        m.name = m['Name product'] || m['Nombre de productos'];
-        m.cost = m.Cost || m.Precio;
-        m.description = m.Description || m.Descripción;
-        m.discount = m.Discount || m.Descuento;
-        m.promotion = m.Promotion || m.Promoción;
-        m.surcharge = m.Surcharge || m.Recargo;
-        m.menuType = m['Menu type'] || m['Tipo de menu'];
-        m.validity = m.Validity || m.Validez;
-  
-        delete m.Emoji;
-        delete m['Name category'] || delete m['Nombre de la categoria'];
-        delete m['Name product'] || delete m['Nombre de productos'];
-        delete m.Cost || delete m.Precio;
-        delete m.Description || delete m.Descripción;
-        delete m.Discount || delete m.Descuento;
-        delete m.Promotion || delete m.Promoción;
-        delete m.Surcharge || delete m.Recargo;
-        delete m['Menu type'] || delete m['Tipo de menu'];
-        delete m.Validity || delete m.Validez;
-  
-        Object.assign(m, objAditionals, objProducts, objDishes, objDate);
-        return m;
-      })
-    );
-  };
-   */
   const formattedCommerce = () => {
     const localStorageGoogleUser = localStorage.getItem("googleUser");
     
@@ -241,50 +201,6 @@ export default function InstructionTwo() {
     );
   };
 
- /*  const formattedCommerce = () => {
-    setComercio(
-      comercio.map((d) => {
-        const fieldMappingsEn = {
-          "Commerce Name": "name",
-          "Neighborhood": "neighborhood",
-          "Address": "address",
-          "Work schedule": "workSchedule",
-          "Email": "email",
-          "Phono": "phono",
-          "Type of food": "tipoDeComida",
-          "Name": "firstNameEmployeer",
-          "LastName": "lastNameEmployeer",
-          "Google user": "googleUserEmployeer",
-          "Secondary email": "emailEmployeer",
-          "Tables": "mesas",
-        };
-  
-        const fieldMappingsEs = {
-          "Nombre de comercio": "name",
-          "Barrio": "neighborhood",
-          "Dirección": "address",
-          "Horarios": "workSchedule",
-          "Email": "email",
-          "Telefono": "phono",
-          "Tipo de comida": "tipoDeComida",
-          "Nombre": "firstNameEmployeer",
-          "Apellido": "lastNameEmployeer",
-          "Usuario de Google": "googleUserEmployeer",
-          "Correo secundario": "emailEmployeer",
-          "Mesas": "mesas",
-        };
-  
-        const fieldMappings = d["Commerce Name"] ? fieldMappingsEn : fieldMappingsEs;
-  
-        Object.keys(fieldMappings).forEach((field) => {
-          if (d[field]) {
-            d[fieldMappings[field]] = d[field];
-            delete d[field];
-          }
-        });
-      })
-    );
-  }; */
   
 
   const clearMenu = () => {
@@ -319,10 +235,7 @@ export default function InstructionTwo() {
               centered={true}
               bold={true}
             />
-            <MenuStep
-              number={2}
-              text={t("instructions.steps.step_2")}
-            />
+            <MenuStep number={2} text={t("instructions.steps.step_2")} />
             <>
               {submiting ? (
                 <SubmitLoader />
@@ -337,11 +250,12 @@ export default function InstructionTwo() {
                   setMenu={setMenu}
                   submitting={submiting}
                   setSubmitting={setSubmiting}
+                  setFileName={setFileName}
                 />
               )}
               {menu !== null && (
                 <div className={s.uploadedFile}>
-                  <LineText text={"Menu.XML"} secundary={true} />
+                 <LineText text={fileName} secundary={true} />
                   <div className={s.icons}>
                     <XIcon
                       style={{ height: "24px", width: "24px" }}
