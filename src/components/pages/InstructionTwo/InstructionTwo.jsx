@@ -15,7 +15,7 @@ import { useTranslation } from "react-i18next";
 import Container from "../../atom/container/Container";
 
 export default function InstructionTwo() {
-  const [t,i18n]=useTranslation("global");
+  const [t] = useTranslation("global");
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState("");
   const [menu, setMenu] = useState(null);
@@ -23,8 +23,8 @@ export default function InstructionTwo() {
   const [submiting, setSubmiting] = useState(false);
   const [error, setError] = useState(false);
   const id = useSelector((state) => state.user_internal.comerceId);
-  console.log(id)
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (file !== null) {
       const workbook = XLSX.read(file, { type: "buffer" });
@@ -49,8 +49,7 @@ export default function InstructionTwo() {
           setError(false);
         }
       }
-    }
-    if (comercio && comercio.length > 0 && comercio[0] && comercio[0]["Commerce Name"]) {
+      if (comercio && comercio.length > 0 && comercio[0] && comercio[0]["Commerce Name"]) {
         console.log("ingreso al segundo");
         if (!comercio[0]["Commerce Name"]) {
           setError(true);
@@ -58,31 +57,13 @@ export default function InstructionTwo() {
           setError(false);
         }
       }
-       if (comercio && comercio.length > 3) {
-      const nombreDelComercio = comercio[3]?.__EMPTY_2;
-      const dirrecionDelComercio = comercio[4]?.__EMPTY_2;
-
-      if (nombreDelComercio && dirrecionDelComercio) {
-        // Guarda los valores en el localStorage
-        localStorage.setItem("nombreDelComercio", nombreDelComercio);
-        localStorage.setItem("dirrecionDelComercio", dirrecionDelComercio);
-      } else {
-        console.error(
-          "Uno o ambos valores son undefined, no se puede guardar en localStorage."
-        );
-      }
-    } else {
-      console.error(
-        "El arreglo 'comercio' no está definido o no tiene suficientes elementos."
-      );
     }
-    console.log("Arreglo de comercio:", comercio);
     
   }, [comercio]);
 
   function emojiToUnicode(emoji) {
     if (!emoji) return null; // Devuelve una cadena vacía si emoji es nulo o indefinido
-    
+
     const codeUnits = [];
     for (let i = 0; i < emoji.length; i++) {
       codeUnits.push(emoji.charCodeAt(i).toString(16).toUpperCase());
@@ -129,8 +110,11 @@ export default function InstructionTwo() {
       })
     );
   };
+
   const formattedCommerce = () => {
     const localStorageGoogleUser = localStorage.getItem("googleUser");
+    const nombreDelComercio = localStorage.getItem('nombreDelComercio');
+    const dirrecionDelComercio = localStorage.getItem('dirrecionDelComercio');
     
     // Eliminar comillas del valor del localStorage
     const googleUserWithoutQuotes = localStorageGoogleUser.replace(/['"]+/g,"")
@@ -149,7 +133,7 @@ export default function InstructionTwo() {
           d["Nombre de contacto"] ? (d["firstNameEmployeer"] = d["Nombre de contacto"]) : d["firstNameEmployeer"] = "";
           d["e-mail"] ? (d["email"] = d["e-mail"]) : d["email"] = "";
           d["Telefono"] ? (d["phono"] = d["Telefono"]) : d["phono"] = "";
-          // Agregar más atributos si es necesario
+          
           
           delete d["Commerce Name"];
           delete d["Neighborhood"];
@@ -196,13 +180,10 @@ export default function InstructionTwo() {
           delete d["Cantidad de mesas"];
           d["Correo secundario"] && delete d["Correo secundario"];
         }
-        // Agregar más condiciones o lógica si es necesario
+        
       })
     );
   };
-
-  
-
   const clearMenu = () => {
     setFile(null);
     setMenu(null);
@@ -224,6 +205,7 @@ export default function InstructionTwo() {
     }
   };
   const showAlert = error || menu === null || menu.length === 0 || comercio === null || comercio.length === 0;
+
   return (
     <Container marginTop>
       <InstructionContainer>
@@ -255,7 +237,7 @@ export default function InstructionTwo() {
               )}
               {menu !== null && (
                 <div className={s.uploadedFile}>
-                 <LineText text={fileName} secundary={true} />
+                  <LineText text={fileName} secundary={true} />
                   <div className={s.icons}>
                     <XIcon
                       style={{ height: "24px", width: "24px" }}
@@ -276,4 +258,4 @@ export default function InstructionTwo() {
       </InstructionContainer>
     </Container>
   );
-}  
+}
