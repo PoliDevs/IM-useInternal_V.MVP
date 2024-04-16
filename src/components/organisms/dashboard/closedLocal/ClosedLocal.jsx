@@ -10,7 +10,7 @@ import Header from "../../../molecules/Header/Header";
 import { useTranslation } from "react-i18next";
 
 export default function ClosedLocal({ open }) {
-  const [t,i18n]=useTranslation("global")
+  const [t, i18n] = useTranslation("global");
   const [allOrders, setAllOrders] = useState([]);
   const comerceId = useSelector((state) => state.user_internal.comerceId);
   const dateCurrent = getDateCurrent();
@@ -37,21 +37,21 @@ export default function ClosedLocal({ open }) {
   };
   return (
     <Container>
-        <Header
-          off
-          icon="storeClosed"
-          title={t("header.closed local.premises closed")}
-          detail={t(`header.closed local.open the store to start`)}
-          detail_2={t(`header.closed local.to receive orders`)}
-          height={130}
-        />
-        {statusTables("orderPlaced").length > 0 ||
-        statusTables("orderInPreparation").length > 0||
-        statusTables("orderReady").length > 0 ? (
-          <LayoutContainer>
-            <LayoutDashboard  closed/>
-          </LayoutContainer>
-        ) : null}
+      <Header
+        off
+        icon="storeClosed"
+        title={t("header.closed local.premises closed")}
+        detail={t(`header.closed local.open the store to start`)}
+        detail_2={t(`header.closed local.to receive orders`)}
+        className={s.header}
+      />
+      {statusTables("orderPlaced").length > 0 ||
+      statusTables("orderInPreparation").length > 0 ||
+      statusTables("orderReady").length > 0 ? (
+        <LayoutContainer>
+          <LayoutDashboard closed />
+        </LayoutContainer>
+      ) : null}
     </Container>
   );
 }

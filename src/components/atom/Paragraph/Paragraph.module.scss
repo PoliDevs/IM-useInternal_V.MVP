@@ -33,3 +33,9 @@
 .disabled {
   color: $text-desable;
 }
+
+@media screen and (max-width:570px) {
+  .paragraph{
+    font-size: smaller;
+  }
+}

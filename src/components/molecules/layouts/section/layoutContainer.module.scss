@@ -1,22 +1,23 @@
-@import '../../../../scss/colors.scss';
+@import "../../../../scss/colors.scss";
 .container {
-    width: 100%;
-    background-color:$background-secundary;
-    display: flex;
-    justify-content: center;
-    padding: 1rem 2rem;
-/*     border-top: $border; */
-    min-height: 70vh;
+  width: 100%;
+  background-color: $background-secundary;
+  display: flex;
+  justify-content: center;
+  padding: 1rem 2rem;
+  /*     border-top: $border; */
+  min-height: 70vh;
 }
 
-@media screen and (max-width:900px) {
-    .container {
-        width: 100%;
-        background-color:$background-secundary;
-        display: flex;
-        justify-content: center;
-        padding: 1rem 0rem;
+@media screen and (max-width: 900px) {
+  .container {
+    width: 100%;
+    min-width: 700px;
+    background-color: $background-secundary;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0rem;
     /*     border-top: $border; */
-        min-height: 0;
-    }
-    }
+    min-height: 0;
+  }
+}

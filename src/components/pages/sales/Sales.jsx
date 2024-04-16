@@ -46,7 +46,7 @@ export default function Sales() {
               <ContentBasic
                 width={"48%"}
                 borderRadius={"25px"}
-                backgroundImage={`url("../../../../public/sales_plan1.jpeg")`}
+                backgroundImage={`url("../../../../sales_plan1.jpeg")`}
                 backgroundRepeat={"no-repeat"}
                 backgroundSize={"cover"}
                 backgroundPosition={"center"}
