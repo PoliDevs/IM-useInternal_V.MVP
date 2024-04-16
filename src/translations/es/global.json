@@ -90,7 +90,7 @@
       "on/off": "On/Off"
     },
     "replace menu current": {
-      "file": "Menu.xlsx",
+      "file": "I-Menu Template.xlsx",
       "modal": {
         "do you want to replace menu": "¿Desea reemplazar menú?",
         "text_1": "Le sugerimos cerrar temporalmente su negocio mientras actualiza el menú,",

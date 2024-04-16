@@ -8,7 +8,6 @@ export default function DeleteMenuCurrent() {
   const [t, i18n] = useTranslation("global");
   const [xlfileName, setXlfileName] = useState(null);
   const [modal, setModal] = useState(false);
-  const lan = i18n.language;
   const handleModal = () => {
     setModal(!modal);
   };
@@ -16,12 +15,13 @@ export default function DeleteMenuCurrent() {
   useEffect(() => {
     const xlfileNameStorage = localStorage.getItem("xlfileName");
 
-    if (!xlfileNameStorage) {
+    if (xlfileNameStorage) {
+      setXlfileName(xlfileNameStorage);
+    } else {
       setXlfileName(t("menu.replace menu current.file"));
     }
-    setXlfileName(xlfileNameStorage);
   }, [t]);
-  
+
   /*   const handleDowload=()=>{
     const fileUrl = lan==="es"?"/ExcelFile/I-Menu_ES.xlsx":'/ExcelFile/I-Menu.xlsx'; // Reemplaza con la ruta real de tu archivo
     const link = document.createElement('a');

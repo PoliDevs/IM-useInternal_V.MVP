@@ -92,8 +92,8 @@ export default function MenuItem() {
                     !item.active ? s.inactiveLine : ""
                   }`}
                 >
-                  <LineText text={item.category} disabled={!item.active} />
-                  {/* <SelectIcon className={s.emoji} icon={item.photo} /> */}
+                  <LineText text={item.category.category} disabled={!item.active} />
+                  {/* <LineText className={s.emoji} icon={item.photo} /> */}
                   <LineText text={item.name} disabled={!item.active} />
                   <LineText text={`$${item.cost}`} disabled={!item.active} />
                   <div onClick={() => handleClickEyes(index, item.id)}>
