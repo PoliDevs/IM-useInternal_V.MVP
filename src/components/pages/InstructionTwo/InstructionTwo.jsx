@@ -42,27 +42,40 @@ export default function InstructionTwo() {
     if (comercio !== null && typeof comercio !== 'undefined') {
       setSubmiting(false);
       if (comercio[0] && comercio[0]["Nombre de comercio"]) {
-        console.log("ingreso al primero");
-        if(!comercio[0]["Nombre de comercio"]){
+        if (!comercio[0]["Nombre de comercio"]) {
           setError(true);
-        } else {
-          setError(false);
-        }
+        } else setError(false);
       }
       if (comercio && comercio.length > 0 && comercio[0] && comercio[0]["Commerce Name"]) {
-        console.log("ingreso al segundo");
         if (!comercio[0]["Commerce Name"]) {
           setError(true);
-        } else {
-          setError(false);
-        }
+        } else setError(false);
       }
     }
-    
+
+    if (comercio && comercio.length > 3) {
+      const nombreDelComercio = comercio[3]?.__EMPTY_2;
+      const dirrecionDelComercio = comercio[4]?.__EMPTY_2;
+
+      if (nombreDelComercio && dirrecionDelComercio) {
+        // Guarda los valores en el localStorage
+        localStorage.setItem("nombreDelComercio", nombreDelComercio);
+        localStorage.setItem("dirrecionDelComercio", dirrecionDelComercio);
+      } else {
+        console.error(
+          "Uno o ambos valores son undefined, no se puede guardar en localStorage."
+        );
+      }
+    } else {
+      console.error(
+        "El arreglo 'comercio' no está definido o no tiene suficientes elementos."
+      );
+    }
   }, [comercio]);
+  
 
   function emojiToUnicode(emoji) {
-    if (!emoji) return null; // Devuelve una cadena vacía si emoji es nulo o indefinido
+    if (!emoji) return null; 
 
     const codeUnits = [];
     for (let i = 0; i < emoji.length; i++) {
@@ -251,8 +264,8 @@ export default function InstructionTwo() {
           <InstructionButton
             helpText={t("instructions.button.i need help")}
             text={t("instructions.button.continue")}
-            handleClick={handleClick}
             path={showAlert ? null : "/instructions/onDemand"}
+            handleClick={handleClick}
           />
         </main>
       </InstructionContainer>
