@@ -39,7 +39,7 @@ export default function InstructionTwo() {
     }
   }, [file]);
   useEffect(() => {
-    if (comercio !== null && comercio.length > 0) {
+    if (comercio !== null) {
       setSubmiting(false);
       if (comercio[0]["Nombre de comercio"]) {
         if (!comercio[0]["Nombre de comercio"]) {
