@@ -7,22 +7,22 @@ import useFirebase from "../../../firebase/firebase.config";
 import { useTranslation } from "react-i18next";
 import { Select } from "semantic-ui-react";
 import { clearState } from "../../../redux/actions";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function Sing_in() {
   const [error, setError] = useState(false);
   const [t, i18n] = useTranslation("global");
   const { signInWithGoogle } = useFirebase(setError);
   const [pageReloaded, setPageReloaded] = useState(false);
-  const dispatch=useDispatch();
-  const comerceId=useSelector(state=>state.user_internal)
-  console.log(comerceId)
+  const dispatch = useDispatch();
+  const comerceId = useSelector((state) => state.user_internal);
+  console.log(comerceId);
 
   useEffect(() => {
-    dispatch(clearState())
-      localStorage.clear();
-      i18n.changeLanguage("es");
-  }, [i18n]);
+    dispatch(clearState());
+    localStorage.clear();
+    i18n.changeLanguage("es");
+  }, [i18n, dispatch]);
 
   const optionLan = [
     { key: "es", value: "es", text: "Español" },
@@ -36,18 +36,18 @@ export default function Sing_in() {
   const handleLanguage = (e, { value }) => {
     i18n.changeLanguage(value);
     localStorage.setItem("Lang", value);
-    dispatch(clearState())
+    dispatch(clearState());
   };
 
   return (
     <main className={s.mainContainer}>
       <>
         <div className={s.loginContainer}>
-          <Select
+          {/* <Select
             options={optionLan}
             placeholder={t("singn in.select a language")}
             onChange={handleLanguage}
-          />
+          /> */}
           <div className={s.logo}></div>
           {/*            <select onChange={handleLanguage} >
             <option  value="es">es</option>
@@ -74,4 +74,4 @@ export default function Sing_in() {
       </>
     </main>
   );
-};
+}

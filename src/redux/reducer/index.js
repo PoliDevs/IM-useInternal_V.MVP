@@ -1,15 +1,32 @@
-import { CLEAR_STATE, GET_ORDERS, LOGIN_ACTION, LOGIN_ACTION_GOOGLE, MENU_ACTIVE, LOCAL_OPEN_VALUE, OPEN_LOCAL, CLOSED_LOCAL, UPDATE_USER_INTERNAL, GET_ALL_POS } from "../actions/actionTypes";
-import jwtDecode from "jwt-decode";
+import {
+  CLEAR_STATE,
+  GET_ORDERS,
+  LOGIN_ACTION,
+  LOGIN_ACTION_GOOGLE,
+  MENU_ACTIVE,
+  LOCAL_OPEN_VALUE,
+  OPEN_LOCAL,
+  CLOSED_LOCAL,
+  UPDATE_USER_INTERNAL,
+  GET_ALL_POS,
+} from '../actions/actionTypes';
+import jwtDecode from 'jwt-decode';
 
 const initialState = {
-  user_internal: localStorage.getItem("user_internal") ? JSON.parse(localStorage.getItem("user_internal")) : {},
-  usuario: "",
-  localOpenValue: localStorage.getItem("localOpenValue") ? JSON.parse(localStorage.getItem("localOpenValue")) : null,
+  user_internal: localStorage.getItem('user_internal')
+    ? JSON.parse(localStorage.getItem('user_internal'))
+    : {},
+  usuario: '',
+  localOpenValue: localStorage.getItem('localOpenValue')
+    ? JSON.parse(localStorage.getItem('localOpenValue'))
+    : null,
   id: 1,
   local: true,
   orders: [],
-  menuActive: localStorage.getItem("menuActivo") ? localStorage.getItem("menuActivo") : [],
-  allPos: []
+  menuActive: localStorage.getItem('menuActivo')
+    ? localStorage.getItem('menuActivo')
+    : [],
+  allPos: [],
 };
 
 export const rootReducer = (state = initialState, { type, payload }) => {
@@ -19,10 +36,10 @@ export const rootReducer = (state = initialState, { type, payload }) => {
       return {
         ...state,
         user_internal: {},
-        menuActive: []
+        menuActive: [],
       };
-    
-    //loguin 
+
+    //loguin
     case LOGIN_ACTION: {
       const data = jwtDecode(payload.data.token);
       const user_internal = {
@@ -34,8 +51,8 @@ export const rootReducer = (state = initialState, { type, payload }) => {
         lastName: data.lastName,
         phone: data.phone,
       };
-      localStorage.setItem("token", JSON.stringify(payload.data.token));
-      localStorage.setItem("user_internal", JSON.stringify(user_internal));
+      localStorage.setItem('token', JSON.stringify(payload.data.token));
+      localStorage.setItem('user_internal', JSON.stringify(user_internal));
       return {
         ...state,
         user_internal,
@@ -52,11 +69,13 @@ export const rootReducer = (state = initialState, { type, payload }) => {
         phone: data.phone,
         email: data.email,
         comerceId: data.commerceId,
-        commercialPlan: data["commerce.commercialPlan.id"],
-        commerceName: data["commerce.name"]
+        commercialPlan: data['commerce.commercialPlan.id'],
+        commerceName: data['commerce.name'],
       };
-      localStorage.setItem("token", JSON.stringify(payload.data.token));
-      localStorage.setItem("user_internal", JSON.stringify(user_internal));
+      localStorage.setItem('token', JSON.stringify(payload.data.token));
+      localStorage.setItem('user_internal', JSON.stringify(user_internal));
+      localStorage.setItem('isAllowedInstructions', true);
+
       return {
         ...state,
         user_internal,
@@ -67,38 +86,38 @@ export const rootReducer = (state = initialState, { type, payload }) => {
     case MENU_ACTIVE:
       return {
         ...state,
-        menuActive: payload
+        menuActive: payload,
       };
-    
+
     //local cerrado o abierto
-    case LOCAL_OPEN_VALUE:{
+    case LOCAL_OPEN_VALUE: {
       const localOpenValue = payload;
-      localStorage.setItem("localOpenValue", JSON.stringify(localOpenValue))
+      localStorage.setItem('localOpenValue', JSON.stringify(localOpenValue));
       return {
         ...state,
-        localOpenValue
-      }
+        localOpenValue,
+      };
     }
 
     //abrimos local
     case OPEN_LOCAL:
       return {
         ...state,
-        localOpenValue: payload
-      }
+        localOpenValue: payload,
+      };
 
     //cerramos local
     case CLOSED_LOCAL:
       return {
         ...state,
-        localOpenValue: payload
-      }
+        localOpenValue: payload,
+      };
 
     // Actualizar el estado user_internal con los nuevos datos
     case UPDATE_USER_INTERNAL:
       return {
         ...state,
-        user_internal: payload
+        user_internal: payload,
       };
 
     //busca todas las ordenes
