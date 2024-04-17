@@ -57,13 +57,13 @@ export default function MenuItem() {
     menu.length &&
     menu.sort((a, b) => {
       // Ordenar por estado activo (activos primero)
-      const sortByActive = a.active === b.active ? 0 : a.active ? -1 : 1;
+     /* const sortByActive = a.active === b.active ? 0 : a.active ? -1 : 1;
 
       // Si tienen el mismo estado, ordenar alfabéticamente por nombre
       const sortByAlphabetical = a.name.localeCompare(b.name);
 
       // Aplicar ambos criterios de ordenación
-      return sortByActive !== 0 ? sortByActive : sortByAlphabetical;
+      return sortByActive !== 0 ? sortByActive : sortByAlphabetical;*/
     });
   console.log(menu);
 
