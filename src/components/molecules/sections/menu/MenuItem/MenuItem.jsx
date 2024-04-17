@@ -79,7 +79,7 @@ export default function MenuItem() {
           <section className={s.menu_opciones}>
             {/* <LineText text={t("menu.menu item.emoji")} secundary={true} /> */}
             <LineText text={t("menu.menu item.category")} secundary={true} />
-            <LineText text={t("menu.menu item.product")} secundary={true} />
+            <LineText text={t("menu.menu item.menu")} secundary={true} />
             <LineText text={t("menu.menu item.price")} secundary={true} />
             <LineText text={t("menu.menu item.on/off")} secundary={true} />
           </section>

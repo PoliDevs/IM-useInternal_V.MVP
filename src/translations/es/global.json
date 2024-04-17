@@ -81,8 +81,8 @@
     "download menu template": "Descargar plantilla de menú",
     "local logo": "Logo del local (próximamente)",
     "menu item": {
-      "category": "Categoria",
-      "products": "Productos",
+      "category": "Categoría",
+      "menu": "Menu",
       "add product": "Agregar Producto (próximamente)",
       "emoji": "Emoji",
       "product": "Producto",
