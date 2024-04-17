@@ -47,27 +47,24 @@ export default function MenuItem() {
 
   //const sortedMenu = menu && menu.length&& menu.sort((a, b) => (a.active === b.active ? 0 : a.active ? -1 : 1));
 
-  const menuToLowerCase =
+  const menuWithCapitalizedNames =
     menu &&
     menu.length &&
-    menu.map((cur) => ({ ...cur, name: cur.name.toLowerCase() }));
-  console.log(menuToLowerCase);
+    menu.map((cur) => ({
+      ...cur,
+      name: cur.name.charAt(0).toUpperCase() + cur.name.slice(1).toLowerCase(),
+      category:
+        cur.category.category.charAt(0).toUpperCase() +
+        cur.category.category.slice(1).toLowerCase(),
+    }));
+
   const sortedMenu =
-    menu &&
-    menu.length &&
-    menu.sort((a, b) => {
-      // Ordenar por estado activo (activos primero)
-      /* const sortByActive = a.active === b.active ? 0 : a.active ? -1 : 1;
-
-      // Si tienen el mismo estado, ordenar alfabéticamente por nombre
-      const sortByAlphabetical = a.name.localeCompare(b.name);
-
-      // Aplicar ambos criterios de ordenación
-      return sortByActive !== 0 ? sortByActive : sortByAlphabetical;*/
+    menuWithCapitalizedNames &&
+    menuWithCapitalizedNames.length &&
+    menuWithCapitalizedNames.sort((a, b) => {
       const sortByAlphabetical = a.name.localeCompare(b.name);
       return sortByAlphabetical;
     });
-  console.log(menu);
 
   return (
     <div className={s.menuItemContainer}>
@@ -94,10 +91,7 @@ export default function MenuItem() {
                     !item.active ? s.inactiveLine : ""
                   }`}
                 >
-                  <LineText
-                    text={item.category.category}
-                    disabled={!item.active}
-                  />
+                  <LineText text={item.category} disabled={!item.active} />
                   {/* <LineText className={s.emoji} icon={item.photo} /> */}
                   <LineText text={item.name} disabled={!item.active} />
                   <LineText text={`$${item.cost}`} disabled={!item.active} />
