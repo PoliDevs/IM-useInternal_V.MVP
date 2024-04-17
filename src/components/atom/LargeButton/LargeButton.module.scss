@@ -12,16 +12,15 @@
   background-color: $color-sixth;
   margin: 5px;
   border: $border_primary;
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
-  
+
   .icon {
     width: 20px;
     height: 20px;
     color: $text-primary;
   }
-
 }
 
 .active {
@@ -29,7 +28,7 @@
   color: #fff;
 
   .icon {
-    color: $color-sixth
+    color: $color-sixth;
   }
 }
 
@@ -37,6 +36,7 @@
   background-color: $text-desable;
   color: $text-secondary;
   .icon {
-    color: $color-sixth
+    color: $color-sixth;
   }
+  pointer-events: none;
 }

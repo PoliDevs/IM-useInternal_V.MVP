@@ -19,8 +19,8 @@ export default function PersonalData() {
         margin
         width={"100%"}
         title={t("plan 1.cartel plan 1.title")}
-        text_1={t("plan 1.cartel plan 1.text_1")}
-        text_2={t("plan 1.cartel plan 1.text_2")}
+        text_1={t("plan 1.cartel plan 1.text_3")}
+        text_2={t("plan 1.cartel plan 1.text_4")}
       />
     </section>
   );

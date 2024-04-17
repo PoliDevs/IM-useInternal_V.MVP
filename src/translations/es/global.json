@@ -171,13 +171,15 @@
     "button": {
       "i need help": "Necesito ayuda ",
       "continue": "Continuar"
-    }   
+    }
   },
   "plan 1": {
     "cartel plan 1": {
       "title": "Próximamente tendremos más funcionalidades",
       "text_1": "Podrás ver métricas importantes para tu negocio",
-      "text_2": "Estamos trabajando para brindarte un mejor servicio"
+      "text_2": "Estamos trabajando para brindarte un mejor servicio",
+      "text_3": "Por el momento las únicas modificaciones que podes realizar en el menú son cambiar el precio y ocultar o visibilizar productos, esto quiere decir que si ocultas un producto tus clientes al escanear el QR no lo verán en el menú como disponible.",
+      "text_4": "Luego vas a poder gestionar todo tu menú desde aca, modificar tus productos, agregar nuevos, cargarle imágenes y muchas cosas más!"
     },
     "history": {
       "text_1": "Todavía no Has ",
