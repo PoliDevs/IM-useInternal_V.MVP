@@ -57,7 +57,7 @@ export default function MenuItem() {
     menu.length &&
     menu.sort((a, b) => {
       // Ordenar por estado activo (activos primero)
-     /* const sortByActive = a.active === b.active ? 0 : a.active ? -1 : 1;
+      /* const sortByActive = a.active === b.active ? 0 : a.active ? -1 : 1;
 
       // Si tienen el mismo estado, ordenar alfabéticamente por nombre
       const sortByAlphabetical = a.name.localeCompare(b.name);
@@ -65,15 +65,15 @@ export default function MenuItem() {
       // Aplicar ambos criterios de ordenación
       return sortByActive !== 0 ? sortByActive : sortByAlphabetical;*/
       const sortByAlphabetical = a.name.localeCompare(b.name);
-      return sortByAlphabetical
+      return sortByAlphabetical;
     });
   console.log(menu);
 
   return (
     <div className={s.menuItemContainer}>
-      <Button primary size="small" disabled >
+      {/* <Button primary size="small" disabled >
         {t("menu.menu item.add product")}
-      </Button>
+      </Button> */}
       <div>
         <div className={s.content_menu_table}>
           <section className={s.menu_opciones}>
@@ -94,7 +94,10 @@ export default function MenuItem() {
                     !item.active ? s.inactiveLine : ""
                   }`}
                 >
-                  <LineText text={item.category.category} disabled={!item.active} />
+                  <LineText
+                    text={item.category.category}
+                    disabled={!item.active}
+                  />
                   {/* <LineText className={s.emoji} icon={item.photo} /> */}
                   <LineText text={item.name} disabled={!item.active} />
                   <LineText text={`$${item.cost}`} disabled={!item.active} />
