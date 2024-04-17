@@ -64,6 +64,8 @@ export default function MenuItem() {
 
       // Aplicar ambos criterios de ordenación
       return sortByActive !== 0 ? sortByActive : sortByAlphabetical;*/
+      const sortByAlphabetical = a.name.localeCompare(b.name);
+      return sortByAlphabetical
     });
   console.log(menu);
 
