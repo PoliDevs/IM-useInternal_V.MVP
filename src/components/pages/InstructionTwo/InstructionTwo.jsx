@@ -15,7 +15,7 @@ import { useTranslation } from "react-i18next";
 import Container from "../../atom/container/Container";
 
 export default function InstructionTwo() {
-  const [t] = useTranslation("global");
+  const [t,i18n]=useTranslation("global");
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState("");
   const [menu, setMenu] = useState(null);
@@ -23,8 +23,8 @@ export default function InstructionTwo() {
   const [submiting, setSubmiting] = useState(false);
   const [error, setError] = useState(false);
   const id = useSelector((state) => state.user_internal.comerceId);
+  console.log(id)
   const dispatch = useDispatch();
-
   useEffect(() => {
     if (file !== null) {
       const workbook = XLSX.read(file, { type: "buffer" });
@@ -39,43 +39,31 @@ export default function InstructionTwo() {
     }
   }, [file]);
   useEffect(() => {
-    if (comercio !== null) {
+    if (comercio !== null && typeof comercio !== 'undefined') {
       setSubmiting(false);
-      if (comercio[0]["Nombre de comercio"]) {
-        if (!comercio[0]["Nombre de comercio"]) {
+      if (comercio[0] && comercio[0]["Nombre de comercio"]) {
+        console.log("ingreso al primero");
+        if(!comercio[0]["Nombre de comercio"]){
           setError(true);
-        } else setError(false);
+        } else {
+          setError(false);
+        }
       }
-      if (comercio[0]["Commerce Name"]) {
+      if (comercio && comercio.length > 0 && comercio[0] && comercio[0]["Commerce Name"]) {
+        console.log("ingreso al segundo");
         if (!comercio[0]["Commerce Name"]) {
           setError(true);
-        } else setError(false);
+        } else {
+          setError(false);
+        }
       }
     }
-
-    if (comercio && comercio.length > 3) {
-      const nombreDelComercio = comercio[3]?.__EMPTY_2;
-      const dirrecionDelComercio = comercio[4]?.__EMPTY_2;
-
-      if (nombreDelComercio && dirrecionDelComercio) {
-        // Guarda los valores en el localStorage
-        localStorage.setItem("nombreDelComercio", nombreDelComercio);
-        localStorage.setItem("dirrecionDelComercio", dirrecionDelComercio);
-      } else {
-        console.error(
-          "Uno o ambos valores son undefined, no se puede guardar en localStorage."
-        );
-      }
-    } else {
-      console.error(
-        "El arreglo 'comercio' no está definido o no tiene suficientes elementos."
-      );
-    }
+    
   }, [comercio]);
 
   function emojiToUnicode(emoji) {
     if (!emoji) return null; // Devuelve una cadena vacía si emoji es nulo o indefinido
-
+    
     const codeUnits = [];
     for (let i = 0; i < emoji.length; i++) {
       codeUnits.push(emoji.charCodeAt(i).toString(16).toUpperCase());
@@ -122,11 +110,8 @@ export default function InstructionTwo() {
       })
     );
   };
-
   const formattedCommerce = () => {
     const localStorageGoogleUser = localStorage.getItem("googleUser");
-    const nombreDelComercio = localStorage.getItem('nombreDelComercio');
-    const dirrecionDelComercio = localStorage.getItem('dirrecionDelComercio');
     
     // Eliminar comillas del valor del localStorage
     const googleUserWithoutQuotes = localStorageGoogleUser.replace(/['"]+/g,"")
@@ -197,24 +182,29 @@ export default function InstructionTwo() {
     );
   };
 
+  
+
   const clearMenu = () => {
     setFile(null);
     setMenu(null);
     setComercio(null);
+    setError(false);
   };
 
   const handleClick = () => {
+    clearMenu();
     formattedMenu();
     formattedCommerce();
-    if (error) {
-      clearMenu();
+    const showAlert = error || menu === null || menu.length === 0 || comercio === null || comercio.length === 0;
+    if (showAlert) {
       setError(true);
-      return alert("Se debe ingresar un nombre de comercio");
+      alert("Debe cargar los datos en el menu y nombre del comercio antes de continuar");
+      clearMenu();
     } else {
       dispatch(postMenu(menu, comercio, id));
     }
   };
-
+  const showAlert = error || menu === null || menu.length === 0 || comercio === null || comercio.length === 0;
   return (
     <Container marginTop>
       <InstructionContainer>
@@ -246,7 +236,7 @@ export default function InstructionTwo() {
               )}
               {menu !== null && (
                 <div className={s.uploadedFile}>
-                  <LineText text={fileName} secundary={true} />
+                 <LineText text={fileName} secundary={true} />
                   <div className={s.icons}>
                     <XIcon
                       style={{ height: "24px", width: "24px" }}
@@ -260,11 +250,11 @@ export default function InstructionTwo() {
           <InstructionButton
             helpText={t("instructions.button.i need help")}
             text={t("instructions.button.continue")}
-            path={menu && !error && "/instructions/onDemand"}
             handleClick={handleClick}
+            path={showAlert ? null : "/instructions/onDemand"}
           />
         </main>
       </InstructionContainer>
     </Container>
   );
-}
+}  
