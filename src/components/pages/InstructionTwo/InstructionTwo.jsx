@@ -148,7 +148,7 @@ export default function InstructionTwo() {
           d["Nombre del local"] ? (d["name"] = d["Nombre del local"]) : "";
           /*d["Cantidad de mesas"] ? (d["mesas"] = d["Cantidad de mesas"]) : d["mesas"] = "";
           d["Cantidad de mesas"] ? (d["Tables"] = d["Cantidad de mesas"]) : d["mesas"] = "";*/
-          const cantidadMesas = d["Cantidad de mesas"] = (d["Cantidad de mesas"] && d["Cantidad de mesas"] >= 1) ? (d["Cantidad de mesas"] <= 10 ? d["Cantidad de mesas"] : 10) : 1;
+          const cantidadMesas = d["Cantidad de mesas"] = (d["Cantidad de mesas"] && d["Cantidad de mesas"] >= 1) ? (d["Cantidad de mesas"] <= 100 ? d["Cantidad de mesas"] : 100) : 1;
           d["Tables"] ? d["mesas"] = d["tables"] : d["mesas"] = cantidadMesas;
           d["Horario de trabajo"] ? (d["workSchedule"] = d["Horario de trabajo"]) : d["workSchedule"] = "";
           d["Dirección"] ? (d["address"] = d["Dirección"]) : d["address"] = "";
