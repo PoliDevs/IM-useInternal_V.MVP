@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import s from "./link.module.scss";
-import { Store,Menu,HistoryIcon,Sales,Config,QrCode } from "../iconsHerocoins/icons";
+import { Store,Menu,HistoryIcon,Sales,Config,QrCode, Logout } from "../iconsHerocoins/icons";
 
 export default function Links({ text, to, onclick,icon,onBlur}) {
   const optionIcon={
@@ -10,6 +10,7 @@ export default function Links({ text, to, onclick,icon,onBlur}) {
     "sales":<Sales heigth={"25"}/>,
     "config":<Config heigth={"25"} />,
     "qr":<QrCode heigth={"25"} />,
+    "logout":<Logout heigth={"25"} />
   }
   return (
       <Link className={s.link} to={to} onClick={onclick} onBlur={onBlur} tabIndex={0} > {optionIcon[icon]}{text}</Link>
