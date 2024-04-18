@@ -59,6 +59,14 @@ export default function Bars({ onLinkClick }) {
           icon={"qr"}
         ></Links>
       </article>
+      <article>
+        <Links
+          to="/"
+          onClick={onLinkClick}
+          text={t("Salir")}
+          icon={"logout"}
+        ></Links>
+      </article>
       <div
         style={{
           display: "flex",
