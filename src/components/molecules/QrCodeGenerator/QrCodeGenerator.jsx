@@ -27,7 +27,7 @@ export default function QrGenerator() {
   const [done, setDone] = useState(false);
   const [loading, setLoading] = useState(true);
   // const [loading, setLoading] = useState(true);
-
+  console.log(allPos)
   let colorQr = {
     [t("generator qr.white")]: { dark: "#2b2b2b", light: "#fefefe" },
     [t("generator qr.orange")]: { dark: "#2b2b2b", light: "#f57c3f" },
