@@ -1,18 +1,23 @@
+import { useDispatch } from "react-redux";
 import LineText from "../../../../atom/LineText/LineText";
 import s from "./MenuItem.module.scss";
-import { Button } from "semantic-ui-react";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import Loading from "../../../../atom/loading/Loading";
 import { useTranslation } from "react-i18next";
 import { Eye, Eye_slash } from "../../../../atom/iconsHerocoins/icons";
-
+import { setMenuChanges } from "../../../../../redux/actions";
+import { updateMenuItemActive } from "../../../../../utils/functions";
+import { useApplyMenuChanges } from "../../../../../hooks/useApplyMenuChanges";
 export default function MenuItem() {
   const [t, i18n] = useTranslation("global");
   const [menu, setMenu] = useState(false);
 
+  // const [activeEyeId, setActiveEye] = useState(null);
   const comerceId = useSelector((state) => state.user_internal.comerceId);
+  const menuChanges = useSelector((state) => state.changes);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,24 +31,22 @@ export default function MenuItem() {
     fetchData();
   }, [comerceId]);
 
+  useApplyMenuChanges(menuChanges, menu, setMenu, updateMenuItemActive);
+
   const handleClickEyes = async (index, id) => {
-    console.log(index, id);
-    try {
-      const updatedMenu = [...menu]; // Clonar el estado del menú actual
-      const updatedItem = { ...updatedMenu[index] }; // Clonar el elemento actual
-      updatedItem.active = !updatedItem.active; // Cambiar el estado 'active'
-      updatedMenu[index] = updatedItem; // Actualizar el elemento en el clon del menú
-      // Luego, realizar la solicitud PUT al servidor para cambiar el estado 'active' en la base de datos
-      if (updatedItem.active) {
-        await axios.put(`menu/active/${id}`);
-      } else {
-        await axios.put(`menu/inactive/${id}`);
-      }
-      setMenu([...updatedMenu]);
-    } catch (error) {
-      console.error("Error al cambiar el estado active:", error);
-    }
+    const updatedMenu = updateMenuItemActive(menu, index, !menu[index].active);
+    setMenu(updatedMenu);
+
+    dispatch(setMenuChanges({ index, id, active: !menu[index].active }));
+    // clearTimeout(debounceTimeout.current);
+
+    // debounceTimeout.current = setTimeout(() => {
+    //   applyMenuChanges();
+    // }, 1000);
+    // clearTimeout(debounceTimeout.current);
   };
+
+  // const debounceTimeout = useRef(null);
 
   //const sortedMenu = menu && menu.length&& menu.sort((a, b) => (a.active === b.active ? 0 : a.active ? -1 : 1));
 
@@ -65,7 +68,6 @@ export default function MenuItem() {
       const sortByAlphabetical = a.name.localeCompare(b.name);
       return sortByAlphabetical;
     });
-
   return (
     <div className={s.menuItemContainer}>
       {/* <Button primary size="small" disabled >

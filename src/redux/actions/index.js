@@ -10,6 +10,8 @@ import {
   CLOSED_LOCAL,
   GET_ALL_POS,
   UPDATE_USER_INTERNAL /*POST_NEW_IMG*/,
+  SET_MENU_CHANGES,
+  CLEAR_MENU_CHANGES,
 } from './actionTypes';
 
 //limpiamos redux
@@ -185,6 +187,16 @@ export function updateUserInternal(updatedUserInternal) {
     payload: updatedUserInternal,
   };
 }
+
+export const setMenuChanges = (change) => ({
+  type: SET_MENU_CHANGES,
+  payload: change,
+});
+
+export const clearMenuChanges = () => ({
+  type: CLEAR_MENU_CHANGES,
+});
+
 /*
 export async function postImg (img) { 
   try {

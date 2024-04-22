@@ -9,6 +9,8 @@ import {
   CLOSED_LOCAL,
   UPDATE_USER_INTERNAL,
   GET_ALL_POS,
+  SET_MENU_CHANGES,
+  CLEAR_MENU_CHANGES,
 } from '../actions/actionTypes';
 import jwtDecode from 'jwt-decode';
 
@@ -27,6 +29,7 @@ const initialState = {
     ? localStorage.getItem('menuActivo')
     : [],
   allPos: [],
+  changes: [],
 };
 
 export const rootReducer = (state = initialState, { type, payload }) => {
@@ -131,6 +134,17 @@ export const rootReducer = (state = initialState, { type, payload }) => {
     case GET_ALL_POS:
       return { ...state, allPos: payload };
 
+    case SET_MENU_CHANGES:
+      return {
+        ...state,
+        changes: [...state.changes, payload],
+      };
+
+    case CLEAR_MENU_CHANGES:
+      return {
+        ...state,
+        changes: [],
+      };
     default:
       return state;
   }

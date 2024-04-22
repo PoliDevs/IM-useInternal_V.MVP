@@ -6,6 +6,8 @@ export const LOGIN_ACTION_GOOGLE="LOGIN_ACTION_GOOGLE";
 export const MENU_ACTIVE="MENU_ACTIVE";
 export const LOCAL_OPEN_VALUE="LOCAL_OPEN_VALUE";
 export const POST_MENU = "POST_MENU";
+export const SET_MENU_CHANGES = "SET_MENU_CHANGES";
+export const CLEAR_MENU_CHANGES = "CLEAR_MENU_CHANGES";
 //////////////////* Commerce Action Types *///////////////////////////
 export const OPEN_LOCAL="OPEN_LOCAL";
 export const CLOSED_LOCAL="CLOSED_LOCAL";
