@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { postMenu } from "../../../redux/actions";
 import { useTranslation } from "react-i18next";
 import Container from "../../atom/container/Container";
+import { Toaster, toast } from "react-hot-toast";
 
 export default function InstructionTwo() {
   const [t,i18n]=useTranslation("global");
@@ -198,7 +199,7 @@ export default function InstructionTwo() {
     const showAlert = error || menu === null || menu.length === 0 || comercio === null || comercio.length === 0;
     if (showAlert) {
       setError(true);
-      alert("Debe cargar los datos en el menu y nombre del comercio antes de continuar");
+      toast.error("Debe cargar el nombre del comercio y los datos en el menu antes de continuar")
       clearMenu();
     } else {
       dispatch(postMenu(menu, comercio, id));
@@ -211,6 +212,7 @@ export default function InstructionTwo() {
         <main className={s.mainContainer}>
           <div className={s.textContainer}>
             <UploadMenuTitle text={t("instructions.title")} />
+            <div><Toaster/></div>
             <LineText
               text={t("instructions.sub title")}
               centered={true}
