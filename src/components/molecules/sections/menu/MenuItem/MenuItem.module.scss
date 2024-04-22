@@ -28,7 +28,7 @@
 
     .menu_opciones {
       display: grid;
-      grid-template-columns: 2fr 3fr 1fr 0.5fr;
+      grid-template-columns: 2fr 3fr 1fr 0.65fr;
       width: 100%;
       min-width: 600px;
       height: 30px;
@@ -40,7 +40,7 @@
 
     .line_menu {
       display: grid;
-      grid-template-columns: 2fr 3fr 1fr 0.5fr;
+      grid-template-columns: 2fr 3fr 1fr 0.49fr;
       margin-top: 10px;
       grid-auto-flow: column;
       color: #fff;
@@ -57,4 +57,8 @@
       padding: 2px;
     }
   }
+  .imageContainer{
+    width: 24px;
+  }
 }
+
