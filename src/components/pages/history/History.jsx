@@ -33,13 +33,13 @@ export default function History() {
               width={"610px"}
               height="140px"
               title={t("plan 1.cartel plan 1.title")}
-              text_1={t("plan 1.cartel plan 1.text_1")}
-              text_2={t("plan 1.cartel plan 1.text_2")}
+              text_1={t("plan 1.cartel plan 1.text_5")}
+              text_2={t("plan 1.cartel plan 1.text_6")}
               margin={"auto"}
               marginBooton="10px"
             />
             <ContentRow width={"100%"} justifyContent={"center"}>
-              <ContentColumn>
+              <ContentColumn margin={"0px auto 100px"}>
                 <HistoryIcon heigth={"250px"} color={"#BABABA"} stroke={0.5} />
                 <HugeTitle
                   text={t("plan 1.history.text_1")}
