@@ -50,13 +50,13 @@ export default function MenuItem() {
         cur.category.category.slice(1).toLowerCase(),
     }));
 
-  const sortedMenu =
-    menuWithCapitalizedNames &&
-    menuWithCapitalizedNames.length &&
-    menuWithCapitalizedNames.sort((a, b) => {
-      const sortByAlphabetical = a.name.localeCompare(b.name);
-      return sortByAlphabetical;
-    });
+  // const sortedMenu =
+  //   menuWithCapitalizedNames &&
+  //   menuWithCapitalizedNames.length &&
+  //   menuWithCapitalizedNames.sort((a, b) => {
+  //     const sortByAlphabetical = a.name.localeCompare(b.name);
+  //     return sortByAlphabetical;
+  //   });
   return (
     <div className={s.menuItemContainer}>
       {/* <Button primary size="small" disabled >
@@ -72,10 +72,10 @@ export default function MenuItem() {
             <LineText text={t("menu.menu item.on/off")} secundary={true} />
           </section>
           <div className={s.menu_table}>
-            {!sortedMenu ? (
+            {!menuWithCapitalizedNames ? (
               <Loading />
             ) : (
-              sortedMenu.map((item, index) => (
+              menuWithCapitalizedNames.map((item, index) => (
                 <div
                   key={index}
                   className={`${s.line_menu} ${
