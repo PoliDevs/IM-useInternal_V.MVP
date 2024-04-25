@@ -16,7 +16,6 @@ export default function Sing_in() {
   const [pageReloaded, setPageReloaded] = useState(false);
   const dispatch = useDispatch();
   const comerceId = useSelector((state) => state.user_internal);
-  console.log(comerceId);
 
   useEffect(() => {
     dispatch(clearState());

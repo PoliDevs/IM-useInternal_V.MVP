@@ -1,10 +1,10 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { useDispatch } from "react-redux";
-import { loginActionGoogle } from "../redux/actions";
-import { useNavigate } from "react-router-dom";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import imagenDefecto from "../assets/imenu_logo.jpg"
+import { initializeApp } from 'firebase/app';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { useDispatch } from 'react-redux';
+import { loginActionGoogle } from '../redux/actions';
+import { useNavigate } from 'react-router-dom';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import imagenDefecto from '../assets/imenu_logo.jpg';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -28,18 +28,20 @@ export default function useFirebase(setError) {
     signInWithPopup(auth, provider)
       .then((result) => {
         if (result) {
-          console.log(result.user)
           const email = result.user.email;
-          localStorage.setItem("token", JSON.stringify(result.user.accessToken));
+          localStorage.setItem(
+            'token',
+            JSON.stringify(result.user.accessToken)
+          );
           dispatch(loginActionGoogle(email)).then((response) => {
             if (response.payload && response.payload.status === 200) {
               // La solicitud fue exitosa, lo que podría indicar que el usuario está registrado.
-              navigate("/welcome");
+              navigate('/welcome');
               /*   console.log("Inició sesión con éxito"); */
             }
             if (response.response && response.response.status === 401) {
               // La solicitud no fue exitosa o el usuario no está registrado.
-              navigate("/instructions");
+              navigate('/instructions');
               /*                 console.log(
                   "El usuario no está registrado o la solicitud falló"
                 ); */
@@ -63,13 +65,12 @@ export const storage = getStorage(app);
 
 export async function uploadFile(file, name) {
   const storageRef = ref(storage, name);
-  console.log(storageRef)
   return await uploadBytes(storageRef, file);
 }
 
 export async function getFileDownloadURL(fileName) {
-  const fileRef = ref(storage,fileName);
-  
+  const fileRef = ref(storage, fileName);
+
   try {
     const url = await getDownloadURL(fileRef);
     return url;
