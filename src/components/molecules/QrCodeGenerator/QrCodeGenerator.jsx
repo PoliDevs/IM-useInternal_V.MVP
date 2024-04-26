@@ -27,7 +27,6 @@ export default function QrGenerator() {
   const [done, setDone] = useState(false);
   const [loading, setLoading] = useState(true);
   // const [loading, setLoading] = useState(true);
-  console.log(allPos)
   let colorQr = {
     [t("generator qr.white")]: { dark: "#2b2b2b", light: "#fefefe" },
     [t("generator qr.orange")]: { dark: "#2b2b2b", light: "#f57c3f" },
@@ -146,15 +145,14 @@ export default function QrGenerator() {
       for (const p of allPos[0].pos) {
         // let name = `Sector ${selectedSector[0].name} - Mesa ${p.id}`;
         let url = p.qrCode;
-        let nunTable = url.split("/").slice(6).toString();
+        let urlParts = url.split("/");
+        let nunTable = urlParts[urlParts.length - 1];
+        let urlFirst = urlParts.slice(0, 4).join("/"); // Toma los primeros 4 elementos de la URL
+        let result = cifrarUrl(url.substring(urlFirst.length + 1)); // Toma el resto de la URL
+
         let name = `Sector Ventas - ${t("card.table")} ${nunTable}`;
         addName(name);
         //* Encriptar Url de la mesa.
-
-        let urlFirst = url.split("/").splice(0, 4).join("/");
-        let result = cifrarUrl(url.substring(50));
-
-        //console.log("cifrar url",result)
 
         //* Encriptar Url de la mesa.
 
@@ -164,10 +162,10 @@ export default function QrGenerator() {
     } else {
       const p = allPos[0].pos.find((p) => p.id == selectedTable);
       let url = p.qrCode;
-      let nunTable = url.split("/").slice(6).toString();
-
-      let urlFirst = url.split("/").splice(0, 4).join("/");
-      let result = cifrarUrl(url.substring(50));
+      let urlParts = url.split("/");
+      let nunTable = urlParts[urlParts.length - 1];
+      let urlFirst = urlParts.slice(0, 4).join("/"); // Toma los primeros 4 elementos de la URL
+      let result = cifrarUrl(url.substring(urlFirst.length + 1)); // Toma el resto de la URL
       if (p) {
         let name = `Sector Ventas - ${t("card.table")} ${nunTable}`;
         addName(name);
@@ -181,7 +179,13 @@ export default function QrGenerator() {
   //!Prepara los Codigos Qr para imprimir
   const QrToPrintCodes = () => {
     return (
-      <div style={{ display: "flex", flexFlow: "row wrap", justifyContent: "center" }}>
+      <div
+        style={{
+          display: "flex",
+          flexFlow: "row wrap",
+          justifyContent: "center",
+        }}
+      >
         {names.length ? (
           toPrint.map((q, i) => (
             <div key={i} style={{ margin: "5px" }}>
