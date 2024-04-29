@@ -2,23 +2,23 @@
 @import "../../../scss/typography.scss";
 
 .instructionContainer {
-display: flex;
-    flex-direction: column;
-    width: 742px;
-    min-height: 842px;
-    height: 90vh;
-    margin: 0 auto;
-    margin-top: 30px;
-    margin-bottom: 21px;
-    padding-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  min-width: 600px; /* Aumentado el ancho máximo */
+  max-height: 750px;
+  height: auto;
+  margin: 0 auto;
+  margin-top: 20px;
+  margin-bottom: 21px;
+  padding: 20px;
   background-color: $background-primary;
   border-radius: $border-primary-radius;
 
   .arrowBack {
     width: 24px;
     height: 20px;
-    margin-left: 40px;
-    margin-top: 33px;
+    margin-left: 20px;
+    margin-top: 20px;
     cursor: pointer;
   }
 }

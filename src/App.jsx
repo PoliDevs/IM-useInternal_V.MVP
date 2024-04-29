@@ -14,6 +14,7 @@ import Nav from "./components/organisms/nav/Nav.jsx";
 import Sales from "./components/pages/sales/Sales";
 import Menu from "./components/pages/menu/Menu";
 import "semantic-ui-css/semantic.min.css";
+import { Toaster } from "react-hot-toast";
 import axios from "axios";
 import GeneratorQr from "./components/pages/generatorQr/GeneratorQr.jsx";
 //axios.defaults.baseURL = "http://localhost:3001/";
@@ -32,6 +33,7 @@ function App() {
   return (
     <>
       {shouldShowNav && <Nav />}
+      <Toaster />
 
       <Routes>
         <Route path="/" element={<Sing_in />} />
