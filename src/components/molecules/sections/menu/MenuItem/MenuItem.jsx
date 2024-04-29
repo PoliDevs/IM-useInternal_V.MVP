@@ -10,6 +10,7 @@ import { Eye, Eye_slash } from "../../../../atom/iconsHerocoins/icons";
 import { setMenuChanges } from "../../../../../redux/actions";
 import { updateMenuItemActive } from "../../../../../utils/functions";
 import { useApplyMenuChanges } from "../../../../../hooks/useApplyMenuChanges";
+
 export default function MenuItem() {
   const [t, i18n] = useTranslation("global");
   const [menu, setMenu] = useState(false);
@@ -22,7 +23,15 @@ export default function MenuItem() {
     const fetchData = async () => {
       try {
         const response = await axios.get(`menu/lastMenu/${comerceId}`);
-        setMenu(response.data);
+        const sortedMenu = response.data.sort((a, b) => {
+          return a.category.category.localeCompare(b.category.category);
+        });
+        const menuWithCapitalizedNames = sortedMenu.map((cur) => ({
+          ...cur,
+          category: cur.category.category.charAt(0).toUpperCase() + cur.category.category.slice(1).toLowerCase(),
+          name: cur.name.charAt(0).toUpperCase() + cur.name.slice(1).toLowerCase(),
+        }));
+        setMenu(menuWithCapitalizedNames);
       } catch (error) {
         console.error("Error al obtener el menú:", error);
       }
@@ -39,43 +48,21 @@ export default function MenuItem() {
     dispatch(setMenuChanges({ index, id, active: !menu[index].active }));
   };
 
-  const menuWithCapitalizedNames =
-    menu &&
-    menu.length &&
-    menu.map((cur) => ({
-      ...cur,
-      name: cur.name.charAt(0).toUpperCase() + cur.name.slice(1).toLowerCase(),
-      category:
-        cur.category.category.charAt(0).toUpperCase() +
-        cur.category.category.slice(1).toLowerCase(),
-    }));
-
-  // const sortedMenu =
-  //   menuWithCapitalizedNames &&
-  //   menuWithCapitalizedNames.length &&
-  //   menuWithCapitalizedNames.sort((a, b) => {
-  //     const sortByAlphabetical = a.name.localeCompare(b.name);
-  //     return sortByAlphabetical;
-  //   });
   return (
     <div className={s.menuItemContainer}>
-      {/* <Button primary size="small" disabled >
-        {t("menu.menu item.add product")}
-      </Button> */}
       <div>
         <div className={s.content_menu_table}>
           <section className={s.menu_opciones}>
-            {/* <LineText text={t("menu.menu item.emoji")} secundary={true} /> */}
             <LineText text={t("menu.menu item.category")} secundary={true} />
             <LineText text={t("menu.menu item.product")} secundary={true} />
             <LineText text={t("menu.menu item.price")} secundary={true} />
             <LineText text={t("menu.menu item.on/off")} secundary={true} />
           </section>
           <div className={s.menu_table}>
-            {!menuWithCapitalizedNames ? (
+            {!menu ? (
               <Loading />
             ) : (
-              menuWithCapitalizedNames.map((item, index) => (
+              menu.map((item, index) => (
                 <div
                   key={index}
                   className={`${s.line_menu} ${
@@ -83,12 +70,14 @@ export default function MenuItem() {
                   }`}
                 >
                   <LineText text={item.category} disabled={!item.active} />
-                  {/* <LineText className={s.emoji} icon={item.photo} /> */}
                   <LineText text={item.name} disabled={!item.active} />
                   <LineText text={`$${item.cost}`} disabled={!item.active} />
-                  <div onClick={() => handleClickEyes(index, item.id)} className={s.imageContainer}>
+                  <div
+                    onClick={() => handleClickEyes(index, item.id)}
+                    className={s.imageContainer}
+                  >
                     {item.active ? (
-                      <Eye heigth={24}></Eye> 
+                      <Eye heigth={24}></Eye>
                     ) : (
                       <Eye_slash heigth={24} />
                     )}
