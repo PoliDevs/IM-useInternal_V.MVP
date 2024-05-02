@@ -50,11 +50,9 @@ export default function Nav() {
   };
 
   const handleNavigation = () => {
-    if (disableNavbar) {
-      window.location.href = "https://www.octopussoft.com.ar/";
-    } else {
+    if (!disableNavbar) {
       navigate("/dashboard");
-    }
+    } 
   };
 
   useEffect(() => {

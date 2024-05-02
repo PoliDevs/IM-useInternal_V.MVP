@@ -8,19 +8,18 @@ export default function PersonalData() {
   return (
     <section
       style={{
-        width: "60%",
-        height: "230px",
+        width: "35%",
+        height: "350px",
         display: "flex",
         justifyContent: "start",
-        alignItems: "center",
       }}
     >
       <CartelPlanUno
         margin
         width={"100%"}
         title={t("plan 1.cartel plan 1.title")}
-        text_1={t("plan 1.cartel plan 1.text_3")}
-        text_2={t("plan 1.cartel plan 1.text_4")}
+        text_7={t("plan 1.cartel plan 1.text_7")}
+        text_6={t("plan 1.cartel plan 1.text_6")}
       />
     </section>
   );

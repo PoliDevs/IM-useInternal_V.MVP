@@ -54,6 +54,7 @@ export default function LayoutMenu() {
           title={t("plan 1.cartel plan 1.title")}
           text_1={t("plan 1.cartel plan 1.text_3")}
           text_2={t("plan 1.cartel plan 1.text_4")}
+          text_6={t("plan 1.cartel plan 1.text_6")}
           width={"auto"}
           margin={"50px 40px 0 80px"}
         />

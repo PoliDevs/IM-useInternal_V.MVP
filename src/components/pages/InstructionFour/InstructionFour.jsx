@@ -16,14 +16,11 @@ export default function InstructionFour() {
 
   const handleClickIsAllowed = () => {
     localStorage.setItem("isAllowedInstructions", true);
-    // Retraso antes de mostrar el toast y redireccionar
    if(!token){
     toast.success('Listo, ahora inicia sesión',{duration: 3000});
     setTimeout(() => {
-      
-      // Redireccionar después de mostrar el toast
       window.location.href =  "/"
-    }, 3500); // Retraso de 1 segundo
+    }, 3500);
    }
    else{
     window.location.href = "/dashboard"
