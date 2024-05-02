@@ -31,7 +31,6 @@ export default function LogoComerce() {
     fetchImageURL();
   }, [clickCount]); // El segundo argumento [] asegura que se ejecute solo una vez al montar el componente
 
-  console.log(newFile);
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];

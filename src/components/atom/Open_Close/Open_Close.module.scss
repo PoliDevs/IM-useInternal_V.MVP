@@ -1,12 +1,12 @@
 @import "../../../scss/colors.scss";
 @import "../../../scss/typography.scss";
 .open_close {
-height: 322px;
+height: 250px;
     width: calc(100% - 9px);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 15px;
+    gap: 10px;
     background-color: #FFFFFF;
     border-radius: $border-secondary-radius;
     box-shadow: 9px 8px 0px 0px rgba(0, 0, 0, 1);
@@ -15,7 +15,7 @@ height: 322px;
   .open_closeImage {
     height: 164px;
     width: auto;
-    background-image: url("../../../assets/open_close.png");
+    background-image: url("../../../assets/open_cloose.jpeg");
     background-position: center center;
     background-size: contain;
     background-repeat: no-repeat;

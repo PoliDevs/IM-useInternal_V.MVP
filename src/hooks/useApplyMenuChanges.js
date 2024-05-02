@@ -19,10 +19,8 @@ export const useApplyMenuChanges = async (
 
           if (active) {
             axios.put(`menu/active/${id}`);
-            console.log('se ejecuto el put active');
           } else {
             axios.put(`menu/inactive/${id}`);
-            console.log('se ejecuto el put inactive');
           }
         });
 

@@ -24,7 +24,6 @@ export default function InstructionTwo() {
   const [submiting, setSubmiting] = useState(false);
   const [error, setError] = useState(false);
   const id = useSelector((state) => state.user_internal.comerceId);
-  console.log(id)
   const dispatch = useDispatch();
   useEffect(() => {
     if (file !== null) {
@@ -43,7 +42,6 @@ export default function InstructionTwo() {
     if (comercio !== null && typeof comercio !== 'undefined') {
       setSubmiting(false);
       if (comercio[0] && comercio[0]["Nombre de comercio"]) {
-        console.log("ingreso al primero");
         if(!comercio[0]["Nombre de comercio"]){
           setError(true);
         } else {
@@ -51,7 +49,6 @@ export default function InstructionTwo() {
         }
       }
       if (comercio && comercio.length > 0 && comercio[0] && comercio[0]["Commerce Name"]) {
-        console.log("ingreso al segundo");
         if (!comercio[0]["Commerce Name"]) {
           setError(true);
         } else {
@@ -78,43 +75,49 @@ export default function InstructionTwo() {
     let objDishes = { dishes: null };
     let date = new Date().toISOString().substring(0, 10);
     let objDate = { date: date };
+  
     setMenu(
       menu.map((m, index) => {
-        if (!m["name"]) {
-          m["name"] = "menuy";
+        if (m["Name product"] || m["Producto"] || m["Name category"] || m["Categoria"]) {
+          if (!m["name"]) {
+            m["name"] = "menuy";
+          }
+          m.Emoji = emojiToUnicode(m.Emoji);
+          m["photo"] = m["Emoji"] || "";
+          m["category"] = m["Name category"] || m["Categoria"] || " ";
+          m["name"] = m["Name product"] || m["Producto"] || m["Menú"] || "Menu " + (index + 1);
+          m["cost"] = m["Cost"] || m["Precio"];
+          m["description"] = m["Description"] || m["Descripción"];
+          m["discount"] = m["Discount"] || m["Descuento"] || "";
+          m["promotion"] = m["Promotion"] || m["Promoción"] || "";
+          m["surcharge"] = m["Surcharge"] || m["Recargo"] || "";
+          m["menuType"] = m["Menu type"] || m["Tipo de menu"] || "";
+          m["validity"] = m["Validity"] || m["Validez"] || "";
+          delete m["Emoji"];
+          delete m["Name category"] || delete m["Nombre de la categoria"];
+          delete m["Name product"] || delete m["Nombre de productos"];
+          delete m["Cost"] || delete m["Precio"];
+          delete m["Description"] || delete m["Descripción"];
+          delete m["Discount"] || delete m["Descuento"];
+          delete m["Promotion"] || delete m["Promoción"];
+          delete m["Surcharge"] || delete m["Recargo"];
+          delete m["Menu type"] || delete m["Tipo de menu"];
+          delete m["Validity"] || delete m["Validez"];
+          Object.assign(m, objAditionals);
+          Object.assign(m, objProducts);
+          Object.assign(m, objDishes);
+          Object.assign(m, objDate);
+        } else {
+          m["category"] = ""; // Asignar una categoría vacía si no tiene categoría pero tiene nombre de producto
+          return null;
         }
-        m.Emoji = emojiToUnicode(m.Emoji);
-        m["photo"] = m["Emoji"] || "";
-        m["category"] = m["Name category"] || m["Categoria"] || " ";
-        m["name"] = m["Name product"] || m["Producto"] || m["Menú"] || `Menu ${index + 1}`;
-        m["cost"] = m["Cost"] || m["Precio"];
-        m["description"] = m["Description"] || m["Descripción"];
-        m["discount"] = m["Discount"] || m["Descuento"] || "";
-        m["promotion"] = m["Promotion"] || m["Promoción"] || "";
-        m["surcharge"] = m["Surcharge"] || m["Recargo"] || "";
-        m["menuType"] = m["Menu type"] || m["Tipo de menu"] || "";
-        m["validity"] = m["Validity"] || m["Validez"] || "";
-        delete m["Emoji"];
-        delete m["Name category"] || delete m["Nombre de la categoria"];
-        delete m["Name product"] || delete m["Nombre de productos"];
-        delete m["Cost"] || delete m["Precio"];
-        delete m["Description"] || delete m["Descripción"];
-        delete m["Discount"] || delete m["Descuento"];
-        delete m["Promotion"] || delete m["Promoción"];
-        delete m["Surcharge"] || delete m["Recargo"];
-        delete m["Menu type"] || delete m["Tipo de menu"];
-        delete m["Validity"] || delete m["Validez"];
-        Object.assign(m, objAditionals);
-        Object.assign(m, objProducts);
-        Object.assign(m, objDishes);
-        Object.assign(m, objDate);
-      })
+      }).filter(Boolean) 
     );
   };
+  
+
   const formattedCommerce = () => {
     const localStorageGoogleUser = localStorage.getItem("googleUser");
-    
-    // Eliminar comillas del valor del localStorage
     const googleUserWithoutQuotes = localStorageGoogleUser.replace(/['"]+/g,"")
     setComercio(
       comercio.map((d) => {
@@ -178,7 +181,6 @@ export default function InstructionTwo() {
           delete d["Cantidad de mesas"];
           d["Correo secundario"] && delete d["Correo secundario"];
         }
-        // Agregar más condiciones o lógica si es necesario
       })
     );
   };
