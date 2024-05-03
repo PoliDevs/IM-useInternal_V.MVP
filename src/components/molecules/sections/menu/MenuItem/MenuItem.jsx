@@ -23,14 +23,23 @@ export default function MenuItem() {
     const fetchData = async () => {
       try {
         const response = await axios.get(`menu/lastMenu/${comerceId}`);
-        const sortedMenu = response.data.sort((a, b) => {
-          return a.category.category.localeCompare(b.category.category);
+        const sortedMenu = response.data;
+        const menuByCategory = sortedMenu.reduce((acc, cur) => {
+          const category = cur.category.category;
+          if (!acc[category]) {
+            acc[category] = [];
+          }
+          acc[category].push({
+            ...cur,
+            category: cur.category.category.charAt(0).toUpperCase() + cur.category.category.slice(1).toLowerCase(),
+            name: cur.name.charAt(0).toUpperCase() + cur.name.slice(1).toLowerCase(),
+          });
+          return acc;
+        }, {});
+        const menuWithCapitalizedNames = Object.values(menuByCategory).flatMap(itemsInCategory => {
+          return itemsInCategory;
         });
-        const menuWithCapitalizedNames = sortedMenu.map((cur) => ({
-          ...cur,
-          category: cur.category.category.charAt(0).toUpperCase() + cur.category.category.slice(1).toLowerCase(),
-          name: cur.name.charAt(0).toUpperCase() + cur.name.slice(1).toLowerCase(),
-        }));
+  
         setMenu(menuWithCapitalizedNames);
       } catch (error) {
         console.error("Error al obtener el menú:", error);
@@ -38,7 +47,7 @@ export default function MenuItem() {
     };
     fetchData();
   }, [comerceId]);
-
+  
   useApplyMenuChanges(menuChanges, menu, setMenu, updateMenuItemActive);
 
   const handleClickEyes = async (index, id) => {
