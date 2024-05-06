@@ -60,16 +60,16 @@ export default function Sing_in() {
             signInWithGoogle={signInWithGoogle}
           />
         </div>
-        <section className={s.sloganContainer}>
+        {/*<section className={s.sloganContainer}>
           <div className={s.content_2}>
             <h2 className={s.bigText_1}>{t("singn in.speed is")}</h2>
             <h2 className={s.bigText}>
               {t("singn in.our plate")}
               <br />
               {t("singn in.strong")}
-            </h2>
+          </h2>
           </div>
-        </section>
+          </section>*/}
       </>
     </main>
   );
