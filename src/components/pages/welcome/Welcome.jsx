@@ -20,9 +20,9 @@ const handleModal=()=>{
   setModal(!modal)
 } */
 
-  useEffect(() => {
+  /*useEffect(() => {
     dispatch(getMenuActive(user_internal.comerceId));
-  }, []);
+  }, []);*/
   return (
     <div className={s.mainContainer}>
       <div className={s.welcomeContainer}>
@@ -38,7 +38,7 @@ const handleModal=()=>{
         </div>
         <div className={`${s.frame} ${s.right}`}></div>
       </div>
-      <WelcomeButton text={t("welcome.start")} path={"/dashboard"} />
+      <WelcomeButton text={t("welcome.start")} path={"/instructions"} />
       {/* { !modal?<WelcomeModal handleModal={handleModal}/> :null} */}
     </div>
   );
