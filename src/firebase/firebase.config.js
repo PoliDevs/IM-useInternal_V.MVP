@@ -36,24 +36,24 @@ export default function useFirebase(setError) {
           dispatch(loginActionGoogle(email)).then((response) => {
             if (response.payload && response.payload.status === 200) {
               // La solicitud fue exitosa, lo que podría indicar que el usuario está registrado.
-              navigate('/welcome');
+              navigate("/dashboard");
               /*   console.log("Inició sesión con éxito"); */
             }
             if (response.response && response.response.status === 401) {
               // La solicitud no fue exitosa o el usuario no está registrado.
-              navigate('/instructions');
+              navigate('/welcome');
               /*                 console.log(
                   "El usuario no está registrado o la solicitud falló"
                 ); */
             }
           });
         } else {
-          console.log(new Error());
+          /*console.log(new Error());*/
           /* console.log("Inicio de sesión con Google cancelado o fallido"); */
         }
       })
       .catch((error) => {
-        console.log(error);
+      /*  console.log(error);*/
         /* console.error("Error al iniciar sesión con Google:", error); */
         setError(true);
       });
@@ -76,7 +76,7 @@ export async function getFileDownloadURL(fileName) {
     return url;
   } catch (error) {
     // Manejar el error (puede ser que el archivo no exista)
-    console.error('Error al obtener la URL de descarga:', error);
+   /* console.error('Error al obtener la URL de descarga:', error);*/
     return imagenDefecto;
   }
 }

@@ -37,6 +37,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Sing_in />} />
+        <Route path="/instructions" element={<Instructions />} />
+        <Route path="/instructions/download" element={<InstructionOne />} />
+        <Route path="/instructions/uploadMenu" element={<InstructionTwo />} />
+        <Route path="/instructions/onDemand" element={<InstructionFour />} />
         <Route element={<ProtectedRoutes />}>
           <Route path="/welcome" element={<Welcome />} />
           <Route path="/dashboard" element={<Dashboard />} />
@@ -44,11 +48,7 @@ function App() {
           <Route path="/menu" element={<Menu />} />
           <Route path="/sales" element={<Sales />} />
           <Route path="/config" element={<Config />} />
-          <Route path="/instructions" element={<Instructions />} />
-          <Route path="/instructions/download" element={<InstructionOne />} />
-          <Route path="/instructions/uploadMenu" element={<InstructionTwo />} />
           <Route path="/instructions/image" element={<InstructionThree />} />
-          <Route path="/instructions/onDemand" element={<InstructionFour />} />
         </Route>
 
         {/* <Route path='/QrGenerator' element={<QrGenerator/>}/> */}
