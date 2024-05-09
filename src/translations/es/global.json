@@ -81,8 +81,8 @@
     "download menu template": "Descargar plantilla de menú",
     "local logo": "Logo del local (próximamente)",
     "menu item": {
-      "category": "Categoria",
-      "products": "Productos",
+      "category": "Categoría",
+      "menu": "Menu",
       "add product": "Agregar Producto (próximamente)",
       "emoji": "Emoji",
       "product": "Producto",
@@ -90,7 +90,7 @@
       "on/off": "On/Off"
     },
     "replace menu current": {
-      "file": "Menu.xlsx",
+      "file": "I-Menu Template.xlsx",
       "modal": {
         "do you want to replace menu": "¿Desea reemplazar menú?",
         "text_1": "Le sugerimos cerrar temporalmente su negocio mientras actualiza el menú,",
@@ -171,13 +171,19 @@
     "button": {
       "i need help": "Necesito ayuda ",
       "continue": "Continuar"
-    }   
+    }
   },
   "plan 1": {
     "cartel plan 1": {
       "title": "Próximamente tendremos más funcionalidades",
-      "text_1": "Podrás ver métricas importantes para tu negocio",
-      "text_2": "Estamos trabajando para brindarte un mejor servicio"
+      "text_1": "Podrás recibir todos tus pedidos en un mismo lugar.",
+      "text_2": "Estamos trabajando para brindarte el mejor servicio.",
+      "text_3": "Por el momento las únicas modificaciones que podes realizar en el menú son cambiar el precio y ocultar o visibilizar productos, esto quiere decir que si ocultas un producto tus clientes al escanear el QR no lo verán en el menú como disponible.",
+      "text_4": "Luego vas a poder gestionar todo tu menú desde aca, modificar tus productos, agregar nuevos, cargarle imágenes y muchas cosas más!",
+      "text_5": "Todos tus pedidos guardados en un solo lugar",
+      "text_6": "Estamos trabajando para brindarte el mejor servicio.",
+      "text_7": "Vas a poder agregar todos tus medios de pago, modificar los datos de tu local y mucho mas!",
+      "text_8": "Podrás ver métricas importantes para tu negocio"
     },
     "history": {
       "text_1": "Todavía no Has ",

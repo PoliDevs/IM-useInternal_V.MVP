@@ -27,7 +27,6 @@ export default function QrGenerator() {
   const [done, setDone] = useState(false);
   const [loading, setLoading] = useState(true);
   // const [loading, setLoading] = useState(true);
-
   let colorQr = {
     [t("generator qr.white")]: { dark: "#2b2b2b", light: "#fefefe" },
     [t("generator qr.orange")]: { dark: "#2b2b2b", light: "#f57c3f" },
@@ -66,21 +65,21 @@ export default function QrGenerator() {
   //cifrarUrl()
 
   //?descifro la url
-  const descifrarUrl = (url) => {
-    const bytes = CryptoJS.AES.decrypt(
-      "U2FsdGVkX19uu5cq311Cxo4OwthXNXx2VvKxivdoNyI=",
-      key
-    );
-    const objetoOriginal = bytes.toString(CryptoJS.enc.Utf8);
-    return objetoOriginal;
-  };
+  // const descifrarUrl = (url) => {
+  //   const bytes = CryptoJS.AES.decrypt(
+  //     "U2FsdGVkX19uu5cq311Cxo4OwthXNXx2VvKxivdoNyI=",
+  //     key
+  //   );
+  //   const objetoOriginal = bytes.toString(CryptoJS.enc.Utf8);
+  //   return objetoOriginal;
+  // };
 
   //descifrarUrl()
 
   useEffect(() => {
     dispatch(getAllPos(commerceId));
     setLoading(false);
-  }, []);
+  }, [commerceId, dispatch]);
 
   useEffect(() => {
     setToPrint(null);
@@ -141,69 +140,35 @@ export default function QrGenerator() {
   //!Tomo la informacion del Qr a generar
   //!Puede generarse uno solo o varios, segun corresponda.
   const generateArray = async () => {
-    //? Genero codigos QR segun Sector - Mesa seleccionados
-    //? 3 casos a tener en cuenta. Todos-Todos/Todos - 1/1-Todos/1-1
-    //! Logica de sectores comentada por ahora
-    // if (selectedSector === "Todos") {
-    //   if (selectedTable !== "Todos") {
-    //     for (const p of allPos) {
-    //       for (const pos of p.pos) {
-    //         if (pos.id == selectedTable[selectedTable.length - 1]) {
-    //           let name = `Sector ${p.name} - Mesa ${pos.id}`;
-    //           addName(name);
-    //           const r = await QRCode.toDataURL(pos.qrCode, qrProps);
-    //           array.push(r);
-    //         }
-    //       }
-    //     }
-    //   } else {
-    //     for (const p of allPos) {
-    //       for (const pos of p.pos) {
-    //         let name = `Sector ${p.name} - Mesa ${pos.id}`;
-    //         addName(name);
-    //         const r = await QRCode.toDataURL(pos.qrCode, qrProps);
-    //         array.push(r);
-    //       }
-    //     }
-    //   }
-    // } else
     if (selectedTable === "Todos") {
       // for (const p of selectedSector[0].pos) {
       for (const p of allPos[0].pos) {
         // let name = `Sector ${selectedSector[0].name} - Mesa ${p.id}`;
         let url = p.qrCode;
-        let nunTable = url.split("/").slice(6).toString();
+        let urlParts = url.split("/");
+        let nunTable = urlParts[urlParts.length - 1];
+        let urlFirst = urlParts.slice(0, 4).join("/"); // Toma los primeros 4 elementos de la URL
+        let result = cifrarUrl(url.substring(urlFirst.length + 1)); // Toma el resto de la URL
+
         let name = `Sector Ventas - ${t("card.table")} ${nunTable}`;
         addName(name);
         //* Encriptar Url de la mesa.
-        //p.qrCode tiene la info a encriptar
-        //let result = cifrarUrl("Aca iria por ej: 20/20/1");
-        //let url="https://im-front-use-customer.vercel.app/language";
-
-        let urlFirst = url.split("/").splice(0, 4).join("/");
-        let result = cifrarUrl(url.substring(50));
-
-        //console.log("cifrar url",result)
 
         //* Encriptar Url de la mesa.
-        //console.log(allPos[0].pos)
-        //console.log(p)
+
         const r = await QRCode.toDataURL(`${urlFirst}/${result}`, qrProps);
         array.push(r);
       }
     } else {
-      // const p = selectedSector[0].pos.find((p) => p.id == selectedTable);
       const p = allPos[0].pos.find((p) => p.id == selectedTable);
       let url = p.qrCode;
-      let nunTable = url.split("/").slice(6).toString();
-
-      let urlFirst = url.split("/").splice(0, 4).join("/");
-      let result = cifrarUrl(url.substring(50));
+      let urlParts = url.split("/");
+      let nunTable = urlParts[urlParts.length - 1];
+      let urlFirst = urlParts.slice(0, 4).join("/"); // Toma los primeros 4 elementos de la URL
+      let result = cifrarUrl(url.substring(urlFirst.length + 1)); // Toma el resto de la URL
       if (p) {
-        // let name = `Sector ${selectedSector[0].name} - Mesa ${p.id}`;
         let name = `Sector Ventas - ${t("card.table")} ${nunTable}`;
         addName(name);
-        //const url = await QRCode.toDataURL(p.qrCode, qrProps);
         const r = await QRCode.toDataURL(`${urlFirst}/${result}`, qrProps);
         array.push(r);
       }
@@ -214,7 +179,13 @@ export default function QrGenerator() {
   //!Prepara los Codigos Qr para imprimir
   const QrToPrintCodes = () => {
     return (
-      <div style={{ display: "flex", flexFlow: "row wrap" }}>
+      <div
+        style={{
+          display: "flex",
+          flexFlow: "row wrap",
+          justifyContent: "center",
+        }}
+      >
         {names.length ? (
           toPrint.map((q, i) => (
             <div key={i} style={{ margin: "5px" }}>
@@ -245,28 +216,7 @@ export default function QrGenerator() {
     <Loading />
   ) : (
     <div className={s.mainContainer}>
-      {/*       <h1 className={s.mainTitle}>Generar codigos Qr</h1> */}
       <div className={s.headerContainer}>
-        {/* //! seleccion de sectores desactivada */}
-        {/* <div className={s.selectContainer}>
-          <label className={s.label}>Seleccionar Sector</label>
-          <select
-            value={selectedSector ? selectedSector.name : ""}
-            onChange={handleSectorSelect}
-            className={s.select}
-          >
-            <option value="" disabled hidden>
-              Selecciona una opción
-            </option>
-            <option value="Todos">Todos los sectores</option>
-            {allPos?.map((sector, index) => (
-              <option key={index} value={sector.name}>
-                {sector.name}
-              </option>
-            ))}
-          </select>
-        </div> */}
-        {/* {selectedSector === "Todos" ? ( */}
         {allPos[0]?.pos ? (
           <div className={s.selectContainer}>
             <label className={s.label}>{t("generator qr.select pos")}</label>
@@ -309,39 +259,24 @@ export default function QrGenerator() {
             </select>
           </div>
         ) : (
-          // : selectedSector[0]?.pos.length ? (
-          //   <div className={s.selectContainer}>
-          //     <label className={s.label}>Seleccionar Pos</label>
-          //     <select
-          //       value={selectedTable}
-          //       onChange={handleTableSelect}
-          //       className={s.select}
-          //     >
-          //       <option value="" disabled hidden>
-          //         Selecciona una opción
-          //       </option>
-          //       <option value="Todos">Todos los Pos</option>
-          //       {selectedSector[0].pos.map((table, index) => (
-          //         <option key={index} value={table.id}>
-          //           {table.id}
-          //         </option>
-          //       ))}
-          //     </select>
-          //   </div>
-          // )
           selectedSector !== "" && <p>No hay mesas asignadas a este sector</p>
         )}
         {
           //* Boton para generar Codigos Qr*//}
         }
-        <Button primary size="large" onClick={() => selectedTable && generateArray()} >{t("generator qr.generate code")}</Button>
+        <Button
+          primary
+          size="large"
+          onClick={() => selectedTable && generateArray()}
+        >
+          {t("generator qr.generate code")}
+        </Button>
       </div>
       {/* {qrCode && <img src={qrCode} />} */}
       <div className={s.buttons}>
         {
           //* Boton para descargar los Codigos Qr *//
         }
-        {/* {zip ? ( */}
         <a
           href={zip}
           download="QrCodes.zip"
@@ -349,11 +284,9 @@ export default function QrGenerator() {
         >
           {t("generator qr.dowload code")}
         </a>
-        {/* // ) : null} */}
         {
           //* Boton para imprimir los Codigos Qr *//
         }
-        {/* {toPrint ? ( */}
         <ReactToPrint
           trigger={() => (
             <button className={`${s.printButton} ${toPrint && s.visible}`}>
@@ -362,7 +295,6 @@ export default function QrGenerator() {
           )}
           content={() => componentRef.current}
         />
-        {/* ) : null} */}
       </div>
       {toPrint ? <ComponentToPrint ref={componentRef} /> : null}
     </div>

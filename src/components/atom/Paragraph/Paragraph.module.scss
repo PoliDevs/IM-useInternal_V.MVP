@@ -4,7 +4,7 @@
 .paragraph {
   font-size: $paragraph;
   color: $text-primary;
-  text-align: center;
+  text-align: left;
 }
 
 .secundary {
@@ -32,4 +32,10 @@
 
 .disabled {
   color: $text-desable;
+}
+
+@media screen and (max-width:570px) {
+  .paragraph{
+    font-size: smaller;
+  }
 }

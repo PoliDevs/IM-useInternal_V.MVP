@@ -13,22 +13,23 @@ import { useDispatch, useSelector } from "react-redux";
 import { postMenu } from "../../../redux/actions";
 import { useTranslation } from "react-i18next";
 import Container from "../../atom/container/Container";
+import { Toaster, toast } from "react-hot-toast";
 
 export default function InstructionTwo() {
   const [t,i18n]=useTranslation("global");
   const [file, setFile] = useState(null);
+  const [fileName, setFileName] = useState("");
   const [menu, setMenu] = useState(null);
   const [comercio, setComercio] = useState(null);
   const [submiting, setSubmiting] = useState(false);
   const [error, setError] = useState(false);
   const id = useSelector((state) => state.user_internal.comerceId);
-  console.log(id)
   const dispatch = useDispatch();
   useEffect(() => {
     if (file !== null) {
       const workbook = XLSX.read(file, { type: "buffer" });
-      const worksheetName1 = workbook.SheetNames[0];
-      const worksheetName2 = workbook.SheetNames[1];
+      const worksheetName1 = workbook.SheetNames[1];
+      const worksheetName2 = workbook.SheetNames[2];
       const worksheet = workbook.Sheets[worksheetName1];
       const worksheet2 = workbook.Sheets[worksheetName2];
       const data = XLSX.utils.sheet_to_json(worksheet);
@@ -38,51 +39,23 @@ export default function InstructionTwo() {
     }
   }, [file]);
   useEffect(() => {
-    if (comercio !== null) {
-      setSubmiting(false)
-      if (comercio[0]["Nombre de comercio"]) {
-        console.log("ingreso al primero")
+    if (comercio !== null && typeof comercio !== 'undefined') {
+      setSubmiting(false);
+      if (comercio[0] && comercio[0]["Nombre de comercio"]) {
         if(!comercio[0]["Nombre de comercio"]){
           setError(true);
-        }else setError(false);
+        } else {
+          setError(false);
+        }
       }
-      if (comercio[0]["Commerce Name"]) {
-        console.log("ingreso al segundo")
+      if (comercio && comercio.length > 0 && comercio[0] && comercio[0]["Commerce Name"]) {
         if (!comercio[0]["Commerce Name"]) {
           setError(true);
-        } else setError(false);
+        } else {
+          setError(false);
+        }
       }
     }
-     /* if (comercio !== null) {
-      const comercioYDireccion = comercio
-        .filter(
-          (item) =>
-            item["__EMPTY_1"] === "Nombre del comercio" ||
-            item["__EMPTY_1"] === "Direccion"
-        )
-        .map((item) => ({
-          [item["__EMPTY_1"]]: item["__EMPTY_2"],
-        }));
-        setComercio(comercioYDireccion)
-      console.log("Arreglo de comercio:", comercioYDireccion);*/
-
-    if (comercio && comercio.length > 3) {
-      const nombreDelComercio = comercio[3]?.__EMPTY_2;
-      const dirrecionDelComercio = comercio[4]?.__EMPTY_2;
-      console.log(nombreDelComercio, dirrecionDelComercio);
-      if (nombreDelComercio && dirrecionDelComercio) {
-        // Guarda los valores en el localStorage
-        localStorage.setItem('nombreDelComercio', nombreDelComercio);
-        localStorage.setItem('dirrecionDelComercio', dirrecionDelComercio);
-      } else {
-        console.error('Uno o ambos valores son undefined, no se puede guardar en localStorage.');
-      }
-    } else {
-      console.error(
-        "El arreglo 'comercio' no está definido o no tiene suficientes elementos."
-      );
-    }
-    console.log("Arreglo de comercio:", comercio);
     
   }, [comercio]);
 
@@ -102,105 +75,66 @@ export default function InstructionTwo() {
     let objDishes = { dishes: null };
     let date = new Date().toISOString().substring(0, 10);
     let objDate = { date: date };
-    setMenu(
-      menu.map((m) => {
-        if (m.Precio&&m.Precio === undefined) m.Precio = null;
-        if (m.Cost&& m.Cost === undefined) m.Cost = null;
-        m.Emoji = emojiToUnicode(m.Emoji);
-        m["photo"] = m["Emoji"] || "";
-        m["category"] = m["Name category"]|| m["Categoria"];
-        m["name"] = m["Name product"] || m["Producto"];
-        m["cost"] = m["Cost"] || m["Precio"];
-        m["description"] = m["Description"] || m["Descripción"];
-        m["discount"] = m["Discount"] || m["Descuento"] || "";
-        m["promotion"] = m["Promotion"] || m["Promoción"] || "";
-        m["surcharge"] = m["Surcharge"] || m["Recargo"] || "";
-        m["menuType"] = m["Menu type"] || m["Tipo de menu"] || "";
-        m["validity"] = m["Validity"] || m["Validez"] || "";
-        delete m["Emoji"];
-        delete m["Name category"] || delete m["Nombre de la categoria"];
-        delete m["Name product"] || delete m["Nombre de productos"];
-        delete m["Cost"] || delete m["Precio"];
-        delete m["Description"] || delete m["Descripción"];
-        delete m["Discount"] || delete m["Descuento"];
-        delete m["Promotion"] || delete m["Promoción"];
-        delete m["Surcharge"] || delete m["Recargo"];
-        delete m["Menu type"] || delete m["Tipo de menu"];
-        delete m["Validity"] || delete m["Validez"];
-        Object.assign(m, objAditionals);
-        Object.assign(m, objProducts);
-        Object.assign(m, objDishes);
-        Object.assign(m, objDate);
-      })
-    );
-  };
-
- /*  console.log(menu,"sin transformar") */
-/*   const formattedMenu = () => {
-    const objAditionals = { additional: null };
-    const objProducts = { product: null };
-    const objDishes = { dishes: null };
-    const date = new Date().toISOString().substring(0, 10);
-    const objDate = { date };
   
     setMenu(
-      menu.map((m) => {
-        m.Precio = m.Precio || null;
-        m.Emoji = emojiToUnicode(m.Emoji);
-        m.photo = m.Emoji;
-        m.category = m['Name category'] || m['Nombre de la categoria'];
-        m.name = m['Name product'] || m['Nombre de productos'];
-        m.cost = m.Cost || m.Precio;
-        m.description = m.Description || m.Descripción;
-        m.discount = m.Discount || m.Descuento;
-        m.promotion = m.Promotion || m.Promoción;
-        m.surcharge = m.Surcharge || m.Recargo;
-        m.menuType = m['Menu type'] || m['Tipo de menu'];
-        m.validity = m.Validity || m.Validez;
-  
-        delete m.Emoji;
-        delete m['Name category'] || delete m['Nombre de la categoria'];
-        delete m['Name product'] || delete m['Nombre de productos'];
-        delete m.Cost || delete m.Precio;
-        delete m.Description || delete m.Descripción;
-        delete m.Discount || delete m.Descuento;
-        delete m.Promotion || delete m.Promoción;
-        delete m.Surcharge || delete m.Recargo;
-        delete m['Menu type'] || delete m['Tipo de menu'];
-        delete m.Validity || delete m.Validez;
-  
-        Object.assign(m, objAditionals, objProducts, objDishes, objDate);
-        return m;
-      })
+      menu.map((m, index) => {
+        if (m["Name product"] || m["Producto"] || m["Name category"] || m["Categoria"]) {
+          if (!m["name"]) {
+            m["name"] = "menuy";
+          }
+          m.Emoji = emojiToUnicode(m.Emoji);
+          m["photo"] = m["Emoji"] || "";
+          m["category"] = m["Name category"] || m["Categoria"] || " ";
+          m["name"] = m["Name product"] || m["Producto"] || m["Menú"] || "Menu " + (index + 1);
+          m["cost"] = m["Cost"] || m["Precio"];
+          m["description"] = m["Description"] || m["Descripción"];
+          m["discount"] = m["Discount"] || m["Descuento"] || "";
+          m["promotion"] = m["Promotion"] || m["Promoción"] || "";
+          m["surcharge"] = m["Surcharge"] || m["Recargo"] || "";
+          m["menuType"] = m["Menu type"] || m["Tipo de menu"] || "";
+          m["validity"] = m["Validity"] || m["Validez"] || "";
+          delete m["Emoji"];
+          delete m["Name category"] || delete m["Nombre de la categoria"];
+          delete m["Name product"] || delete m["Nombre de productos"];
+          delete m["Cost"] || delete m["Precio"];
+          delete m["Description"] || delete m["Descripción"];
+          delete m["Discount"] || delete m["Descuento"];
+          delete m["Promotion"] || delete m["Promoción"];
+          delete m["Surcharge"] || delete m["Recargo"];
+          delete m["Menu type"] || delete m["Tipo de menu"];
+          delete m["Validity"] || delete m["Validez"];
+          Object.assign(m, objAditionals);
+          Object.assign(m, objProducts);
+          Object.assign(m, objDishes);
+          Object.assign(m, objDate);
+        } else {
+          m["category"] = ""; // Asignar una categoría vacía si no tiene categoría pero tiene nombre de producto
+          return null;
+        }
+      }).filter(Boolean) 
     );
   };
-   */
+  
 
   const formattedCommerce = () => {
     const localStorageGoogleUser = localStorage.getItem("googleUser");
-    const nombreDelComercio = localStorage.getItem('nombreDelComercio');
-    const dirrecionDelComercio = localStorage.getItem('dirrecionDelComercio');
-    
-    // Eliminar comillas del valor del localStorage
-    const googleUserWithoutQuotes = localStorageGoogleUser.replace(
-      /['"]+/g,
-      "")
+    const googleUserWithoutQuotes = localStorageGoogleUser.replace(/['"]+/g,"")
     setComercio(
       comercio.map((d) => {
         if(d["Commerce Name"]){
-
-          d["Commerce Name"] ? (d["name"] = d["Commerce Name"]) :"";
-          d["Neighborhood"] ? (d["neighborhood"] = d["Neighborhood"]) : d["neighborhood"] = "";
-          d["Address"] ? (d["address"] = d["Address"]) : d["address"] = d["address"] = "";
-          d["Work schedule"] ? (d["workSchedule"] = d["Work schedule"]) :d["workSchedule"] = "";
-          d["Email"] ? (d["email"] = d["Email"]) : d["email"] = "";
-          d["Phono"] ? (d["phono"] = d["Phono"]) : d["phono"] = "";
-          d["Type of food"] ? (d["tipoDeComida"] = d["Type of food"]) :d["tipoDeComida"] = "";
-          d["Name"] ? (d["firstNameEmployeer"] = d["Name"]) : d["firstNameEmployeer"] = "";
-          d["LastName"] ? (d["lastNameEmployeer"] = d["LastName"]) : d["lastNameEmployeer"] = "";
+          d["Nombre del local"] ? (d["name"] = d["Nombre del local"]) :"";
+          const cantidadMesas = d["Cantidad de mesas"] = (d["Cantidad de mesas"] && d["Cantidad de mesas"] >= 1) ? (d["Cantidad de mesas"] <= 10 ? d["Cantidad de mesas"] : 10) : 1;
+          d["Tables"] ? d["mesas"] = d["Tables"] : d["mesas"] = cantidadMesas;
+          d["Horario de trabajo"] ? (d["workSchedule"] = d["Horario de trabajo"]) :d["workSchedule"] = "";
+          d["Dirección"] ? (d["address"] = d["Dirección"]) : d["address"] = "";
+          d["Ciudad"] = d["Ciudad"] || "";
+          d["Provincia"] = d["Provincia"] || "";
+          d["Pais"] = d["Pais"] || "";
           d["googleUserEmployeer"] = googleUserWithoutQuotes || "";
-          d["Secondary email"] ? (d["emailEmployeer"] = d["Secondary email"]) : d["emailEmployeer"] = "";
-          d["Tables"] ? d["mesas"] = d["Tables"] : d["mesas"] = '';
+          d["Nombre de contacto"] ? (d["firstNameEmployeer"] = d["Nombre de contacto"]) : d["firstNameEmployeer"] = "";
+          d["e-mail"] ? (d["email"] = d["e-mail"]) : d["email"] = "";
+          d["Telefono"] ? (d["phono"] = d["Telefono"]) : d["phono"] = "";
+          // Agregar más atributos si es necesario
           
           delete d["Commerce Name"];
           delete d["Neighborhood"];
@@ -212,158 +146,119 @@ export default function InstructionTwo() {
           delete d["Name"];
           delete d["LastName"];
           delete d["Google user"];
-          delete d["Tables"] ;
-          d["Secondary email"] && delete d["Secondary email"] 
-        }else{
-
-          d["Nombre del comercio"] ? (d["name"] = d["Nombre del comercio"]) : "";
-          d["Barrio"] ? (d["neighborhood"] = d["Barrio"]) :  d["Dirección"] = "";
-          d["Dirección"] ? (d["address"] = d["Dirección"]) : d["address"] = d["address"] = d["address"] = "";
-          d["Horarios"] ? (d["workSchedule"] = d["Horarios"]) : d["workSchedule"] = "";
-          d["Email"] ? (d["email"] = d["Email"]) : d["email"] = d["email"] = "";
+          delete d["Tables"];
+          d["Secondary email"] && delete d["Secondary email"];
+        } else {
+          d["Nombre del local"] ? (d["name"] = d["Nombre del local"]) : "";
+          /*d["Cantidad de mesas"] ? (d["mesas"] = d["Cantidad de mesas"]) : d["mesas"] = "";
+          d["Cantidad de mesas"] ? (d["Tables"] = d["Cantidad de mesas"]) : d["mesas"] = "";*/
+          const cantidadMesas = d["Cantidad de mesas"] = (d["Cantidad de mesas"] && d["Cantidad de mesas"] >= 1) ? (d["Cantidad de mesas"] <= 100 ? d["Cantidad de mesas"] : 100) : 1;
+          d["Tables"] ? d["mesas"] = d["tables"] : d["mesas"] = cantidadMesas;
+          d["Horario de trabajo"] ? (d["workSchedule"] = d["Horario de trabajo"]) : d["workSchedule"] = "";
+          d["Dirección"] ? (d["address"] = d["Dirección"]) : d["address"] = "";
+          d["Ciudad"] ? (d["city"] = d["Ciudad"]) : d["city"] = "";
+          d["Provincia"] ? (d["state"] = d["Provincia"]) : d["state"] = "";
+          d["Pais"] ? (d["country"] = d["Pais"]) : d["country"] = "";
+          d["googleUserEmployeer"] = googleUserWithoutQuotes || "";
+          d["Nombre de contacto"] ? (d["firstNameEmployeer"] = d["Nombre de contacto"]) : d["firstNameEmployeer"] = "";
+          d["e-mail"] ? (d["email"] = d["e-mail"]) : d["email"] = "";
           d["Telefono"] ? (d["phono"] = d["Telefono"]) : d["phono"] = "";
-          d["Tipo de comida"] ? (d["tipoDeComida"] = d["Tipo de comida"]) : d["tipoDeComida"] = "";
-          d["Nombre"] ? (d["firstNameEmployeer"] = d["Nombre"]) : d["firstNameEmployeer"] = d["firstNameEmployeer"] = "";
-          d["Apellido"] ? (d["lastNameEmployeer"] = d["Apellido"]) : d["lastNameEmployeer"] = "";
-          d["Usuario de Google"] ? (d["googleUserEmployeer"] = d["Usuario de Google"]) : d["googleUserEmployeer"] = "";
-          d["Correo secundario"] ? (d["emailEmployeer"] = d["Correo secundario"]) : d["emailEmployeer"] = "";
-          d["Mesas"] ? d["mesas"] = d["Mesas"] :d["mesas"] = '';
+        
           
-          delete d["Nombre de comercio"]  ;
+          delete d["Nombre del Local"];
+          delete d["Pais"];
+          delete d["Provincia"];
+          delete d["Ciudad"];
           delete d["Barrio"];
-          delete d["Dirección"] ;
+          delete d["Dirección"];
           delete d["Horarios"];
-          delete d["Email"];
+          delete d["e-mail"];
           delete d["Telefono"];
           delete d["Tipo de comida"];
-          delete d["Nombre"];
+          delete d["Nombre de contacto"];
           delete d["Apellido"];
           delete d["Usuario de Google"];
-          delete d["Mesas"];
-          d["Correo secundario"] && delete d["Correo secundario"] 
+          delete d["Cantidad de mesas"];
+          d["Correo secundario"] && delete d["Correo secundario"];
         }
       })
     );
   };
 
- /*  const formattedCommerce = () => {
-    setComercio(
-      comercio.map((d) => {
-        const fieldMappingsEn = {
-          "Commerce Name": "name",
-          "Neighborhood": "neighborhood",
-          "Address": "address",
-          "Work schedule": "workSchedule",
-          "Email": "email",
-          "Phono": "phono",
-          "Type of food": "tipoDeComida",
-          "Name": "firstNameEmployeer",
-          "LastName": "lastNameEmployeer",
-          "Google user": "googleUserEmployeer",
-          "Secondary email": "emailEmployeer",
-          "Tables": "mesas",
-        };
-  
-        const fieldMappingsEs = {
-          "Nombre de comercio": "name",
-          "Barrio": "neighborhood",
-          "Dirección": "address",
-          "Horarios": "workSchedule",
-          "Email": "email",
-          "Telefono": "phono",
-          "Tipo de comida": "tipoDeComida",
-          "Nombre": "firstNameEmployeer",
-          "Apellido": "lastNameEmployeer",
-          "Usuario de Google": "googleUserEmployeer",
-          "Correo secundario": "emailEmployeer",
-          "Mesas": "mesas",
-        };
-  
-        const fieldMappings = d["Commerce Name"] ? fieldMappingsEn : fieldMappingsEs;
-  
-        Object.keys(fieldMappings).forEach((field) => {
-          if (d[field]) {
-            d[fieldMappings[field]] = d[field];
-            delete d[field];
-          }
-        });
-      })
-    );
-  }; */
   
 
   const clearMenu = () => {
     setFile(null);
     setMenu(null);
     setComercio(null);
+    setError(false);
   };
 
   const handleClick = () => {
+    clearMenu();
     formattedMenu();
     formattedCommerce();
-    if (error) {
-      console.log("error")
-      clearMenu();
+    const showAlert = error || menu === null || menu.length === 0 || comercio === null || comercio.length === 0;
+    if (showAlert) {
       setError(true);
-      return alert("Se debe ingresar un nombre de comercio");
+      toast.error("Debe cargar el nombre del comercio y los datos en el menu antes de continuar")
+      clearMenu();
     } else {
-      console.log("se hiso dispatch en componente")
       dispatch(postMenu(menu, comercio, id));
     }
   };
-
+  const showAlert = error || menu === null || menu.length === 0 || comercio === null || comercio.length === 0;
   return (
-    <Container marginTop >
-    <InstructionContainer>
-      <main className={s.mainContainer}>
-        <div className={s.textContainer}>
-          <UploadMenuTitle text={t("instructions.title")} />
-          <LineText
-            text={t("instructions.sub title")}
-            centered={true}
-            bold={true}
-          />
-          <MenuStep
-            number={2}
-            text={t("instructions.steps.step_2")}
-          />
-          <>
-            {submiting ? (
-              <SubmitLoader />
-            ) : (
-              <File
-                step={2}
-                typeIcon={"upload"}
-                text={t("instructions.steps.text_2")}
-                file={file}
-                setFile={setFile}
-                menu={menu}
-                setMenu={setMenu}
-                submitting={submiting}
-                setSubmitting={setSubmiting}
-              />
-            )}
-            {menu !== null && (
-              <div className={s.uploadedFile}>
-                <LineText text={"Menu.XML"} secundary={true} />
-                <div className={s.icons}>
-                  <XIcon
-                    style={{ height: "24px", width: "24px" }}
-                    onClick={clearMenu}
-                  />
+    <Container marginTop>
+      <InstructionContainer>
+        <main className={s.mainContainer}>
+          <div className={s.textContainer}>
+            <UploadMenuTitle text={t("instructions.title")} />
+            <div><Toaster/></div>
+            <LineText
+              text={t("instructions.sub title")}
+              centered={true}
+              bold={true}
+            />
+            <MenuStep number={2} text={t("instructions.steps.step_2")} />
+            <>
+              {submiting ? (
+                <SubmitLoader />
+              ) : (
+                <File
+                  step={2}
+                  typeIcon={"upload"}
+                  text={t("instructions.steps.text_2")}
+                  file={file}
+                  setFile={setFile}
+                  menu={menu}
+                  setMenu={setMenu}
+                  submitting={submiting}
+                  setSubmitting={setSubmiting}
+                  setFileName={setFileName}
+                />
+              )}
+              {menu !== null && (
+                <div className={s.uploadedFile}>
+                 <LineText text={fileName} secundary={true} />
+                  <div className={s.icons}>
+                    <XIcon
+                      style={{ height: "24px", width: "24px" }}
+                      onClick={clearMenu}
+                    />
+                  </div>
                 </div>
-              </div>
-            )}
-          </>
-        </div>
-        <InstructionButton
-          helpText={t("instructions.button.i need help")}
-          text={t("instructions.button.continue")}
-          path={menu && !error && "/instructions/onDemand"}
-          handleClick={handleClick}
-        />
-      </main>
-    </InstructionContainer>
+              )}
+            </>
+          </div>
+          <InstructionButton
+            helpText={t("instructions.button.i need help")}
+            text={t("instructions.button.continue")}
+            handleClick={handleClick}
+            path={showAlert ? null : "/instructions/onDemand"}
+          />
+        </main>
+      </InstructionContainer>
     </Container>
   );
-}
+}  

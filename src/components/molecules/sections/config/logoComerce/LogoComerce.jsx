@@ -31,7 +31,6 @@ export default function LogoComerce() {
     fetchImageURL();
   }, [clickCount]); // El segundo argumento [] asegura que se ejecute solo una vez al montar el componente
 
-  console.log(newFile);
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -47,7 +46,7 @@ export default function LogoComerce() {
         setIsLoading(true); // Marca como cargando
         await uploadFile(newFile, comerceId.toString());
         setClickCount((prevCount) => prevCount + 1);
-        setNewFile(false)
+        setNewFile(false);
       } else {
         console.log("No hay nueva imagen para cargar.");
       }
@@ -74,7 +73,7 @@ export default function LogoComerce() {
         ) : (
           <img
             src={imgURL}
-            style={{ maxWidth: "50%", border: "2px solid #000" }}
+            style={{ maxWidth: "100%", border: "2px solid #000" }}
           />
         )}
       </ContentRow>

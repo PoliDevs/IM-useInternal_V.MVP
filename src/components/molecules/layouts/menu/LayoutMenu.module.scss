@@ -1,21 +1,20 @@
 @import "../../../../scss/colors.scss";
 @import "../../../../scss/typography.scss";
 
-
 .containerd {
   display: flex;
   justify-content: center;
   width: 100%;
-/*     background: red; */
-  >section{
-/*    background-color: rgb(41, 167, 37); */
-      width: 35%;
-      &:first-child {
-          border-right: 2px solid black; /* Agrega un borde derecho de color negro al primer section */
-          >button{
-              margin: 0 0 10px 0;
-          }
-        }
+  /*     background: red; */
+  > section {
+    /*    background-color: rgb(41, 167, 37); */
+    width: 50%;
+    &:first-child {
+      border-right: 2px solid black; /* Agrega un borde derecho de color negro al primer section */
+      > button {
+        margin: 0 0 10px 90px;
+      }
+    }
   }
 }
 .containerd > section:nth-child(2) {
@@ -24,16 +23,52 @@
   flex-direction: column;
 }
 
-@media screen and (max-width:900px) {
+@media screen and (max-width: 900px) {
   .containerd {
-    >section{
-        width: 48%;
-        align-items: center;
+    > section {
+      width: 48%;
+      align-items: center;
+      &:first-child {
+        border-right: 2px solid black; /* Agrega un borde derecho de color negro al primer section */
+        > button {
+          margin: 0 0 10px 0;
+        }
+      }
     }
   }
-  .buttonContent{
+  .buttonContent {
     display: flex;
     flex-direction: column;
     justify-content: center;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .containerd {
+    > section {
+      width: 48%;
+      align-items: center;
+      &:first-child {
+        border-right: 2px solid black; /* Agrega un borde derecho de color negro al primer section */
+        > button {
+          margin: 0 0 10px 50px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .containerd {
+    > section {
+      width: 48%;
+      align-items: center;
+      &:first-child {
+        border-right: 2px solid black; /* Agrega un borde derecho de color negro al primer section */
+        > button {
+          margin: 0 0 10px 10px;
+        }
+      }
+    }
   }
 }

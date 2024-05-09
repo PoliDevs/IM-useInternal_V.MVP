@@ -14,8 +14,8 @@ export const getLastMonday = () => {
   lastMonday.setDate(today.getDate() - diff);
 
   const year = lastMonday.getFullYear();
-  const month = String(lastMonday.getMonth() + 1).padStart(2, "0");
-  const day = String(lastMonday.getDate()).padStart(2, "0");
+  const month = String(lastMonday.getMonth() + 1).padStart(2, '0');
+  const day = String(lastMonday.getDate()).padStart(2, '0');
 
   return `${year}-${month}-${day}`;
 };
@@ -28,10 +28,18 @@ export const roundToTwoDecimalPlaces = (number) => {
 };
 
 export const arrangedAlphabetically = (menu) => {
-  if(menu.length>0){
+  if (menu.length > 0) {
     let menusEnMinusculasOrdenados = menu
-    .map((cur) => ({ ...cur, name: cur.name.toLowerCase() }))
-    .sort((a, b) => a.name.localeCompare(b.name));
-    return menusEnMinusculasOrdenados
+      .map((cur) => ({ ...cur, name: cur.name.toLowerCase() }))
+      .sort((a, b) => a.name.localeCompare(b.name));
+    return menusEnMinusculasOrdenados;
   }
+};
+
+export const updateMenuItemActive = (menu, index, active) => {
+  const updatedMenu = [...menu];
+  const updatedItem = { ...updatedMenu[index] };
+  updatedItem.active = active;
+  updatedMenu[index] = updatedItem;
+  return updatedMenu;
 };

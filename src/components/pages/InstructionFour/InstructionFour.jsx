@@ -8,12 +8,24 @@ import s from "./InstructionFour.module.scss";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import Container from "../../atom/container/Container";
+import { Toaster, toast } from "react-hot-toast";
 
 export default function InstructionFour() {
   const [t, i18n] = useTranslation("global");
+  const token = useSelector((state) => state.user_internal.token);
 
-  const token = localStorage.getItem("token");
-  console.log(token);
+  const handleClickIsAllowed = () => {
+    localStorage.setItem("isAllowedInstructions", true);
+   if(!token){
+    toast.success('Listo, ahora inicia sesión',{duration: 3000});
+    setTimeout(() => {
+      window.location.href =  "/"
+    }, 3500);
+   }
+   else{
+    window.location.href = "/dashboard"
+   }
+  };
 
   return (
     <Container marginTop>
@@ -32,7 +44,8 @@ export default function InstructionFour() {
           <InstructionButton
             helpText={t("instructions.button.i need help")}
             text={t("instructions.button.continue")}
-            path={token ? "/dashboard" : "/"}
+            
+            handleClick={handleClickIsAllowed}
           />
         </main>
       </InstructionContainer>

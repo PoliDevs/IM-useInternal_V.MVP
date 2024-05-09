@@ -22,6 +22,8 @@ export default function InstructionThree() {
   const [redirectToNextPage, setRedirectToNextPage] = useState(false);
   const [commerceId, setCommerceId] = useState(null);
 
+  const token = localStorage.getItem("token");
+
 
   const clearImage = () => {
     setFile(null);
@@ -115,7 +117,7 @@ return (
         <InstructionButton
           helpText={t("instructions.button.i need help")}
           text={t("instructions.button.continue")}
-          path={redirectToNextPage ? "/instructions/onDemand" : null}
+          path={token ? "/dashboard" : "/"}
           handleClick={handleClick}
         />
       </main>

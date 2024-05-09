@@ -33,22 +33,23 @@ export default function LayoutConfig() {
         <LargeButton
           text={personalData}
           icon={"arrowRight"}
-          onClick={() => handleOptionClick(personalData)}
+          // onClick={() => handleOptionClick(personalData)}
           selected={selectedOption === personalData}
           disabled
         />
         <LargeButton
           text={businessData}
           icon={"arrowRight"}
-          onClick={() => handleOptionClick(businessData)}
+          // onClick={() => handleOptionClick(businessData)}
           selected={selectedOption === businessData}
           disabled
         />
         <LargeButton
           text={paymentData}
           icon={"arrowRight"}
-          onClick={() => handleOptionClick(paymentData)}
+          // onClick={() => handleOptionClick(paymentData)}
           selected={selectedOption === paymentData}
+          disabled
         />
         <LargeButton
           text={"Logo del local"}
@@ -57,11 +58,11 @@ export default function LayoutConfig() {
           onClick={() => handleOptionClick(localLogo)}
           selected={selectedOption === localLogo}
         />
-        <CartelPlanUno
+        {/* <CartelPlanUno
           title={t("plan 1.cartel plan 1.title")}
           text_1={'Podras configurar para cobrar a traves de mercado pago'}
           width={"520px"}
-        />
+        /> */}
       </section>
       {optionToComponent[selectedOption]}
     </div>

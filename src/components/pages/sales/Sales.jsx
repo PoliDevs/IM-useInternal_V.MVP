@@ -33,8 +33,8 @@ export default function Sales() {
             <CartelPlanUno
               width={"610px"}
               title={t("plan 1.cartel plan 1.title")}
-              text_1={t("plan 1.cartel plan 1.text_1")}
-              text_2={t("plan 1.cartel plan 1.text_2")}
+              text_8={t("plan 1.cartel plan 1.text_8")}
+              text_6={t("plan 1.cartel plan 1.text_6")}
               marginBooton="10px"
             />
             <Separator height={"10px"} />
@@ -46,7 +46,7 @@ export default function Sales() {
               <ContentBasic
                 width={"48%"}
                 borderRadius={"25px"}
-                backgroundImage={`url("../../../../public/sales_plan1.jpeg")`}
+                backgroundImage={`url("../../../../sales_plan1.jpeg")`}
                 backgroundRepeat={"no-repeat"}
                 backgroundSize={"cover"}
                 backgroundPosition={"center"}

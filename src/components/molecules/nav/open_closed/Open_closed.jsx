@@ -10,49 +10,45 @@ export default function Open_closed({ handlestate }) {
   const localOpenValue = useSelector((state) => state.localOpenValue);
   const [localUiValue, setLocalUiValue] = useState(localOpenValue);
   const [t, i18n] = useTranslation("global");
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     // Cuando el componente se monta, actualiza el estado localOpen en el Redux store
     dispatch(localOpen(comerceId));
-  }, [comerceId, localUiValue, localOpenValue]);
+  }, [comerceId, dispatch]);
 
   const handleLocalValue = () => {
-    if (localUiValue) {
-      dispatch(closedLocal(comerceId));
-      setLocalUiValue(!localUiValue);
-      setTimeout(() => {
+    let timeoutId;
+    setLocalUiValue((prevState) => {
+      const newState = !prevState;
+      if (newState) {
+        dispatch(openLocal(comerceId));
+      } else {
+        dispatch(closedLocal(comerceId));
+      }
+
+      timeoutId = setTimeout(() => {
         handlestate();
-      }, [500]);
-    } else {
-      dispatch(openLocal(comerceId));
-      setLocalUiValue(!localUiValue);
-      setTimeout(() => {
-        handlestate();
-      }, [500]);
-    }
+      }, 500);
+
+      return newState;
+    });
+
+    return () => clearTimeout(timeoutId);
   };
 
   const handleOnBlur = () => {
-    if (localUiValue) {
-      setLocalUiValue(false);
-    }
+    setLocalUiValue(false);
   };
 
   return (
-    <div
-      className={s.containerd_switch}
-      tabIndex={0}
-      onBlur={handleOnBlur}
-      onClick={handleLocalValue}
-    >
+    <div className={s.containerd_switch} tabIndex={0} onBlur={handleOnBlur}>
       <div className={s.content} tabIndex={0} onBlur={handleOnBlur}>
         <b>{t("nav.open or close local")}</b>
         <Switch
           onChange={handleLocalValue}
           checked={localUiValue}
-          className={localUiValue?s.switch:s.switchClosed}
+          className={localUiValue ? s.switch : s.switchClosed}
           height={50}
           width={100}
         />
