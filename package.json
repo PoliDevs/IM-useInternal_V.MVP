@@ -11,6 +11,7 @@
     "server": "json-server --watch restorant.json"
   },
   "dependencies": {
+    "@esbuild/win32-x64": "^0.18.20",
     "@hookform/resolvers": "^3.2.0",
     "apexcharts": "^3.42.0",
     "axios": "^1.4.0",
