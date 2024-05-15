@@ -24,7 +24,6 @@ export default function MenuItem() {
       try {
         const response = await axios.get(`menu/lastMenu/${comerceId}`);
         const sortedMenu = response.data;
-        console.log(sortedMenu);
         const menuByCategory = sortedMenu.reduce((acc, cur) => {
           const category = cur.category.category;
           if (!acc[category]) {
