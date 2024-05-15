@@ -57,6 +57,11 @@ export default function MenuItem() {
     dispatch(setMenuChanges({ index, id, active: !menu[index].active }));
   };
 
+  const formatCost = (cost) => {
+    const options = { style: 'currency', currency: 'ARS', minimumFractionDigits: 0, maximumFractionDigits: 3 };
+    return new Intl.NumberFormat('es-AR', options).format(cost);
+  };
+
   return (
     <div className={s.menuItemContainer}>
       <div>
@@ -80,7 +85,7 @@ export default function MenuItem() {
                 >
                   <LineText text={item.category} disabled={!item.active} />
                   <LineText text={item.name} disabled={!item.active} />
-                  <LineText text={`$${item.cost}`} disabled={!item.active} />
+                  <LineText text={formatCost(item.cost)} className={s.price} disabled={!item.active} end={true} />
                   <div
                     onClick={() => handleClickEyes(index, item.id)}
                     className={s.imageContainer}
