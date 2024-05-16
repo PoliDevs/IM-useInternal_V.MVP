@@ -2,7 +2,7 @@
 @import "../../../scss/typography.scss";
 
 .lineText {
- font-family:  "MabryPro-Regular", sans-serif;
+  font-family: "Arial", sans-serif;
   font-size: $line-text;
   color: $text-primary;
   text-align: left;
@@ -24,11 +24,17 @@
 .bold {
   font-weight: bold;
 }
-.wordWrap{
+
+.wordWrap {
   width: 100%;
   overflow-wrap: break-word;
 }
 
-.end{
+.end {
   text-align: end;
+  margin-right: 40px;
+}
+
+.price {
+  text-align: center;
 }
