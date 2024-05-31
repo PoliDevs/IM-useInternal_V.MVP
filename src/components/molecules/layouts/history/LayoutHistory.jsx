@@ -92,6 +92,7 @@ const todayDate=getDateCurrent();
                   {isLoading?<Loading/>: orderDelivered.map((cur, idx) => {
                    return <Card
                       key={idx}
+                      id={cur.id}
                       tableNumber={cur.po && cur.po.id}
                       sectorNumber={cur.sector && cur.sector.id}
                       order={cur.order}

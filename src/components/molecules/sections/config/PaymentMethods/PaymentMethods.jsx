@@ -19,6 +19,7 @@ export default function PaymentMethods() {
   const [loading, setLoading] = useState(true);
   const [isChangingMp, setIsChangingMp] = useState(false);
   const [isChangingCash, setIsChangingCash] = useState(false);
+  const [keysConfigured, setKeysConfigured] = useState(false);
   const comerceId = useSelector((state) => state.user_internal.comerceId);
 
   useEffect(() => {
@@ -40,6 +41,11 @@ export default function PaymentMethods() {
       const cashValue = paymentMethods.find((cur) => cur.type === "efectivo");
       setMp(mpValue);
       setCash(cashValue);
+
+      // Verificar si las claves ya están configuradas
+      if (mpValue && mpValue.alias === "true") {
+        setKeysConfigured(true);
+      }
     }
   }, [paymentMethods]);
 
@@ -88,6 +94,13 @@ export default function PaymentMethods() {
     }
 
     setChange(false);
+  };
+
+  const handleConfigFormSuccess = () => {
+    toast.success("Listo, las credenciales se guardaron", {
+      duration: 3000,
+    });
+    setKeysConfigured(true); // Actualiza el estado cuando se guardan las claves correctamente
   };
 
   return (
@@ -154,11 +167,8 @@ export default function PaymentMethods() {
             <ConfigForm
               commerceId={comerceId}
               paymentMethodId={mp.id}
-              onSuccess={() =>
-                toast.success("Listo, las credenciales se guardaron", {
-                  duration: 3000,
-                })
-              }
+              onSuccess={handleConfigFormSuccess} // Usa la función de éxito modificada
+              keysConfigured={keysConfigured} // Pasa el estado de configuración
             />
           ) : null}
         </>

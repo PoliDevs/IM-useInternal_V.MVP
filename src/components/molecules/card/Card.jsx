@@ -14,6 +14,7 @@ import ButtonCard from "../../atom/buttons/buttonCard/ButtonCard";
 import ContentRow from "../../atom/contentRow/ContentRow";
 
 export default function Card({
+  id,
   status,
   tableNumber,
   sectorNumber,
@@ -45,7 +46,8 @@ export default function Card({
 
   const [seeOrder, setSeeOrder] = useState(true); //con esto mostramos o ocultamos la orden, icon
 
-  const numOrder = order.split("-")[1].trim();
+  //const numOrder = order.split("-")[1].trim();
+  const numOrder = id
 
   const handleSeeOrder = () => {
     setSeeOrder(!seeOrder);
