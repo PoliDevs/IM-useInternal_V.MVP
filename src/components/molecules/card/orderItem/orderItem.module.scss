@@ -6,7 +6,14 @@ article{
     justify-content: space-between;
     border-bottom: 1px solid $color-seventh;
     padding: 0.5rem 0;
+    font-size: 14px;
 }
+.divider {
+    width: 100%;
+    border: 0;
+    border-top: 2px solid #F0F0F0;
+    margin: 10px 0;
+  }
 .content_1{
     display: flex;
     justify-content: space-between;

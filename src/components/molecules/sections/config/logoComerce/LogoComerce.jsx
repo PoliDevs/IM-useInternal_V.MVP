@@ -12,6 +12,7 @@ import { ArrowsUpDown } from "../../../../atom/iconsHerocoins/icons";
 import Separator from "../../../../atom/separator/Separator";
 import { uploadFile } from "../../../../../firebase/firebase.config";
 import File from "../../../File/File";
+import { toast } from "react-hot-toast";
 
 export default function LogoComerce() {
   const [imgURL, setImgURL] = useState(false);
@@ -51,8 +52,7 @@ export default function LogoComerce() {
         console.log("No hay nueva imagen para cargar.");
       }
     } catch (error) {
-      console.error("Error al cargar la imagen:", error);
-      alert("Error al cargar la imagen. Por favor, inténtelo de nuevo.");
+      toast.error("Error al cargar la imagen. Por favor, inténtelo de nuevo.");
     } finally {
       setIsLoading(false); // Marca como no cargando, independientemente del resultado
     }

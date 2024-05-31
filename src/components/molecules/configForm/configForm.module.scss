@@ -1,0 +1,25 @@
+.button{
+    margin-left: 30%;
+        padding: 17px 40px;
+        font-weight: bold;
+        align-items: center;
+        margin-top: 20px;
+        background-color: #FF4747;
+        color: #FFFFFF;
+        border-radius: 25px;
+        font-size: 16px;
+        border: none;
+        &:hover{
+            color: #FFFFFF;
+            background: #FF4747;
+            border: gray ;
+            border-radius: 25px;
+            border: gray solid 1px;
+            cursor: pointer;
+        } &:focus {
+            outline: none; /* Eliminar el contorno al enfocar */
+            box-shadow: none; /* Eliminar la sombra al enfocar */
+            border: none; /* Eliminar el borde al enfocar */
+        }
+       
+}
