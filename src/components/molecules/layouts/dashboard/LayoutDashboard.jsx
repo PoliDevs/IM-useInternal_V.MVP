@@ -27,6 +27,7 @@ export default function LayoutDashboard({closed}) {
       statusOrder.map((cur, idx) => (
         <Card
           key={idx}
+          id={cur.id}
           tableNumber={cur.po && cur.po.id}
           sectorNumber={cur.sector && cur.sector.id}
           order={cur.order}
@@ -73,7 +74,8 @@ export default function LayoutDashboard({closed}) {
         const response = await axios(`order/paidOrderes/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`);
         const data = response.data;
         const parsedData = parseOrdersToJson(data); // Parsea los datos recibidos
-        setAllOrders(parsedData); // Establece los datos parseados en el estado
+        setAllOrders(parsedData);
+        console.log(parsedData) // Establece los datos parseados en el estado
       } catch (error) {
         console.error("Error al realizar la solicitud:", error);
       }
