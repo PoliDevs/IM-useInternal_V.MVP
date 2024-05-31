@@ -40,9 +40,9 @@ export default function LayoutConfig() {
         <LargeButton
           text={businessData}
           icon={"arrowRight"}
-          // onClick={() => handleOptionClick(businessData)}
+          onClick={() => handleOptionClick(businessData)}
           selected={selectedOption === businessData}
-          disabled
+      
         />
         <LargeButton
           text={paymentData}

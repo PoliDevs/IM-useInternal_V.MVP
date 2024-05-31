@@ -31,10 +31,17 @@
 }
 
 .end {
-  text-align: end;
+  text-align: start;
   margin-right: 40px;
 }
 
 .price {
   text-align: center;
+}
+.priceCard{
+  margin-top: 10px;
+  font-size: 18px;
+}
+.productName {
+  font-size: 18px;
 }

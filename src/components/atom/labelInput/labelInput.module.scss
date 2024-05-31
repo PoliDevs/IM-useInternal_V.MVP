@@ -16,3 +16,8 @@ input{
     margin: 5px;
     border: $border;
 }
+::placeholder {
+    color: black;
+    opacity: 1; /* Firefox */
+    font-size: 8px;
+  }
