@@ -22,6 +22,7 @@ import GeneratorQr from "./components/pages/generatorQr/GeneratorQr.jsx";
 axios.defaults.baseURL = "https://api-v1-dev.imenu.com.ar";
 //axios.defaults.baseURL = "https://api-v1.imenu.com.ar/"
 
+
 function App() {
   const location = useLocation();
   const googleUser = localStorage.getItem("googleUser");
