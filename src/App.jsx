@@ -20,6 +20,7 @@ import GeneratorQr from "./components/pages/generatorQr/GeneratorQr.jsx";
 //axios.defaults.baseURL = "http://localhost:3001/";
 // axios.defaults.baseURL = "https://nodejs-production-bbf9.up.railway.app";
 //axios.defaults.baseURL = "https://api-v1.imenu.com.ar/"
+//axios.defaults.baseURL = "https://api-v1-dev.imenu.com.ar";
 axios.defaults.baseURL = "https://web-production-053a.up.railway.app";
 
 function App() {
