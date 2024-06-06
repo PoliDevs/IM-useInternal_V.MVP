@@ -14,7 +14,7 @@ export default function ConfigForm({ commerceId, paymentMethodId, onSuccess, key
   useEffect(() => {
     async function fetchConfigStatus() {
       try {
-        const response = await axios.get(`/payment/configStatus/${paymentMethodId}`);
+        const response = await axios.get(`payment/detail/${paymentMethodId}`);
         if (response.data.configured) {
           setPublicKey(response.data.publicKey);
           setAccesToken(response.data.accesToken);
