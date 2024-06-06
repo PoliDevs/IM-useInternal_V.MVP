@@ -131,8 +131,8 @@
     },
     "payment market": {
       "title": "Conectá tu cuenta de Mercado Pago",
-      "input_1": "Token",
-      "input_2": "Key"
+      "input_1": "Key",
+      "input_2": "Token"
     }
   },
   "generator qr": {
