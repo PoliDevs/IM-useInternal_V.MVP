@@ -69,9 +69,9 @@ export default function ConfigForm({ commerceId, paymentMethodId, onSuccess, key
         />
         <div className={s.buttonContainer}>
           <button
-            className={`${s.button} ${keysConfigured ? s.disabled : ""}`}
+            className={`${s.button} `}//${keysConfigured ? s.disabled : ""}
             type="submit"
-            disabled={keysConfigured || loading}
+            //disabled={keysConfigured || loading}
           >
             {loading ? "Guardando..." : "GUARDAR"}
           </button>
