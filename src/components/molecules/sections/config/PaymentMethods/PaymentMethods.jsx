@@ -42,7 +42,7 @@ export default function PaymentMethods() {
       setMp(mpValue);
       setCash(cashValue);
 
-      // Verificar si las claves ya están configuradas
+
       if (mpValue && mpValue.alias === "true") {
         setKeysConfigured(true);
       }
@@ -62,14 +62,14 @@ export default function PaymentMethods() {
     setChange(true);
 
     try {
-      // Si ambos métodos están desactivados, no permitir la desactivación del método actual
+
       if (paymentMethod.active && !oppositeMethod.active) {
         toast.error("Debe haber al menos un método de pago activo");
         setChange(false);
         return;
       }
 
-      // Si el método opuesto está activo, desactívalo primero
+
       if (oppositeMethod.active) {
         const oppositeResponse = await axios.put(
           `/payment/inactive/${oppositeMethod.id}`
@@ -79,7 +79,7 @@ export default function PaymentMethods() {
         }
       }
 
-      // Cambia el estado del método de pago actual
+
       const response = await axios.put(
         `/payment/${
           paymentMethod.active ? "inactive" : "active"
@@ -100,7 +100,7 @@ export default function PaymentMethods() {
     toast.success("Listo, las credenciales se guardaron", {
       duration: 3000,
     });
-    setKeysConfigured(true); // Actualiza el estado cuando se guardan las claves correctamente
+    setKeysConfigured(true);
   };
 
   return (
@@ -167,8 +167,8 @@ export default function PaymentMethods() {
             <ConfigForm
               commerceId={comerceId}
               paymentMethodId={mp.id}
-              onSuccess={handleConfigFormSuccess} // Usa la función de éxito modificada
-              keysConfigured={keysConfigured} // Pasa el estado de configuración
+              onSuccess={handleConfigFormSuccess} 
+              keysConfigured={keysConfigured}
             />
           ) : null}
         </>
