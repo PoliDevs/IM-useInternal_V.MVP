@@ -9,15 +9,47 @@ import ContentColumn from "../../../atom/contentColumn/ContentColumn";
 import ContentRow from "../../../atom/contentRow/ContentRow";
 import SubTitleUnderline from "../../../atom/subTitleUnderline/SubTitleUnderline";
 import Separator from "../../../atom/separator/Separator";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function OpenLocal() {
   const [t, i18n] = useTranslation("global");
   const planNumber = useSelector((state) => state.user_internal.commercialPlan);
+  const [paymentMethods, setPaymentMethods] = useState(null);
+  const comerceId = useSelector((state) => state.user_internal.comerceId);
+
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await axios.get(`/payment/all/${comerceId}`);
+        setPaymentMethods(response.data);
+      } catch (error) {
+        console.error("Error al cargar datos de pago:", error);
+      }
+    }
+    fetchData();
+  }, [comerceId]);
+
+  
+  // Función para obtener el método de pago activo
+  const getActivePaymentMethod = () => {
+    if (paymentMethods) {
+      return paymentMethods.find(method => method.active);
+    }
+    return null;
+  };
+
+  // Función auxiliar para obtener el detalle del método de pago activo
+  const getActivePaymentMethodDetail = () => {
+    const activeMethod = getActivePaymentMethod();
+    return activeMethod ? activeMethod.detail : "";
+  };
+
   return (
     <Container>
       <Header
         icon="store"
-        title={t("header.open local.orders received")}
+        title={`${t("header.open local.orders received")} - ${getActivePaymentMethodDetail()}`}
         detail={t("header.open local.your orders are here in order of entry")}
       />
       {planNumber === 1 ? (
