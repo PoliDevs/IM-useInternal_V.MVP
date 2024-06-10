@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import PaymentMethods from "../../sections/config/PaymentMethods/PaymentMethods";
 import PersonalData from "../../sections/config/personalData/PersonalData";
 import ComerceData from "../../sections/config/comerceData/ComerceData";
@@ -15,6 +16,7 @@ export default function LayoutConfig() {
   const paymentData = t("config.select.payment methods");
   const localLogo = t("menu.local logo");
   const [selectedOption, setSelectedOption] = useState(personalData);
+  const planNumber = useSelector((state) => state.user_internal.commercialPlan);
 
   const optionToComponent = {
     [t("config.select.personal data")]: <PersonalData />,
@@ -33,35 +35,31 @@ export default function LayoutConfig() {
         <LargeButton
           text={personalData}
           icon={"arrowRight"}
-          // onClick={() => handleOptionClick(personalData)}
+          onClick={() => handleOptionClick(personalData)}
           selected={selectedOption === personalData}
-          disabled
+          disabled={planNumber === 1}
         />
         <LargeButton
           text={businessData}
           icon={"arrowRight"}
           onClick={() => handleOptionClick(businessData)}
           selected={selectedOption === businessData}
-      
+          disabled={planNumber === 1}
         />
         <LargeButton
           text={paymentData}
           icon={"arrowRight"}
           onClick={() => handleOptionClick(paymentData)}
           selected={selectedOption === paymentData}
+          disabled={planNumber === 1}
         />
         <LargeButton
           text={"Logo del local"}
           icon={"arrowRight"}
-          /* disabled={true} */
           onClick={() => handleOptionClick(localLogo)}
           selected={selectedOption === localLogo}
+
         />
-        {/* <CartelPlanUno
-          title={t("plan 1.cartel plan 1.title")}
-          text_1={'Podras configurar para cobrar a traves de mercado pago'}
-          width={"520px"}
-        /> */}
       </section>
       {optionToComponent[selectedOption]}
     </div>
