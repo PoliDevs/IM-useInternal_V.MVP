@@ -144,11 +144,8 @@ export default function Card({
                     key={idx}
                     amount={menu.amount[idx]}
                     name={cur}
-                    // Multiplica por 1000 si el costo es decimal
                     cost={
-                      menu.cost[idx].toString().includes('.')
-                        ? menu.cost[idx] * menu.amount[idx] * 1000
-                        : menu.cost[idx] * menu.amount[idx]
+                      menu.cost[idx]
                     }
                     detail={menu.detail[idx].length > 0 && menu.detail[idx]}
                     isLastItem={isLastItem} // Pasa la prop isLastItem al componente OrderItem
