@@ -5,7 +5,8 @@ import { useTranslation } from "react-i18next";
 import Loading from "../../../../atom/loading/Loading";
 import { toast } from "react-hot-toast";
 import styles from "./changePlan.module.scss";
-import ChangePlanModal from "../../../modals/changePlanModal/ChangePlanModal";
+import ChangePlanModal from "../../../modals/changePlanModal/ChangePlanModal.jsx";
+
 
 export default function ChangePlan() {
   const [t] = useTranslation("global");
