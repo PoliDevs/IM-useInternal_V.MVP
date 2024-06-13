@@ -1,0 +1,50 @@
+h4{
+  font-size: 25px;
+}
+.changePlanContainer {
+    
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 20px;
+
+
+    .planOption {
+      max-width: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 19px 28px;
+      border: 1px solid #ccc;
+      border-radius: 14px;
+      transition: border-color 0.3s ease;
+      cursor: pointer;
+      gap: 30px;
+      &:hover {
+        border-color: #000
+      }
+      h4{
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+      p {
+        max-width: 275px;
+        font-size: 12px;
+        color: #686868;
+      }
+      input[type="radio"] {
+        height: 24px;
+        width: 24px;
+        margin-right: 1rem;
+        accent-color: #449d47; // Customize the radio button color
+        cursor: pointer;
+      }
+  
+  
+      &.selected {
+        border-color: #28B446;
+        background-color: #f0fff0;
+      }
+    }
+  }
+  

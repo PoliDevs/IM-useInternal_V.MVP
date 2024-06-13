@@ -50,7 +50,7 @@ export default function OpenLocal() {
       <Header
         icon="store"
         title={`${t("header.open local.orders received")} - ${getActivePaymentMethodDetail()}`}
-        detail={t("header.open local.your orders are here in order of entry")}
+       
       />
       {planNumber === 1 ? (
         <LayoutContainer padding="0"  margin={"-10px"}>
