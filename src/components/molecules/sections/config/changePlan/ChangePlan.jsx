@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import Loading from "../../../../atom/loading/Loading";
 import { toast } from "react-hot-toast";
 import styles from "./changePlan.module.scss";
-import ChangePlanModal from "../../../modals/changePlanModal/ChangePlanModal.jsx";
+import Modal from "../../../modals/changePlanModal/Modal";
 
 
 export default function ChangePlan() {
@@ -92,7 +92,7 @@ export default function ChangePlan() {
               />
             </div>
           </form>
-          <ChangePlanModal
+          <Modal
             open={modalOpen}
             title={`Estas por pasar a ${newPlan === "m1" ? "Versión 1" : "Versión 2"}`}
             text={`Tus clientes podrán ${newPlan === "m1" ? "solamente ver el menú" : "pedir y pagar desde sus teléfonos y recibirás lo pedidos en la “pantalla de operación” "}`}
