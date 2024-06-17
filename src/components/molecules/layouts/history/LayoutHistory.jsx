@@ -24,6 +24,17 @@ const todayDate=getDateCurrent();
  /*  console.log(orderDelivered) */
    //const [t,i18n]=useTranslation("global");
    const [t,i18n]=useTranslation("global");
+   const parseOrdersToJson = (orders) => {
+    return orders.map(order => {
+      // Parsea los campos que están en formato JSON
+      order.additionals = JSON.parse(order.additionals);
+      order.products = JSON.parse(order.products);
+      order.dishes = JSON.parse(order.dishes);
+      order.menu = JSON.parse(order.menu);
+
+      return order;
+    });
+  };
 
   useEffect(() => {
 /*     const timeout = setTimeout(() => { */
@@ -35,7 +46,8 @@ const todayDate=getDateCurrent();
       axios(`order/paidOrderes/${comerceId}?startDate=${selectDate}&endDate=${selectDate}`)
         .then((response) => {
           const data = response.data;
-          setOrderDate(data); // Almacena la respuesta en el estado local
+          const parsedData = parseOrdersToJson(data); // Parsea los datos recibidos// Establece los datos parseados en el estado
+          setOrderDate(parsedData); // Almacena la respuesta en el estado local
           setIsLoading(false)
         })
         .catch((error) => {
@@ -80,6 +92,7 @@ const todayDate=getDateCurrent();
                   {isLoading?<Loading/>: orderDelivered.map((cur, idx) => {
                    return <Card
                       key={idx}
+                      id={cur.id}
                       tableNumber={cur.po && cur.po.id}
                       sectorNumber={cur.sector && cur.sector.id}
                       order={cur.order}

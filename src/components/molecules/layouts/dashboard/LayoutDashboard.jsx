@@ -27,6 +27,7 @@ export default function LayoutDashboard({closed}) {
       statusOrder.map((cur, idx) => (
         <Card
           key={idx}
+          id={cur.id}
           tableNumber={cur.po && cur.po.id}
           sectorNumber={cur.sector && cur.sector.id}
           order={cur.order}
@@ -54,13 +55,27 @@ export default function LayoutDashboard({closed}) {
     );
   };
 
-  //?
+  // Función para parsear los datos de las órdenes a formato JSON
+  const parseOrdersToJson = (orders) => {
+    return orders.map(order => {
+      // Parsea los campos que están en formato JSON
+      order.additionals = JSON.parse(order.additionals);
+      order.products = JSON.parse(order.products);
+      order.dishes = JSON.parse(order.dishes);
+      order.menu = JSON.parse(order.menu);
+
+      return order;
+    });
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios(`order/paidOrderes/${comerceId}?startDate=${dateCurrent}&endDate=${dateCurrent}`);
         const data = response.data;
-        setAllOrders(data);
+        const parsedData = parseOrdersToJson(data); // Parsea los datos recibidos
+        setAllOrders(parsedData);
+        console.log(parsedData) // Establece los datos parseados en el estado
       } catch (error) {
         console.error("Error al realizar la solicitud:", error);
       }
@@ -71,7 +86,7 @@ export default function LayoutDashboard({closed}) {
       setCardStatusChanged(false);
     }
     fetchData(); // Realiza la solicitud inicial
-    const intervalId = setInterval(fetchData, 20000);
+    const intervalId = setInterval(fetchData, 5000);
     // Limpia el intervalo si el componente se desmonta
     return () => clearInterval(intervalId);
   }, [cardStatusChanged]);
@@ -79,35 +94,46 @@ export default function LayoutDashboard({closed}) {
   const statusTables = (status) => {
     return allOrders.filter((cur) => cur.status === status);
   };
+
   return (
     <div className={s.content_LayoutDashboard}>
       <div className={`${s.status_orders} ${closed&&s.status_orders_closed} `}>
+        <div className={s.statusOrderNew}>
         <SubTitleUnderline
           content={t("dashboard.new")}
-          color={"#4B47FF"}
+          color={"#FF4A4A"}
           number={statusTables("orderPlaced").length}
           status={"#orderPlaced"}
         />
+        </div>
+        <div className={s.statusOrderPreparing}>
         <SubTitleUnderline
+          content={t("dashboard.preparing")}
+          color={"#FF4A4A"}
+          number={statusTables("orderReady").length}
+          status={"#orderReady"}
+        />
+        </div>
+         {/*<SubTitleUnderline
           content={t("dashboard.preparing")}
           color={"#FF4A4A"}
           number={statusTables("orderInPreparation").length}
           status={"#orderInPreparation"}
-        />
+  />
         <SubTitleUnderline
           content={t("dashboard.ready")}
           color={"#40CB5F"}
           number={statusTables("orderReady").length}
           status={"#orderReady"}
-        />
+  />*/}
       </div>
       <div className={s.content_orders}>
-        <section className={s.content_status_orders} id="orderPlaced" >
+        <section className={s.content_status_orders_new} id="orderPlaced" >
           {renderOrdesCards("orderPlaced")}
         </section>
-        <section  className={s.content_status_orders} id="orderInPreparation" >
+       { /*<section  className={s.content_status_orders} id="orderInPreparation" >
           {renderOrdesCards("orderInPreparation")}
-        </section>
+        </section>*/}
         <section  className={s.content_status_orders} id="orderReady">
           {renderOrdesCards("orderReady")}
         </section>

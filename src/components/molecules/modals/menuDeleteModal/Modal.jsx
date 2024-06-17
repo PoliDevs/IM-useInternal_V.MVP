@@ -18,7 +18,6 @@ export default function Modal({ open, title, text, text_2, handleModal,text_conf
         <>
           <div className={s.overlay} onClick={()=>handleModal()} ></div>
           <div className={s.container}>
-            <XMark className={s.closed_modal} onClick={() => handleModal()} />
             <Title text={title} />
             <div className={s.content_texts}>
               <Paragraph text={text} noMargin />

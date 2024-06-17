@@ -46,12 +46,13 @@ export default function LayoutSales() {
 
   const totalWeek = week && week.reduce((acc, cur) => acc + cur.tot_diario, 0); // total dinero de la semana
   const totalWeekOrders = week && week.reduce((acc, cur) => acc + cur.pedidos, 0); // total ordenes vendidas de la semana
+ 
+  const currentDate = new Date(date).toISOString().slice(0, 10);
 
-  const today_orders_money = week && week.reduce(cur => cur.date === date); // pedidos y ventas de hoy
-  
-  const todayOrdersMoneyValue = today_orders_money ? today_orders_money.tot_diario : 0;
+  const today_order_data = week && week.find(item => item.date === currentDate);
+  const today_orders_money = today_order_data ? today_order_data.tot_diario : 0;
+  const today_orders_count = today_order_data ? today_order_data.pedidos : 0;
 
-  console.log("Datos para el día actual:", todayOrdersMoneyValue);
 
 
   return (
@@ -68,11 +69,11 @@ export default function LayoutSales() {
         <Title text={t("sales.today")} bold />
         <div>
           <div className={s.orders}>
-            <Title text={`${t("sales.today you sold")} $${todayOrdersMoneyValue}`} />
+            <Title text={`${t("sales.today you sold")} $${today_orders_money}`} />
           </div>
           <div className={s.sales}>
             <Title
-              text={`${t("sales.today you received")}${week&&today_orders_money.pedidos} ${t("sales.orders")} `}
+              text={`${t("sales.today you received")}${today_orders_count} ${t("sales.orders")} `}
             />
           </div>
         </div>

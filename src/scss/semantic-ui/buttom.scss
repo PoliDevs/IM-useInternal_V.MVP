@@ -43,5 +43,18 @@
 }
 
 .ui.button {
+    font-weight: bold;
+    align-items: center;
+    margin-top: 10px;
     background-color: red;
+    color: #FFFFFF;
+    border-radius: 25px;
+    font-size: 16px;;
+    &:hover{
+        color: #FFFFFF;
+        background: #FF4747;
+        border: gray ;
+        border-radius: 25px;
+    }
+   
 }

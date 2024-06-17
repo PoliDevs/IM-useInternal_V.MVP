@@ -1,0 +1,42 @@
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button {
+
+    padding: 17px 40px;
+    font-weight: bold;
+    align-items: center;
+    margin-top: 20px;
+    background-color: #ff4747;
+    color: #ffffff;
+    border-radius: 25px;
+    font-size: 16px;
+    border: none;
+    &:hover {
+      color: #ffffff;
+      background: #ff4747;
+      border: gray;
+      border-radius: 25px;
+      border: gray solid 1px;
+      cursor: pointer;
+    }
+    &:focus {
+      outline: none; /* Eliminar el contorno al enfocar */
+      box-shadow: none; /* Eliminar la sombra al enfocar */
+      border: none; /* Eliminar el borde al enfocar */
+    }
+  }
+  
+  .button.disabled {
+    background-color: #d3d3d3; /* Color del botón deshabilitado */
+    color: #ffffff; /* Mantener el color del texto blanco */
+    cursor: not-allowed;
+    &:hover {
+      background-color: #d3d3d3; /* Evitar cambio de color al pasar el cursor */
+      border: none;
+    }
+  }
+  

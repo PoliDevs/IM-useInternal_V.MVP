@@ -22,7 +22,16 @@
 .status_orders_closed{
   top: 187px;
 }
-
+.statusOrderNew{
+  margin-left: 200px;
+  align-items: center;
+  width: 30%;
+}
+.statusOrderPreparing{
+  margin-left: 150px;
+  width: 70%;
+  align-items: center;
+}
 .content_orders {
   margin-top: 70px;
   display: flex;
@@ -31,13 +40,22 @@
   min-height: 55vh;
   >section:nth-child(2) {
     border-left: 2px solid $color-nineth;
-    border-right: 2px solid $color-nineth;
+    border-right: 0px solid $color-nineth;
   }
 }
 
 /* >section */
 .content_status_orders {
-  width: 32%;
+  width: 70%;
+  min-height: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  align-items: flex-start; /* Align items at the start (top) */
+  flex-wrap: wrap;         /* Allow wrapping */
+}
+.content_status_orders_new {
+  width: 30%;
   min-height: 0;
   display: flex;
   flex-direction: column;

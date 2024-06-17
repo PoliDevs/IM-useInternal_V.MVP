@@ -64,10 +64,10 @@
   },
   "sales": {
     "this week": "Esta semana",
-    "weekly Total": "Total Semanal:$",
+    "weekly Total": "Total Semanal: $",
     "today": "Hoy",
     "today you sold": "Hoy vendiste",
-    "today you received": "Hoy recibiste",
+    "today you received": "Hoy recibiste ",
     "orders": "pedidos"
   },
   "history": {
@@ -79,7 +79,7 @@
     "manage current menu": "Gestionar menú actual",
     "replace current menu": "Reemplazar menú actual",
     "download menu template": "Descargar plantilla de menú",
-    "local logo": "Logo del local (próximamente)",
+    "local logo": "Logo del local",
     "menu item": {
       "category": "Categoría",
       "menu": "Menu",
@@ -119,14 +119,20 @@
       "input_2": "Teléfono"
     },
     "business data": {
-      "title": "Datos de negocio",
+      "title": "Datos del negocio",
       "input_1": "Nombre del negocio",
-      "input_2": "Teléfono"
+      "input_2": "Teléfono",
+      "name": "Nombre del Comercio",
+      "address": "Direccion del Comercio",
+      "workSchedule":"Horario de Trabajo",
+      "phono": "Numero de Teléfono",
+      "email":"E-mail",
+      "save": "Guardar cambios"
     },
     "payment market": {
-      "title": "Mercado pago",
-      "input_1": "Token",
-      "input_2": "Key"
+      "title": "Conectá tu cuenta de Mercado Pago",
+      "input_1": "Key",
+      "input_2": "Token"
     }
   },
   "generator qr": {
@@ -146,6 +152,8 @@
     "purple": "Morado"
   },
   "card": {
+    "order new": "Nuevo",
+    "order rgo": "Listo",
     "order placed": "Pasar a preparando",
     "order in preparation": "Pasar a listo",
     "order ready": "Pasar a entregado",
