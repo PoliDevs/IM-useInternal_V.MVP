@@ -95,7 +95,7 @@ export default function ChangePlan() {
           <Modal
             open={modalOpen}
             title={`Estas por pasar a ${newPlan === "m1" ? "Versión 1" : "Versión 2"}`}
-            text={`Tus clientes podrán ${newPlan === "m1" ? "solamente ver el menú" : "pedir y pagar desde sus teléfonos y recibirás lo pedidos en la “pantalla de operación” "}`}
+            text={`Tus clientes podrán ${newPlan === "m1" ? "solamente ver el menú" : "pedir y pagar desde sus teléfonos y recibirás los pedidos en la “pantalla de operación” "}`}
             text_2="Al confirmar se cerrará tu sesión y deberás volver a ingresar."
             text_3="Luego deberás configurar el medio de pago desde:"
             text_4="Opciones > Configuración > Métodos de pago"
