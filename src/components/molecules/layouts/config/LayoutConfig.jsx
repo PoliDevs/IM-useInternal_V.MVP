@@ -14,7 +14,7 @@ export default function LayoutConfig() {
   const personalData = t("config.select.personal data");
   const businessData = t("config.select.business data");
   const paymentData = t("config.select.payment methods");
-  const changePlan = t("Habilitar recibir pedidos");
+  const changePlan = t("Recibir pedidos");
   const localLogo = t("menu.local logo");
   const [selectedOption, setSelectedOption] = useState(personalData);
   const planNumber = useSelector((state) => state.user_internal.commercialPlan);

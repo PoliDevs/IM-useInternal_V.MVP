@@ -11,7 +11,11 @@
     "server": "json-server --watch restorant.json"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@hookform/resolvers": "^3.2.0",
+    "@mui/icons-material": "^5.15.20",
+    "@mui/material": "^5.15.20",
     "apexcharts": "^3.42.0",
     "axios": "^1.4.0",
     "crypto-js": "^4.1.1",
