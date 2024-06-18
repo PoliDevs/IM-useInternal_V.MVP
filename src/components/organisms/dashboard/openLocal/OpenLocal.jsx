@@ -1,16 +1,17 @@
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 import Header from "../../../molecules/Header/Header";
 import LayoutContainer from "../../../molecules/layouts/section/LayoutContainer";
 import LayoutDashboard from "../../../molecules/layouts/dashboard/LayoutDashboard";
 import Container from "../../../atom/container/Container";
-import { useTranslation } from "react-i18next";
 import CartelPlanUno from "../../../molecules/CartelPlanUno/CartelPlanUno";
-import { useSelector } from "react-redux";
 import ContentColumn from "../../../atom/contentColumn/ContentColumn";
 import ContentRow from "../../../atom/contentRow/ContentRow";
 import SubTitleUnderline from "../../../atom/subTitleUnderline/SubTitleUnderline";
 import Separator from "../../../atom/separator/Separator";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useTranslation } from "react-i18next";
+import FloatingButton from '../../../atom/buttons/FloatingButton/FloatingButton'; // Asegúrate de que la ruta sea correcta
 
 export default function OpenLocal() {
   const [t, i18n] = useTranslation("global");
@@ -30,8 +31,6 @@ export default function OpenLocal() {
     fetchData();
   }, [comerceId]);
 
-  
-  // Función para obtener el método de pago activo
   const getActivePaymentMethod = () => {
     if (paymentMethods) {
       return paymentMethods.find(method => method.active);
@@ -39,7 +38,6 @@ export default function OpenLocal() {
     return null;
   };
 
-  // Función auxiliar para obtener el detalle del método de pago activo
   const getActivePaymentMethodDetail = () => {
     const activeMethod = getActivePaymentMethod();
     return activeMethod ? activeMethod.detail : "";
@@ -50,10 +48,9 @@ export default function OpenLocal() {
       <Header
         icon="store"
         title={`${t("header.open local.orders received")} - ${getActivePaymentMethodDetail()}`}
-       
       />
       {planNumber === 1 ? (
-        <LayoutContainer padding="0"  margin={"-10px"}>
+        <LayoutContainer padding="0" margin={"-10px"}>
           <ContentColumn
             width={"100%"}
             height={"85vh"}
@@ -67,11 +64,8 @@ export default function OpenLocal() {
               text_2={t("plan 1.cartel plan 1.text_2")}
               marginBooton="10px"
             />
-            <Separator height="21px"/>
-            <ContentRow width={"100%"}
-            justifyContent={"space-around"}
-            alignItems={"start"}
-            >
+            <Separator height="21px" />
+            <ContentRow width={"100%"} justifyContent={"space-around"} alignItems={"start"}>
               <SubTitleUnderline
                 content={t("dashboard.new")}
                 color={"#BABABA"}
@@ -88,11 +82,11 @@ export default function OpenLocal() {
                 number={0}
               />
             </ContentRow>
-      <ContentRow width={"100%"} height={"450px"}>
-        <ContentRow width={"33%"}/>
-        <ContentRow width={"33%"}  borderLeft={"2px solid #BABABA"} borderRight={"2px solid #BABABA"}/>
-        <ContentRow width={"33%"}/>
-      </ContentRow>
+            <ContentRow width={"100%"} height={"450px"}>
+              <ContentRow width={"33%"} />
+              <ContentRow width={"33%"} borderLeft={"2px solid #BABABA"} borderRight={"2px solid #BABABA"} />
+              <ContentRow width={"33%"} />
+            </ContentRow>
           </ContentColumn>
         </LayoutContainer>
       ) : (
@@ -100,6 +94,7 @@ export default function OpenLocal() {
           <LayoutDashboard />
         </LayoutContainer>
       )}
+      <FloatingButton />
     </Container>
   );
 }
